@@ -1,0 +1,21 @@
+<h3>회원가입</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    아이디: <input type="text" name="user-id">
+    비밀번호: <input type="password" name="user-password">
+    비밀번호 확인: <input type="password" name="check-password">
+    이름: <input type="text">
+    성별: 
+    <input type="radio" name="gender" value="man">남자
+    <input type="radio" name="gender" value="woman">여자
+    국적: 
+    <select name="nation">
+        <option value="">선택해주세요.</option>
+        <option value="KOR">대한민국</option>
+        <option value="CHN">중국</option>
+    </select>
+
+    <button type="submit">Sign Up</button>
+
+
+</form>
