@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>LOGIN</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        ID <input name="user-id" type="text">
+        PASSWORD <input name="user-password" type="password">
+        <a href="">아이디 / 비밀번호 찾기</a>
+        <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
+        <button type="submit">Login</button>
+        <button onclick="">Sign Up</button>
+    </form>
+    
+</body>
+</html></html>
