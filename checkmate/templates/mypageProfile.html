@@ -1,0 +1,28 @@
+<div class="mypage_nav">
+    <h3>마이페이지</h3>
+    <!-- border-left 색상 바꾸기 (클릭 모션) -->
+    <a href="">회원정보 수정</a>
+    <a href="">체크리스트 수정</a>
+    <a href="">스크랩 목록</a>
+    <a href="">내가 작성한 글</a>
+</div>
+<div>
+    <h3>회원정보 수정</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="file" name="image" value="">
+        <!-- 프로필사진 -->
+        <input type="text" name="nickname" maxlength='5' value="">
+        <!-- 닉네임 -->
+        ID <input type="text" name="user-id" value="">
+        비밀번호
+        <input type="password" name="user-password" placeholder="현재 비밀번호">
+        <input type="password" name="new-password" placeholder="새 비밀번호">
+        <input type="password" name="check-new-password" placeholder="새 비밀번호 확인">
+
+        <button type="submit">저장</button>
+
+    </form>
+
+
+</div>
