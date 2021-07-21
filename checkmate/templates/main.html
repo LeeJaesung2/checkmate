@@ -1,23 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHECKMATE</title>
 </head>
 <body>
     <!-- 네비바 -->
     <nav>
-        <div>
+        <div class="main-check">
             <img src="" alt="">
             <a href="">checkmate</a>
         </div>
-        <a href="">룸메 찾기</a>
-        <a href="">정보 공유</a>
-        <a href="">내정보</a>
-        <a href="">로그인</a>
+        <ul>
+            <li><a href="">룸메 찾기</a></li>
+            <li><a href="">정보 공유</a></li>
+            <li><a href="">내정보</a></li>
+            <li><a href="">로그인</a></li>
+        </ul>
     </nav>
     <div class="container">
         <div class="content-top">
@@ -25,7 +28,7 @@
                 <h1 class="title">나와 딱 맞는<br>룸메이트 찾기</h1>
                 <p class="detail">설명설명설명<br>설명설명설명</p>
             </div>
-            <img src="" alt=""> <!-- 메인화면 이미지 추가 -->
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MTNfMTIz%2FMDAxNjI2MTcyMTc1MTM2.WhsuBW-XW8EznT2YUeeRwmfivozt9k-R1Y66CjF5eisg.1i2h2X0xtHsUcTx_Id78vudHP2aew0xue3g919atUQcg.JPEG.yhnmynm1019%2F1626172144366.jpg&type=sc960_832" alt="" width="100px" height="100px"> <!-- 메인화면 이미지 추가 -->
         </div>
         <div class="content-bottom">
             <div class="menu-1">
@@ -48,7 +51,7 @@
         </div>
     </div>
     <footer>
-        <div class="title">
+        <div>
             <p class="font-bold">문의처</p>
             <p>경상대학교 멋쟁이사자처럼</p>
         </div>
