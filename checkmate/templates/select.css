@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-7ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+    font-family: 'yg-jalnan';
+
+}
+
+body{
+    background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%);
+    background-attachment: fixed;
+}
+
+h3{
+    font-family: 'S-CoreDream-3Light';
+}
+/* 왼쪽 상단 타이틀 */
+.top.title{
+    text-align: left;
+    font-size: 15px;
+    margin: 30px;
+}
+
+/* 진행바 */
+.progress, .front-bar, .background-bar{
+    /* border: 1px solid gray; */
+    height: 30px;
+
+    border-radius: 20px;
+}
+
+.progress{
+    width: 70%;
+    margin: 60px auto;
+}
+
+.front-bar{
+    background-color: white;
+    width: 80%;
+}
+
+.background-bar
+{
+    background-color: grey;
+}
+
+.front-bar > .text{
+    padding-top: 7px;
+    text-align: center;
+    font-family: 'S-CoreDream-3Light';
+    color: #254074;
+}
+
+/* input-radio */
+input[type=radio]{
+    opacity: 0%;
+}
+
+input[type=radio]+label{
+    font-family: 'S-CoreDream-7ExtraBold';
+    color: #254074;
+    background-color: white;
+    padding: 4px 8px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+input[type=radio]:checked+label{
+    font-family: 'S-CoreDream-7ExtraBold';
+    color: #254074;
+    background-color: white;
+    padding: 8px 16px;
+    font-size: 18px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+input[type=radio]+label:hover{
+    padding: 8px 16px;
+    font-size: 18px;
+}
+
+/* input-number */
+input[type=number]{
+    border-radius: 5px;
+    border: 0px;
+}
+
+/* 문답 부분 */
+.container{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.question{
+    padding: 40px;
+    border-bottom: 1px solid white;
+}
