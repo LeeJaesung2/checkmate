@@ -58,7 +58,7 @@ h3{
 
 .front-bar{
     background-color: white;
-    width: 80%;
+    width: 0%;
 }
 
 .background-bar
@@ -67,10 +67,31 @@ h3{
 }
 
 .front-bar > .text{
-    padding-top: 7px;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 8px;
     text-align: center;
     font-family: 'S-CoreDream-3Light';
     color: #254074;
+}
+
+/* container - 문답 부분*/
+.container{
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.previous, .next{
+    font-family: 'S-CoreDream-3Light';
+    width: 50px;
+    align-items: center;
+}
+
+.question{
+    padding: 40px;
+    /* border-bottom: 1px solid white; */
 }
 
 /* input-radio */
@@ -108,13 +129,3 @@ input[type=number]{
     border: 0px;
 }
 
-/* 문답 부분 */
-.container{
-    width: 50%;
-    margin: 0 auto;
-}
-
-.question{
-    padding: 40px;
-    border-bottom: 1px solid white;
-}

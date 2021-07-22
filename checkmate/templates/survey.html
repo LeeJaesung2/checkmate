@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="select.css">
+    <link rel="stylesheet" href="../../static/css/survey.css">
     <title>내 정보 입력 페이지</title>
 </head>
 <body>
@@ -21,6 +21,7 @@
     <h3>*다음은 필수로 답해주셔야하는 문항들입니다.</h3>
     <!-- 문답 -->
     <div class="container">
+        <p class="previous">< 이전</p>
         <div class="question grade">
             <h2 class="title">현재 몇학년인가요?</h1>
             <div class="answer">
@@ -186,8 +187,11 @@
                 <input type="radio" id="game-no" name="game"><label for="game-no">안 함</label>
             </div>
         </div>
+        <p class="next">다음 ></p>
     </div>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../../static/js/select.js"></script>
+
+    <!-- js -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="../../static/js/survey.js"></script>
 </body>
 </html>
