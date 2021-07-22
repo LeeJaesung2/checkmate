@@ -1,0 +1,215 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-9Black';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* div {
+    border: 1px solid black;
+} */
+
+nav,.title, .go{
+    font-family: 'yg-jalnan';
+    font-size: 15px;
+}
+
+footer{
+    font-family: 'S-CoreDream-9Black';
+    font-size: 10px;
+    position: absolute;
+    width: 1440px;
+    height: 161px;
+    left: 0px;
+    top: 955px;
+    background: #D6D8DD;
+    color: white;
+}
+nav{
+    display: grid;
+    position: sticky;
+    /* 이거하면 고정돼야한다는데 안됨 ?? */
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    height: 50px;
+    overflow: hidden;
+    padding: 30px;
+}
+nav .main-check{
+    padding-left: 40px;
+    font-size: 25px;
+    color: rgba(93, 148, 255, 1);
+}
+nav ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-self: end;
+    column-gap: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+    color: rgba(93, 148, 255, 1);
+}
+
+.container{
+    padding: 100px;
+}
+.content-top{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.text .title{
+    position: absolute;
+    width: 423px;
+    height: 148px;
+    left: 260px;
+    top: 214px;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 64px;
+    text-align: right;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+    /* 글자에 색이 적용돼야하는데.... 안됨! */
+}
+.text .detail{
+    position: absolute;
+    width: 397px;
+    height: 43px;
+    left: 288px;
+    top: 400px;
+    font-family: S-Core Dream;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #3F97FF;
+}
+.container .img{
+    position: absolute;
+    width: 440px;
+    height: 331px;
+    left: 728px;
+    top: 168px;
+
+}
+.content-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.content-bottom .menu-1{
+    position: absolute;
+    width: 570px;
+    height: 307px;
+    left: 158px;
+    top: 499px;
+    background: #3F97FF;
+}
+.content-bottom .menu-2{
+    position: absolute;
+    width: 570px;
+    height: 307px;
+    left: 728px;
+    top: 499px;
+    background-color: rgba(145, 142, 255, 1);
+    color: white;
+}
+.menu-1 button{
+    width: 250px;
+    height: 38px;
+    left: 443px;
+    top: 732px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+.menu-1 button p{
+    width: 156.24px;
+    height: 20px;
+    left: 490px;
+    top: 741px;
+
+    font-family: 'Jalnan';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #254074;
+}
+.menu-2 button{
+    width: 250px;
+    height: 38px;
+    left: 1000px;
+    top: 732px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px; 
+}
+.menu-2 button p{
+    width: 128.57px;
+    height: 20px;
+    left: 1060.71px;
+    top: 741px;
+
+    font-family: 'Jalnan';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #254074;
+}
+.menu-1 .title{
+    width: 269.59px;
+    height: 37px;
+    left: 212px;
+    top: 559px;
+    
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 37px;
+    /* identical to box height */
+    
+    
+    color: #FFFFFF;
+    
+}
+.menu-1 .detail{
+    width: 497.83px;
+    height: 53px;
+    left: 212.19px;
+    top: 609px;
+    
+    font-family: 'S-Core Dream';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #FFFFFF;
+    
+}
+.menu-2 .title{
+    font-size: 36px;
+}
+.menu-2 .detail{
+    font-size: 16px;
+    font-family: 'S-CoreDream-9Black';
+}
