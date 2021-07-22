@@ -11,7 +11,7 @@ class CustomUser(models.Model):
     user_register_time = models.DateTimeField(auto_now_add=True,verbose_name='계정생성 시간')
 
 def __str__(self):
-    return slef.user_name
+    return self.user_name
 
 class Meta:
     db_table = 'user'
