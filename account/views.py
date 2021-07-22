@@ -2,10 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def login_views(request):
+def login_view(request):
     return render(request,'login.html')
 
-def logout_views(request):
+def logout_view(request):
     return render(request,'login.html')
 
 def register(request):
