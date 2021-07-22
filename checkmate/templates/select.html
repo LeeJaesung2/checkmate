@@ -17,6 +17,7 @@
             </div>
         </div>
     </div>
+    <h3>다음은 필수로 답해주셔야하는 문항들입니다.</h3>
     <!-- 문답 -->
     <div class="container">
         <div class="question grade">
@@ -127,11 +128,61 @@
             </div>
         </div>
         <div class="question eat">
-            <h2 class="title">방안에서 음식을 먹어도 되나요?</h1>
+            <h2 class="title">방안에서 음식을 먹나요?</h1>
             <div class="answer">
-                <input type="radio" id="eat-yes" name="eat"><label for="eat-yes">전부 가능</label>
+                <input type="radio" id="eat-yes" name="eat"><label for="eat-yes">식사도 방안에서</label>
                 <input type="radio" id="eat-snack" name="eat"><label for="eat-snack">냄새안나는 음식만(간식)</label>
-                <input type="radio" id="eat-no" name="eat"><label for="eat-no">금지</label>
+                <input type="radio" id="eat-no" name="eat"><label for="eat-no">나가서 먹음</label>
+            </div>
+        </div>
+        <!-- 선택요소 -->
+        <h3>다음부터는 꼭 답하지 않아도 되는 선택 문항입니다.</h3>
+        <div class="question share">
+            <h2 class="title">생필품을 룸메와 같이 쓰나요?</h1>
+            <div class="answer">
+                <input type="radio" id="share-yes" name="share"><label for="share-yes">공유</label>
+                <input type="radio" id="share-no" name="share"><label for="share-snack">각자</label>
+            </div>
+        </div>
+        <div class="question toilet">
+            <h2 class="title">청소는 얼마나 자주 하나요?</h1>
+            <div class="answer">
+                <input type="range" name="toilet">
+            </div>
+        </div>
+        <div class="question ventilate">
+            <h2 class="title">환기는 얼마나 자주 하나요?</h1>
+            <div class="answer">
+                <input type="range" name="ventilate">
+            </div>
+        </div>
+        <div class="question feel">
+            <h2 class="title">추위나 더위를 많이 타나요?(에어컨, 보일러 관련)</h1>
+            <div class="answer">
+                <input type="checkbox" id="feel-cold" name="feel"><label for="feel-cold">추위를 많이 탐</label>
+                <input type="checkbox" id="feel-hot" name="feel"><label for="feel-hot">더위를 많이 탐</label>
+            </div>
+        </div>
+        <div class="question bug">
+            <h2 class="title">벌레를 잘 잡나요?</h1>
+            <div class="answer">
+                <input type="radio" id="bug-yes" name="share"><label for="bug-yes">잘 잡아요</label>
+                <input type="radio" id="bug-no" name="share"><label for="bug-snack">못 잡아요ㅠㅠ</label>
+            </div>
+        </div>
+        <div class="question keyboard">
+            <h2 class="title">평소 키보드 소음은 어느정도인가요?</h1>
+            <div class="answer">
+                <input type="radio" id="keyboard-loud" name="keyboard"><label for="keyboard-loud">타이핑&게임 자주함</label>
+                <input type="radio" id="keyboard-no" name="keyboard"><label for="keyboard-no">거의 안함</label>
+                <input type="radio" id="keyboard-noise" name="keyboard"><label for="keyboard-noise">저소음 키보드 사용중</label>
+            </div>
+        </div>
+        <div class="question game">
+            <h2 class="title">게임을 하시나요?</h1>
+            <div class="answer">
+                <input type="radio" id="game-yes" name="game"><label for="game-yes">자주 함</label>
+                <input type="radio" id="game-no" name="game"><label for="game-no">안 함</label>
             </div>
         </div>
     </div>
