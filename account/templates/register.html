@@ -1,5 +1,5 @@
 <h3>회원가입</h3>
-<form action="" method="post">
+<form action="" method="POST">
     {% csrf_token %}
     프로필 사진: <input type="file" name="image">
     닉네임: <input type="text" name="" maxlength='5' placeholder="최대 5글자">
@@ -9,15 +9,14 @@
     비밀번호 확인: <input type="password" name="check-password">
     이름: <input type="text">
     성별: 
-    <input type="radio" name="gender" value="man">남자
-    <input type="radio" name="gender" value="woman">여자
+    <input type="radio" name="user_gender" value="man">남자
+    <input type="radio" name="user_gender" value="woman">여자
     국적: 
-    <select name="nation">
+    <select name="user_nation">
         <option value="">선택해주세요.</option>
         <option value="KOR">대한민국</option>
         <option value="CHN">중국</option>
     </select>
-    
 
     <button type="submit">Sign Up</button>
 
