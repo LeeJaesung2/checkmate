@@ -48,7 +48,6 @@ def register(request):
                 user_register_time = timezone.datetime.now()
             )
             customUser.save()
-            # login(request,user)
         return redirect('main')
     else:
         return render(request,'register.html')
