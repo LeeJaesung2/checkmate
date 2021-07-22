@@ -17,9 +17,10 @@
             </div>
         </div>
     </div>
+    <!-- 문답 -->
     <div class="container">
         <div class="question grade">
-            <h2 class="title">나의 학년은?</h1>
+            <h2 class="title">현재 몇학년인가요?</h1>
             <div class="answer">
                 <input type="number" name="grade">
             </div>
@@ -32,33 +33,107 @@
             </div>
         </div>
         <!-- if 기숙사 -->
-        
-
+    
+        <div class="question dormitory-number">
+            <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
+            <div class="answer">
+                <input type="radio" id="dormitory-10" name="dormitory-number" value="10"><label for="dormitory-10">10동</label>
+                <input type="radio" id="dormitory-8" name="dormitory-number" value="10"><label for="dormitory-10">8동</label>
+                <input type="radio" id="dormitory-6" name="dormitory-number" value="10"><label for="dormitory-10">6동</label>
+                <input type="radio" id="dormitory-3" name="dormitory-number" value="10"><label for="dormitory-10">3동</label>
+                <input type="radio" id="dormitory-2" name="dormitory-number" value="10"><label for="dormitory-10">2동</label>
+                <input type="radio" id="dormitory-1" name="dormitory-number" value="10"><label for="dormitory-10">1동</label>
+            </div>
+        </div>
+        <div class="question dormitory-date">
+            <h2 class="title">룸메이트와 함께할 기간을 입력해주세요!</h1>
+            <div class="answer">
+                <select name="dormitory-year-start">
+                    <option value="2021">2021</option>
+                </select>
+                <select name="dormitory-semester-start">
+                    <option value="1학기">1학기</option>
+                    <option value="여름방학">여름방학</option>
+                    <option value="2학기">2학기</option>
+                    <option value="겨울방학">겨울방학</option>
+                </select>
+                <span>~</span>
+                <select name="dormitory-year-end">
+                    <option value="2021">2021</option>
+                </select>
+                <select name="dormitory-semester-end">
+                    <option value="1학기">1학기</option>
+                    <option value="여름방학">여름방학</option>
+                    <option value="2학기">2학기</option>
+                    <option value="겨울방학">겨울방학</option>
+                </select>
+            </div>
+        </div>
+        <div class="question relationship">
+            <h2 class="title">룸메와 어떤 관계였으면 좋겠나요?</h1>
+            <div class="answer">
+                <input type="radio" id="friendly" name="relationship" value="친하게"><label for="friendly">친하게</label>
+                <input type="radio" id="business" name="relationship" value="인사만"><label for="business">인사만</label>
+            </div>
+        </div>
+        <div class="question time">
+            <h2 class="title">몇시에 자서 몇시에 일어나나요?</h1>
+            <div class="answer">
+                <input type="time" id="wakeup" name="time"><label for="wakeup">에 일어나서</label>
+                <input type="time" id="bedtime" name="time"><label for="betime">에 잡니다</label>
+            </div>
+        </div>
+        <div class="question smoke">
+            <h2 class="title">흡연을 하나요?</h1>
+            <div class="answer">
+                <input type="radio" id="nonsmoker" name="smoke"><label for="nonsmoker">비흡연자</label>
+                <input type="radio" id="smoker" name="smoke"><label for="smoker">흡연자</label>
+            </div>
+        </div>
+        <div class="question cleaning">
+            <h2 class="title">청소는 얼마나 자주 하나요?</h1>
+            <div class="answer">
+                <input type="range" name="cleaning">
+            </div>
+        </div>
+        <div class="question sleeping-habits">
+            <h2 class="title">잠버릇이 있나요?</h1>
+            <div class="answer">
+                <input type="checkbox" id="snoring" name="sleeping-habits"><label for="snoring">코골이</label>
+                <input type="checkbox" id="grinding-teeth" name="sleeping-habits"><label for="grinding-teeth">이갈이</label>
+                <label for="other">기타</label><input type="text" id="other" name="sleeping-habits">
+            </div>
+        </div>
+        <div class="question invite-friends">
+            <h2 class="title">방에 친구를 데려오나요?</h1>
+            <div class="answer">
+                <input type="radio" id="invite-friends-yes" name="invite-friends"><label for="invite-friends-yes">예</label>
+                <input type="radio" id="invite-friends-no" name="invite-friends"><label for="invite-friends-no">아니요</label>
+            </div>
+        </div>
+        <div class="question call">
+            <h2 class="title">방안에서 통화를 해도 괜찮나요?</h1>
+            <div class="answer">
+                <input type="radio" id="call-yes" name="call"><label for="call-yes">예</label>
+                <input type="radio" id="call-no" name="call"><label for="call-no">아니요</label>
+                <input type="radio" id="call-short" name="call"><label for="call-short">짧은통화만</label>
+            </div>
+        </div>
+        <div class="question earphones">
+            <h2 class="title">방안에서 이어폰을 사용하길 원하시나요?</h1>
+            <div class="answer">
+                <input type="radio" id="earphones-yes" name="earphones"><label for="earphones-yes">필수</label>
+                <input type="radio" id="earphones-no" name="earphones"><label for="earphones-no">상관없음</label>
+            </div>
+        </div>
+        <div class="question eat">
+            <h2 class="title">방안에서 음식을 먹어도 되나요?</h1>
+            <div class="answer">
+                <input type="radio" id="eat-yes" name="eat"><label for="eat-yes">전부 가능</label>
+                <input type="radio" id="eat-snack" name="eat"><label for="eat-snack">냄새안나는 음식만(간식)</label>
+                <input type="radio" id="eat-no" name="eat"><label for="eat-no">금지</label>
+            </div>
         </div>
     </div>
-    <div class="question dormitory-number">
-        <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
-        <div class="answer">
-            <input type="button" name="dormitory-number" value="10동">
-            <input type="button" name="dormitory-number" value="8동">
-            <input type="button" name="dormitory-number" value="6동">
-            <input type="button" name="dormitory-number" value="3동">
-            <input type="button" name="dormitory-number" value="2동">
-            <input type="button" name="dormitory-number" value="1동">
-        </div>
-    </div>
-    <div class="question dormitory-period">
-        <h2 class="title">룸메이트와 함께할 기간을 입력해주세요!</h1>
-        <div class="answer">
-            <select type="month" name="dormitory-period">
-                <option value="1학기">1학기</option>
-                <option value="여름방학">여름방학</option>
-                <option value="2학기">2학기</option>
-                <option value="겨울방학">겨울방학</option>
-            </select>
-        </div>
-    </div>
-
-
 </body>
 </html>
