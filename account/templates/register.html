@@ -2,11 +2,11 @@
 <form action="" method="POST">
     {% csrf_token %}
     프로필 사진: <input type="file" name="image">
-    닉네임: <input type="text" name="" maxlength='5' placeholder="최대 5글자">
+    닉네임: <input type="text" name="user_nickname" maxlength='8' placeholder="최대 8글자">
     <!-- 미디어로 받기 -->
-    아이디: <input type="text" name="user-id">
-    비밀번호: <input type="password" name="user-password">
-    비밀번호 확인: <input type="password" name="check-password">
+    아이디: <input type="text" name="user_id">
+    비밀번호: <input type="password" name="user_password">
+    비밀번호 확인: <input type="password" name="user_password_check">
     이름: <input type="text">
     성별: 
     <input type="radio" name="user_gender" value="man">남자
