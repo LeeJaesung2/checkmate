@@ -25,6 +25,10 @@ $('.next').on('click', function(){
     reloadProgressBar();
 })
 
+$('.next, .previous').on('mouseover', function(){
+    this.animate()
+})
+
 $('.previous').on('click', function(){
     if(answer_cnt != 0) {
         $question_list.eq(answer_cnt).fadeOut(600);

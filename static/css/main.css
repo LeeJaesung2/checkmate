@@ -63,22 +63,35 @@ nav ul{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.text .title{
-    position: absolute;
+.content-top .text .title{
+    /* position: absolute; */
+    position: relative;
+    /* left: 260px;
+    top: 214px; */
     width: 423px;
     height: 148px;
-    left: 260px;
-    top: 214px;
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
     line-height: 64px;
     text-align: right;
-    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    /* text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25); */
+    /* 글자색 그라디언트 */
     background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     /* 글자에 색이 적용돼야하는데.... 안됨! */
+}
+
+.content-top .text .title:after{
+    background: none;
+    content: "나와 딱 맞는";
+    top: 0px;
+    left: 88px;
+    position: absolute;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    z-index: -1;
 }
 .text .detail{
     position: absolute;
