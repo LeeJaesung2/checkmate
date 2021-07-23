@@ -25,7 +25,6 @@
     text-align: center;
     color: white;
     font-family: 'yg-jalnan';
-
 }
 
 body{
@@ -78,19 +77,25 @@ h3{
 /* container - 문답 부분*/
 .container{
     display: flex;
-    width: 50%;
-    margin: 0 auto;
+    width: 80vw;
+    height: 40vh;
+    margin: 20px auto;
     align-items: center;
 }
 
 .previous, .next{
     font-family: 'S-CoreDream-3Light';
-    width: 50px;
+    width: 10vw;
     align-items: center;
+}
+
+.question-box{
+    width: 60vw;
 }
 
 .question{
     padding: 40px;
+    text-align: center;
     /* border-bottom: 1px solid white; */
 }
 

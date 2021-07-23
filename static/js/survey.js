@@ -17,18 +17,19 @@ $question_list.eq(answer_cnt).show();
 
 $('.next').on('click', function(){
     if(answer_cnt != 19){
-    $question_list.eq(answer_cnt).hide();
-    answer_cnt += 1;
-    $question_list.eq(answer_cnt).show();
+        $question_list.eq(answer_cnt).fadeOut(600);
+        answer_cnt += 1;
+        // setTimeout(function(){$question_list.eq(answer_cnt).fadeTo(600, 1);}, 600); //이러케해두댐
+        $question_list.eq(answer_cnt).delay(700).fadeIn(600);
     }
     reloadProgressBar();
 })
 
 $('.previous').on('click', function(){
     if(answer_cnt != 0) {
-    $question_list.eq(answer_cnt).hide();
-    answer_cnt -= 1;
-    $question_list.eq(answer_cnt).show();
+        $question_list.eq(answer_cnt).fadeOut(600);
+        answer_cnt -= 1;
+        $question_list.eq(answer_cnt).delay(700).fadeIn(600);
     }
     reloadProgressBar();
 })
