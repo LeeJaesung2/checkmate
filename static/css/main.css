@@ -92,10 +92,12 @@ footer{
 .container{
     padding: 100px;
 }
+
 .content-top{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
 .content-top .text .title{
     /* position: absolute; */
     position: relative;
