@@ -20,8 +20,6 @@ from checkmate import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main ,name='main'),
-#     path('login/', views.login ,name='login'),
-#     path('register/', views.register, name='register'),
     path('infoWrite/', views.infoWrite, name='infoWrite'),
     path('account/', include('account.urls')),
 

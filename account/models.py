@@ -1,19 +1,35 @@
 from django.db import models
 
+from django.contrib.auth.models import BaseUserManager, AbstractUser
 # Create your models here.
-class CustomUser(models.Model):
-    user_id = models.CharField(max_length=32, unique=True, verbose_name='아이디')
-    user_password = models.CharField(max_length=128, verbose_name='비밀번호')
-    user_name = models.CharField(max_length=16, unique=True, verbose_name='이름')
-    user_gender = models.CharField(max_length=8, unique=True, verbose_name='성별')
-    user_nation = models.CharField(max_length=16, unique=True, verbose_name='국적')
-    user_nickname = models.CharField(max_length=32, unique=True, verbose_name='닉네임')
-    user_register_time = models.DateTimeField(auto_now_add=True,verbose_name='계정생성 시간')
+class UserManager(BaseUserManager):
+    def create_user(self, email, date_of_birth, password=None):
+        if not email:
+            raise ValueError('Users must have an email address')
 
-def __str__(self):
-    return self.user_name
+        user = self.model(
+            email=self.normalize_email(email),
+            date_of_birth=date_of_birth,
+        )
 
-class Meta:
-    db_table = 'user'
-    verbose_name = '유저'
-    verbose_name_plural = '유저'
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, date_of_birth, password):
+        user = self.create_user(
+            email,
+            password=password,
+            date_of_birth=date_of_birth,
+        )
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class CustomUser(AbstractUser):
+    user_name = models.CharField(max_length=16,  verbose_name='이름')
+    user_gender = models.CharField(max_length=8, verbose_name='성별')
+    user_nation = models.CharField(max_length=16, verbose_name='국적')
+    user_nickname = models.CharField(max_length=8, unique=True, verbose_name='닉네임')
+
