@@ -10,22 +10,42 @@
 </head>
 <body>
     <!-- 네비바 -->
+    <div class="main-check">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="20" height="20" rx="1" stroke="url(#paint0_linear)" stroke-width="2"/>
+            <rect x="11" y="11" width="11" height="11" fill="url(#paint1_linear)"/>
+            <rect width="11" height="11" fill="url(#paint2_linear)"/>
+            <defs>
+            <linearGradient id="paint0_linear" x1="0" y1="0" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#918EFF"/>
+            <stop offset="1" stop-color="#3F97FF"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear" x1="-6.55651e-07" y1="6.55651e-07" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#918EFF"/>
+            <stop offset="1" stop-color="#3F97FF"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear" x1="0" y1="0" x2="22" y2="21.45" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#918EFF"/>
+            <stop offset="1" stop-color="#3F97FF"/>
+            </linearGradient>
+            </defs>
+            </svg>            
+        <a href="">checkmate</a>
+        <!-- 나중에 삭제하겠습니다. -->
+        <a href="{% url 'survey' %}">내정보 입력-임시</a>
+    </div>
     <nav>
-        <div class="main-check">
-            <img src="" alt="">
-            <a href="">checkmate</a>
-        </div>
-
-        <a href="">룸메 찾기</a>
-        <a href="">정보 공유</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">로그아웃</a>
-        
-        <!-- <a href="">내정보</a> -->
-        {% endif %}
-        {% if not user.is_authenticated %}
-        <a href="{% url 'login' %}">로그인</a>
-        {% endif %}
+        <div class="right-menu">
+            <a href="">룸메 찾기</a>
+            <a href="">정보 공유</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">로그아웃</a>
+            <a href="">내정보</a>
+            {% endif %}
+            {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}">로그인</a>
+            {% endif %}
+        <div>
     </nav>
     <div class="container">
         <div class="content-top">
@@ -33,7 +53,7 @@
                 <h1 class="title">나와 딱 맞는<br>룸메이트 찾기</h1>
                 <p class="detail">설명설명설명<br>설명설명설명</p>
             </div>
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MTNfMTIz%2FMDAxNjI2MTcyMTc1MTM2.WhsuBW-XW8EznT2YUeeRwmfivozt9k-R1Y66CjF5eisg.1i2h2X0xtHsUcTx_Id78vudHP2aew0xue3g919atUQcg.JPEG.yhnmynm1019%2F1626172144366.jpg&type=sc960_832" alt="" width="100px" height="100px"> <!-- 메인화면 이미지 추가 -->
+            <img src="{% static 'img/img_main.png' %}" alt="메인페이지 이미지" width="440px" height="331px"> <!-- 메인화면 이미지 추가 -->
         </div>
         <div class="content-bottom">
             <div class="menu-1">

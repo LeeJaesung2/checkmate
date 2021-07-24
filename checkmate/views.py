@@ -14,3 +14,5 @@ def main(request):
 def infoWrite(request):
     return render(request, 'infoWrite.html')
 
+def survey(request):
+    return render(request, 'survey.html')

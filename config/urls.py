@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.main ,name='main'),
     path('infoWrite/', views.infoWrite, name='infoWrite'),
     path('account/', include('account.urls')),
+    path('survey/', views.survey, name='survey'),
 
 ]

@@ -10,11 +10,57 @@
     font-weight: normal;
     font-style: normal;
 }
+*{
+    margin: 0;
+    padding: 0;
+}
 /* div {
     border: 1px solid black;
 } */
 
-nav,.title, .go{
+
+/*----- 타이틀 -----*/
+.main-check{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.main-check > a{
+    font-family: 'yg-jalnan';
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: rgba(93, 148, 255, 1);
+}
+
+.main-check > svg{
+    position: relative;
+    top: 4px;
+}
+
+/*----- 네비바 -----*/
+
+nav{
+    float: right;
+}
+
+nav > .right-menu
+{
+    display: inline-block;
+}
+
+/* nav{
+    display: grid;
+    position: sticky;
+
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    height: 50px;
+    overflow: hidden;
+    padding: 30px;
+} */
+
+nav, .title, .go{
     font-family: 'yg-jalnan';
     font-size: 15px;
 }
@@ -30,22 +76,9 @@ footer{
     background: #D6D8DD;
     color: white;
 }
-nav{
-    display: grid;
-    position: sticky;
-    /* 이거하면 고정돼야한다는데 안됨 ?? */
-    grid-template-columns: 1fr 3fr;
-    align-items: center;
-    height: 50px;
-    overflow: hidden;
-    padding: 30px;
-}
-nav .main-check{
-    padding-left: 40px;
-    font-size: 25px;
-    color: rgba(93, 148, 255, 1);
-}
-nav ul{
+
+
+/* nav ul{
     list-style: none;
     display: grid;
     grid-template-columns: repeat(4,1fr);
@@ -54,31 +87,46 @@ nav ul{
     padding-right: 30px;
     font-size: 16px;
     color: rgba(93, 148, 255, 1);
-}
+} */
 
 .container{
     padding: 100px;
 }
+
 .content-top{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.text .title{
-    position: absolute;
+
+.content-top .text .title{
+    /* position: absolute; */
+    position: relative;
+    /* left: 260px;
+    top: 214px; */
     width: 423px;
     height: 148px;
-    left: 260px;
-    top: 214px;
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
     line-height: 64px;
     text-align: right;
-    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+
+    /* 글자색 그라디언트 */
     background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.25);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     /* 글자에 색이 적용돼야하는데.... 안됨! */
+}
+
+.content-top .text .title:after{
+    background: none;
+    content: "나와 딱 맞는";
+    top: 0px;
+    left: 88px;
+    position: absolute;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    z-index: -1;
 }
 .text .detail{
     position: absolute;
