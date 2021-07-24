@@ -19,7 +19,6 @@
         <a href="">룸메 찾기</a>
         <a href="">정보 공유</a>
         {% if user.is_authenticated %}
-        <p>{{user.username}}</p>
         <a href="{% url 'logout' %}">로그아웃</a>
         
         <!-- <a href="">내정보</a> -->
