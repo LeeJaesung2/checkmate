@@ -10,12 +10,13 @@
     <h3>LOGIN</h3>
     <form action="" method="post">
         {% csrf_token %}
-        ID <input name="user-id" type="text">
-        PASSWORD <input name="user-password" type="password">
+        ID <input name="username" type="text">
+        PASSWORD <input name="password" type="password">
         <a href="">아이디 / 비밀번호 찾기</a>
         <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
         <button type="submit">Login</button>
-        <button onclick="">Sign Up</button>
+        <a href="{% url 'register' %}">회원가입</a>
+        
     </form>
     
 </body>
