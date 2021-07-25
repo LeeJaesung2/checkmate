@@ -24,6 +24,7 @@
     <div class="container">
         <p class="previous">< 이전</p>
         <form action="" method="POST" class="question-box">
+            {% csrf_token %}
             <div class="question grade">
                 <h2 class="title">현재 몇학년인가요?</h1>
                 <div class="answer">
@@ -33,8 +34,8 @@
             <div class="question room-type">
                 <h2 class="title">기숙사 룸메이트를 구하시나요,<br>자취 룸메이트를 구하시나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="room-type-1" name="room-type" value="기숙사"><label for="room-type-1">기숙사</label>
-                    <input type="radio" id="room-type-2" name="room-type" value="자취"><label for="room-type-2">자취</label>
+                    <input type="radio" id="room-type-0" name="room-type" value="0"><label for="room-type-0">기숙사</label>
+                    <input type="radio" id="room-type-1" name="room-type" value="1"><label for="room-type-1">자취</label>
                 </div>
             </div>
             <!-- if 기숙사 -->
@@ -43,11 +44,11 @@
                 <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
                 <div class="answer">
                     <input type="radio" id="dormitory-10" name="dormitory-number" value="10"><label for="dormitory-10">10동</label>
-                    <input type="radio" id="dormitory-8" name="dormitory-number" value="10"><label for="dormitory-8">8동</label>
-                    <input type="radio" id="dormitory-6" name="dormitory-number" value="10"><label for="dormitory-6">6동</label>
-                    <input type="radio" id="dormitory-3" name="dormitory-number" value="10"><label for="dormitory-3">3동</label>
-                    <input type="radio" id="dormitory-2" name="dormitory-number" value="10"><label for="dormitory-2">2동</label>
-                    <input type="radio" id="dormitory-1" name="dormitory-number" value="10"><label for="dormitory-1">1동</label>
+                    <input type="radio" id="dormitory-8" name="dormitory-number" value="8"><label for="dormitory-8">8동</label>
+                    <input type="radio" id="dormitory-6" name="dormitory-number" value="6"><label for="dormitory-6">6동</label>
+                    <input type="radio" id="dormitory-3" name="dormitory-number" value="3"><label for="dormitory-3">3동</label>
+                    <input type="radio" id="dormitory-2" name="dormitory-number" value="2"><label for="dormitory-2">2동</label>
+                    <input type="radio" id="dormitory-1" name="dormitory-number" value="1"><label for="dormitory-1">1동</label>
                 </div>
             </div>
             <div class="question dormitory-date">
@@ -67,10 +68,10 @@
                         <option value="2021">2021</option>
                     </select>
                     <select name="dormitory-semester-end">
-                        <option value="1학기">1학기</option>
-                        <option value="여름방학">여름방학</option>
-                        <option value="2학기">2학기</option>
-                        <option value="겨울방학">겨울방학</option>
+                        <option value="1">1학기</option>
+                        <option value="S">여름방학</option>
+                        <option value="2">2학기</option>
+                        <option value="W">겨울방학</option>
                     </select>
                 </div>
             </div>
@@ -190,6 +191,7 @@
                     <input type="radio" id="game-no" name="game"><label for="game-no">안 함</label>
                 </div>
             </div>
+            <input type="submit">
         </form>
         <p class="next">다음 ></p>
     </div>
