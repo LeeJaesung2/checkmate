@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from survey import views
 from checkmate import views
 
 urlpatterns = [
@@ -23,5 +24,4 @@ urlpatterns = [
     path('infoWrite/', views.infoWrite, name='infoWrite'),
     path('account/', include('account.urls')),
     path('survey/', views.survey, name='survey'),
-
 ]
