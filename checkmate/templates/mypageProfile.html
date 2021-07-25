@@ -10,15 +10,15 @@
     <h3>회원정보 수정</h3>
     <form action="" method="post">
         {% csrf_token %}
-        <input type="file" name="image" value="">
+        <input type="file" name="user_image" value="">
         <!-- 프로필사진 -->
-        <input type="text" name="nickname" maxlength='5' value="">
+        <input type="text" name="user_nickname" maxlength='8' value="">
         <!-- 닉네임 -->
-        ID <input type="text" name="user-id" value="">
+        ID <input type="text" name="user_id" value="">
         비밀번호
-        <input type="password" name="user-password" placeholder="현재 비밀번호">
-        <input type="password" name="new-password" placeholder="새 비밀번호">
-        <input type="password" name="check-new-password" placeholder="새 비밀번호 확인">
+        <input type="password" name="user_password" placeholder="현재 비밀번호">
+        <input type="password" name="user_newpassword" placeholder="새 비밀번호">
+        <input type="password" name="user_password_check" placeholder="새 비밀번호 확인">
 
         <button type="submit">저장</button>
 
