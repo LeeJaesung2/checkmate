@@ -7,7 +7,15 @@ class SurveyEssential(models.Model):
     #---기본키---#
     survey_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     #---학년---#
-    grade = models.IntegerField()
+    grade_choice = (
+        ('1', '1학년'), 
+        ('2', '2학년'),
+        ('3', '3학년'),
+        ('4', '4학년'),
+        ('5', '5학년'),
+        ('6', '6학년'),
+        )
+    grade = models.CharField(max_length=1, choices=grade_choice, default='1')
     #---기숙사or자취---#
     room_type_choice = (
         ('0', '기숙사'), 
@@ -47,8 +55,8 @@ class SurveyEssential(models.Model):
     )
     relationship = models.CharField(max_length=1, choices=relationship_choice, default='0')
     #---자고 일어나는 시간---#
-    wakeup_time = models.DateField()
-    bed_time = models.DateField()
+    wakeup_time = models.TimeField()
+    bed_time = models.TimeField()
     #---흡연 여부---#
     smoke = models.BooleanField()
     #---청소 주기---#
@@ -77,7 +85,22 @@ class SurveyOptional(models.Model):
     share = models.BooleanField()
     toilet = models.IntegerField()
     ventilate = models.IntegerField()
-    feel = models.IntegerField()
+    #---더위·추위 탐---#
+    feel_cold = models.BooleanField(default=False)
+    feel_hot = models.BooleanField(default=False)
+    #---벌레---#
     bug = models.BooleanField()
-    keyboard = models.IntegerField()
-    game = models.BooleanField()
+    #---키보드---#
+    keyboard_choice = (
+        ('0', '타이핑&게임 자주함'), 
+        ('1', '거의 안함'),
+    )
+    keyboard = models.CharField(max_length=1, choices=keyboard_choice, default='0')
+    keyboard_noise = models.BooleanField(default=True)
+    #---게임---#
+    game_choice = (
+        ('0', '자주'), 
+        ('1', '가끔'),
+        ('2', '안함'),
+    )
+    game = models.CharField(max_length=1, choices=game_choice, default='0')
