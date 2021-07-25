@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'checkmate.apps.CheckmateConfig',
     'account.apps.AccountConfig',
+    'survey.apps.SurveyConfig',
 ]
 
 MIDDLEWARE = [
