@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h3>정보 공유 게시판</h3>
 <form action="" method="post">
 {% csrf_token %}
@@ -9,7 +12,7 @@
     <option value=3>질문있어요</option>
     <option value=4>해결했어요</option>
 </select>
-<!-- 앞머리 -->
+<!-- 말머리 -->
 <input type="text" placeholder="이곳에 제목을 작성하세요.">
 <!-- 정보 게시판 제목 -->
 <img src="" alt="profile_image">
@@ -21,3 +24,4 @@
 <!-- 정보 게시판 작성 내용 -->
 <button type="submit">저장</button>
 </form>
+{% endblock %}

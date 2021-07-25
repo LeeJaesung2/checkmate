@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h3>10동 룸메구합니다</h3>
+    <select name="hashtag">
+        <option value=1>원룸정보</option>
+        <option value=2>기숙사정보</option>
+        <option value=3>질문있어요</option>
+        <option value=4>해결했어요</option>
+    </select>
+    <div>
+        <button id="Favorites" onclick="">즐겨찾기</button>
+        <small>pub_date</small>
+    </div>
+</div>
+<div>
+    <img src="" alt="profile_image">
+    <!-- 프로필이미지 -->
+    <p> 기숙사 | 10동 | 남 | 23살 | 2학년 </p>
+    <!-- 자신의 정보 -->
+</div>
+<div>
+    <div>
+        <p>
+            필수 정보
+        </p>
+        <div>
+            <div>
+                <strong>기상 시간</strong>
+                <p></p>
+                <strong>취침 시간</strong>
+                <p></p>
+                <strong>흡연</strong>
+                <p></p>
+                <strong>실내 이어폰</strong>
+                <p></p>
+                <strong>실내 통화</strong>
+                <p></p>
+            </div>
+            <div><strong>청소 주기</strong>
+                <p></p>
+                <strong>친구 초대</strong>
+                <p></p>
+                <strong>잠버릇</strong>
+                <p></p>
+                <strong>실내 취식</strong>
+                <p></p>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <p>
+            선택 정보
+        </p>
+        <div>
+            <div>
+                <strong>생필품 공유</strong>
+                <p></p>
+                <strong>벌레 퇴치</strong>
+                <p></p>
+                <strong>키보드 소리</strong>
+                <p></p>
+                <strong>룸메와의 관계</strong>
+                <p></p>
+                <strong>게임 여부</strong>
+                <p></p>
+            </div>
+            <div><strong>환기</strong>
+                <p></p>
+                <strong>에어컨/보일러</strong>
+                <p></p>
+                <strong>화장실 청소</strong>
+                <p></p>
+                <strong>MBTI</strong>
+                <p></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <p>한마디 -</p>
+    <button>수정</button>
+</div>
+<div>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
+        <li class="page-item"><a class="page-link" href="#">목록</a></li>
+        <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
+    </ul>
+</div>
+{% endblock %}

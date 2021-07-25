@@ -261,3 +261,16 @@ footer{
     font-size: 16px;
     font-family: 'S-CoreDream-9Black';
 }
+
+
+
+/* 채팅 모달 */
+
+.hidden{
+    display:none;
+}
+.modal{
+    position: absolute;
+    width: 403px;
+    height: 575px;
+}
