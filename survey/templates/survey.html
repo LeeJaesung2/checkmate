@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/survey.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/survey.css' %}"> -->
     <title>내 정보 입력 페이지</title>
 </head>
 <body>
@@ -39,16 +39,23 @@
                 </div>
             </div>
             <!-- if 기숙사 -->
-        
-            <div class="question dormitory-number">
-                <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
-                <div class="answer">
-                    <input type="radio" id="dormitory-10" name="dormitory-number" value="10"><label for="dormitory-10">10동</label>
-                    <input type="radio" id="dormitory-8" name="dormitory-number" value="8"><label for="dormitory-8">8동</label>
-                    <input type="radio" id="dormitory-6" name="dormitory-number" value="6"><label for="dormitory-6">6동</label>
-                    <input type="radio" id="dormitory-3" name="dormitory-number" value="3"><label for="dormitory-3">3동</label>
-                    <input type="radio" id="dormitory-2" name="dormitory-number" value="2"><label for="dormitory-2">2동</label>
-                    <input type="radio" id="dormitory-1" name="dormitory-number" value="1"><label for="dormitory-1">1동</label>
+            <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
+                <div class="question dormitory-number">
+                    <div class="answer">
+                    {% if user.user_gender == "man" %}
+                    <input type="radio" id="dormitory-10" name="dormitory-number-man" value="10"><label for="dormitory-10">10동</label>
+                    <input type="radio" id="dormitory-8" name="dormitory-number-man" value="8"><label for="dormitory-8">8동</label>
+                    <input type="radio" id="dormitory-6" name="dormitory-number-man" value="6"><label for="dormitory-6">6동</label>
+                    <input type="radio" id="dormitory-3" name="dormitory-number-man" value="3"><label for="dormitory-3">3동</label>
+                    <input type="radio" id="dormitory-2" name="dormitory-number-man" value="2"><label for="dormitory-2">2동</label>
+                    <input type="radio" id="dormitory-1" name="dormitory-number-man" value="1"><label for="dormitory-1">1동</label>
+                    {% else %}
+                    <input type="radio" id="dormitory-11" name="dormitory-number-woman" value="11"><label for="dormitory-11">11동</label>
+                    <input type="radio" id="dormitory-9" name="dormitory-number-woman" value="9"><label for="dormitory-9">9동</label>
+                    <input type="radio" id="dormitory-7" name="dormitory-number-woman" value="7"><label for="dormitory-7">7동</label>
+                    <input type="radio" id="dormitory-5" name="dormitory-number-woman" value="5"><label for="dormitory-5">5동</label>
+                    <input type="radio" id="dormitory-4" name="dormitory-number-woman" value="4"><label for="dormitory-4">4동</label>
+                    {% endif %}
                 </div>
             </div>
             <div class="question dormitory-date">
@@ -202,6 +209,6 @@
 
     <!-- js -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" src="{% static 'js/survey.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/survey.js' %}"></script> -->
 </body>
 </html>

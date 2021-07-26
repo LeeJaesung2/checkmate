@@ -24,7 +24,7 @@ class SurveyEssential(models.Model):
     )
     room_type = models.CharField(max_length=1, choices=room_type_choice, default='0')
     #기숙사동
-    dormitory_number_choice = (
+    dormitory_number_man_choice = (
         ('10', '10동'), 
         ('8', '8동'),
         ('6', '6동'),
@@ -32,7 +32,15 @@ class SurveyEssential(models.Model):
         ('2', '2동'),
         ('1', '1동'),
         )
-    dormitory_number = models.CharField(max_length=2, choices=dormitory_number_choice, default='10')
+    dormitory_number_man = models.CharField(max_length=2, choices=dormitory_number_man_choice, default='10', null=True, blank=True)
+    dormitory_number_woman_choice = (
+        ('11', '11동'), 
+        ('9', '9동'),
+        ('7', '7동'),
+        ('5', '5동'),
+        ('4', '4동'),
+        )
+    dormitory_number_woman = models.CharField(max_length=2, choices=dormitory_number_woman_choice, default='11', null=True, blank=True)
     #룸메와 함께할 시간
     dormitory_year_choice = (
         ('2021', '2021년도'), 

@@ -11,7 +11,10 @@ def submitSurvey(request):
     eSurvey.survey_id = request.user
     eSurvey.grade = request.POST['grade']
     eSurvey.room_type = request.POST['room-type']
-    eSurvey.dormitory_number = request.POST['dormitory-number']
+    if request.user.user_gender == 'man':
+        eSurvey.dormitory_number_man = request.POST['dormitory-number-man']
+    else:
+        eSurvey.dormitory_number_woman = request.POST['dormitory-number-woman']
     eSurvey.dormitory_year_start = request.POST['dormitory-year-start']
     eSurvey.dormitory_semester_start = request.POST['dormitory-semester-start']
     eSurvey.dormitory_year_end = request.POST['dormitory-year-end']
