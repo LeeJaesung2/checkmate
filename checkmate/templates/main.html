@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
+
+{% load static %}
 <div class="container">
         <div class="content-top">
             <div class="text">
-                <h1 class="title">나와 딱 맞는<br>룸메이트 찾기</h1>
+                <h1 class="title-top">나와 딱 맞는</h1>
+                <h1 class="title-bottom">룸메이트 찾기</h1>
                 <p class="detail">설명설명설명<br>설명설명설명</p>
             </div>
             <img src="{% static 'img/img_main.png' %}" alt="메인페이지 이미지" width="440px" height="331px"> <!-- 메인화면 이미지 추가 -->
@@ -14,16 +18,16 @@
             <div class="menu-1">
                 <h1 class="title">룸메이트 찾기</h1>
                 <p class="detail">룸메이트 찾기를 등록한 사람들 중<br>나의 룸메를 찾아보세요</p>
-                <button class="button">
-                    <p>바로가기</p>
+                <button>
+                    <p>바로가기 ></p>
                     <img src="" alt=""> <!-- 화살표 이미지 추가 -->
                 </button>
             </div>
                 <div class="menu-2">
                     <h1 class="title">정보공유하기</h1>
                     <p class="detail">기숙사, 원룸 정보를 공유 해주세요</p>
-                    <button class="button">
-                        <p>바로가기</p>
+                    <button>
+                        <p>바로가기 ></p>
                         <img src="" alt=""> <!-- 화살표 이미지 추가 -->
                     </button>
                 </div>
