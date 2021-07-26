@@ -30,10 +30,13 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-          #  user = form.save(commit=False)
-          #  user.email =
-          #  user.save()
+            user = form.save(commit=False)
+            _token = request.session['access_token']
+            _header = {'Authorization': f'bearer {_token}'}
+            _res = requests.post(_url, headers=_header)
+            _result = _res.json()
+            user.kakao_id = _result.get('id')
+            user.save()
             login(request,user)
         return redirect('main')
     else:
