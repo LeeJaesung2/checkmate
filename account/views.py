@@ -32,6 +32,7 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             _token = request.session['access_token']
+            _url = 'https://kapi.kakao.com/v2/user/me'
             _header = {'Authorization': f'bearer {_token}'}
             _res = requests.post(_url, headers=_header)
             _result = _res.json()
