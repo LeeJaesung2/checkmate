@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'checkmate.apps.CheckmateConfig',
     'account.apps.AccountConfig',
+    'survey.apps.SurveyConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['checkmate/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

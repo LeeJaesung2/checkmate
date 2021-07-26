@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <div class="mypage_nav">
     <h3>마이페이지</h3>
     <!-- border-left 색상 바꾸기 (클릭 모션) -->
@@ -32,3 +36,26 @@
 
 
 </div>
+<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
+<div class="modal hidden" id="jsModal">
+    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
+</div>
+
+
+<script>
+    const open = document.querySelector(".open");
+    const close = document.querySelector(".modal__closeBtn");
+    const modal = document.querySelector(".modal");
+
+    function init(){
+        open.addEventListener("click",function(){
+            modal.classList.remove("hidden");
+        });
+        close.addEventListener("click",function(){
+            modal.classList.add("hidden");
+        });
+    }
+
+    init();
+</script>
+{% endblock %}

@@ -99,6 +99,10 @@ h3{
     /* border-bottom: 1px solid white; */
 }
 
+.question > .title{
+    margin-bottom: 30px;
+}
+
 /* input-radio */
 input[type=radio]{
     opacity: 0%;

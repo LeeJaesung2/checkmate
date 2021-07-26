@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h3>룸메 찾기</h3>
+<button>룸메추천받기</button>
+<button>필터적용하기</button>
+<!-- 필터 -->
+<small>*내가 원하는 룸메에 대해 적어주세요</small>
+<div>
+    
+</div>
+
+<div>
+
+    <h5>검색</h5>
+    <form action="" method="get">
+        {% csrf_token %}
+        <input type="text" placeholder="#룸메추천받기">
+        <button type="submit">검색아이콘</button>
+    </form>
+    <button>+</button>
+
+</div>
+<div>
+    <div>
+        <p>매칭완료</p>
+        <p>기숙사 | 남 | 20세</p>
+        <p>안녕하세요. 룸메이트 구합니다. </p>
+        <p>80%</p>
+    </div>
+
+</div>
+<div>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+    </ul>
+</div>
+<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
+<div class="modal hidden" id="jsModal">
+    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
+</div>
+
+
+<script>
+    const open = document.querySelector(".open");
+    const close = document.querySelector(".modal__closeBtn");
+    const modal = document.querySelector(".modal");
+
+    function init(){
+        open.addEventListener("click",function(){
+            modal.classList.remove("hidden");
+        });
+        close.addEventListener("click",function(){
+            modal.classList.add("hidden");
+        });
+    }
+
+    init();
+</script>
+{% endblock %}
