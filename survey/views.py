@@ -1,15 +1,12 @@
 from django.shortcuts import render
 from .models import SurveyEssential, SurveyOptional
 
-
 # Create your views here.
 
 def survey(request):
     return render(request, 'survey.html')
 
 def submitSurvey(request):
-    print("쿼리 출력: ", request.POST)
-
     eSurvey = SurveyEssential() #EssentialSurvey
     eSurvey.survey_id = request.user
     eSurvey.grade = request.POST['grade']
@@ -36,5 +33,18 @@ def submitSurvey(request):
     eSurvey.earphones = request.POST['earphones']
     eSurvey.eat = request.POST['eat']
     eSurvey.save()
+
+    oSurvey = SurveyOptional()
+    oSurvey.survey_id = request.user
+    oSurvey.share = request.POST['share']
+    oSurvey.toilet = request.POST['toilet']
+    oSurvey.ventilate = request.POST['ventilate']
+    oSurvey.feel_cold = True if request.POST.get('feel-cold')=='on' else False
+    oSurvey.feel_hot = True if request.POST.get('feel-hot')=='on' else False
+    oSurvey.bug = request.POST.get('bug')
+    oSurvey.keyboard = request.POST.get('keyboard')
+    oSurvey.keyboard_noise = True if request.POST.get('keyboard-checkboxg')=='on' else False
+    oSurvey.game = request.POST['game']
+    oSurvey.save()
 
     return render(request, 'survey.html')

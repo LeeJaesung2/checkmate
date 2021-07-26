@@ -86,6 +86,10 @@ class SurveyEssential(models.Model):
     )
     eat = models.CharField(max_length=1, choices=eat_choice, default='0')
 
+    def __str__(self):
+        return str(self.survey_id)
+
+
 class SurveyOptional(models.Model):
     survey_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     share = models.NullBooleanField()
@@ -110,3 +114,6 @@ class SurveyOptional(models.Model):
         ('2', '안함'),
     )
     game = models.CharField(max_length=1, choices=game_choice, null=True, blank=True)
+    
+    def __str__(self):
+        return str(self.survey_id)

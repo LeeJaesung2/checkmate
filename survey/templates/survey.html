@@ -149,17 +149,17 @@
             <div class="question share">
                 <h2 class="title">생필품을 룸메와 같이 쓰나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="share-yes" name="share"><label for="share-yes">공유</label>
-                    <input type="radio" id="share-no" name="share"><label for="share-snack">각자</label>
+                    <input type="radio" id="share-yes" name="share" value='0'><label for="share-yes">공유</label>
+                    <input type="radio" id="share-no" name="share" value='1'><label for="share-snack">각자</label>
                 </div>
             </div>
             <div class="question toilet">
                 <h2 class="title">화장실 청소는 얼마나 자주 하나요?</h1>
                 <div class="answer">
-                    <input type="range" name="toilet">
+                    <input type="range" name="toilet" min="0" max="5">
                 </div>
             </div>
-            <div class="question ventilate">
+            <div class="question ventilate" min="0" max="5">
                 <h2 class="title">환기는 얼마나 자주 하나요?</h1>
                 <div class="answer">
                     <input type="range" name="ventilate">
@@ -168,31 +168,31 @@
             <div class="question feel">
                 <h2 class="title">추위나 더위를 많이 타나요?(에어컨, 보일러 관련)</h1>
                 <div class="answer">
-                    <input type="checkbox" id="feel-cold" name="feel"><label for="feel-cold">추위를 많이 탐</label>
-                    <input type="checkbox" id="feel-hot" name="feel"><label for="feel-hot">더위를 많이 탐</label>
+                    <input type="checkbox" id="feel-cold" name="feel" value="False"><label for="feel-cold">추위를 많이 탐</label>
+                    <input type="checkbox" id="feel-hot" name="feel" value="False"><label for="feel-hot">더위를 많이 탐</label>
                 </div>
             </div>
             <div class="question bug">
                 <h2 class="title">벌레를 잘 잡나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="bug-yes" name="share"><label for="bug-yes">잘 잡아요</label>
-                    <input type="radio" id="bug-no" name="share"><label for="bug-snack">못 잡아요ㅠㅠ</label>
+                    <input type="radio" id="bug-yes" name="bug" value="0"><label for="bug-yes">잘 잡아요</label>
+                    <input type="radio" id="bug-no" name="bug" value="1"><label for="bug-snack">못 잡아요ㅠㅠ</label>
                 </div>
             </div>
             <div class="question keyboard">
                 <h2 class="title">평소 키보드 소음은 어느정도인가요?</h1>
                 <div class="answer">
-                    <input type="radio" id="keyboard-loud" name="keyboard"><label for="keyboard-loud">타이핑&게임 자주함</label>
-                    <input type="radio" id="keyboard-no" name="keyboard"><label for="keyboard-no">거의 안함</label>
+                    <input type="radio" id="keyboard-loud" name="keyboard" value="0"><label for="keyboard-loud">타이핑&게임 자주함</label>
+                    <input type="radio" id="keyboard-no" name="keyboard" value="1"><label for="keyboard-no">거의 안함</label>
                     <input type="checkbox" id="keyboard-noise" name="keyboard-checkbox"><label for="keyboard-noise">저소음 키보드 사용중</label>
                 </div>
             </div>
             <div class="question game">
                 <h2 class="title">게임을 하시나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="game-yes" name="game"><label for="game-yes">자주</label>
-                    <input type="radio" id="game-sometimes" name="game"><label for="game-sometimes">가끔</label>
-                    <input type="radio" id="game-no" name="game"><label for="game-no">안 함</label>
+                    <input type="radio" id="game-yes" name="game" value="0"><label for="game-yes">자주</label>
+                    <input type="radio" id="game-sometimes" name="game" value="1"><label for="game-sometimes">가끔</label>
+                    <input type="radio" id="game-no" name="game" value="2"><label for="game-no">안 함</label>
                 </div>
             </div>
             <input type="submit">
