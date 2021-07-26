@@ -39,16 +39,11 @@
             <a href="">룸메 찾기</a>
             <a href="">정보 공유</a>
            
-            {% if check %}
-            <div>
-                <form action="/account/kakaoLogout" method="GET">
-                    <input type="submit" value="카카오로그아웃 및 연결 끊기" />
-                </form>
-            </div>
-            <a href="{% url 'kakaoLogout' %}">로그아웃</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">로그아웃</a>
             <a href="">내정보</a>
-            {% else %}
-            
+            {% endif %}
+            {% if not user.is_authenticated %}
             <a href="{% url 'login' %}">로그인</a>
             {% endif %}
         <div>
