@@ -1,5 +1,6 @@
 from django.db import models
 from account.models import CustomUser
+import datetime
 
 # Create your models here.
 
@@ -55,23 +56,28 @@ class SurveyEssential(models.Model):
     )
     relationship = models.CharField(max_length=1, choices=relationship_choice, default='0')
     #자고 일어나는 시간
-    wakeup_time = models.TimeField(null=True, blank=True)
-    bed_time = models.TimeField(null=True, blank=True)
+    wakeup_time = models.TimeField(default=datetime.time(9, 0))
+    bed_time = models.TimeField(default=datetime.time(23, 0))
     #흡연 여부
-    smoke = models.NullBooleanField()
+    smoke = models.NullBooleanField(default=False)
     #청소 주기
-    cleaning = models.IntegerField(null=True, blank=True)
+    cleaning = models.IntegerField(default="3")
     #잠버릇
-    sleeping_habit_choice = (
-        ('0', '코골이'), 
-        ('1', '이갈이'),
-    )
-    sleeping_habits = models.CharField(max_length=1, choices=sleeping_habit_choice, default='0')
+    sleeping_habits_snoring = models.NullBooleanField(default=False)
+    sleeping_habits_teeth = models.NullBooleanField(default=False)
     sleeping_habits_other = models.CharField(max_length=10)
+    sleeping_habits_nothing = models.NullBooleanField(default=False)
     #친구초대여부
-    invite_friends = models.NullBooleanField()
+    invite_friends = models.NullBooleanField(default=False)
+    #통화가능여부
+    call_choice = (
+        ('0', '예'), 
+        ('1', '아니요'),
+        ('2', '짧은 통화만')
+    )
+    call = models.CharField(max_length=1, choices=call_choice, default='0')
     #이어폰 사용여부
-    earphone = models.NullBooleanField()
+    earphones = models.NullBooleanField(default=True)
     #실내 취식
     eat_choice = (
         ('0', '식사도 방안에서'), 
@@ -82,25 +88,25 @@ class SurveyEssential(models.Model):
 
 class SurveyOptional(models.Model):
     survey_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    share = models.BooleanField()
-    toilet = models.IntegerField()
-    ventilate = models.IntegerField()
+    share = models.NullBooleanField()
+    toilet = models.IntegerField(null=True, blank=True)
+    ventilate = models.IntegerField(null=True, blank=True)
     #더위·추위 탐
-    feel_cold = models.BooleanField(default=False)
-    feel_hot = models.BooleanField(default=False)
+    feel_cold = models.NullBooleanField()
+    feel_hot = models.NullBooleanField()
     #벌레
-    bug = models.BooleanField()
+    bug = models.NullBooleanField()
     #키보드
     keyboard_choice = (
         ('0', '타이핑&게임 자주함'), 
         ('1', '거의 안함'),
     )
-    keyboard = models.CharField(max_length=1, choices=keyboard_choice, default='0')
-    keyboard_noise = models.BooleanField(default=True)
+    keyboard = models.CharField(max_length=1, choices=keyboard_choice, null=True, blank=True)
+    keyboard_noise = models.NullBooleanField()
     #게임
     game_choice = (
         ('0', '자주'), 
         ('1', '가끔'),
         ('2', '안함'),
     )
-    game = models.CharField(max_length=1, choices=game_choice, default='0')
+    game = models.CharField(max_length=1, choices=game_choice, null=True, blank=True)
