@@ -15,9 +15,17 @@
         <a href="">아이디 / 비밀번호 찾기</a>
         <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
         <button type="submit">Login</button>
-        <a href="{% url 'register' %}">회원가입</a>
+        <!--<a href="{% url 'register' %}">회원가입</a> -->
         
     </form>
-    
+
+    <div>
+        <form action="/account/kakaoLoginLogic" method="GET">
+        <input type="submit" value="카카오회원가입" />
+        </form>
+    </div>
+
+
 </body>
 </html></html>
+

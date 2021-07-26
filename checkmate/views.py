@@ -5,7 +5,6 @@ from django.shortcuts import render
 def main(request):
     return render(request,'main.html')
 
-
 def infoWrite(request):
     return render(request, 'infoWrite.html')
 
