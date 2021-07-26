@@ -23,7 +23,6 @@ urlpatterns = [
     path('infoWrite/', views.infoWrite, name='infoWrite'),
     path('account/', include('account.urls')),
     path('survey/', include('survey.urls')),
-
     path('mypageProfile/',views.mypageProfile, name='mypageProfile'),
     path('mypageScrap/',views.mypageScrap, name='mypageScrap'),
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
