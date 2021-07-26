@@ -7,12 +7,15 @@ from .models import SurveyEssential, SurveyOptional
 def survey(request):
     return render(request, 'survey.html')
 
-def createEssentialSurvey(request):
+def submitSurvey(request):
+    print("쿼리 출력: ", request.POST)
+
     eSurvey = SurveyEssential() #EssentialSurvey
-    eSurvey.grade = request.GET['grade']
-    eSurvey.room_type = request.GET['room-type']
-    eSurvey.dormitory_number = request.GET['dormitory-number']
-    eSurvey.dormitory_year_start = request.GET['dormitory-year-start']
-    print(request.GET['room-type'])
+    eSurvey.survey_id = request.user
+    eSurvey.grade = request.POST['grade']
+    eSurvey.room_type = request.POST['room-type']
+    eSurvey.dormitory_number = request.POST['dormitory-number']
+    eSurvey.dormitory_year_start = request.POST['dormitory-year-start']
+    eSurvey.save()
 
     return render(request, 'survey.html')

@@ -23,12 +23,12 @@
     <!-- 문답 -->
     <div class="container">
         <p class="previous">< 이전</p>
-        <form action="" method="POST" class="question-box">
+        <form action="{% url 'submitSurvey' %}" method="POST" class="question-box">
             {% csrf_token %}
             <div class="question grade">
                 <h2 class="title">현재 몇학년인가요?</h1>
                 <div class="answer">
-                    <input type="number" name="grade">
+                    <input type="number" name="grade" min='1' max='6'>
                 </div>
             </div>
             <div class="question room-type">
@@ -58,10 +58,10 @@
                         <option value="2021">2021</option>
                     </select>
                     <select name="dormitory-semester-start">
-                        <option value="1학기">1학기</option>
-                        <option value="여름방학">여름방학</option>
-                        <option value="2학기">2학기</option>
-                        <option value="겨울방학">겨울방학</option>
+                        <option value="1">1학기</option>
+                        <option value="S">여름방학</option>
+                        <option value="2">2학기</option>
+                        <option value="W">겨울방학</option>
                     </select>
                     <span>~</span>
                     <select name="dormitory-year-end">
