@@ -35,10 +35,10 @@ def register(request):
             _url = 'https://kapi.kakao.com/v2/user/me'
             _header = {'Authorization': f'bearer {_token}'}
             _res = requests.post(_url, headers=_header)
-            _result = _res.json()
-            user.kakao_id = _result.get('id')
+            kakao_id_json = json.loads(((_res.text).encode('utf-8')))
+            user.kakao_id = kakao_id_json["id"]
             user.save()
-            login(request,user)
+            auth.login(request,user)
         return redirect('main')
     else:
         form = RegisterForm()
