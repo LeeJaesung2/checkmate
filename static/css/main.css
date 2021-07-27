@@ -14,10 +14,6 @@
     margin: 0;
     padding: 0;
 }
-/* div {
-    border: 1px solid black;
-} */
-
 
 /*----- 타이틀 -----*/
 .main-check{
@@ -64,13 +60,18 @@ nav, .title, .go{
     font-family: 'yg-jalnan';
     font-size: 15px;
 }
+button{
+    background-color:transparent;
+    outline: none;
+    border: 0px; box-sizing: none;
+}
 
 footer{
     font-family: 'S-CoreDream-9Black';
     font-size: 10px;
     position: absolute;
-    width: 1440px;
-    height: 161px;
+    width: 100vw;
+    height: 15vh;
     left: 0px;
     top: 955px;
     background: #D6D8DD;
@@ -90,7 +91,7 @@ footer{
 } */
 
 .container{
-    padding: 100px;
+    padding: 5vh 10vw;
 }
 
 .content-top{
@@ -98,48 +99,62 @@ footer{
     grid-template-columns: 1fr 1fr;
 }
 
-.content-top .text .title{
-    /* position: absolute; */
+.text{
+    width: 40vw;
+    min-width: 400px;
     position: relative;
-    /* left: 260px;
-    top: 214px; */
-    width: 423px;
-    height: 148px;
+}
+
+.content-top .text .title-top, .content-top .text .title-bottom{
+    position: relative;
+    width: 100%;
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
     line-height: 64px;
     text-align: right;
+    margin-bottom: 20px;
 
     /* 글자색 그라디언트 */
     background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    /* 글자에 색이 적용돼야하는데.... 안됨! */
 }
 
-.content-top .text .title:after{
+.content-top .text .title-top{
+    margin-top: 70px;
+}
+
+.content-top .text .title-top:after{
     background: none;
     content: "나와 딱 맞는";
     top: 0px;
-    left: 88px;
+    left: 16.5vw;
     position: absolute;
     text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
     z-index: -1;
 }
-.text .detail{
+
+.content-top .text .title-bottom:after{
+    background: none;
+    content: "룸메이트 찾기";
+    top: 0px;
+    left: 13.8vw;
     position: absolute;
-    width: 397px;
-    height: 43px;
-    left: 288px;
-    top: 400px;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    z-index: -1;
+}
+
+.text > .detail{
+    width: 100%;
+    text-align: right;
+    position: absolute;
     font-family: S-Core Dream;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-    text-align: right;
     color: #3F97FF;
 }
 .container .img{
@@ -150,127 +165,198 @@ footer{
     top: 168px;
 
 }
+
 .content-bottom {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
-.content-bottom .menu-1{
-    position: absolute;
-    width: 570px;
+
+/* 메뉴 */
+.menu-1,.menu-2{
+    position: relative;
+    width: 40vw;
     height: 307px;
-    left: 158px;
-    top: 499px;
+    color:white;
+}
+
+.menu-1{
     background: #3F97FF;
 }
-.content-bottom .menu-2{
-    position: absolute;
-    width: 570px;
-    height: 307px;
-    left: 728px;
-    top: 499px;
+
+.menu-2{
     background-color: rgba(145, 142, 255, 1);
-    color: white;
 }
-.menu-1 button{
-    width: 250px;
-    height: 38px;
-    left: 443px;
-    top: 732px;
-    
-    background: #FFFFFF;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 100px;
-}
-.menu-1 button p{
-    width: 156.24px;
-    height: 20px;
-    left: 490px;
-    top: 741px;
 
-    font-family: 'Jalnan';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 21px;
-    text-align: center;
-
-    color: #254074;
-}
-.menu-2 button{
-    width: 250px;
-    height: 38px;
-    left: 1000px;
-    top: 732px;
-    
-    background: #FFFFFF;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 100px; 
-}
-.menu-2 button p{
-    width: 128.57px;
-    height: 20px;
-    left: 1060.71px;
-    top: 741px;
-
-    font-family: 'Jalnan';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 21px;
-    text-align: center;
-
-    color: #254074;
-}
-.menu-1 .title{
-    width: 269.59px;
-    height: 37px;
-    left: 212px;
-    top: 559px;
-    
+.menu-1 > .title, .menu-2 > .title{
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
     line-height: 37px;
-    /* identical to box height */
-    
-    
     color: #FFFFFF;
-    
+    margin: 60px 60px 20px 60px;
 }
-.menu-1 .detail{
-    width: 497.83px;
-    height: 53px;
-    left: 212.19px;
-    top: 609px;
-    
+.menu-1 > .detail, .menu-2 > .detail{
     font-family: 'S-Core Dream';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
-    
+    margin: 0px 60px 60px 60px;
     color: #FFFFFF;
+}
+
+button{
+    float: right;
+    position: absolute;
+    width: 35%;
+    /* min-width: 400px; */
+    height: 40px;
+    left: 55%;
+    top: 70%;
+    margin-top: 10px;
     
-}
-.menu-2 .title{
-    font-size: 36px;
-}
-.menu-2 .detail{
-    font-size: 16px;
-    font-family: 'S-CoreDream-9Black';
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border: 0px solid white;
+    border-radius: 100px;
 }
 
+button p{
+    font-family: 'Jalnan';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
 
+    color: #254074;
+}
 
 /* 채팅 모달 */
 
 .hidden{
     display:none;
 }
+.open{
+    position: absolute;
+    right: 5vw;
+    bottom: 11vh;
+    width: 39px;
+height: 44px;
+}
 .modal{
     position: absolute;
-    width: 403px;
-    height: 575px;
+    right: 9vw;
+    bottom: 15vh;
+    width: 20vw;
+    height: 50vh;
+    background: #FFFFFF;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
 }
+
+/* mypage */
+
+.mypage_container{
+    display: grid;
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 100px;
+    grid-template-columns: 1fr 3fr;
+
+}
+.mypage_nav{
+
+    border-right: 2px solid #C9C9C9;
+    padding:20px;
+    height: 60vh;
+    
+}
+.mypage_nav a{
+    display:inline-block;
+    padding-left:20px;
+    margin-top:20px;
+    text-decoration:none;
+    color: #C6C6C6;
+    
+}
+.mypage_nav>a:hover{
+
+    color: black;
+}
+
+.mypage_nav>a:active{
+
+    border-left:5px solid #3F97FF;
+}
+
+.mypage_content{
+    padding: 20px 40px;
+}
+.mypage_content input{
+    width: 90%;
+    padding:5px;
+    margin:10px;
+    border:none;
+    border-right:0px; 
+    border-top:0px; 
+    border-left:0px; 
+    border-bottom: 2px solid rgba(201, 201, 201, 0.7);
+}
+input:focus {outline:none;
+background-color: white;}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+ }
+ 
+.mypage_content p{
+    margin-left: 10px;
+}
+
+/* 프로필 */
+#target_img{
+    width: 40px;
+    height:40px;
+    border-radius: 20px;
+    /* width와 height의 절반 */
+}
+#user_nickname{
+    width: 70px;
+    border:none;
+    border-right:0px; 
+    border-top:0px; 
+    border-left:0px; 
+    border-bottom: 0px;
+}
+
+/* 제출 버튼 */
+.btn4::before {
+    content: '';
+    position: absolute;
+    bottom: 0%;
+    left: 0px;
+    width: 100%;
+    height: 1px;
+    background: #6098FF;
+    display: block;
+    -webkit-transform-origin: right top;
+    -ms-transform-origin: right top;
+    transform-origin: right top;
+    -webkit-transform: scale(0, 1);
+    -ms-transform: scale(0, 1);
+    transform: scale(0, 1);
+    -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+    transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+  }
+  
+  .btn4:hover::before {
+    -webkit-transform-origin: left top;
+    -ms-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1)
+  }
+  

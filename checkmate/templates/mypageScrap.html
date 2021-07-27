@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -36,7 +37,7 @@
 
 
 </div>
-<button class="open" id="jsBtn">채팅열기</button>
+<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
