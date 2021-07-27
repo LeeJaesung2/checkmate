@@ -30,19 +30,18 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            _token = request.session['access_token']
-            _url = 'https://kapi.kakao.com/v2/user/me'
-            _header = {'Authorization': f'bearer {_token}'}
-            _res = requests.post(_url, headers=_header)
-            kakao_id_json = json.loads(((_res.text).encode('utf-8')))
-            user.kakao_id = kakao_id_json["id"]
-            user.save()
+            user = form.save()
             auth.login(request,user)
         return redirect('main')
     else:
+        _token = request.session['access_token']
+        _url = 'https://kapi.kakao.com/v2/user/me'
+        _header = {'Authorization': f'bearer {_token}'}
+        _res = requests.post(_url, headers=_header)
+        kakao_id_json = json.loads(((_res.text).encode('utf-8')))
+        kakao_id = kakao_id_json["id"]
         form = RegisterForm()
-        return render(request, 'register.html',{'form':form})
+        return render(request, 'register.html',{'form':form, 'kakao_id':kakao_id})
 
 
 def kakaoLoginLogic(request):
