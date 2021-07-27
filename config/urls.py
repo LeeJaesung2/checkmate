@@ -12,11 +12,13 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+# """
 from django.contrib import admin
 from django.urls import path, include
 from survey import views
 from checkmate import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,11 +26,9 @@ urlpatterns = [
     path('infoWrite/', views.infoWrite, name='infoWrite'),
     path('account/', include('account.urls')),
     path('survey/', views.survey, name='survey'),
-    path('mypageProfile/',views.mypageProfile, name='mypageProfile'),
     path('mypageScrap/',views.mypageScrap, name='mypageScrap'),
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
     path('searchRoommate/',views.searchRoommate, name='searchRoommate'),
     path('detail/',views.detail, name='detail'),
     path('community/',views.community, name='community'),
-
 ]

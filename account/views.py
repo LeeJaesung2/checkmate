@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib import auth,messages
-from django.contrib.auth.forms import AuthenticationForm,PasswordChangeForm
+from django.contrib import auth
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout,update_session_auth_hash
 from .forms import RegisterForm
+from django.contrib.auth.hashers import check_password
 
 def login_view(request):
     if request.method == 'POST':
@@ -13,7 +14,6 @@ def login_view(request):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-            
         return redirect('main')
     else:
         form = AuthenticationForm()
@@ -25,7 +25,6 @@ def logout_view(request):
     return redirect('main')
 
 def register(request):
-
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -35,18 +34,22 @@ def register(request):
     else:
         form = RegisterForm()
         return render(request, 'register.html', {'form':form})
-    
 
 def change_password(request):
+    context = {}
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, '비밀번호가 변경되었습니다.')
-            return redirect('change_password')
+        current_password = request.POST.get('user_password')
+        user = request.user
+        if check_password(current_password,user.password):
+            new_password = request.POST.get('password1')
+            new_password_check = request.POST.get('password2')
+            if new_password == new_password_check :
+                user.set_password(new_password)
+                user.save()
+                login(request,user)
+                return redirect('main')
+            else:
+                context.update({'error' : "새로입력한 비밀번호가 일치하지 않습니다."})
         else:
-            messages.error(request, '비밀번호를 확인해주세요')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'mypageProfile', {'form': form})
+            context.update({'error' : "현재 비밀번호가 일치하지 않습니다."})
+    return render(request, 'change_password.html', context)

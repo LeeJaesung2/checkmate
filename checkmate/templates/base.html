@@ -41,7 +41,7 @@
             <a href="">정보 공유</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">로그아웃</a>
-            <a href="{% url 'mypageProfile'%}">내정보</a>
+            <a href="{% url 'change_password' %}">내정보</a>
             {% endif %}
             {% if not user.is_authenticated %}
             <a href="{% url 'login' %}">로그인</a>
