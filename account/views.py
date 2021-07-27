@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect
-
-
 from django.contrib.auth.forms import AuthenticationForm
 import requests
 import json
@@ -50,7 +48,7 @@ def register(request):
 
 
 
-def change_password(request):
+def mypageProfile(request):
     context = {}
     if request.method == 'POST':
         current_password = request.POST.get('user_password')
@@ -102,4 +100,4 @@ def kakaoLogout(request):
         return render(request, 'main.html')
     else:
         return render(request, 'login.html')
->>>>>>> 594a70ea697ec6f073db53a2fd57dfb6a17d3393
+
