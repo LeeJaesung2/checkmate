@@ -44,8 +44,8 @@
             </div>
             <!-- if 기숙사 -->
             <div class="question dormitory-number">
-                    <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
-                    <div class="answer">
+                <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
+                <div class="answer">
                     {% if user.user_gender == "man" %}
                     <input type="radio" id="dormitory-10" name="dormitory-number-man" value="10"><label for="dormitory-10">10동</label>
                     <input type="radio" id="dormitory-8" name="dormitory-number-man" value="8"><label for="dormitory-8">8동</label>
@@ -156,10 +156,10 @@
                 </div>
             </div>
             <div class="question animal">
-                <h2 class="title">방안에서 음식을 먹나요?</h1>
+                <h2 class="title">애완동물을 키우나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="animal-dog" name="animal" value='0'><label for="animal-dog">강아지</label>
-                    <input type="radio" id="animal-cat" name="animal" value='1'><label for="aniaml-cat">고양이</label>
+                    <input type="checkbox" id="animal-dog" name="animal" value='0'><label for="animal-dog">강아지</label>
+                    <input type="checkbox" id="animal-cat" name="animal" value='1'><label for="aniaml-cat">고양이</label>
                     <label>기타</label><input type="text" id="animal-other" name="animal-other">
                 </div>
             </div>
