@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +10,8 @@
     <!-- <link rel="stylesheet" href="{% static 'css/survey.css' %}"> -->
     <title>내 정보 입력 페이지</title>
 </head>
+
+
 <body>
     <!-- 네비바 없음 -->
     <h1 class="top title">내 정보 입력하기</h1>
@@ -22,7 +26,7 @@
     <h3>*다음은 필수로 답해주셔야하는 문항들입니다.</h3>
     <!-- 문답 -->
     <div class="container">
-        <p class="previous">< 이전</p>
+        <p class="previous"> 이전</p>
         <form action="{% url 'submitSurvey' %}" method="POST" class="question-box">
             {% csrf_token %}
             <div class="question grade">
@@ -212,3 +216,4 @@
     <!-- <script type="text/javascript" src="{% static 'js/survey.js' %}"></script> -->
 </body>
 </html>
+

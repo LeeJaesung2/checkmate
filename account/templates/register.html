@@ -1,30 +1,37 @@
-<h3>회원가입</h3>
+{% extends 'base.html' %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <!-- 미디어로 받기 -->
-    아이디: <input type="text" name="username">
-    비밀번호: <input type="password" name="password1">
-    비밀번호 확인: <input type="password" name="password2">
-    <!-- 비밀번호 조건
-    Your password can’t be too similar to your other personal information.
-    Your password must contain at least 8 characters.
-    Your password can’t be a commonly used password.
-    Your password can’t be entirely numeric. -->
-    이름: <input type="text",name='user_name'>
-    성별: 
-    <input type="radio" name="user_gender" value="man">남자
-    <input type="radio" name="user_gender" value="woman">여자
-    국적: 
-    <select name="user_nation">
-        <option value="">선택해주세요.</option>
-        <option value="KOR">대한민국</option>
-        <option value="CHN">중국</option>
-    </select>
-    <!-- 프로필 사진: <input type="file" name="image"> -->
-    닉네임: <input type="text" name="user_nickname" maxlength='8' placeholder="최대 8글자">
+{% block content %}
+<div class="signup">
+    <h3 class="title">회원가입</h3>
+    <div class="content">
 
-    <button type="submit">Sign Up</button>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <!-- 미디어로 받기 -->
+            아이디 <br><input type="text" name="username"><br><br><br>
+            비밀번호 <br><input type="password" name="password1"><br><br><br>
+            비밀번호 확인 <br><input type="password" name="password2"><br><br><br>
+            <!-- 비밀번호 조건
+            Your password can’t be too similar to your other personal information.
+            Your password must contain at least 8 characters.
+            Your password can’t be a commonly used password.
+            Your password can’t be entirely numeric. -->
+            이름<br> <input type="text",name='user_name'><br><br><br>
+            성별: 
+            <input id="gender" type="radio" name="user_gender" value="man">남자
+            <input id="gender" type="radio" name="user_gender" value="woman">여자<br><br><br>
+            국적: 
+            <select name="user_nation">
+                <option value="">선택해주세요.</option>
+                <option value="KOR">대한민국</option>
+                <option value="CHN">중국</option>
+            </select><br><br><br>
+            <!-- 프로필 사진: <input type="file" name="image"> -->
+            닉네임: <input type="text" name="user_nickname" maxlength='8' placeholder="최대 8글자">
 
+            <button class="submit" type="submit">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
 
-</form>
