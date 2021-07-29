@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -20,11 +20,6 @@ def mypageScrap(request):
 def mypageWritten(request):
     return render(request, 'mypageWritten.html')
 
-def searchRoommate(request):
-    return render(request, 'searchRoommate.html')
-
-def detail(request):
-    return render(request, 'detail.html')
-
 def community(request):
     return render(request, 'community.html')
+

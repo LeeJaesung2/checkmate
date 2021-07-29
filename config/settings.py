@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'checkmate.apps.CheckmateConfig',
     'account.apps.AccountConfig',
     'survey.apps.SurveyConfig',
+    'roommate.apps.RoommateConfig',
 ]
 
 MIDDLEWARE = [
