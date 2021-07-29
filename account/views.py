@@ -62,7 +62,7 @@ def mypageProfile(request):
                 context.update({'error' : "새로입력한 비밀번호가 일치하지 않습니다."})
         else:
             context.update({'error' : "현재 비밀번호가 일치하지 않습니다."})
-    return render(request, 'mypageProfile.html', context)
+    return render(request, 'change_password.html', context)
 
 
 
