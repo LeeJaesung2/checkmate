@@ -62,7 +62,7 @@ def mypageProfile(request):
                 context.update({'error' : "새로입력한 비밀번호가 일치하지 않습니다."})
         else:
             context.update({'error' : "현재 비밀번호가 일치하지 않습니다."})
-    return render(request, 'change_password.html', context)
+    return render(request, 'mypageProfile.html', context)
 
 
 
@@ -83,17 +83,20 @@ def kakaoLoginLogicRedirect(request):
     request.session.modified = True
     return redirect('register')
 
-def kakaoLogout(request):
-    _token = request.session['access_token']
-    _url = 'https://kapi.kakao.com/v1/user/logout'
-    _header = {
-      'Authorization': f'bearer {_token}'
-    }
-    _res = requests.post(_url, headers=_header)
-    _result = _res.json()
-    if _result.get('id'):
-        del request.session['access_token']
-        return render(request, 'main.html')
-    else:
-        return render(request, 'login.html')
+# def kakaoLogout(request):
+#     _token = request.session['access_token']
+#     _url = 'https://kapi.kakao.com/v1/user/logout'
+#     _header = {
+#       'Authorization': f'bearer {_token}'
+#     }
+#     _res = requests.post(_url, headers=_header)
+#     _result = _res.json()
+#     if _result.get('id'):
+#         del request.session['access_token']
+#         return render(request, 'main.html')
+#     else:
+#         return render(request, 'login.html')
 
+
+def mypageProfile(request):
+    return render(request, 'mypageProfile.html')
