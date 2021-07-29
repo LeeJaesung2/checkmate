@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="mypage_container">
+<div class="mypage_container bg">
     <div class="mypage_nav">
         <h3>마이페이지</h3> <br>
         <!-- border-left 색상 바꾸기 (클릭 모션) -->
@@ -19,7 +19,7 @@
     <div class="mypage_content">
         <form action="" method="post">
             {% csrf_token %}
-            <img id="target_img" src="target_img_name.png">
+            <img id="target_img" src="">
             <input type="file" id="user_image" name="user_image" style="display:none;">
             <script>
 
@@ -63,32 +63,16 @@
             <input type="password" name="user_newpassword"><br>
             <p>새 비밀번호 확인</p>
             <input type="password" name="user_password_check"><br>
-
             <button class="btn4" type="submit">저장</button>
         </form>
     </div>
 </div>
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
-<div class="modal hidden" id="jsModal">
-    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
+<img class="open" src="{% static 'img/chat_icon.png' %}" alt="">
+<div class="hidden modal" >
+    <button class="modal__closeBtn" >X</button>
 </div>
+<script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
 
 
-<script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
-
-    function init() {
-        open.addEventListener("click", function () {
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click", function () {
-            modal.classList.add("hidden");
-        });
-    }
-
-    init();
-</script>
 
 {% endblock %}
