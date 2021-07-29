@@ -1,36 +1,49 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
 </head>
-<body>
-    <h3>LOGIN</h3>
-    <form action="" method="post">
-        {% csrf_token %}
-        ID <input name="username" type="text">
-        PASSWORD <input name="password" type="password">
-        <a href="">아이디 / 비밀번호 찾기</a>
-        <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
-        <button type="submit">Login</button>
-        <!--<a href="{% url 'register' %}">회원가입</a> -->
-        
-    </form>
+{% block content %}
 
-    <div>
+<body>
+    <div class="login">
+        <h3 class="title-login">LOGIN</h3>
+        <div class="login-box">
+            <form action="" method="post">
+                {% csrf_token %}
+                <p>ID</p> <br> <input name="username" type="text">
+                <br><br><br>
+                <p>PASSWORD</p> <br> <input name="password" type="password">
+                <br><br><br>
+                <a class="find" href="">아이디 / 비밀번호 찾기</a>
+                <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
+                <button  type="submit">Login</button>
+                <!--<a href="{% url 'register' %}">회원가입</a> -->
+            </form>
+        </div>
+    </div>
+
+
+    <div > 
         <form action="/account/kakaoLoginLogic" method="GET">
-        <input type="submit" value="카카오회원가입" />
+        <input class="kakao-login" type="submit" value="카카오회원가입" />
         </form>
     </div>
 
 
 </body>
+{% endblock %}
+
 </html></html>
 
 {% endblock %}
