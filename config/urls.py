@@ -26,7 +26,9 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('survey/', include('survey.urls')),
     path('roommate/', include('roommate.urls')),
+    path('chat/', include('chat.urls')),
     path('mypageScrap/',views.mypageScrap, name='mypageScrap'),
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
     path('community/',views.community, name='community'),
+
 ]
