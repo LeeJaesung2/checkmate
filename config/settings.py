@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'checkmate.apps.CheckmateConfig',
     'account.apps.AccountConfig',
     'survey.apps.SurveyConfig',
+    'roommate.apps.RoommateConfig',
 ]
 ASGI_APPLICATION = 'config.routing.application'
 CHANNEL_LAYERS = {
