@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="{% static 'css/survey.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/survey.css' %}">
     <title>내 정보 입력 페이지</title>
 </head>
 <body>
@@ -39,8 +39,8 @@
                 </div>
             </div>
             <!-- if 기숙사 -->
-            <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
-                <div class="question dormitory-number">
+            <div class="question dormitory-number">
+                    <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
                     <div class="answer">
                     {% if user.user_gender == "man" %}
                     <input type="radio" id="dormitory-10" name="dormitory-number-man" value="10"><label for="dormitory-10">10동</label>
@@ -223,6 +223,6 @@
 
     <!-- js -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <!-- <script type="text/javascript" src="{% static 'js/survey.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/survey.js' %}"></script>
 </body>
 </html>
