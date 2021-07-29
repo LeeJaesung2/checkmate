@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('share', models.NullBooleanField()),
-                ('toilet', models.IntegerField(blank=True, null=True)),
+                ('toilet', models.IntegersField(blank=True, null=True)),
                 ('ventilate', models.IntegerField(blank=True, null=True)),
                 ('feel_cold', models.NullBooleanField()),
                 ('feel_hot', models.NullBooleanField()),
