@@ -8,7 +8,7 @@ def survey(request):
 
 def submitSurvey(request):
     eSurvey = SurveyEssential() #EssentialSurvey
-    eSurvey.survey_id = request.user
+    eSurvey.user_id = request.user
     eSurvey.grade = request.POST['grade']
     eSurvey.room_type = request.POST['room-type']
     if request.user.user_gender == 'man':
@@ -35,10 +35,12 @@ def submitSurvey(request):
     eSurvey.call = request.POST['call']
     eSurvey.earphones = request.POST['earphones']
     eSurvey.eat = request.POST['eat']
+    eSurvey.animal = request.POST['animal']
+    eSurvey.animal_other = request.POST['animal-other']
     eSurvey.save()
 
     oSurvey = SurveyOptional()
-    oSurvey.survey_id = request.user
+    oSurvey.user_id = request.user
     oSurvey.share = request.POST['share']
     oSurvey.toilet = request.POST['toilet']
     oSurvey.ventilate = request.POST['ventilate']
@@ -48,6 +50,7 @@ def submitSurvey(request):
     oSurvey.keyboard = request.POST.get('keyboard')
     oSurvey.keyboard_noise = True if request.POST.get('keyboard-checkboxg')=='on' else False
     oSurvey.game = request.POST['game']
+    oSurvey.mbti = request.POST['mbti']
     oSurvey.save()
 
     return render(request, 'survey.html')

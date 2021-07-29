@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -32,5 +31,5 @@ class CustomUser(AbstractUser):
     user_gender = models.CharField(max_length=8, verbose_name='성별')
     user_nation = models.CharField(max_length=16, verbose_name='국적')
     user_nickname = models.CharField(max_length=8, unique=True, verbose_name='닉네임')
-    kakao_id = models.CharField(max_length=200, unique=True, verbose_name='카카오 아이디', default=0)
+    kakao_id = models.CharField(max_length=200, unique=True, verbose_name='카카오 아이디')
 
