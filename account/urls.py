@@ -7,5 +7,5 @@ urlpatterns = [
     path('register/',views.register, name='register'),
     path('kakaoLoginLogic/', views.kakaoLoginLogic, name='kakaoLoginLogic'),
     path('kakaoLoginLogicRedirect/', views.kakaoLoginLogicRedirect, name='kakaoLoginLogicRedirect'),
-    path('kakaoLogout/', views.kakaoLogout, name='kakaoLogout'),
+    # path('kakaoLogout/', views.kakaoLogout, name='kakaoLogout'),
 ]
