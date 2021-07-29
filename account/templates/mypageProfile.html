@@ -22,7 +22,6 @@
             <img id="target_img" src="target_img_name.png">
             <input type="file" id="user_image" name="user_image" style="display:none;">
             <script>
-
                 $('#target_img').click(function (e) {
                     e.preventDefault();
                     $('#user_image').click();
@@ -37,6 +36,7 @@
                     var filesArr = Array.prototype.slice.call(files);
                     filesArr.forEach(function (f) {
 
+
                         if (!f.type.match("image.*")) {
                             alert("확장자는 이미지 확장자만 가능합니다.");
                             return;
@@ -49,30 +49,24 @@
                         reader.readAsDataURL(f);
                     });
                 }
-
             </script>
             <!-- 프로필사진 -->
             <input type="text" id="user_nickname" name="user_nickname" maxlength='8' value=""> <br>
             <!-- 닉네임 -->
             <p>ID</p>
             <input type="text" name="user_id" value=""> <br>
-            <p>비밀번호</p>
-            <p>현재 비밀번호</p>
-            <input type="password" name="user_password"><br>
-            <p>새 비밀번호</p>
-            <input type="password" name="user_newpassword"><br>
-            <p>새 비밀번호 확인</p>
-            <input type="password" name="user_password_check"><br>
+            <input type="password" name="user_password" placeholder="현재 비밀번호">
+            <input type="password" name="password1" placeholder="새 비밀번호">
+            <input type="password" name="password2" placeholder="새 비밀번호 확인">
+            <button type="submit">저장</button>
 
-            <button class="btn4" type="submit">저장</button>
         </form>
     </div>
 </div>
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
+    <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
-
 
 <script>
     const open = document.querySelector(".open");

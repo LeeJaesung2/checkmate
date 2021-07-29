@@ -3,8 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm
 import requests
 import json
 from django.contrib import auth
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout,update_session_auth_hash
 from .forms import RegisterForm
+from django.contrib.auth.hashers import check_password
 
 def login_view(request):
     if request.method == 'POST':
@@ -15,7 +17,6 @@ def login_view(request):
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-            
         return redirect('main')
     else:
         form = AuthenticationForm()
@@ -42,6 +43,27 @@ def register(request):
         kakao_id = kakao_id_json["id"]
         form = RegisterForm()
         return render(request, 'register.html',{'form':form, 'kakao_id':kakao_id})
+
+
+def mypageProfile(request):
+    context = {}
+    if request.method == 'POST':
+        current_password = request.POST.get('user_password')
+        user = request.user
+        if check_password(current_password,user.password):
+            new_password = request.POST.get('password1')
+            new_password_check = request.POST.get('password2')
+            if new_password == new_password_check :
+                user.set_password(new_password)
+                user.save()
+                login(request,user)
+                return redirect('main')
+            else:
+                context.update({'error' : "새로입력한 비밀번호가 일치하지 않습니다."})
+        else:
+            context.update({'error' : "현재 비밀번호가 일치하지 않습니다."})
+    return render(request, 'change_password.html', context)
+
 
 
 def kakaoLoginLogic(request):
@@ -74,3 +96,4 @@ def kakaoLogout(request):
         return render(request, 'main.html')
     else:
         return render(request, 'login.html')
+
