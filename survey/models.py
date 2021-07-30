@@ -1,13 +1,10 @@
 from django.db import models
-from account.models import CustomUser
 import datetime
 
 # Create your models here.
 
 class SurveyEssential(models.Model):
     #기본키
-    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    # survey_id = models.AutoField(primary_key=True)
     #학년
     grade_choice = (
         ('1', '1학년'), 
@@ -102,12 +99,10 @@ class SurveyEssential(models.Model):
     animal_other = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
-        return str(self.survey_id)
+        return str(self.id)
 
 
 class SurveyOptional(models.Model):
-    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    # survey_id = models.AutoField(primary_key=True)
     share = models.NullBooleanField()
     toilet = models.IntegerField(null=True, blank=True)
     ventilate = models.IntegerField(null=True, blank=True)
@@ -133,4 +128,4 @@ class SurveyOptional(models.Model):
     mbti = models.CharField(max_length=4,null=True, blank=True)
     
     def __str__(self):
-        return str(self.survey_id)
+        return str(self.id)

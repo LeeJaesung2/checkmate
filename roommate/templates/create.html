@@ -5,8 +5,9 @@
     <form action="" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
         <p>제목 :<input type="text" name=title></p> 
-        <p>한마디: <textarea name=""></textarea></p>
-        <button type="submit">제출</button> 
+        <p>한마디: <textarea name="body"></textarea></p>
+        <button type="submit">제출</button>
+    </form> 
 </body>
 
     {% endblock %}
