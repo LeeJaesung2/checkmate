@@ -5,7 +5,6 @@ import datetime
 
 class SurveyEssential(models.Model):
     #기본키
-    # survey_id = models.AutoField(primary_key=True)
     #학년
     grade_choice = (
         ('1', '1학년'), 
@@ -100,11 +99,10 @@ class SurveyEssential(models.Model):
     animal_other = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
-        return str(self.survey_id)
+        return str(self.id)
 
 
 class SurveyOptional(models.Model):
-    # survey_id = models.AutoField(primary_key=True)
     share = models.NullBooleanField()
     toilet = models.IntegerField(null=True, blank=True)
     ventilate = models.IntegerField(null=True, blank=True)
@@ -130,4 +128,4 @@ class SurveyOptional(models.Model):
     mbti = models.CharField(max_length=4,null=True, blank=True)
     
     def __str__(self):
-        return str(self.survey_id)
+        return str(self.id)

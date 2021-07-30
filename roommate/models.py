@@ -17,4 +17,4 @@ class Write(models.Model):
 
 
     def __str__(self):
-        return self.title
+        return self.id

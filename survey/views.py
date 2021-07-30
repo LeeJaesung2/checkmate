@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import SurveyEssential, SurveyOptional
+from account.models import CustomUser
 
 # Create your views here.
 
@@ -7,7 +8,7 @@ def survey(request):
     return render(request, 'survey.html')
 
 def submitSurvey(request):
-    user1 = request.user
+    user1 = request.CustomUser
     eSurvey = SurveyEssential() #EssentialSurvey
     eSurvey.grade = request.POST['grade']
     eSurvey.room_type = request.POST['room-type']

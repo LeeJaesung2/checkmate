@@ -12,9 +12,11 @@ def searchRoommate(request):
     return render(request, 'searchRoommate.html',{'writes':writes})
 
 def detail(request, write_id):
-    write_detail = get_object_or_404(Write, pk=write_id)
     
-    return render(request, 'detail.html',{'write_detail':write_detail})
+    write_detail = get_object_or_404(Write, pk=write_id)
+    survey_ess = write_detail.user_id.survey_ess_id
+    survey_opt = write_detail.user_id.survey_opt_id
+    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt})
 
 def create(request):
     if request.method == 'POST':
