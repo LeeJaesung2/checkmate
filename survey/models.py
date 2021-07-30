@@ -1,12 +1,10 @@
 from django.db import models
-from account.models import CustomUser
 import datetime
 
 # Create your models here.
 
 class SurveyEssential(models.Model):
     #기본키
-    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     # survey_id = models.AutoField(primary_key=True)
     #학년
     grade_choice = (
@@ -106,7 +104,6 @@ class SurveyEssential(models.Model):
 
 
 class SurveyOptional(models.Model):
-    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     # survey_id = models.AutoField(primary_key=True)
     share = models.NullBooleanField()
     toilet = models.IntegerField(null=True, blank=True)
