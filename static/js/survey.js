@@ -74,13 +74,15 @@ $('.previous').on('click', function(){
 
 $('.next, .previous').on('mouseover', function(){
     $(this).animate({
-        fontSize: "20px"
+        // 'font-size' : '20px'
+        color: '#000'
     }, 50, "swing");
 })
 
 $('.next, .previous').on('mouseleave', function(){
     $(this).animate({
-        fontSize: "15px"
+        // 'font-size' : '15px'
+        color: '#fff'
     }, 50, "swing");
 })
 
@@ -119,18 +121,6 @@ function reloadProgressBar(){
     }
 }
 
-/*------------------------input 버튼 hover 구현------------------------*/
-$("input[type=radio]+label").on("mouseover", function(){
-    // console.log("실행");
-
-    $(this).css('font-size', '25px');
-})
-
-$("input[type=radio]+label").on("mouseleave", function(){
-    // console.log("실행");
-    $(this).css('font-size', '20px');
-})
-
 /*------------------------유효성 검사------------------------*/
 //값을 선택해야 넘어가도록
 //여기선 anw = answer
@@ -159,9 +149,5 @@ function vaildation(){
         if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) return_val=false;
     }
     return return_val;
-}
-
-function vaildationRadio(obj){
-
 }
 
