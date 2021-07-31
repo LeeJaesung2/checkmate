@@ -12,6 +12,7 @@
 
         <form action="" method="POST">
             {% csrf_token %}
+            <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
             <!-- 미디어로 받기 -->
             아이디 <br><input type="text" name="username"><br><br><br>
             비밀번호 <br><input type="password" name="password1"><br><br><br>

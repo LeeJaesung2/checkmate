@@ -4,6 +4,7 @@ from django.db.models import Q
 from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from .forms import CreatePostForm
+from account.models import CustomUser
 
 # Create your views here.
 
@@ -12,7 +13,6 @@ def searchRoommate(request):
     return render(request, 'searchRoommate.html',{'writes':writes})
 
 def detail(request, write_id):
-    
     write_detail = get_object_or_404(Write, pk=write_id)
     survey_ess = write_detail.user_id.survey_ess_id
     survey_opt = write_detail.user_id.survey_opt_id
@@ -25,8 +25,9 @@ def create(request):
             write = form.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:
+        user = request.user
         form = CreatePostForm()
-    return render(request, 'create.html',{'form':form})
+    return render(request, 'create.html',{'form':form,'user':user})
 
 def update(request, wirte_id):
     write = Write.objects.get(id=write_id)

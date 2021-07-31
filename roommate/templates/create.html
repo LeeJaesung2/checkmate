@@ -4,8 +4,24 @@
 <body>
     <form action="" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
-        <p>제목 :<input type="text" name=title></p> 
-        <p>한마디: <textarea name="body"></textarea></p>
+        <!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <input type="hidden" name="user_id", value="{{ user }}">
+        <p>
+            <label for="id_title">제목 :</label>
+            <input type="text" name="title" maxlength="100" required id="id_title">
+        </p>
+        <p>
+            <label for="id_body">한마디 :</label>
+            <textarea name="body" required id="id_body" cols="40" rows="10"></textarea>
+        </p>
+        <p>
+            <label for="id_state">상태 :</label>
+            <select name="state" id="id_state">
+                <option value="1" selected>매칭중</option>
+                <option value="2">매칭완료</option>
+            </select>
+        </p> -->
+        {{form.as_p}}
         <button type="submit">제출</button>
     </form> 
 </body>
