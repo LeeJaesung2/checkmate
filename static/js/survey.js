@@ -22,7 +22,7 @@ var nextClickCnt = 1;
 $question_list.eq(answer_cnt).show();
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
 $('.next').on('click', function(){
-    if (vaildation() == true){
+    // if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous').animate({
                 opacity: '1'
@@ -43,9 +43,15 @@ $('.next').on('click', function(){
             // answer_cnt += 1;
             // $question_list.eq(answer_cnt).delay(700).fadeIn(600);
         }
-        console.log("질문 번호", answer_cnt);
+        if(answer_cnt == 13){
+            $(".next, .previous").animate({
+                'opacity': '0'
+            });
+            $(".container").css('height', 'auto');
+            $question_list.show();
+        }
         reloadProgressBar();
-    }
+    // }
 })
 
 $('.previous').on('click', function(){
@@ -68,7 +74,6 @@ $('.previous').on('click', function(){
         // answer_cnt -= 1;
         // $question_list.eq(answer_cnt).delay(700).fadeIn(600);
     }
-    console.log("질문 번호", answer_cnt);
     reloadProgressBar();
 })
 
@@ -128,26 +133,35 @@ function reloadProgressBar(){
 let anw_arr = $(".answer");
 
 function vaildation(){ 
-    var return_val = true;
+    var rt = true;
     var anw_cur = anw_arr.eq(answer_cnt);
-    var anw_cur_type = anw_cur.children("input").eq(0).attr("type");
-    var anw_cur_name = anw_cur.children("input").eq(0).attr("name");
+    var anw_cur_type = anw_cur.children().eq(0).attr("type");
+    var anw_cur_name = anw_cur.children().eq(0).attr("name");
+    console.log(anw_cur_type, anw_cur_name);
     //라디오가 많으므로 라디오는 먼저!
     if(anw_cur_type == "radio"){
-        if($('input[name="'+anw_cur_name+'"]:checked').val() == null) return_val=false;
+        if($('input[name="'+anw_cur_name+'"]:checked').val() == null) rt = false;
     }
     else if(anw_cur_type == "checkbox"){
         var anw_checkbox_arr = anw_cur.children("input[type=checkbox]");
         var checkbox_cnt = 0;
         $.each(anw_checkbox_arr, function(index, item){
-            if(item.checked) checkbox_cnt++;
+            if(item.checked) cnt++;
         })
-        if (anw_cur.children("input[type=text]").val().length != 0) checkbox_cnt++;
-        if(checkbox_cnt == 0) return_val = false;
+        if (anw_cur.children("input[type=text]").val().length != 0) cnt++;
+        if(checkbox_cnt == 0) rt = false;
     }
     else if(anw_cur_type == "text" || anw_cur_type == "number"){
-        if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) return_val=false;
+        if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) rt = false;
     }
-    return return_val;
+    else if(anw_cur_type == "time"){
+        var time_list = anw_cur.children("input[type=time]");
+        $.each(time_list, function(index, item){
+            console.log($(this).val().length);
+            if($(this).val().length == 0) rt = false;
+        })
+    }
+
+    return rt;
 }
 

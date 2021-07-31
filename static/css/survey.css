@@ -46,7 +46,6 @@ h3{
 .progress, .front-bar, .background-bar{
     /* border: 1px solid gray; */
     height: 30px;
-
     border-radius: 20px;
 }
 
@@ -97,6 +96,7 @@ h3{
     padding: 30px;
     /* text-align: center; */
     /* border-bottom: 1px solid white; */
+    min-width: 650px;
 }
 
 .question > .title{
@@ -110,17 +110,18 @@ h3{
     height: 6vh;
     
     width: 60vw;
+    min-width: 650px;
     display: table-cell;
     vertical-align: bottom;
 }
 
 /* input-radio */
-input[type=radio]{
+input[type=radio], input[type=checkbox]{
     opacity: 0%;
     /* margin: 50px; */
 }
 
-input[type=radio]+label{
+input[type=radio]+label, input[type=checkbox]+label{
     font-family: 'S-CoreDream-7ExtraBold';
     font-size: 20px;
     color: #254074;
@@ -130,7 +131,7 @@ input[type=radio]+label{
     border-radius: 8px;
 }
 
-input[type=radio]:checked+label{
+input[type=radio]:checked+label, input[type=checkbox]:checked+label{
     font-family: 'S-CoreDream-7ExtraBold';
     color: #254074;
     background-color: white;
@@ -163,5 +164,39 @@ input[type=number]{
     border-radius: 5px;
     border: 0px;
     width: 10vw;
+}
+
+/* select */
+select{
+    font-family: 'S-CoreDream-7ExtraBold';
+    color: #254074;
+    border: 0px solid white;
+    font-size: 17px;
+    height: 35px;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* input-time */
+input[type=time]{
+    font-size: 17px;
+    color: #254074;
+    border-radius: 5px;
+    border: 0px;
+    margin: 5px;
+}
+
+/* input-time */
+input[type=range]{
+    -webkit-appearance:none;
+    height: 2px;
+    width: 25vw;
+}
+input[type='range']::-webkit-slider-thumb { 
+    -webkit-appearance: none; 
+    width: 15px;
+    height:15px;
+    border-radius: 100px;
+    background-color: #254074;
 }
 
