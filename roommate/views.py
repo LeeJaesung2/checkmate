@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
-from .forms import CreatePostForm
 from account.models import CustomUser
 
 # Create your views here.
@@ -20,14 +19,18 @@ def detail(request, write_id):
 
 def create(request):
     if request.method == 'POST':
-        form = CreatePostForm(request.POST)
-        if form.is_valid():
-            write = form.save()
+        write = Write()
+        write.title = request.POST.get('title')
+        write.body = request.POST.get('body')
+        write.state = request.POST.get('state')
+        user_id = request.POST.get('user_id')
+        user = CustomUser.objects.get(id=user_id)
+        write.user_id = user
+        write.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:
-        user = request.user
-        form = CreatePostForm()
-    return render(request, 'create.html',{'form':form,'user':user})
+        user_id = request.user.id
+    return render(request, 'create.html',{'user_id':user_id})
 
 def update(request, wirte_id):
     write = Write.objects.get(id=write_id)

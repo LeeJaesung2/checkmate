@@ -4,8 +4,8 @@
 <body>
     <form action="" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
-        <!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <input type="hidden" name="user_id", value="{{ user }}">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <input type="hidden" name="user_id", value="{{ user_id }}">
         <p>
             <label for="id_title">제목 :</label>
             <input type="text" name="title" maxlength="100" required id="id_title">
@@ -20,8 +20,7 @@
                 <option value="1" selected>매칭중</option>
                 <option value="2">매칭완료</option>
             </select>
-        </p> -->
-        {{form.as_p}}
+        </p>
         <button type="submit">제출</button>
     </form> 
 </body>
