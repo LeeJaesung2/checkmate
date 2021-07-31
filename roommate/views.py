@@ -24,27 +24,27 @@ def create(request):
         write.body = request.POST.get('body')
         write.state = request.POST.get('state')
         user_id = request.POST.get('user_id')
-        user = CustomUser.objects.get(id=user_id)
-        write.user_id = user
+        write.user_id = CustomUser.objects.get(id=user_id)
         write.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:
         user_id = request.user.id
     return render(request, 'create.html',{'user_id':user_id})
 
-def update(request, wirte_id):
+def update(request, write_id):
     write = Write.objects.get(id=write_id)
     if request.method == "POST":
-        form = CreatePostForm(request.POST, instance=write)
-        if form.is_valid():
-            write = form.save()
-            return redirect('/roommate/detail/'+str(write_id))
+        instanc=write
+        write.title = request.POST.get('title')
+        write.body = request.POST.get('body')
+        write.state = request.POST.get('state')
+        write.save()
+        return redirect('/roommate/detail/'+str(write_id))
     else:
-        form = CreatePostForm(instance=write)
-        return render(request, 'create.html',{'form':form})
+        return render(request, 'update.html', {'write':write})
         
 def delete(request, write_id):
-    write = write.objects.get(id=write_id)
+    write = Write.objects.get(id=write_id)
     write.delete()
     return redirect('searchRoommate')
     

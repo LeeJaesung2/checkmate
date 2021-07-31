@@ -82,7 +82,8 @@
 </div>
 <div>
     <p>한마디 -</p>
-    <button>수정</button>
+    <a href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+    <a href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
 </div>
 <div>
     <ul class="pagination">
