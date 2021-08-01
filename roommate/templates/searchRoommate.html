@@ -52,7 +52,7 @@
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->
                     <td>{{ write.user_id.survey_ess_id.grade}}</td>
-                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}></td>
+                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</td>
                     <!-- <td> 적합도 구현X </td> -->
                 </tr>
                 {% endfor %}
