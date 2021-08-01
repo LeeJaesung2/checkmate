@@ -8,10 +8,10 @@ class Write(models.Model):
     body = models.TextField()
 
     state_choice = (
-        ('매칭중', '매칭중'), 
-        ('매칭완료', '매칭완료'),
+        ('1', '매칭중'), 
+        ('2', '매칭완료'),
         )
-    state = models.CharField(max_length=4, choices=state_choice, default='매칭중')
+    state = models.CharField(max_length=1, choices=state_choice, default='1')
 
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
