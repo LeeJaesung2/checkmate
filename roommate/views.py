@@ -8,7 +8,14 @@ from account.models import CustomUser
 # Create your views here.
 
 def searchRoommate(request):
+    search_keyword = request.GET.get('search_keyword')
     writes = Write.objects
+    if search_keyword:
+        if len(search_keyword) > 1:
+            writes = writes.filter(title__icontains=search_keyword)
+            return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword})
+        else:
+            messages.error(request, '검색어는 2글자 이상 입력해주세요')
     return render(request, 'searchRoommate.html',{'writes':writes})
 
 def detail(request, write_id):
