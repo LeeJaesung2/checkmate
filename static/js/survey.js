@@ -14,6 +14,14 @@ $('.previous').css('opacity', '0');
 
 let q_num = 22; //질문 개수
 
+//range 설명 초기화
+var range_list = $("input[type=range]");
+$.each(range_list, function(index, item){
+    var rg_children = $(".range-detail").children();
+    rg_children.css("opacity", "0");
+    rg_children.eq(3).css("opacity", "1");
+});
+
 /*------------------------다음/이전 기능------------------------*/
 //1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게
 /*--------------------------------------------------------*/
@@ -25,7 +33,7 @@ var nextClickCnt = 1;
 $question_list.eq(answer_cnt).show();
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
 $('.next').on('click', function(){
-    // if (vaildation() == true){
+    if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous').animate({
                 opacity: '1'
@@ -41,10 +49,6 @@ $('.next').on('click', function(){
                 nextClickCnt -= 10;
                 $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
             }, 700);
-
-            // $question_list.eq(answer_cnt).fadeOut(600);
-            // answer_cnt += 1;
-            // $question_list.eq(answer_cnt).delay(700).fadeIn(600);
         }
         if(answer_cnt == 13){
             //다음·이전 버튼 없애기
@@ -67,8 +71,10 @@ $('.next').on('click', function(){
             //제출버튼 보이게
             $('input[type=submit], .submit').show();
         }
-        reloadProgressBar();
-    // }
+        setTimeout(function(){
+            reloadProgressBar(answer_cnt);
+        }, 0)
+    }
 })
 
 $('.previous').on('click', function(){
@@ -87,25 +93,24 @@ $('.previous').on('click', function(){
             nextClickCnt -= 10;
             $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
         }, 700);
-        // $question_list.eq(answer_cnt).fadeOut(600);
-        // answer_cnt -= 1;
-        // $question_list.eq(answer_cnt).delay(700).fadeIn(600);
     }
-    reloadProgressBar();
+    setTimeout(function(){
+        reloadProgressBar(answer_cnt);
+    }, 20)
 })
 
 $('.next, .previous').on('mouseover', function(){
     $(this).animate({
-        // 'font-size' : '20px'
-        color: '#000'
+        'font-size' : '20px'
+        // color: '#000'
     }, 50, "swing");
 })
 
 $('.next, .previous').on('mouseleave', function(){
     $(this).animate({
-        // 'font-size' : '15px'
-        color: '#fff'
-    }, 50, "swing");
+        'font-size' : '15px'
+        // color: '#fff'
+    }, 100, "swing");
 })
 
 /*------------------------진행바 구현------------------------*/
@@ -114,15 +119,15 @@ $('.next, .previous').on('mouseleave', function(){
 function changeFrontBarWidth(width){
     $('.front-bar').animate( {
         width: format('{0}%', width)
-      }, 400/nextClickCnt, 'swing' );
+      }, 400, 'swing' );
 }
 
 $('.front-bar > .text').css('opacity', '0')
-function reloadProgressBar(){
-    //질문 수에 따라 진행바 길이 조절
-    if(answer_cnt + 1 == 0) changeFrontBarWidth(0);
-    else changeFrontBarWidth(5 + (answer_cnt + 1) * 5);
-    // console.log("질문 현황", answer_cnt);
+var pb_width_block = 100 / 13;
+//질문 수에 따라 진행바 길이 조절
+function reloadProgressBar(pb_cnt){
+    //흰색 바 조정해주는 함수
+    changeFrontBarWidth(pb_width_block * answer_cnt);
     //진행상황 글자가 넘쳐서 front-bar가 어느정도 길어지면 나오게
     if(answer_cnt + 1 >= 3){
         setTimeout(function(){
@@ -133,7 +138,7 @@ function reloadProgressBar(){
     }
     
     //진행바 텍스트 애니메이션
-    if(answer_cnt < 3){
+    if(answer_cnt + 1< 3){
         setTimeout(function(){
             $('.front-bar > .text').animate( {
                 opacity: "0"
@@ -143,6 +148,7 @@ function reloadProgressBar(){
 }
 
 /*------------------------range bar 설명 구현------------------------*/
+
 $("input[type=range]").on('input', function(){
     var index = $("input[type=range]").index(this);
     var rg_cur = $(this).val();
@@ -162,7 +168,6 @@ function vaildation(){
     var anw_cur = $anw_arr.eq(answer_cnt);
     var anw_cur_type = anw_cur.children().eq(0).attr("type");
     var anw_cur_name = anw_cur.children().eq(0).attr("name");
-    console.log(anw_cur_type, anw_cur_name);
     //라디오 버튼 값이 null이면 false
     if(anw_cur_type == "radio"){
         if($('input[name="'+anw_cur_name+'"]:checked').val() == null) rt = false;
