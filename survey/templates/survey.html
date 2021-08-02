@@ -111,9 +111,12 @@
             </div>
             <div class="question cleaning">
                 <h2 class="title">한달에 청소는 얼마나 하나요?</h1>
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
                 <div class="answer">
                     <!-- 0:안함, 1:한달한번, 2:격주1회, 3:주1회 4:주3~4회, 5:매일 =>js로 표시 예정 -->
-                    <input type="range" name="cleaning" min="0" max="5">
+                    <input type="range" id="cleaning" name="cleaning" min="0" max="5">
                 </div>
             </div>
             <div class="question sleeping-habits">
@@ -174,14 +177,20 @@
             </div>
             <div class="question toilet">
                 <h2 class="title">화장실 청소는 얼마나 자주 하나요?</h1>
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
                 <div class="answer">
                     <input type="range" name="toilet" min="0" max="5">
                 </div>
             </div>
-            <div class="question ventilate" min="0" max="5">
+            <div class="question ventilate" >
                 <h2 class="title">환기는 얼마나 자주 하나요?</h1>
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
                 <div class="answer">
-                    <input type="range" name="ventilate">
+                    <input type="range" name="ventilate" min="0" max="5">
                 </div>
             </div>
             <div class="question feel">

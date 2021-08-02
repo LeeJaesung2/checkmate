@@ -98,7 +98,6 @@ function changeFrontBarWidth(width){
     $('.front-bar').animate( {
         width: format('{0}%', width)
       }, 400/nextClickCnt, 'swing' );
-    
 }
 
 $('.front-bar > .text').css('opacity', '0')
@@ -126,6 +125,14 @@ function reloadProgressBar(){
     }
 }
 
+/*------------------------range bar 설명------------------------*/
+$("input[type=range]").on('input', function(){
+    var rg_cur = $(this).val();
+    var rg_children = $(".range-detail").children();
+    rg_children.css("opacity", "0");
+    rg_children.eq(rg_cur).css("opacity", "1");
+});
+
 /*------------------------유효성 검사------------------------*/
 //값을 선택해야 넘어가도록
 //여기선 anw = answer
@@ -138,7 +145,6 @@ function vaildation(){
     var anw_cur_type = anw_cur.children().eq(0).attr("type");
     var anw_cur_name = anw_cur.children().eq(0).attr("name");
     console.log(anw_cur_type, anw_cur_name);
-    //라디오가 많으므로 라디오는 먼저!
     if(anw_cur_type == "radio"){
         if($('input[name="'+anw_cur_name+'"]:checked').val() == null) rt = false;
     }
