@@ -127,8 +127,9 @@ function reloadProgressBar(){
 
 /*------------------------range bar 설명------------------------*/
 $("input[type=range]").on('input', function(){
+    var index = $("input[type=range]").index(this);
     var rg_cur = $(this).val();
-    var rg_children = $(".range-detail").children();
+    var rg_children = $(".range-detail").eq(index).children();
     rg_children.css("opacity", "0");
     rg_children.eq(rg_cur).css("opacity", "1");
 });
@@ -137,17 +138,19 @@ $("input[type=range]").on('input', function(){
 //값을 선택해야 넘어가도록
 //여기선 anw = answer
 
-let anw_arr = $(".answer");
+let $anw_arr = $(".answer");
 
 function vaildation(){ 
     var rt = true;
-    var anw_cur = anw_arr.eq(answer_cnt);
+    var anw_cur = $anw_arr.eq(answer_cnt);
     var anw_cur_type = anw_cur.children().eq(0).attr("type");
     var anw_cur_name = anw_cur.children().eq(0).attr("name");
     console.log(anw_cur_type, anw_cur_name);
+    //라디오 버튼 값이 null이면 false
     if(anw_cur_type == "radio"){
         if($('input[name="'+anw_cur_name+'"]:checked').val() == null) rt = false;
     }
+    //checkbox랑 text가 같이 있는 경우 하나도 체크되어 있지 않고 텍스트도 비어 있으면 false
     else if(anw_cur_type == "checkbox"){
         var anw_checkbox_arr = anw_cur.children("input[type=checkbox]");
         var checkbox_cnt = 0;
@@ -157,9 +160,11 @@ function vaildation(){
         if (anw_cur.children("input[type=text]").val().length != 0) cnt++;
         if(checkbox_cnt == 0) rt = false;
     }
+    //text or number 의 길이가 0이면 false
     else if(anw_cur_type == "text" || anw_cur_type == "number"){
         if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) rt = false;
     }
+    //time값의 길이가 0이면 false
     else if(anw_cur_type == "time"){
         var time_list = anw_cur.children("input[type=time]");
         $.each(time_list, function(index, item){
