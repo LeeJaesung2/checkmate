@@ -113,22 +113,33 @@ $('.previous').on('click', function(){
         }, 200);
     }
     if(answer_cnt != 0) {
-        setTimeout(function(){
-            $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
-            if(answer_cnt==3 && $('input[name=room-type]:checked').val()=='1')
-                answer_cnt--;
-            answer_cnt -= 1;
-            nextClickCnt += 10;
-        }, 0);
-        setTimeout(function(){
-            nextClickCnt -= 10;
-            $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
-        }, 700);
+        answer_cnt--;
+        previousFade(answer_cnt);
+        // setTimeout(function(){
+        //     $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
+        //     if(answer_cnt==3 && $('input[name=room-type]:checked').val()=='1')
+        //         answer_cnt--;
+        //     answer_cnt -= 1;
+        //     nextClickCnt += 10;
+        // }, 0);
+        // setTimeout(function(){
+        //     nextClickCnt -= 10;
+        //     $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
+        // }, 700);
     }
     setTimeout(function(){
         reloadProgressBar(answer_cnt);
     }, 20)
 })
+
+function previousFade(q_cur){
+    var $q_slice = $question_list.slice(q_cur+1, q_num+1);
+    $q_slice.stop(true,true);
+    $question_list.eq(q_cur).stop(true,true);
+    $q_slice.hide(300);
+    // $question_list.eq(q_cur+1).fadeOut(300);
+    $question_list.eq(q_cur).delay(500).fadeIn(500);
+}
 
 $('.next, .previous').on('mouseover', function(){
     $(this).animate({
