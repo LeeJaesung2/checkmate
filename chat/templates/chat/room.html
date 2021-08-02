@@ -5,20 +5,22 @@
     <title>Chat Room</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+    
     <input id="chat-message-input" type="text" size="100"/><br/>
     <input id="chat-message-submit" type="button" value="Send"/>
 </body>
 <script>
-    var roomName = "{{room_name}}";
 
+    var roomName = "{{room_name}}";
     var chatSocket = new WebSocket(
-        'ws://' + window.location.host +
-        '/ws/chat/' + roomName + '/');
+        'ws://' + window.location.host + '/ws/chat/' + roomName + '/');
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         var message = data['message'];
+        // if 작성자가 타인이면 :
+        // document.getelementbyid()
+        document.querySelector('#chat-log').value += (message + '\n');
     };
 
     chatSocket.onclose = function(e) {

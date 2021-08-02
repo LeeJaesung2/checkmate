@@ -17,7 +17,7 @@
 <div>
     <img src="" alt="profile_image">
     <!-- 프로필이미지 -->
-    <p> 기숙사 | 10동 | 남 | 23살 | 2학년 </p>
+    <p> 기숙사 | 10동 | 남 | 23살 | 2학년 </p> {{survey_ess.room_type}} | {{survey_ess.dormitory_number_man}}동 |  | 23살 | {{survey_ess.grade}}
     <!-- 자신의 정보 -->
 </div>
 <div>
@@ -29,22 +29,24 @@
             <div>
                 <strong>기상 시간</strong> {{survey_ess.wakeup_time}}
                 <p></p>
-                <strong>취침 시간</strong>
+                <strong>취침 시간</strong> {{survey_ess.bed_time}}
                 <p></p>
-                <strong>흡연</strong>
+                <strong>흡연</strong> {{survey_ess.smoke}}
                 <p></p>
-                <strong>실내 이어폰</strong>
+                <strong>실내 이어폰</strong> {{survey_ess.earphones}}
                 <p></p>
-                <strong>실내 통화</strong>
+                <strong>실내 통화</strong> {{survey_ess.call}}
+                <p></p>
+                <strong>룸메와의 관계</strong> {{survey_ess.relationship}}
                 <p></p>
             </div>
-            <div><strong>청소 주기</strong>
+            <div><strong>청소 주기</strong> {{survey_ess.cleaning}}
                 <p></p>
-                <strong>친구 초대</strong>
+                <strong>친구 초대</strong> {{survey_ess.invite_friends}}
                 <p></p>
-                <strong>잠버릇</strong>
+                <strong>잠버릇</strong> {{survey_ess.sleeping_habits_snoring}} {{survey_ess.sleeping_habits_teeth}} {{survey_ess.sleeping_habits_other}} {{survey_ess.sleeping_habits_nothing}}
                 <p></p>
-                <strong>실내 취식</strong>
+                <strong>실내 취식</strong> {{survey_ess.eat}}
                 <p></p>
             </div>
 
@@ -56,24 +58,22 @@
         </p>
         <div>
             <div>
-                <strong>생필품 공유</strong>
+                <strong>생필품 공유</strong> {{survey_opt.share}}
                 <p></p>
-                <strong>벌레 퇴치</strong>
+                <strong>벌레 퇴치</strong> {{survey_opt.bug}}
                 <p></p>
-                <strong>키보드 소리</strong>
+                <strong>키보드 소리</strong> {{survey_opt.keyboard_noise}}
                 <p></p>
-                <strong>룸메와의 관계</strong>
-                <p></p>
-                <strong>게임 여부</strong>
+                <strong>게임 여부</strong> {{survey_opt.game}}
                 <p></p>
             </div>
-            <div><strong>환기</strong>
+            <div><strong>환기</strong> {{survey_opt.ventilate}}
                 <p></p>
-                <strong>에어컨/보일러</strong>
+                <strong>에어컨/보일러</strong> {{survey_opt.feel_cold}} {{survey_opt.feel_hot}}
                 <p></p>
-                <strong>화장실 청소</strong>
+                <strong>화장실 청소</strong> {{survey_opt.toilet}}
                 <p></p>
-                <strong>MBTI</strong>
+                <strong>MBTI</strong> {{survey_opt.mbti}}
                 <p></p>
             </div>
 
@@ -82,12 +82,13 @@
 </div>
 <div>
     <p>한마디 -</p>
-    <button>수정</button>
+    <a href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+    <a href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
 </div>
 <div>
     <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
-        <li class="page-item"><a class="page-link" href="#">목록</a></li>
+        <li class="page-item"><a class="page-link" href="/roommate/searchRoommate">목록</a></li>
         <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
     </ul>
 </div>

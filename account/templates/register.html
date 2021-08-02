@@ -14,30 +14,50 @@
             {% csrf_token %}
             <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
             <!-- 미디어로 받기 -->
-            아이디 <br><input type="text" name="username"><br><br><br>
-            비밀번호 <br><input type="password" name="password1"><br><br><br>
-            비밀번호 확인 <br><input type="password" name="password2"><br><br><br>
+            아이디 <br><input type="text" id="username" name="username"><br><br><br>
+            비밀번호 <br><input type="password" id="password1" name="password1"><br><br><br>
+            비밀번호 확인 <br><input type="password" id="password2" name="password2"><br><br><br>
             <!-- 비밀번호 조건
             Your password can’t be too similar to your other personal information.
             Your password must contain at least 8 characters.
             Your password can’t be a commonly used password.
             Your password can’t be entirely numeric. -->
-            이름<br> <input type="text",name='user_name'><br><br><br>
+            이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
             성별: 
-            <input id="gender" type="radio" name="user_gender" value="man">남자
-            <input id="gender" type="radio" name="user_gender" value="woman">여자<br><br><br>
+            <input id="user_gender" type="radio" name="user_gender" value="man">남자
+            <input id="user_gender" type="radio" name="user_gender" value="woman">여자<br><br><br>
             국적: 
-            <select name="user_nation">
+            <select id="user_nation" name="user_nation">
                 <option value="">선택해주세요.</option>
                 <option value="KOR">대한민국</option>
                 <option value="CHN">중국</option>
             </select><br><br><br>
             <!-- 프로필 사진: <input type="file" name="image"> -->
-            닉네임: <input type="text" name="user_nickname" maxlength='8' placeholder="최대 8글자">
+            닉네임: <input type="text" id="user_nickname" name="user_nickname" maxlength='8' placeholder="최대 8글자">
 
-            <button class="submit" type="submit">Sign Up</button>
+            <button id="submit"class="submit" type="submit">Sign Up</button>
         </form>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $("#submit").click(function(){
+        if($("#userid").val().length===0){alert("아이디를 입력해 주세요.");$("#userid").focus();return false;}
+        if($("#password1").val().length===0){alert("비밀번호를 입력해 주세요.");$("#password1").focus();return false;}
+        if($("#password2").val().length===0){alert("비밀번호 확인을 입력해 주세요.");$("#password2").focus();return false;}
+        if($("#user_name").val().length===0){alert("이름을 입력해 주세요.");$("#user_name").focus();return false;}
+        if(($("input:radio[name='user_gender']").is(":checked"))){
+            
+        }
+        else{
+            alert("성별을 선택해주세요.");$("#gender").focus();return false;
+        }
+        if($("#user_nation").val().length===0){alert("국가를 선택해주세요.");$("#user_nation").focus();return false;}
+        if($("#user_nickname").val().length===0){alert("닉네임을 입력해주세요.");$("#user_nickname").focus();return false;}
+        
+    });
+});
+</script>
 {% endblock %}
 

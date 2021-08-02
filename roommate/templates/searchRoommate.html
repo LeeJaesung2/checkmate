@@ -2,37 +2,80 @@
 {% load static %}
 
 {% block content %}
-<h3>룸메 찾기</h3>
 <button>룸메추천받기</button>
 <button>필터적용하기</button>
-<a href="{% url 'create' %}">새로 만들기</a>
 <!-- 필터 -->
 <small>*내가 원하는 룸메에 대해 적어주세요</small>
 <div>
     
 </div>
 
-<div>
 
-    <h5>검색</h5>
-    <form action="" method="get">
-        {% csrf_token %}
-        <input type="text" placeholder="#룸메추천받기">
-        <button type="submit">검색아이콘</button>
-    </form>
-    <button>+</button>
-
-</div>
 <div>
-    {% for write in writes.all %}
     <div>
-        <!-- <p>매칭완료</p>
-        <p>기숙사 | 남 | 20세</p>
-        <p>안녕하세요. 룸메이트 구합니다. </p>
-        <p>80%</p> -->
+        <h3>룸메 찾기</h3>
     </div>
-    {% endfor %}
+    <div>
+        <form action="" method="GET">
+            {% csrf_token %}
+            <div>
+                <div>
+                    <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                </div>
+                <div>
+                    <button type="submit">검색</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if search_keyword %}
+    <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
+    {% endif %}
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>상태</th>
+                    <th>기숙사/자취</th>
+                    <th>성별</th>
+                    <th>나이</th>
+                    <th>제목</th>
+                    <!-- <th>적합도</th> 구현X -->
+                </tr>
+            </thead>
+            <tbody>
+                {% if writes %}
+                {% for write in writes.all %}
+                <tr>
+                    <td>{{ write.state}}</td>
+                    <td>{{ write.user_id.survey_ess_id.room_type}}</td>
+                    <td>{{ write.user_id.user_gender}}</td>
+                    <!-- 나이모델X학년으로 적어둠 -->
+                    <td>{{ write.user_id.survey_ess_id.grade}}</td>
+                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</td>
+                    <!-- <td> 적합도 구현X </td> -->
+                </tr>
+                {% endfor %}
+                {% else %}
+                    {% if search_keyword %}
+                    <tr>
+                        <td>일치하는 검색 결과가 없습니다</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td>작성된 게시글이 없습니다</td>
+                    </tr>
+                    {% endif %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<div>
+    <a href="{% url 'create' %}">새로 만들기</a>
+</div>
+
 <div>
     <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#">◀</a></li>

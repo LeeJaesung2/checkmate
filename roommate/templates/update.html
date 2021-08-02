@@ -7,11 +7,11 @@
         <input type="hidden" name="user_id", value="{{ user_id }}">
         <p>
             <label for="id_title">제목 :</label>
-            <input type="text" name="title" maxlength="100" required id="id_title">
+            <input type="text" name="title" maxlength="100" required id="id_title" value="{{ write.title }}">
         </p>
         <p>
             <label for="id_body">한마디 :</label>
-            <textarea name="body" required id="id_body" cols="40" rows="10"></textarea>
+            <textarea name="body" required id="id_body" cols="40" rows="10">{{ write.body }}</textarea>
         </p>
         <p>
             <label for="id_state">상태 :</label>

@@ -26,7 +26,7 @@
     <h3>*다음은 필수로 답해주셔야하는 문항들입니다.</h3>
     <!-- 문답 -->
     <div class="container">
-        <p class="previous"> 이전</p>
+        <p class="previous">< 이전</p>
         <form action="{% url 'submitSurvey' %}" method="POST" class="question-box">
             {% csrf_token %}
             <div class="question grade">
@@ -65,25 +65,25 @@
             <div class="question dormitory-date">
                 <h2 class="title">룸메이트와 함께할 기간을 입력해주세요!</h1>
                 <div class="answer">
-                    <select name="dormitory-year-start">
-                        <option value="2021">2021</option>
+                    <select name="dormitory-year-start" class="form-select">
+                        <option value="2021" selected>2021</option>
                     </select>
                     <select name="dormitory-semester-start">
-                        <option value="1">1학기</option>
-                        <option value="S">여름방학</option>
-                        <option value="2">2학기</option>
+                        <option value="1" disabled>1학기</option>
+                        <option value="S" disabled>여름방학</option>
+                        <option value="2" selected>2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                     <span>~</span>
                     <select name="dormitory-year-end">
-                        <option value="2021">2021</option>
+                        <option value="2021" selected>2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2024</option>
                     </select>
                     <select name="dormitory-semester-end">
                         <option value="1">1학기</option>
                         <option value="S">여름방학</option>
-                        <option value="2">2학기</option>
+                        <option value="2" selected>2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                 </div>
@@ -98,8 +98,8 @@
             <div class="question time">
                 <h2 class="title">몇시에 자서 몇시에 일어나나요?</h1>
                 <div class="answer">
-                    <input type="time" id="wakeup" name="wakeup-time"><label for="wakeup">에 일어나서</label>
-                    <input type="time" id="bedtime" name="bed-time"><label for="betime">에 잡니다</label>
+                    <input type="time" step='3600' id="wakeup" name="wakeup-time"><label for="wakeup">에 일어나서</label>
+                    <input type="time" step='3600' id="bedtime" name="bed-time"><label for="betime">에 잡니다</label>
                 </div>
             </div>
             <div class="question smoke">
@@ -111,9 +111,12 @@
             </div>
             <div class="question cleaning">
                 <h2 class="title">한달에 청소는 얼마나 하나요?</h1>
-                <div class="answer">
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
+                <div class="answer range">
                     <!-- 0:안함, 1:한달한번, 2:격주1회, 3:주1회 4:주3~4회, 5:매일 =>js로 표시 예정 -->
-                    <input type="range" name="cleaning" min="0" max="5">
+                    <input type="range" id="cleaning" name="cleaning" min="0" max="5">
                 </div>
             </div>
             <div class="question sleeping-habits">
@@ -164,7 +167,7 @@
                 </div>
             </div>
             <!-- 선택요소 -->
-            <h3>*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다.</h3>
+            <h3 class="second" >*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다.</h3>
             <div class="question share">
                 <h2 class="title">생필품을 룸메와 같이 쓰나요?</h1>
                 <div class="answer">
@@ -174,14 +177,20 @@
             </div>
             <div class="question toilet">
                 <h2 class="title">화장실 청소는 얼마나 자주 하나요?</h1>
-                <div class="answer">
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
+                <div class="answer range">
                     <input type="range" name="toilet" min="0" max="5">
                 </div>
             </div>
-            <div class="question ventilate" min="0" max="5">
+            <div class="question ventilate" >
                 <h2 class="title">환기는 얼마나 자주 하나요?</h1>
-                <div class="answer">
-                    <input type="range" name="ventilate">
+                <div class="range-detail">
+                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                </div>
+                <div class="answer range">
+                    <input type="range" name="ventilate" min="0" max="5">
                 </div>
             </div>
             <div class="question feel">
@@ -220,7 +229,9 @@
                     <input type="text" name="mbti">
                 </div>
             </div>
-            <input type="submit">
+            <div class="submit">
+                <input type="submit" value="완료">
+            </div>
         </form>
         <p class="next">다음 ></p>
     </div>
