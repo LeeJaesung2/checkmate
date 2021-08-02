@@ -8,22 +8,24 @@ def survey(request):
     return render(request, 'survey.html')
 
 def submitSurvey(request):
-    user1 = request.CustomUser
+    user_id = request.user.id
+    user_obj = CustomUser.objects.get(id=user_id)
+
     eSurvey = SurveyEssential() #EssentialSurvey
     eSurvey.grade = request.POST['grade']
     eSurvey.room_type = request.POST['room-type']
-    if request.user.user_gender == 'man':
+    if user_obj.user_gender == 'man':
         eSurvey.dormitory_number_man = request.POST['dormitory-number-man']
     else:
-        eSurvey.dormitory_number_woman = request.POST['dormitory-number-woman']
+        eSurvey.dormitory_number_woman = request.POST.get('dormitory-number-woman')
     eSurvey.dormitory_year_start = request.POST['dormitory-year-start']
     eSurvey.dormitory_semester_start = request.POST['dormitory-semester-start']
     eSurvey.dormitory_year_end = request.POST['dormitory-year-end']
     eSurvey.dormitory_semester_end = request.POST['dormitory-semester-end']
-    eSurvey.relationship = request.POST['relationship']
+    eSurvey.relationship = request.POST.get('relationship')
     eSurvey.wakeup_time = request.POST['wakeup-time']
     eSurvey.bed_time = request.POST['bed-time']
-    eSurvey.smoke = request.POST['smoke']
+    eSurvey.smoke = request.POST.get('smoke')
     eSurvey.cleaning = request.POST['cleaning']
     eSurvey.sleeping_habits_snoring = True if request.POST.get('sleeping-habits-snoring')=='on' else False
     eSurvey.sleeping_habits_teeth = True if request.POST.get('sleeping-habits-teeth')=='on' else False
@@ -32,12 +34,12 @@ def submitSurvey(request):
     # eSurvey.sleeping_habits_teeth = request.POST['sleeping-habits-teeth']
     # eSurvey.sleeping_habits_nothing = request.POST.get('sleeping-habits-nothing')
     eSurvey.sleeping_habits_other = request.POST['sleeping-habits-other']
-    eSurvey.invite_friends = request.POST['invite-friends']
-    eSurvey.call = request.POST['call']
-    eSurvey.earphones = request.POST['earphones']
-    eSurvey.eat = request.POST['eat']
-    eSurvey.animal = request.POST['animal']
-    eSurvey.animal_other = request.POST['animal-other']
+    eSurvey.invite_friends = request.POST.get('invite-friends')
+    eSurvey.call = request.POST.get('call')
+    eSurvey.earphones = request.POST.get('earphones')
+    eSurvey.eat = request.POST.get('eat')
+    eSurvey.animal = request.POST.get('animal')
+    eSurvey.animal_other = request.POST.get('animal-other')
     eSurvey.save()
 
     oSurvey = SurveyOptional()
@@ -52,8 +54,9 @@ def submitSurvey(request):
     oSurvey.game = request.POST['game']
     oSurvey.mbti = request.POST['mbti']
     oSurvey.save()
-    user1.survey_ess_id = eSurvey
-    user1.survey_opt_id = oSurvey
 
+
+    user_obj.survey_ess_id = eSurvey
+    user_obj.survey_opt_id = oSurvey
 
     return render(request, 'survey.html')

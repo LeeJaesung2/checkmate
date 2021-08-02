@@ -33,7 +33,7 @@ var nextClickCnt = 1;
 $question_list.eq(answer_cnt).show();
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
 $('.next').on('click', function(){
-    if (vaildation() == true){
+    // if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous').animate({
                 opacity: '1'
@@ -74,7 +74,7 @@ $('.next').on('click', function(){
         setTimeout(function(){
             reloadProgressBar(answer_cnt);
         }, 0)
-    }
+    // }
 })
 
 $('.previous').on('click', function(){
@@ -177,9 +177,9 @@ function vaildation(){
         var anw_checkbox_arr = anw_cur.children("input[type=checkbox]");
         var checkbox_cnt = 0;
         $.each(anw_checkbox_arr, function(index, item){
-            if(item.checked) cnt++;
+            if(item.checked) checkbox_cnt++;
         })
-        if (anw_cur.children("input[type=text]").val().length != 0) cnt++;
+        if (anw_cur.children("input[type=text]").val().length != 0) checkbox_cnt++;
         if(checkbox_cnt == 0) rt = false;
     }
     //text or number 의 길이가 0이면 false
