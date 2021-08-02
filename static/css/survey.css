@@ -30,7 +30,7 @@
 body{
     /* background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%); */
     background-attachment: fixed;
-    background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%);
+    background: linear-gradient(280.91deg, #3F97FF 8.36%, #ae8bff 92.43%);
     border-radius: calc(2 * var(--borderWidth));
     z-index: -1;
     animation: animatedgradient 3s ease alternate infinite;

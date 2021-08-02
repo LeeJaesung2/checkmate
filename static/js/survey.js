@@ -16,10 +16,17 @@ let q_num = 22; //질문 개수
 
 //range 설명 초기화
 var range_list = $("input[type=range]");
+
 $.each(range_list, function(index, item){
-    var rg_children = $(".range-detail").children();
+    var rg_children = $(this).parent().prev().children();
     rg_children.css("opacity", "0");
+    if(index == 0)
     rg_children.eq(3).css("opacity", "1");
+    else{
+    $(this).val(0);
+    rg_children.eq(0).css("opacity", "1");
+    }
+
 });
 
 /*------------------------다음/이전 기능------------------------*/
@@ -31,7 +38,10 @@ var $question_list = $('.question');
 var nextClickCnt = 1;   
 
 $question_list.eq(answer_cnt).show();
+//절대 제 코드를 해석하지 못할겁니다. 이게 바로 코드 난독화...🙄
+//재사용성...어쩔거야....
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
+//이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
 $('.next').on('click', function(){
     // if (vaildation() == true){
         if(answer_cnt == 0) {
@@ -39,53 +49,74 @@ $('.next').on('click', function(){
                 opacity: '1'
             }, 200);
         }
-        if(answer_cnt != q_num){
-            setTimeout(function(){
+        setTimeout(function(){
+            if(answer_cnt < 13) //setTimeOut이 다른 함수들보다 늦게 실행되므로 <13지정을 안하면 맨 마지막에 13번째 요소를 fadeOut해버린다...
                 $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
-                answer_cnt += 1;
-                nextClickCnt += 10;
-            }, 0);
-            setTimeout(function(){
-                nextClickCnt -= 10;
-                $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
-            }, 700);
-        }
+            if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
+                answer_cnt++;
+            else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면
+                answer_cnt++;
+                setScrollType(true);
+                reloadProgressBar(answer_cnt+1);
+            }
+            answer_cnt += 1;
+            nextClickCnt += 10;
+        }, 0);
+        setTimeout(function(){
+            nextClickCnt -= 10;
+            $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
+        }, 700);
         if(answer_cnt == 13){
-            //다음·이전 버튼 없애기
-            $(".next, .previous").animate({
-                'opacity': '0'
-            });
-            $(".container").css('height', 'auto');
-            //모든 문항 보이게
-            $.each($question_list, function(index, item){
-                $(this).fadeIn(500);
-            })
-            //선택문항 설명 문구 보이게
-            $('h3').eq(1).show(); 
-            //선택문항으로 스크롤하기
-            var scrollPosition = $(".question.share").offset().top;
-            $("html, body").animate({
-                scrollTop: scrollPosition
-            }, 500).delay(1000);
-            $question_list.css("margin-bottom", "40px");
-            //제출버튼 보이게
-            $('input[type=submit], .submit').show();
+            setScrollType(false);
         }
         setTimeout(function(){
-            reloadProgressBar(answer_cnt);
+            if(answer_cnt < 12)
+                reloadProgressBar(answer_cnt);
         }, 0)
     // }
 })
 
+//질문을 스크롤형으로 변환하는 함수
+function setScrollType(dormitoryOpt){
+    //다음·이전 버튼 없애기
+    $(".next, .previous").animate({
+        'opacity': '0'
+    });
+    $(".container").css('height', 'auto');
+    //모든 문항 보이게
+    $.each($question_list, function(index, item){
+        $(this).fadeIn(500);
+    })
+    //기숙사생이면 자취전용 항목 감추기
+    if(dormitoryOpt == true){
+        $(".not-dormitory").hide();
+    }
+    else{
+        $(".dormitory-only").hide();
+    }
+    //선택문항 설명 문구 보이게
+    $('h3').eq(1).show(); 
+    //선택문항으로 스크롤하기
+    var scrollPosition = $(".question.share").offset().top;
+    $("html, body").animate({
+        scrollTop: scrollPosition
+    }, 500).delay(1000);
+    $question_list.css("margin-bottom", "40px");
+    //제출버튼 보이게
+    $('input[type=submit], .submit').show();
+}
+
 $('.previous').on('click', function(){
     if(answer_cnt == 1) {
-        $('.previous').animate({
+        $(this).animate({
             'opacity': '0',
         }, 200);
     }
     if(answer_cnt != 0) {
         setTimeout(function(){
             $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
+            if(answer_cnt==3 && $('input[name=room-type]:checked').val()=='1')
+                answer_cnt--;
             answer_cnt -= 1;
             nextClickCnt += 10;
         }, 0);
@@ -190,7 +221,6 @@ function vaildation(){
     else if(anw_cur_type == "time"){
         var time_list = anw_cur.children("input[type=time]");
         $.each(time_list, function(index, item){
-            console.log($(this).val().length);
             if($(this).val().length == 0) rt = false;
         })
     }

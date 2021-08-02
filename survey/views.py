@@ -38,7 +38,8 @@ def submitSurvey(request):
     eSurvey.call = request.POST.get('call')
     eSurvey.earphones = request.POST.get('earphones')
     eSurvey.eat = request.POST.get('eat')
-    eSurvey.animal = request.POST.get('animal')
+    eSurvey.animal_dog = True if request.POST.get('animial-dog')=='on' else False
+    eSurvey.animal_cat = True if request.POST.get('animial-cat')=='on' else False
     eSurvey.animal_other = request.POST.get('animal-other')
     eSurvey.save()
 
@@ -51,12 +52,12 @@ def submitSurvey(request):
     oSurvey.bug = request.POST.get('bug')
     oSurvey.keyboard = request.POST.get('keyboard')
     oSurvey.keyboard_noise = True if request.POST.get('keyboard-checkboxg')=='on' else False
-    oSurvey.game = request.POST['game']
+    oSurvey.game = request.POST.get('game')
     oSurvey.mbti = request.POST['mbti']
     oSurvey.save()
 
-
     user_obj.survey_ess_id = eSurvey
     user_obj.survey_opt_id = oSurvey
+    user_obj.save()
 
     return render(request, 'survey.html')
