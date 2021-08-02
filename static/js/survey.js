@@ -8,13 +8,16 @@ $('.question').hide();
 
 $('h3').eq(1).hide(); //두번째 h3 선택질문 설명 문구 가리기
 
-$('input[type=submit]').hide();
+$('input[type=submit], .submit').hide();
 
 $('.previous').css('opacity', '0');
 
 let q_num = 22; //질문 개수
 
 /*------------------------다음/이전 기능------------------------*/
+//1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게
+/*--------------------------------------------------------*/
+
 var answer_cnt = 0;
 var $question_list = $('.question');
 var nextClickCnt = 1;   
@@ -44,11 +47,25 @@ $('.next').on('click', function(){
             // $question_list.eq(answer_cnt).delay(700).fadeIn(600);
         }
         if(answer_cnt == 13){
+            //다음·이전 버튼 없애기
             $(".next, .previous").animate({
                 'opacity': '0'
             });
             $(".container").css('height', 'auto');
-            $question_list.show();
+            //모든 문항 보이게
+            $.each($question_list, function(index, item){
+                $(this).fadeIn(500);
+            })
+            //선택문항 설명 문구 보이게
+            $('h3').eq(1).show(); 
+            //선택문항으로 스크롤하기
+            var scrollPosition = $(".question.share").offset().top;
+            $("html, body").animate({
+                scrollTop: scrollPosition
+            }, 500).delay(1000);
+            $question_list.css("margin-bottom", "40px");
+            //제출버튼 보이게
+            $('input[type=submit], .submit').show();
         }
         reloadProgressBar();
     // }
@@ -115,7 +132,7 @@ function reloadProgressBar(){
         }, 10);
     }
     
-    //이전 페이지 버튼 
+    //진행바 텍스트 애니메이션
     if(answer_cnt < 3){
         setTimeout(function(){
             $('.front-bar > .text').animate( {
@@ -125,7 +142,7 @@ function reloadProgressBar(){
     }
 }
 
-/*------------------------range bar 설명------------------------*/
+/*------------------------range bar 설명 구현------------------------*/
 $("input[type=range]").on('input', function(){
     var index = $("input[type=range]").index(this);
     var rg_cur = $(this).val();
@@ -172,7 +189,6 @@ function vaildation(){
             if($(this).val().length == 0) rt = false;
         })
     }
-
     return rt;
 }
 

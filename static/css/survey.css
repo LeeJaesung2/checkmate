@@ -28,13 +28,37 @@
 }
 
 body{
-    background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%);
+    /* background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%); */
     background-attachment: fixed;
+    background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
 }
+
+@keyframes animatedgradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 h3{
     font-family: 'S-CoreDream-3Light';
+    opacity: 0.5;
 }
+
+h3:nth-child(2){
+    padding: 100px 100px;
+    
+}
+
 /* 왼쪽 상단 타이틀 */
 .top.title{
     text-align: left;
@@ -62,6 +86,8 @@ h3{
 .background-bar
 {
     background-color: grey;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.05);
+
 }
 
 .front-bar > .text{
@@ -103,6 +129,7 @@ h3{
     margin-bottom: 20px;
     /* height: 10vh; */
     font-size: 30px;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.18);
 }
 
 .question > .answer{
@@ -126,6 +153,7 @@ input[type=radio]+label, input[type=checkbox]+label{
     font-size: 20px;
     color: #254074;
     background-color: white;
+    opacity: 0.8;
     padding: 10px 15px;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
@@ -135,6 +163,7 @@ input[type=radio]:checked+label, input[type=checkbox]:checked+label{
     font-family: 'S-CoreDream-7ExtraBold';
     color: #254074;
     background-color: white;
+    opacity: 1;
     padding: 10px 15px;
     font-size: 25px;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
@@ -142,6 +171,7 @@ input[type=radio]:checked+label, input[type=checkbox]:checked+label{
 }
 
 input[type=radio]+label:hover, input[type=checkbox]+label:hover{
+    opacity: 1;
     animation-duration: 0.1s;
     animation-name: btnZoomIn;
     animation-fill-mode: forwards;
@@ -164,6 +194,8 @@ input[type=number]{
     border-radius: 5px;
     border: 0px;
     width: 10vw;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+
 }
 
 /* select */
@@ -175,6 +207,7 @@ select{
     height: 35px;
     border-radius: 4px;
     padding: 5px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
 }
 
 /* input-time */
@@ -184,13 +217,17 @@ input[type=time]{
     border-radius: 5px;
     border: 0px;
     margin: 5px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
 }
 
 /* input-range */
+.answer.range{
+    height:3vh;
+}
 input[type=range]{
     -webkit-appearance:none;
     height: 2px;
-    width: 30vw;
+    width: 250px;
 }
 input[type='range']::-webkit-slider-thumb { 
     -webkit-appearance: none; 
@@ -198,6 +235,8 @@ input[type='range']::-webkit-slider-thumb {
     height:15px;
     border-radius: 100px;
     background-color: #254074;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+
 }
 .range-detail{
     font-family: 'S-CoreDream-3Light';
@@ -207,6 +246,7 @@ input[type='range']::-webkit-slider-thumb {
 .range-detail > span{
     margin: 0px 2px;
 }
+
 /* input-text */
 input[type=text]{
     font-size: 20px;
@@ -216,5 +256,30 @@ input[type=text]{
     border: 0px;
     width: 120px;
     margin-left: 5px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+
 }
 
+/* input-submit */
+input[type=submit]{
+    position: relative;
+    border: 0;
+    background: none;
+    color: #254074;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    border-radius: 50px;
+}
+
+.submit{
+    position: relative;
+    width: 60vw;
+    height: 50px;
+    border: 3px;
+    --borderWidth: 3px;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    margin-bottom: 100px;
+}

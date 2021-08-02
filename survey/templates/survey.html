@@ -114,7 +114,7 @@
                 <div class="range-detail">
                     <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
-                <div class="answer">
+                <div class="answer range">
                     <!-- 0:안함, 1:한달한번, 2:격주1회, 3:주1회 4:주3~4회, 5:매일 =>js로 표시 예정 -->
                     <input type="range" id="cleaning" name="cleaning" min="0" max="5">
                 </div>
@@ -180,7 +180,7 @@
                 <div class="range-detail">
                     <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
-                <div class="answer">
+                <div class="answer range">
                     <input type="range" name="toilet" min="0" max="5">
                 </div>
             </div>
@@ -189,7 +189,7 @@
                 <div class="range-detail">
                     <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
-                <div class="answer">
+                <div class="answer range">
                     <input type="range" name="ventilate" min="0" max="5">
                 </div>
             </div>
@@ -229,7 +229,9 @@
                     <input type="text" name="mbti">
                 </div>
             </div>
-            <input type="submit">
+            <div class="submit">
+                <input type="submit" value="완료">
+            </div>
         </form>
         <p class="next">다음 ></p>
     </div>
