@@ -56,15 +56,24 @@
             <!-- 프로필사진 -->
             <input type="text" id="user_nickname" name="user_nickname" maxlength='8' value=""> <br>
             <!-- 닉네임 -->
-            <p>ID</p>
-            <input type="text" name="user_id" value=""> <br>
-            <p>비밀번호</p>
+            <!-- <p>ID</p> -->
+            
+            <p>비밀번호 변경</p>
+            <p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message.message }}
+                    {% endfor %}
+                {% endif %}
+            </p>
+            {% csrf_token %}
+            
             <p>현재 비밀번호</p>
             <input type="password" name="user_password"><br>
             <p>새 비밀번호</p>
-            <input type="password" name="user_newpassword"><br>
+            <input type="password" name="password1"><br>
             <p>새 비밀번호 확인</p>
-            <input type="password" name="user_password_check"><br>
+            <input type="password" name="password2"><br>
             <button class="btn4" type="submit">저장</button>
         </form>
     </div>
@@ -73,7 +82,12 @@
 <div class="hidden modal" >
     <button class="modal__closeBtn" >X</button>
 </div>
-<script type="text/javascript" src="{% static 'js/modal.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/modal.js' %}">
+
+
+    
+
+</script>
 
 
 
