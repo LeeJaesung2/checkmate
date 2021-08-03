@@ -15,19 +15,13 @@ $('.previous').css('opacity', '0');
 const q_num = 13; //필수 질문 인덱스(14개)
 const q_max = 23; //전체 질문 인덱스(24개)
 
-//range 설명 초기화 - 첫번째는 
+//range 설명 초기화
 const range_list = $("input[type=range]");
-
 $.each(range_list, function(index, item){
-    let rg_children = $(this).parent().prev().children();
-    rg_children.css("opacity", "0");
-    if(index == 0)
-    rg_children.eq(3).css("opacity", "1");
-    else{
+    let rg_detail = $(this).parent().prev().children();
+    rg_detail.css("opacity", "0");
     $(this).val(0);
-    rg_children.eq(0).css("opacity", "1");
-    }
-
+    rg_detail.eq(0).css("opacity", "1");
 });
 
 /*------------------------다음/이전 기능------------------------*/
@@ -230,9 +224,9 @@ let $anw_arr = $(".answer");
 //////////////////함수정의//////////////////
 function vaildation(){ 
     var rt = true;
-    var anw_cur = $anw_arr.eq(answer_cnt);
-    var anw_cur_type = anw_cur.children().eq(0).attr("type");
-    var anw_cur_name = anw_cur.children().eq(0).attr("name");
+    var $anw_cur = $anw_arr.eq(answer_cnt);
+    var anw_cur_type = $anw_cur.children().eq(0).attr("type");
+    var anw_cur_name = $anw_cur.children().eq(0).attr("name");
     //라디오 버튼 값이 null이면 false
     if(anw_cur_type == "radio"){
         if($('input[name="'+anw_cur_name+'"]:checked').val() == null) {
@@ -242,12 +236,12 @@ function vaildation(){
     }
     //checkbox랑 text가 같이 있는 경우 하나도 체크되어 있지 않고 텍스트도 비어 있으면 false
     else if(anw_cur_type == "checkbox"){
-        var anw_checkbox_arr = anw_cur.children("input[type=checkbox]");
+        var anw_checkbox_arr = $anw_cur.children("input[type=checkbox]");
         var checkbox_cnt = 0;
         $.each(anw_checkbox_arr, function(index, item){
             if(item.checked) checkbox_cnt++;
         })
-        if (anw_cur.children("input[type=text]").val().length != 0) checkbox_cnt++;
+        if ($anw_cur.children("input[type=text]").val().length != 0) checkbox_cnt++;
         if(checkbox_cnt == 0) {
             openModal('버튼을 선택하거나 기타항목을 적어주세요')
             rt = false;
@@ -255,20 +249,36 @@ function vaildation(){
     }
     //text or number 의 길이가 0이면 false
     else if(anw_cur_type == "text" || anw_cur_type == "number"){
-        if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) {
+        if ($anw_cur.children("input[type=text], input[type=number]").val().length == 0) {
             openModal('답변을 적어주세요');
             rt = false;
         }
     }
     //time값의 길이가 0이면 false
     else if(anw_cur_type == "time"){
-        var time_list = anw_cur.children("input[type=time]");
+        var time_list = $anw_cur.children("input[type=time]");
         $.each(time_list, function(index, item){
             if($(this).val().length == 0) {
                 openModal('시간을 선택해 주세요');
                 rt = false;
             }
         })
+    }
+    else if(anw_cur_type == "select"){
+        let select_children = $anw_cur.children('select');
+        $.each(select_children, function(index, item){
+            if($(this).val() == "0") {
+                rt = false;
+                openModal('기간을 정확히 선택해주세요');
+                return rt;
+            }
+        })
+    }
+    else if(anw_cur_type == "range"){
+        if($anw_cur.children('input[type=range]').val()=='0'){
+            openModal('드래그해서 주기를 선택해주세요');
+            return false;
+        }
     }
     return rt;
 }
@@ -290,5 +300,4 @@ $(".nothing").change(function(){
         $(this).siblings().attr('disabled', true);
     else
         $(this).siblings().attr('disabled', false);
-
 })

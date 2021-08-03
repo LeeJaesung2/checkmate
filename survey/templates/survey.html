@@ -65,25 +65,28 @@
             <div class="question dormitory-date">
                 <h2 class="title">룸메이트와 함께할 기간을 입력해주세요!</h1>
                 <div class="answer">
-                    <select name="dormitory-year-start" class="form-select">
+                    <select type="select" name="dormitory-year-start" class="form-select">
                         <option value="2021" selected>2021</option>
                     </select>
                     <select name="dormitory-semester-start">
+                        <option value="0" selected>----</option>
                         <option value="1" disabled>1학기</option>
                         <option value="S" disabled>여름방학</option>
-                        <option value="2" selected>2학기</option>
+                        <option value="2">2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                     <span>~</span>
                     <select name="dormitory-year-end">
-                        <option value="2021" selected>2021</option>
+                        <option value="0" selected>----</option>
+                        <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2024</option>
                     </select>
                     <select name="dormitory-semester-end">
+                        <option value="0" selected>----</option>
                         <option value="1">1학기</option>
                         <option value="S">여름방학</option>
-                        <option value="2" selected>2학기</option>
+                        <option value="2">2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                 </div>
@@ -112,11 +115,11 @@
             <div class="question cleaning">
                 <h2 class="title">한달에 청소는 얼마나 하나요?</h1>
                 <div class="range-detail">
-                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                    <span>선택X</span><span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
                 <div class="answer range">
                     <!-- 0:안함, 1:한달한번, 2:격주1회, 3:주1회 4:주3~4회, 5:매일 =>js로 표시 예정 -->
-                    <input type="range" id="cleaning" name="cleaning" min="0" max="5">
+                    <input type="range" id="cleaning" name="cleaning" min="0" max="6">
                 </div>
             </div>
             <div class="question sleeping-habits">
