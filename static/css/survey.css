@@ -162,14 +162,18 @@ input[type=radio]+label, input[type=checkbox]+label{
 }
 
 input[type=radio]:checked+label, input[type=checkbox]:checked+label{
-    font-family: 'S-CoreDream-7ExtraBold';
-    color: #254074;
-    background-color: white;
+    /* font-family: 'S-CoreDream-7ExtraBold'; */
+    /* color: #254074; */
+    /* background-color: white; */
     opacity: 1;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     font-size: 25px;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
+    /* box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25); */
+    /* border-radius: 8px; */
+}
+
+input[type=radio]:disabled+label, input[type=checkbox]:disabled+label{
+    opacity: 0.3;
 }
 
 input[type=radio]+label:hover, input[type=checkbox]+label:hover{

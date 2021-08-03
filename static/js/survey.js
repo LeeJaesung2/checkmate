@@ -30,7 +30,6 @@ $.each(range_list, function(index, item){
 
 });
 
-
 /*------------------------다음/이전 기능------------------------*/
 //1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게 => 완료
 /*--------------------------------------------------------*/
@@ -101,7 +100,7 @@ function setScrollType(dormitoryOpt){
 //이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
 $('.next').on('click', function(){
     //큰 if는 유효성 검사.
-    // if (vaildation() == true){
+    if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous').animate({
                 opacity: '1'
@@ -135,7 +134,7 @@ $('.next').on('click', function(){
         answer_cnt++;
         nextFade(answer_cnt);
         reloadProgressBar(answer_cnt);
-    // }
+    }
 })
 
 $('.previous').on('click', function(){
@@ -283,3 +282,13 @@ function openModal(string){
 }
 
 /*-----------------다중 답변(체크박스) disabled 처리-----------------*/
+
+$(".nothing").change(function(){
+    // let $q_name = $(this).attr('name');
+    // $("input[name='"+$q_name+"']").attr('')
+    if($(this).is(':checked'))
+        $(this).siblings().attr('disabled', true);
+    else
+        $(this).siblings().attr('disabled', false);
+
+})
