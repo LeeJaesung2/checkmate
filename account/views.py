@@ -96,7 +96,3 @@ def kakaoLoginLogicRedirect(request):
 #         return render(request, 'main.html')
 #     else:
 #         return render(request, 'login.html')
-
-
-def mypageProfile(request):
-    return render(request, 'mypageProfile.html')
