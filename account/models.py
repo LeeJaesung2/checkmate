@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 from survey.models import SurveyEssential, SurveyOptional
+import datetime
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -33,7 +34,10 @@ class CustomUser(AbstractUser):
     user_gender = models.CharField(max_length=8, verbose_name='성별')
     user_nation = models.CharField(max_length=16, verbose_name='국적')
     user_nickname = models.CharField(max_length=8, unique=True, verbose_name='닉네임')
+    YEAR_CHOICES = [
+        (r,r) for r in range(1950, datetime.date.today().year+1)]
+    user_birthyear = models.IntegerField(choices=YEAR_CHOICES, verbose_name='출생년도')
     kakao_id = models.CharField(max_length=200, unique=True, verbose_name='카카오 아이디')
-    survey_ess_id = models.ForeignKey(SurveyEssential, on_delete=models.CASCADE, null=True)
+    survey_ess_id = models.ForeignKey(SurveyEssential, on_delete=models.CASCADE, blank=True)
     survey_opt_id = models.ForeignKey(SurveyOptional, on_delete=models.CASCADE, null=True)
 
