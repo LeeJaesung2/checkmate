@@ -40,6 +40,7 @@ def submitSurvey(request):
     eSurvey.eat = request.POST.get('eat')
     eSurvey.animal_dog = True if request.POST.get('animial-dog')=='on' else False
     eSurvey.animal_cat = True if request.POST.get('animial-cat')=='on' else False
+    eSurvey.animal_no = True if request.POST.get('animial-no')=='on' else False
     eSurvey.animal_other = request.POST.get('animal-other')
     eSurvey.save()
 

@@ -93,6 +93,7 @@ class SurveyEssential(models.Model):
     eat = models.CharField(max_length=1, choices=eat_choice, default='0')
     animal_cat = models.NullBooleanField(default=False)
     animal_dog= models.NullBooleanField(default=False)
+    animal_no= models.NullBooleanField(default=False)
     animal_other = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):

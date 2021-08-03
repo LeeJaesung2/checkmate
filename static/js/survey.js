@@ -12,7 +12,8 @@ $('input[type=submit], .submit').hide();
 
 $('.previous').css('opacity', '0');
 
-const q_num = 22; //질문 개수
+const q_num = 13; //필수 질문 인덱스(14개)
+const q_max = 23; //전체 질문 인덱스(24개)
 
 //range 설명 초기화 - 첫번째는 
 const range_list = $("input[type=range]");
@@ -42,7 +43,7 @@ $question_list.eq(answer_cnt).show();
 
 //////////////////함수정의//////////////////
 function nextFade(q_cur){
-    //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
+    //연속으로 누를 시 이전 리스트에 실행중인 fadeOut은 모두 종료
     let $q_slice = $question_list.slice(0, q_cur);
     $q_slice.stop(true,true);
     //천천히 누를땐 순서대로 fadeout,in
@@ -51,7 +52,7 @@ function nextFade(q_cur){
 }
 
 function previousFade(q_cur){
-    //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
+    //연속으로 누를 시 이전 리스트에 실행중인 fadeOut은 모두 종료
     let $q_slice = $question_list.slice(q_cur+1, q_num+1);
     $q_slice.stop(true,true);
     //천천히 누를땐 순서대로 fadeout,in
@@ -66,8 +67,13 @@ function setScrollType(dormitoryOpt){
         'opacity': '0'
     });
     $(".container").css('height', 'auto');
-    //모든 문항 보이게
-    $.each($question_list, function(index, item){
+    let $question_essential = $question_list.slice(0, q_num+1);
+    let $question_optional = $question_list.slice(q_num+1, q_max);
+    //선택문항 css 수정
+    $question_optional.css({'padding-bottom': '100px'});
+    //모든 선택 문항 보이고 필수 문항 가리기
+    $question_essential.hide();
+    $.each($question_optional, function(index, item){
         $(this).fadeIn(500);
     })
     //기숙사생이면 자취전용 항목 감추기
@@ -78,13 +84,14 @@ function setScrollType(dormitoryOpt){
         $(".dormitory-only").hide();
     }
     //선택문항 설명 문구 보이게
+    $('h3').eq(0).hide(); 
     $('h3').eq(1).show(); 
     //선택문항으로 스크롤하기
-    let scrollPosition = $(".question.share").offset().top;
-    $("html, body").animate({
-        scrollTop: scrollPosition
-    }, 500).delay(1000);
-    $question_list.css("margin-bottom", "40px");
+    // let scrollPosition = $(".question.share").offset().top;
+    // $("html, body").animate({
+    //     scrollTop: scrollPosition
+    // }, 500).delay(1000);
+    // $question_list.css("margin-bottom", "40px");
     //제출버튼 보이게
     $('input[type=submit], .submit').show();
 }
@@ -101,18 +108,31 @@ $('.next').on('click', function(){
             }, 200);
         }
 
-        if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
+        //자취생 전용 질문을 추가하려면 answer_cnt=질문번호 조건만 or로 추가하면 됨.
+        if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1'){ //자취생이면
+            setTimeout(function(){ //nextFade함수가 실행 된 후 실행해야 해서 setTimeOut=delay을 줌.
+                $question_list.eq(1).fadeOut(500);
+            }, 30);
             answer_cnt++;
-        else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
-            answer_cnt++;
+        }
+        //기숙사생 전용 질문 같은 방법으로 ... (생기면)
+        // else if(true){
+        // }
+        
+        console.log(answer_cnt);
+        //마지막 필수질문 처리
+        if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
             setScrollType(true);
-            reloadProgressBar(answer_cnt+1);
+            reloadProgressBar(q_num);
             return;
         }
-        else if(answer_cnt == 13){
+        else if(answer_cnt == 13){ //자취생일 때
             setScrollType(false);
+            reloadProgressBar(q_num);
+            return;
         }
-        answer_cnt += 1;
+
+        answer_cnt++;
         nextFade(answer_cnt);
         reloadProgressBar(answer_cnt);
     // }
@@ -124,13 +144,19 @@ $('.previous').on('click', function(){
             'opacity': '0',
         }, 200);
     }
+
     if(answer_cnt != 0) {
         answer_cnt--;
-        previousFade(answer_cnt);
     }
-    setTimeout(function(){
-        reloadProgressBar(answer_cnt);
-    }, 20)
+
+    if(answer_cnt==2 && $('input[name=room-type]:checked').val()=='1'){ //자취생이면
+        setTimeout(function(){ //previousFade함수가 실행 된 후 실행해야 해서 setTimeOut을 줌.
+            $question_list.eq(3).fadeOut(500);
+        }, 30);
+        answer_cnt--;
+    }
+    previousFade(answer_cnt);
+    reloadProgressBar(answer_cnt);
 })
 
 //css애니메이션으로 바꾸기.
@@ -154,7 +180,7 @@ $('.next, .previous').on('mouseleave', function(){
 
 //////////////////변수선언+초기화//////////////////
 $('.front-bar > .text').css('opacity', '0')
-const pb_width_block = 100 / 13;
+const pb_width_block = 100 / q_num;
 
 //////////////////함수정의//////////////////
 function changeFrontBarWidth(width){
@@ -168,7 +194,7 @@ function changeFrontBarWidth(width){
 function reloadProgressBar(pb_cnt){
 
     //흰색 바 조정해주는 함수
-    changeFrontBarWidth(pb_width_block * answer_cnt);
+    changeFrontBarWidth(pb_width_block * pb_cnt);
 
     //진행상황 글자가 넘쳐서 front-bar가 어느정도 길어지면 나오게
     if(answer_cnt + 1 >= 3){
@@ -210,7 +236,10 @@ function vaildation(){
     var anw_cur_name = anw_cur.children().eq(0).attr("name");
     //라디오 버튼 값이 null이면 false
     if(anw_cur_type == "radio"){
-        if($('input[name="'+anw_cur_name+'"]:checked').val() == null) rt = false;
+        if($('input[name="'+anw_cur_name+'"]:checked').val() == null) {
+            openModal('답변을 선택해 주세요');
+            rt = false;
+        }
     }
     //checkbox랑 text가 같이 있는 경우 하나도 체크되어 있지 않고 텍스트도 비어 있으면 false
     else if(anw_cur_type == "checkbox"){
@@ -220,19 +249,37 @@ function vaildation(){
             if(item.checked) checkbox_cnt++;
         })
         if (anw_cur.children("input[type=text]").val().length != 0) checkbox_cnt++;
-        if(checkbox_cnt == 0) rt = false;
+        if(checkbox_cnt == 0) {
+            openModal('버튼을 선택하거나 기타항목을 적어주세요')
+            rt = false;
+        }
     }
     //text or number 의 길이가 0이면 false
     else if(anw_cur_type == "text" || anw_cur_type == "number"){
-        if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) rt = false;
+        if (anw_cur.children("input[type=text], input[type=number]").val().length == 0) {
+            openModal('답변을 적어주세요');
+            rt = false;
+        }
     }
     //time값의 길이가 0이면 false
     else if(anw_cur_type == "time"){
         var time_list = anw_cur.children("input[type=time]");
         $.each(time_list, function(index, item){
-            if($(this).val().length == 0) rt = false;
+            if($(this).val().length == 0) {
+                openModal('시간을 선택해 주세요');
+                rt = false;
+            }
         })
     }
     return rt;
 }
 
+/*------------------------모달------------------------*/
+
+function openModal(string){
+    $('.modal>p').text(string);
+    $('.modal').stop(true, true);
+    $('.modal').fadeIn(500).delay(1500).fadeOut(500);
+}
+
+/*-----------------다중 답변(체크박스) disabled 처리-----------------*/
