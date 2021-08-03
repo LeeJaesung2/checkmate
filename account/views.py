@@ -90,4 +90,3 @@ def kakaoLoginLogicRedirect(request):
     request.session['access_token'] = _result['access_token']
     request.session.modified = True
     return redirect('register')
-
