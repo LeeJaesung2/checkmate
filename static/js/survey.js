@@ -12,13 +12,13 @@ $('input[type=submit], .submit').hide();
 
 $('.previous').css('opacity', '0');
 
-let q_num = 22; //질문 개수
+const q_num = 22; //질문 개수
 
-//range 설명 초기화
-var range_list = $("input[type=range]");
+//range 설명 초기화 - 첫번째는 
+const range_list = $("input[type=range]");
 
 $.each(range_list, function(index, item){
-    var rg_children = $(this).parent().prev().children();
+    let rg_children = $(this).parent().prev().children();
     rg_children.css("opacity", "0");
     if(index == 0)
     rg_children.eq(3).css("opacity", "1");
@@ -29,52 +29,60 @@ $.each(range_list, function(index, item){
 
 });
 
+
 /*------------------------다음/이전 기능------------------------*/
 //1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게
 /*--------------------------------------------------------*/
 
-var answer_cnt = 0;
-var $question_list = $('.question');
-var nextClickCnt = 1;   
-
+let answer_cnt = 0;
+//첫번째 질문 보이게
+const $question_list = $('.question');
 $question_list.eq(answer_cnt).show();
-//절대 제 코드를 해석하지 못할겁니다. 이게 바로 코드 난독화...🙄
-//재사용성...어쩔거야....
+
+function nextFade(q_cur){
+    //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
+    let $q_slice = $question_list.slice(0, q_cur);
+    $q_slice.stop(true,true);
+    //천천히 누를땐 순서대로 fadeout,in
+    $question_list.eq(q_cur-1).fadeOut(500);
+    $question_list.eq(q_cur).delay(600).fadeIn(500);
+}
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
 //이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
 $('.next').on('click', function(){
+    //큰 if는 유효성 검사.
     // if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous').animate({
                 opacity: '1'
             }, 200);
         }
-        setTimeout(function(){
-            if(answer_cnt < 13) //setTimeOut이 다른 함수들보다 늦게 실행되므로 <13지정을 안하면 맨 마지막에 13번째 요소를 fadeOut해버린다...
-                $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
-            if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
-                answer_cnt++;
-            else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면
-                answer_cnt++;
-                setScrollType(true);
-                reloadProgressBar(answer_cnt+1);
-            }
-            answer_cnt += 1;
-            nextClickCnt += 10;
-        }, 0);
-        setTimeout(function(){
-            nextClickCnt -= 10;
-            $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
-        }, 700);
-        if(answer_cnt == 13){
+
+        if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
+            answer_cnt++;
+        else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
+            answer_cnt++;
+            setScrollType(true);
+            reloadProgressBar(answer_cnt+1);
+            return;
+        }
+        else if(answer_cnt == 13){
             setScrollType(false);
         }
-        setTimeout(function(){
-            if(answer_cnt < 12)
-                reloadProgressBar(answer_cnt);
-        }, 0)
+        answer_cnt += 1;
+        nextFade(answer_cnt);
+        reloadProgressBar(answer_cnt);
     // }
 })
+
+function previousFade(q_cur){
+    //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
+    let $q_slice = $question_list.slice(q_cur+1, q_num+1);
+    $q_slice.stop(true,true);
+    //천천히 누를땐 순서대로 fadeout,in
+    $question_list.eq(q_cur+1).fadeOut(500);
+    $question_list.eq(q_cur).delay(600).fadeIn(500);
+}
 
 //질문을 스크롤형으로 변환하는 함수
 function setScrollType(dormitoryOpt){
@@ -97,7 +105,7 @@ function setScrollType(dormitoryOpt){
     //선택문항 설명 문구 보이게
     $('h3').eq(1).show(); 
     //선택문항으로 스크롤하기
-    var scrollPosition = $(".question.share").offset().top;
+    let scrollPosition = $(".question.share").offset().top;
     $("html, body").animate({
         scrollTop: scrollPosition
     }, 500).delay(1000);
@@ -115,31 +123,11 @@ $('.previous').on('click', function(){
     if(answer_cnt != 0) {
         answer_cnt--;
         previousFade(answer_cnt);
-        // setTimeout(function(){
-        //     $question_list.eq(answer_cnt).fadeOut(600/nextClickCnt);
-        //     if(answer_cnt==3 && $('input[name=room-type]:checked').val()=='1')
-        //         answer_cnt--;
-        //     answer_cnt -= 1;
-        //     nextClickCnt += 10;
-        // }, 0);
-        // setTimeout(function(){
-        //     nextClickCnt -= 10;
-        //     $question_list.eq(answer_cnt).fadeTo(600/nextClickCnt, 1);
-        // }, 700);
     }
     setTimeout(function(){
         reloadProgressBar(answer_cnt);
     }, 20)
 })
-
-function previousFade(q_cur){
-    var $q_slice = $question_list.slice(q_cur+1, q_num+1);
-    $q_slice.stop(true,true);
-    $question_list.eq(q_cur).stop(true,true);
-    $q_slice.hide(300);
-    // $question_list.eq(q_cur+1).fadeOut(300);
-    $question_list.eq(q_cur).delay(500).fadeIn(500);
-}
 
 $('.next, .previous').on('mouseover', function(){
     $(this).animate({
@@ -159,33 +147,31 @@ $('.next, .previous').on('mouseleave', function(){
 //1. 필수 문항/ 선택 문항 구분 필요
 /*--------------------------------------------------------*/
 function changeFrontBarWidth(width){
+    $('.front-bar').stop(true, true);
     $('.front-bar').animate( {
         width: format('{0}%', width)
       }, 400, 'swing' );
 }
 
 $('.front-bar > .text').css('opacity', '0')
-var pb_width_block = 100 / 13;
+const pb_width_block = 100 / 13;
 //질문 수에 따라 진행바 길이 조절
 function reloadProgressBar(pb_cnt){
+
     //흰색 바 조정해주는 함수
     changeFrontBarWidth(pb_width_block * answer_cnt);
+
     //진행상황 글자가 넘쳐서 front-bar가 어느정도 길어지면 나오게
     if(answer_cnt + 1 >= 3){
-        setTimeout(function(){
-            $('.front-bar > .text').animate( {
-                opacity: "1"
-            }, 600, "swing");
-        }, 10);
-    }
-    
-    //진행바 텍스트 애니메이션
-    if(answer_cnt + 1< 3){
-        setTimeout(function(){
-            $('.front-bar > .text').animate( {
-                opacity: "0"
-            }, 600, "swing");
-        }, 10);
+        $('.front-bar > .text').animate( {
+            opacity: "1"
+        }, 600, "swing");
+    } 
+    //진행바가 다시 작아지면 텍스트 감추기
+    if(answer_cnt + 1 < 3){
+        $('.front-bar > .text').animate( {
+            opacity: "0"
+        }, 600, "swing");
     }
 }
 
