@@ -107,6 +107,8 @@ def filter(request, writes):
         writes = writes.filter(survey_ess_id__eat=eat)
 
 
+
+
     toilet = request.GET.get('toilet')
     if toilet:
         writes = writes.filter(survey_opt_id__toilet=toilet)
@@ -115,6 +117,13 @@ def filter(request, writes):
     if ventilate:
         writes = writes.filter(survey_opt_id__ventilate=ventilate)
 
+    feel_cold = request.GET.get('feel_cold')
+    if feel_cold:
+        writes = writes.filter(survey_opt_id__feel_cold=feel_cold)
+    feel_hot = request.GET.get('feel_hot')
+    if feel_hot:
+        writes = writes.filter(survey_opt_id__feel_hot=feel_hot)
+
     bug = request.GET.get('bug')
     if bug:
         writes = writes.filter(survey_opt_id__bug=bug)
@@ -122,6 +131,9 @@ def filter(request, writes):
     keyboard = request.GET.get('keyboard')
     if keyboard:
         writes = writes.filter(survey_opt_id__keyboard=keyboard)
+    keyboard_checkbox = request.GET.get('keyboard_checkbox')
+    if keyboard_checkbox:
+        writes = writes.filter(survey_opt_id__keyboard_noise=keyboard_checkbox)
 
     game = request.GET.get('game')
     if game:
