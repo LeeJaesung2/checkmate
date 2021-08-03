@@ -3,7 +3,7 @@ function format() { var args = Array.prototype.slice.call (arguments, 1);
     return arguments[0].replace (/\{(\d+)\}/g, function (match, index) { return args[index]; }); }
 
 
-/*------------------------초기화------------------------*/
+/*------------------------전체 초기화------------------------*/
 $('.question').hide();
 
 $('h3').eq(1).hide(); //두번째 h3 선택질문 설명 문구 가리기
@@ -31,14 +31,16 @@ $.each(range_list, function(index, item){
 
 
 /*------------------------다음/이전 기능------------------------*/
-//1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게
+//1. 반려동물 부분... user에 따라서 비활성화 혹은 아예 안보이게 => 완료
 /*--------------------------------------------------------*/
 
+//////////////////변수선언+초기화//////////////////
 let answer_cnt = 0;
 //첫번째 질문 보이게
 const $question_list = $('.question');
 $question_list.eq(answer_cnt).show();
 
+//////////////////함수정의//////////////////
 function nextFade(q_cur){
     //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
     let $q_slice = $question_list.slice(0, q_cur);
@@ -47,33 +49,6 @@ function nextFade(q_cur){
     $question_list.eq(q_cur-1).fadeOut(500);
     $question_list.eq(q_cur).delay(600).fadeIn(500);
 }
-//이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
-//이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
-$('.next').on('click', function(){
-    //큰 if는 유효성 검사.
-    // if (vaildation() == true){
-        if(answer_cnt == 0) {
-            $('.previous').animate({
-                opacity: '1'
-            }, 200);
-        }
-
-        if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
-            answer_cnt++;
-        else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
-            answer_cnt++;
-            setScrollType(true);
-            reloadProgressBar(answer_cnt+1);
-            return;
-        }
-        else if(answer_cnt == 13){
-            setScrollType(false);
-        }
-        answer_cnt += 1;
-        nextFade(answer_cnt);
-        reloadProgressBar(answer_cnt);
-    // }
-})
 
 function previousFade(q_cur){
     //연속으로 누를 시이전 리스트에 실행중인 fadeOut은 모두 종료
@@ -114,6 +89,35 @@ function setScrollType(dormitoryOpt){
     $('input[type=submit], .submit').show();
 }
 
+//////////////////이벤트리스너//////////////////
+//이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
+//이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
+$('.next').on('click', function(){
+    //큰 if는 유효성 검사.
+    // if (vaildation() == true){
+        if(answer_cnt == 0) {
+            $('.previous').animate({
+                opacity: '1'
+            }, 200);
+        }
+
+        if(answer_cnt==1 && $('input[name=room-type]:checked').val()=='1') //자취생이면
+            answer_cnt++;
+        else if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
+            answer_cnt++;
+            setScrollType(true);
+            reloadProgressBar(answer_cnt+1);
+            return;
+        }
+        else if(answer_cnt == 13){
+            setScrollType(false);
+        }
+        answer_cnt += 1;
+        nextFade(answer_cnt);
+        reloadProgressBar(answer_cnt);
+    // }
+})
+
 $('.previous').on('click', function(){
     if(answer_cnt == 1) {
         $(this).animate({
@@ -129,6 +133,7 @@ $('.previous').on('click', function(){
     }, 20)
 })
 
+//css애니메이션으로 바꾸기.
 $('.next, .previous').on('mouseover', function(){
     $(this).animate({
         'font-size' : '20px'
@@ -146,6 +151,12 @@ $('.next, .previous').on('mouseleave', function(){
 /*------------------------진행바 구현------------------------*/
 //1. 필수 문항/ 선택 문항 구분 필요
 /*--------------------------------------------------------*/
+
+//////////////////변수선언+초기화//////////////////
+$('.front-bar > .text').css('opacity', '0')
+const pb_width_block = 100 / 13;
+
+//////////////////함수정의//////////////////
 function changeFrontBarWidth(width){
     $('.front-bar').stop(true, true);
     $('.front-bar').animate( {
@@ -153,8 +164,6 @@ function changeFrontBarWidth(width){
       }, 400, 'swing' );
 }
 
-$('.front-bar > .text').css('opacity', '0')
-const pb_width_block = 100 / 13;
 //질문 수에 따라 진행바 길이 조절
 function reloadProgressBar(pb_cnt){
 
@@ -177,6 +186,7 @@ function reloadProgressBar(pb_cnt){
 
 /*------------------------range bar 설명 구현------------------------*/
 
+//////////////////이벤트리스너//////////////////
 $("input[type=range]").on('input', function(){
     var index = $("input[type=range]").index(this);
     var rg_cur = $(this).val();
@@ -189,8 +199,10 @@ $("input[type=range]").on('input', function(){
 //값을 선택해야 넘어가도록
 //여기선 anw = answer
 
+//////////////////변수선언+초기화//////////////////
 let $anw_arr = $(".answer");
 
+//////////////////함수정의//////////////////
 function vaildation(){ 
     var rt = true;
     var anw_cur = $anw_arr.eq(answer_cnt);
