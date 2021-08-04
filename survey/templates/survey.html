@@ -46,7 +46,7 @@
             <div class="question dormitory-number dormitory-only">
                 <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
                 <div class="answer">
-                    {% if user.user_gender == "man" %}
+                    {% if user.user_gender == "남" %}
                     <input type="radio" id="dormitory-10" name="dormitory-number-man" value="10"><label for="dormitory-10">10동</label>
                     <input type="radio" id="dormitory-8" name="dormitory-number-man" value="8"><label for="dormitory-8">8동</label>
                     <input type="radio" id="dormitory-6" name="dormitory-number-man" value="6"><label for="dormitory-6">6동</label>
@@ -128,7 +128,7 @@
                     <input type="checkbox" id="snoring" name="sleeping-habits-snoring" value="True"><label for="snoring">코골이</label>
                     <input type="checkbox" id="grinding-teeth" name="sleeping-habits-teeth" value="True"><label for="grinding-teeth">이갈이</label>
                     <label for="other">기타</label><input type="text" id="other" name="sleeping-habits-other">
-                    <input type="checkbox" id="nothing" name="sleeping-habits-nothing" class="nothing"><label for="nothing">없음</label>
+                    <input type="checkbox" id="nothing" name="sleeping-habits-nothing" class="nothing" value="True"><label for="nothing">없음</label>
                 </div>
             </div>
             <div class="question invite-friends">

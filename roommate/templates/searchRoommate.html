@@ -211,11 +211,12 @@
                                 <input type="radio" id="eat_no" name="eat" value='2'><label for="eat_no">먹지 않음</label>
                             </div>
                         </div>
-                        <div class="filter_animal">
-                            <h6 class="title">반려동물</h6>
+                        <div class="filter_animal not-dormitory">
+                            <h2 class="title">반려동물</h1>
                             <div class="answer">
-                                <input type="checkbox" id="animal_dog" name="animal" value='0'><label for="animal_dog">강아지</label>
-                                <input type="checkbox" id="animal_cat" name="animal" value='1'><label for="aniaml_cat">고양이</label>
+                                <input type="checkbox" id="animal-dog" name="animal_dog" value='True'><label for="animal-dog">강아지</label>
+                                <input type="checkbox" id="animal-cat" name="animal_cat" value='True'><label for="animal-cat">고양이</label>
+                                <input type="checkbox" id="animal-no" name="animal_no" value='True' class=".nothing"><label for="animal-no">없음</label>
                             </div>
                         </div>
                     </div>
@@ -224,8 +225,8 @@
                         <div class="filter_share">
                             <h6 class="title">생필품</h6>
                             <div class="answer">
-                                <input type="radio" id="share_yes" name="share" value='0'><label for="share_yes">공유</label>
-                                <input type="radio" id="share_no" name="share" value='1'><label for="share_snack">각자</label>
+                                <input type="radio" id="share_yes" name="share" value='1'><label for="share_yes">공유</label>
+                                <input type="radio" id="share_no" name="share" value='2'><label for="share_snack">각자</label>
                             </div>
                         </div>
                         <div class="filter_toilet">
@@ -266,24 +267,24 @@
                         <div class="filter_bug">
                             <h6 class="title">벌레 퇴치</h6>
                             <div class="answer">
-                                <input type="radio" id="bug_yes" name="bug" value="0"><label for="bug_yes">잘잡음</label>
-                                <input type="radio" id="bug_no" name="bug" value="1"><label for="bug_snack">못잡음</label>
+                                <input type="radio" id="bug_yes" name="bug" value="1"><label for="bug_yes">잘잡음</label>
+                                <input type="radio" id="bug_no" name="bug" value="2"><label for="bug_snack">못잡음</label>
                             </div>
                         </div>
                         <div class="filter_keyboard">
                             <h6 class="title">키보드 소리</h6>
                             <div class="answer">
-                                <input type="radio" id="keyboard_loud" name="keyboard" value="0"><label for="keyboard_loud">타이핑&게임 자주함</label>
-                                <input type="radio" id="keyboard_no" name="keyboard" value="1"><label for="keyboard_no">거의 안함</label>
+                                <input type="radio" id="keyboard_loud" name="keyboard" value="1"><label for="keyboard_loud">타이핑&게임 자주함</label>
+                                <input type="radio" id="keyboard_no" name="keyboard" value="2"><label for="keyboard_no">거의 안함</label>
                                 <input type="checkbox" id="keyboard_noise" name="keyboard_checkbox" value="True"><label for="keyboard_noise">저소음 키보드 사용중</label>
                             </div>
                         </div>
                         <div class="filter_game">
                             <h6 class="title">게임여부</h6>
                             <div class="answer">
-                                <input type="radio" id="game_yes" name="game" value="0"><label for="game_yes">자주</label>
-                                <input type="radio" id="game_sometimes" name="game" value="1"><label for="game_sometimes">가끔</label>
-                                <input type="radio" id="game_no" name="game" value="2"><label for="game_no">안 함</label>
+                                <input type="radio" id="game_yes" name="game" value="1"><label for="game_yes">자주</label>
+                                <input type="radio" id="game_sometimes" name="game" value="2"><label for="game_sometimes">가끔</label>
+                                <input type="radio" id="game_no" name="game" value="3"><label for="game_no">안 함</label>
                             </div>
                         </div>
                         <div class="filter_mbti">
@@ -319,12 +320,14 @@
             
             <div>
                 <h2>검색</h2>
-                <div>
-                    <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
-                </div>
-                <div>
-                    <button type="submit">검색</button>
-                </div>
+                <form action="" method="GET">
+                    <div>
+                        <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                    </div>
+                    <div>
+                        <button type="submit">검색</button>
+                    </div>
+                </form>
             </div>
         </form>
     </div>

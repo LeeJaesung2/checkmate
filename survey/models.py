@@ -71,7 +71,7 @@ class SurveyEssential(models.Model):
     #잠버릇
     sleeping_habits_snoring = models.NullBooleanField(default=False)
     sleeping_habits_teeth = models.NullBooleanField(default=False)
-    sleeping_habits_other = models.CharField(max_length=10)
+    sleeping_habits_other = models.CharField(max_length=10, null=True, blank=True)
     sleeping_habits_nothing = models.NullBooleanField(default=False)
     #친구초대여부
     invite_friends = models.NullBooleanField(default=False)
