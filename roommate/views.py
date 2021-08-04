@@ -106,8 +106,21 @@ def filter(request, writes):
     if eat:
         writes = writes.filter(survey_ess_id__eat=eat)
 
+    animal_dog = request.GET.get('animal_dog')
+    if animal_dog:
+        writes = writes.filter(survey_ess_id__animal_dog=animal_dog)
+    animal_cat = request.GET.get('animal_cat')
+    if animal_cat:
+        writes = writes.filter(survey_ess_id__animal_cat=animal_cat)
+    animal_no = request.GET.get('animal_no')
+    if animal_no:
+        writes = writes.filter(survey_ess_id__animal_no=animal_no)
 
 
+
+    share = request.GET.get('share')
+    if share:
+        writes = writes.filter(survey_opt_id__share=share)
 
     toilet = request.GET.get('toilet')
     if toilet:
