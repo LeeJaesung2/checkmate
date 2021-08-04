@@ -25,22 +25,11 @@
             <input type="button" value="˄" id="up" onclick="hidefilter()" >
             <div id="filter">
                 <form action="">
-
                     <div class="essential">
                         <div class="filter_grade">
                             <h6 class="title">학년</h6>
                             <div class="answer">
-                                <select name="grad_start" id="">
-                                    <option value="">------</option>
-                                    <option value="1">1학년</option>
-                                    <option value="2">2학년</option>
-                                    <option value="3">3학년</option>
-                                    <option value="4">4학년</option>
-                                    <option value="5">5학년</option>
-                                    <option value="6">6학년</option>
-                                </select>
-                                <span>~</span>
-                                <select name="grade_end" id="">
+                                <select name="grad" id="">
                                     <option value="">------</option>
                                     <option value="1">1학년</option>
                                     <option value="2">2학년</option>
@@ -136,20 +125,20 @@
                                 <input type="radio" id="business" name="relationship" value="1"><label for="business">인사만</label>
                             </div>
                         </div>
-                        <div class="filter_wakup_time">
+                        <div class="filter_wakeup_time">
                             <h6 class="title">기상시간</h6>
                             <div class="answer">
-                                <input type="time" step='3600' id="start_wakeup" name="start_wakeup_time">
+                                <input type="time" id="start_wakeup_time" name="start_wakeup_time">
                                 <span>~</span>
-                                <input type="time" step='3600' id="end_wakeup" name="end_wakeup_time">
+                                <input type="time" id="end_wakeup_time" name="end_wakeup_time">
                             </div>
                         </div>
                         <div class="filter_bed_time">
-                            <h6 class="title">기상시간</h6>
+                            <h6 class="title">취침시간</h6>
                             <div class="answer">
-                                <input type="time" step='3600' id="start_bedtime" name="start_bed_time">
+                                <input type="time" id="start_bed_time" name="start_bed_time">
                                 <span>~</span>
-                                <input type="time" step='3600' id="end_bedtime" name="end_bed_time">
+                                <input type="time" id="end_bed_time" name="end_bed_time">
                             </div>
                         </div>
                         <div class="filter_smoke">
@@ -320,14 +309,12 @@
             
             <div>
                 <h2>검색</h2>
-                <form action="" method="GET">
-                    <div>
-                        <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
-                    </div>
-                    <div>
-                        <button type="submit">검색</button>
-                    </div>
-                </form>
+                <div>
+                    <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                </div>
+                <div>
+                    <button type="submit">검색</button>
+                </div>
             </div>
         </form>
     </div>
