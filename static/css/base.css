@@ -44,6 +44,21 @@
     margin: 0;
     padding: 0;
 }
+/* 공통적용 */
+
+.pagination{
+    list-style-type: none;
+    font-family: 'S-CoreDream-3Light';
+    list-style-type: none;
+    margin-top: 50px;
+    margin-left: 8vw;
+    width: 20vw;
+}
+.pagination li{
+    float: left;
+    margin-right: 20px;
+}
+
 /*----- 타이틀 -----*/
 .main-check{
     margin-top: 40px;

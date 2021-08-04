@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
-
+<head> 
+    {% load static %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/community,info.css' %}">
+    {% endblock %}
+</head>
 {% block content %}
 <div class="info_container">
     <h3>정보 공유 게시판</h3>
