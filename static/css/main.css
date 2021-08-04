@@ -45,83 +45,8 @@
     padding: 0;
 }
 
-/*----- 타이틀 -----*/
-.main-check{
-    margin-top: 40px;
-    margin-left: 40px;
-}
-
-.main-check > a{
-    font-family: 'yg-jalnan';
-    text-decoration: none;
-    font-size: 20px;
-    letter-spacing: 0.1em;
-    color: rgba(93, 148, 255, 1);
-}
-
-.main-check > svg{
-    position: relative;
-    top: 4px;
-}
-
-/*----- 네비바 -----*/
-
-nav{
-    float: right;
-}
-
-nav > .right-menu
-{
-    display: inline-block;
-}
-
-/* nav{
-    display: grid;
-    position: sticky;
-
-    grid-template-columns: 1fr 3fr;
-    align-items: center;
-    height: 50px;
-    overflow: hidden;
-    padding: 30px;
-} */
-
-nav, .title, .go{
-    font-family: 'yg-jalnan';
-    font-size: 15px;
-}
-button{
-    background-color:transparent;
-    outline: none;
-    border: 0px; box-sizing: none;
-}
-
-footer{
-    font-family: 'S-CoreDream-5Medium';
-    font-size: 10px;
-    position: absolute;
-    width: 100vw;
-    height: 15vh;
-    left: 0px;
-    top: 955px;
-    background: #D6D8DD;
-    color: white;
-}
-
-
-/* nav ul{
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    justify-self: end;
-    column-gap: 30px;
-    padding-right: 30px;
-    font-size: 16px;
-    color: rgba(93, 148, 255, 1);
-} */
-
 .container{
-    padding: 5vh 10vw;
+    padding: 5vh 7vw;
 }
 
 .content-top{
@@ -251,15 +176,13 @@ footer{
 }
 
 button{
-    /* float: right; */
-    position: absolute;
+    float: right;
     width: 35%;
     /* min-width: 400px; */
     height: 40px;
     left: 55%;
     top: 70%;
     margin-top: 10px;
-    
     background: #FFFFFF;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
     border: 0px solid white;
@@ -284,24 +207,70 @@ button p{
     display:none;
 }
 .open{
-    position: fixed;
+    position: absolute;
     right: 5vw;
     bottom: 11vh;
     width: 39px;
 height: 44px;
-z-index: 2;
 }
 .modal{
-    position: fixed;
-    right: 5px;
-    bottom: 10px;
-    width: 10px;
-    height: 100px;
+    position: absolute;
+    right: 9vw;
+    bottom: 15vh;
+    width: 20vw;
+    height: 50vh;
     background: #FFFFFF;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 border-radius: 10px;
 }
+/* 공통 적용 */
+.pagination{
+    font-family: 'S-CoreDream-3Light';
+    list-style-type: none;
+    width: 90vw;
+}
+.pagination li{
+    float: left;
+    margin-right: 20px;
+}
+.title{
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 42px;
+    text-align: center;
+    color: #254074;
+}
+/* 공통적용 */
 
+.pagination{
+    list-style-type: none;
+    font-family: 'S-CoreDream-3Light';
+    list-style-type: none;
+    padding-top: 400px;
+    padding-left: 200px;
+    width: 20vw;
+}
+.pagination li{
+    float: left;
+    margin-right: 20px;
+}
+.title{
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 42px;
+    text-align: center;
+    color: #254074;
+}
 /* mypage */
 
 .mypage_container{
@@ -313,19 +282,28 @@ border-radius: 10px;
 
 }
 .mypage_nav{
-
     border-right: 2px solid #C9C9C9;
-    padding:20px;
-    height: 60vh;
-    
+    padding-right: 50px;
+    height: 400px;
+    width: 13vw;
+}
+.mypage_nav ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: left;
+    font-family: 'S-CoreDream-5Medium';
 }
 .mypage_nav a{
     display:inline-block;
-    padding-left:20px;
     margin-top:20px;
     text-decoration:none;
     color: #C6C6C6;
-    
+    width: 200px;
 }
 .mypage_nav>a:hover{
 
@@ -358,10 +336,235 @@ input:-webkit-autofill {
  
 .mypage_content p{
     margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom:0px;
+}
+.mypage_title{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 32px;  
+    color: #254074;
+    width: 200px;
+    text-align: left;
+    padding-right: 50px;
+    padding-bottom: 30px;
+}
+.mypage_write-content{
+    padding-top: 20px;
+    width: 20vw;
+}
+.mypage_subtitle{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 26px;
+    color: #254074;
+    padding-bottom: 40px;
+    /* width: 200px; */
+}
+.mypage_btn{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 20px;
+    /* text-align: center; */
+    color: #5D94FF;
+    border: 1px solid #268AFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 50px;
+    height: 30px;
+    margin-left: 30vw;
+    margin-top: 1vh;
+}
+.mypage_delete{
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    color: #001F70;
+    /* width: 15vw; */
+    white-space  : nowrap;
+    margin-left: 50vw;
+    /* margin-top: 25vh; */
+}
+.mypage_content-title{
+    font-family: 'S-CoreDream-5Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+}
+.mypage_content-body{
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #1F1F1F;
+    white-space  : nowrap;
+    width: 100px;
+}
+.mypage_list-checkbox  {
+    width: 20px;
+    height: 20px;
+    left: 475px;
+    top: 298px;
+    border: 1px solid #959595;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+#checkbox{
+    width: 16px;
+    height: 16px;
+    left: 475px;
+    top: 298px;
+    border: 1px solid #959595;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+/* .mypage_btn:checked ~ .mypage_list-checkbox  {
+    width: 20px;
+    height: 20px;
+    left: 475px;
+    top: 298px;
+    border: 1px solid #959595;
+    box-sizing: border-box;
+    border-radius: 2px;
+} */
+.mypage_list{
+    display: grid;
+    grid-template-columns: 6vw 17vw 25vw;
+    padding-top: 20px;
 }
 
+.mypage_sub-bar{
+    display: grid;
+    grid-template-columns: 8vw 25vw 25vw;
+    font-family: 'S-CoreDream-5Medium';
+    color: #254074;
+    font-size: 17px;
+    width: 53vw;
+    border-bottom: 1px solid #959595;
+}
+
+.mypage_scap-content{
+    padding-top: 20px;
+    width: 20vw;
+}
+
+/* 정보게시판 */
+
+.com_sub-content{
+    position:absolute;
+    padding: 100px 50px 40px 50px;
+    border-bottom: 2px solid #C9C9C9;
+    width: 900px;
+    left: 160px;
+    top: 180px;
+}
+.com_sub-content1{
+    display: grid;
+    grid-template-columns: 70px 90px;
+    padding-left: 30px;
+}
+.com_sub-content1 input{
+    width: 690px;
+    height: 35px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    text-align: left;
+    color: #000000;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+.com_sub-content a{
+    position: absolute;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    left: 710px;
+    top: 70px;
+    font-family: 'S-CoreDream-5Medium';
+    /* a클릭 없애기 */
+    background: linear-gradient(91.84deg, #6360FF 20%, #268AFF 80%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+.com_sub-content h5{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 21px;
+    /* text-align: center; */
+    color: #254074;
+    }
+.com_sub-content1 button{
+    width: 45px;
+    height: 45px;
+    left: 900px;
+    top: 85px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    }
+.com_content{
+    position: absolute;
+    padding-top: 180px;
+    padding-left: 200px;
+    padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: 150px 600px 300px;
+    width: 870px;
+    height: 59px;
+}
+#com_content-info{
+    font-family: 'S-CoreDream-6Bold';
+    font-style: normal;
+    font-weight: 60;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center; 
+    color: #254074;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 25px;
+    width: 90px;
+    height: 31px;
+}
+#com_content-title{
+    font-family: 'S-CoreDream-5Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    /* text-align: center; */
+    color: #254074;
+}
+#com_content-body{
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #1F1F1F;
+    white-space  : nowrap;
+    width: 100px;
+}
 /* 프로필 */
 #target_img{
     width: 40px;
@@ -379,18 +582,12 @@ input:-webkit-autofill {
 }
 
 /* 제출 버튼 */
-.btn4{
-    margin-top: 2vh;;
-    padding-left: 2%;
-    padding-right: 2%;
-    width: auto;
-    position: relative;
-    left:5%
-
-}
 .btn4::before {
     content: '';
-    width:120%;
+    position: absolute;
+    bottom: 0%;
+    left: 0px;
+    width: 100%;
     height: 1px;
     background: #6098FF;
     display: block;
@@ -402,105 +599,22 @@ input:-webkit-autofill {
     transform: scale(0, 1);
     -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
     transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
-  }
-  
-  .btn4:hover::before {
+}
+.btn4:hover::before {
     -webkit-transform-origin: left top;
     -ms-transform-origin: left top;
     transform-origin: left top;
     -webkit-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     transform: scale(1, 1)
-  }
-
-  /* login 페이지 */
-
-  .title-login{
-    position: absolute;
-    width: 305px;
-    height: 53px;
-    left: 640px;
-    top: 160px;
-    font-family: Jalnan;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 50px;
-    line-height: 53px;
-    background: linear-gradient(125deg, rgba(145, 142, 255, 1) 20%, rgba(63, 151, 255, 1) 80%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -moz-background-clip: text;
-    color: transparent;
-    }
-  .login-box{
-    position: absolute;
-    width: 328px;
-    height: 244px;
-    left: 556px;
-    top: 265px;
-  }
-  .login-box input{
-      height: 30px;
-  }
-  .login-box p{
-    font-family: 'S-CoreDream-5Medium';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-
-  }
-.find{
-    font-family: 'S-CoreDream-2ExtraLight';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 17px;
-    line-height: 20px;
-    color: #454545;
-}
-.login input{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    width: 328px;
-    border-bottom: 2px solid #C9C9C9;
-}
-.login button{
-    width: 116px;
-    height: 53px;
-    left: 2vw;
-    top: 290px;
-    font-family: 'S-CoreDream-7ExtraBold';
-    background: #3F97FF;
-    border-radius: 10px;
-    color:  #FFFFFF;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-}
-.kakao-login{
-    position: relative;
-    width: 116px;
-    height: 53px;
-    left: 50vw;
-    top: 490px;
-    font-family: 'S-CoreDream-7ExtraBold';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 24px;
-    text-align: center;
-    color: #3F97FF;
-    background: #FFFFFF;
-    border: 3px solid #3F97FF;
-    box-sizing: border-box;
-    border-radius: 10px;
 }
 
+ 
 /* 회원가입 페이지 */
+.signup{
+    width: 70vw;
+    margin: 0 auto;
+}
 .signup .title{
     font-family: Jalnan;
     font-style: normal;
@@ -508,28 +622,23 @@ input:-webkit-autofill {
     font-size: 30px;
     line-height: 32px;
     color: #254074;
-    position: relative;
-    left: 2vw;
-
-    top: 50px;
+    width: 20vw;
+    /* height: 1vh; */
+    white-space  : nowrap;
 }
-
-.signup .content{
+.sign_content{
     font-family: 'S-CoreDream-3Light';
-    font-style: normal;
-    font-weight: 600;
     font-size: 15px;
     line-height: 24px;
-    text-align: left;
-    position: relative;
-    left: 490px;
-    top: 100px;
-}
-.content #gender {
+    margin-left: 20vw;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 2px solid #C9C9C9;
+}
+.sign_content .sign_gender{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
 }
 .signup input{
     border-top: none;
@@ -537,8 +646,92 @@ input:-webkit-autofill {
     border-right: none;
     border-bottom: 2px solid #C9C9C9;
     width: 300px;
+} 
+.sign_content .submit{
+
 }
-.content .submit{
-    left: 2vw;
-    top: 609px; 
+
+/* infoWrite창 */
+.info_container{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.info_container h3{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 42px;
+    color: #254074;
+    padding-bottom: 70px;
+    height: 1vh;
+}
+.hashtag{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    color: #254074;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.info_container-box1 input{
+    padding-left: 13px;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 32px;
+    letter-spacing: 0.1em;
+}
+
+.info_container input{
+    border: none;
+}
+.info_container-box1{
+    border: none;
+    border-bottom: 2px solid #C9C9C9;
+    padding-bottom: 10px;
+}
+.info_container button{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    color: #5D94FF;
+    border: 2px solid #268AFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    margin-left: 20vw;
+    margin-top: 420px;
+}
+.info_container-box2{
+    display: grid;
+    grid-template-columns: 8vw 45vw 25vw;
+    padding-top: 30px;
+}
+.info_container-box2 p{
+    font-family: 'S-CoreDream-6Bold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.1em;
+    color: #454545;
+}
+.info_container .body{
+    padding-top: 20px;
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 20px;
+    border: none;
 }
