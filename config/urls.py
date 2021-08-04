@@ -23,12 +23,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main ,name='main'),
     path('infoWrite/', views.infoWrite, name='infoWrite'),
+    path('dom_infoWrite/', views.dom_infoWrite, name='dom_infoWrite'),
     path('account/', include('account.urls')),
     path('survey/', include('survey.urls')),
     path('roommate/', include('roommate.urls')),
     path('chat/', include('chat.urls')),
     path('mypageScrap/',views.mypageScrap, name='mypageScrap'),
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
-    path('community/',views.community, name='community'),
+    path('offcampusCommunity/',views.offcampusCommunity, name='offcampusCommunity'),
+    path('domitoryCommunity/',views.domitoryCommunity, name='domitoryCommunity'),
+
 
 ]
