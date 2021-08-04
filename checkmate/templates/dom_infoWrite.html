@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>자취 정보 공유 게시판</h3>
+<h3>기숙사 정보 공유 게시판</h3>
 <form action="" method="post">
 {% csrf_token %}
 
@@ -11,7 +11,7 @@
 	<option>말머리</option>
 	<option value="해결했어요">해결했어요</option>
 	<option value="질문있어요">질문있어요</option>
-	<option value="원룸정보">원룸정보</option>
+	<option value="기숙사정보">기숙사정보</option>
 </select>
 
 <select name="preface_2" id="preface_2">
@@ -19,16 +19,16 @@
 </select>
 <script>
 function categoryChange(preface_1) {
-	var preface_a = ["생활정보", "원룸"];
-	var preface_b = ["생활정보", "원룸"];
-	var preface_c = ["정문", "후문", "남문", "호탄","기타"];
+	var preface_a = ["생활정보", "아람관"];
+	var preface_b = ["생활정보", "아람관"];
+	var preface_c = ["1동","2동","3동","4동","5동","6동","7동","8동","9동","10동","11동","개척관",];
 	var target = document.getElementById("preface_2");
 
     // preface.value와 target.value 값 POST로 불러오기 //
 
 	if(preface_1.value == "해결했어요") var d = preface_a;
 	else if(preface_1.value == "질문있어요") var d = preface_b;
-	else if(preface_1.value == "원룸정보") var d = preface_c;
+	else if(preface_1.value == "기숙사정보") var d = preface_c;
 
 	target.options.length = 0;
 

@@ -32,7 +32,7 @@ def create(request):
         user_id = request.user.id
     return render(request, 'create.html',{'user_id':user_id})
 
-def update(request, wirte_id):
+def update(request, write_id):
     write = Write.objects.get(id=write_id)
     if request.method == "POST":
         form = CreatePostForm(request.POST, instance=write)
@@ -44,7 +44,7 @@ def update(request, wirte_id):
         return render(request, 'create.html',{'form':form})
         
 def delete(request, write_id):
-    write = write.objects.get(id=write_id)
+    write = Write.objects.get(id=write_id)
     write.delete()
     return redirect('searchRoommate')
     

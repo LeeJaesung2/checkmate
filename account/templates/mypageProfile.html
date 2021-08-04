@@ -12,10 +12,10 @@
     <div class="mypage_nav">
         <h3>마이페이지</h3> <br>
         <!-- border-left 색상 바꾸기 (클릭 모션) -->
-        <a href="">회원정보 수정</a> <br>
-        <a href="">체크리스트 수정</a> <br>
-        <a href="">스크랩 목록</a> <br>
-        <a href="">내가 작성한 글</a> <br>
+        <a href="{% url 'mypageProfile' %}">회원정보 수정</a>
+        <a href="{% url 'infoWrite' %}">체크리스트 수정</a>
+        <a href="{% url 'mypageScrap' %}">스크랩 목록</a>
+        <a href="{% url 'mypageWritten' %}">내가 작성한 글</a>
     </div>
     <div class="mypage_content">
         <form action="" method="post">
