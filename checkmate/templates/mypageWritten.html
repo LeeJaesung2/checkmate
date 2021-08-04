@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
+<head> 
+    {% load static %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+    {% endblock %}
+</head>
 
 {% block content %}
 <div class="mypage_container bg">
@@ -29,9 +34,9 @@
             <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
             <p class="mypage_content-title">기숙사 | 남 | 20세</p>
             <p class="mypage_content-body">안녕하세요 10동 룸메이트 구합니다. 저층 선호합니다.</p>
+            <!-- 글 추가  -->
         </div>
         <a class="mypage_delete" href="">삭제하기</a>
-    
         <div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">◀</a></li>

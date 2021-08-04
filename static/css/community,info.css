@@ -1,0 +1,246 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-9Black';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-7ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-2ExtraLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 정보게시판 */
+.community{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.com_title{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 42px;
+    color: #254074;
+    width: 18vw;
+    margin: 0px auto;
+    white-space  : nowrap;
+
+}
+.com_sub-content{
+    border-bottom: 2px solid #C9C9C9;
+    width:  50vw;
+    margin: 50px auto 0px auto;
+    display: grid;
+    grid-template-columns: 5vw 40vw 5vw;
+}
+
+.com_sub-content input{
+    width: 95%;
+    height: 35px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    line-height: 24px;
+    color: #000000;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+#com_t{
+    float: right;
+    margin-right: 70px;
+    font-size: 15px;
+    font-family: 'S-CoreDream-5Medium';
+    /* a클릭 없애기 */
+    background: linear-gradient(91.84deg, #6360FF 20%, #268AFF 80%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+#com_submit{
+    position: relative;
+    left: -40px;
+    width: 30px;
+    height: 30px;
+}
+.com_sub-content h5{
+    font-family: Jalnan;
+    font-size: 20px;
+    color: #254074;
+    margin: 0px;
+    padding-top: 5px;
+    white-space  : nowrap;
+}
+.com_sub-content #plus_btn{
+    width: 35px;
+    height: 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    }
+.com_content{
+    display: grid;
+    grid-template-columns: 10vw 25vw 25vw;
+    margin-top: 30px;
+    margin-left: 10vw;
+    width: 40vw;
+    height: 70vh;
+
+}
+#com_content-info{
+    font-family: 'S-CoreDream-6Bold';
+    font-size: 15px;
+    text-align: center; 
+    color: #254074;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 25px;
+    width: 90px;
+    height: 31px;
+    padding-left: 2px;
+    padding-top: 3px;
+}
+#com_content-title{
+    font-family: 'S-CoreDream-5Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    /* text-align: center; */
+    color: #254074;
+}
+#com_content-body{
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #1F1F1F;
+    white-space  : nowrap;
+    width: 100px;
+}
+
+/* infoWrite창 */
+.info_container{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.info_container h3{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 42px;
+    color: #254074;
+    padding-bottom: 70px;
+    height: 1vh;
+}
+.hashtag{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    color: #254074;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.info_container-box1 input{
+    padding-left: 13px;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 32px;
+    letter-spacing: 0.1em;
+}
+
+.info_container input{
+    border: none;
+}
+.info_container-box1{
+    border: none;
+    border-bottom: 2px solid #C9C9C9;
+    padding-bottom: 10px;
+}
+.info_container button{
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    color: #5D94FF;
+    border: 2px solid #268AFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    margin-left: 20vw;
+    margin-top: 420px;
+}
+.info_container-box2{
+    display: grid;
+    grid-template-columns: 8vw 45vw 25vw;
+    padding-top: 30px;
+}
+.info_container-box2 p{
+    font-family: 'S-CoreDream-6Bold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.1em;
+    color: #454545;
+}
+.info_container .body{
+    padding-top: 20px;
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 20px;
+    border: none;
+}

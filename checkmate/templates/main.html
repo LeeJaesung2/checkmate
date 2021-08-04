@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block content %}
-{% load static %}
-<div>
 
+<head> 
+    {% load static %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% endblock %}
+</head>
+{% block content %}
+
+<div>
         <div class="content-top">
-           
             <div class="text">
                 <h1 class="title-top">나와 딱 맞는</h1>
                 <h1 class="title-bottom">룸메이트 찾기</h1>

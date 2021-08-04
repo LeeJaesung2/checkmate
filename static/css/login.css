@@ -68,7 +68,6 @@
 }
 .login-box{
     width:  25vw;
-    /* height: 14vh; */
     margin: 0px auto;
 }
 .login-box input{
@@ -109,15 +108,12 @@
     background: #3F97FF;
     border-radius: 10px;
     color:  #FFFFFF;
-    font-style: normal;
     font-size: 20px;
     line-height: 24px;
 }
 #kakao-login{
     width: 10vw;
     height: 53px;
-    /* left: 50vw;
-    top: 490px; */
     font-family: 'S-CoreDream-7ExtraBold';
     font-size: 15px;
     color: #3F97FF;
