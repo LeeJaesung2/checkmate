@@ -90,21 +90,3 @@ def kakaoLoginLogicRedirect(request):
     request.session['access_token'] = _result['access_token']
     request.session.modified = True
     return redirect('register')
-<<<<<<< HEAD
-
-# def kakaoLogout(request):
-#     _token = request.session['access_token']
-#     _url = 'https://kapi.kakao.com/v1/user/logout'
-#     _header = {
-#       'Authorization': f'bearer {_token}'
-#     }
-#     _res = requests.post(_url, headers=_header)
-#     _result = _res.json()
-#     if _result.get('id'):
-#         del request.session['access_token']
-#         return render(request, 'main.html')
-#     else:
-#         return render(request, 'login.html')
-
-=======
->>>>>>> e9d39be0696666b1255e9b9b692a6708b62423ff
