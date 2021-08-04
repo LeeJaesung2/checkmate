@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-9Black';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-7ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-2ExtraLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+ /* login 페이지 */
+ .login{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.title-login{
+    width: 310px;
+    height: 53px;
+    margin-left: 28vw;
+    font-family: Jalnan;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 53px;
+    background: linear-gradient(125deg, rgba(145, 142, 255, 1) 15%, rgba(63, 151, 255, 1) 85%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+.login-box{
+    width:  25vw;
+    /* height: 14vh; */
+    margin: 0px auto;
+}
+.login-box input{
+      height: 30px;
+}
+.login-box p{
+    font-family: 'S-CoreDream-5Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+}
+.find{
+    font-family: 'S-CoreDream-2ExtraLight';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 20px;
+    color: #454545;
+}
+.login input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    border-bottom: 2px solid #C9C9C9;
+}
+#login_btn{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border: 0px solid white;
+    border-radius: 100px;
+    display: inline;
+    width: 10vw;
+    height: 53px;
+    margin-right: 4vw;
+    font-family: 'S-CoreDream-7ExtraBold';
+    background: #3F97FF;
+    border-radius: 10px;
+    color:  #FFFFFF;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 24px;
+}
+#kakao-login{
+    width: 10vw;
+    height: 53px;
+    /* left: 50vw;
+    top: 490px; */
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-size: 15px;
+    color: #3F97FF;
+    background: #FFFFFF;
+    border: 3px solid #3F97FF;
+    box-sizing: border-box;
+    border-radius: 10px;
+}

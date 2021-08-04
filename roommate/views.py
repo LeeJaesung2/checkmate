@@ -10,6 +10,7 @@ from account.models import CustomUser
 def searchRoommate(request):
     search_keyword = request.GET.get('search_keyword')
     writes = Write.objects
+    writes = filter(request, writes)
     if search_keyword:
         if len(search_keyword) > 1:
             writes = writes.filter(title__icontains=search_keyword)
@@ -30,8 +31,10 @@ def create(request):
         write.title = request.POST.get('title')
         write.body = request.POST.get('body')
         write.state = request.POST.get('state')
-        user_id = request.POST.get('user_id')
-        write.user_id = CustomUser.objects.get(id=user_id)
+        user_id = CustomUser.objects.get(id=request.POST.get('user_id'))
+        write.user_id =  user_id
+        write.survey_ess_id =  user_id.survey_ess_id
+        write.survey_opt_id = user_id.survey_opt_id
         write.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:
@@ -59,27 +62,97 @@ def delete(request, write_id):
 
 
 
-# def create_detail(request):
-#     if request.method == "POST":
 
-        
+def filter(request, writes):
+    room_type = request.GET.get('room_type')
+    if room_type:
+        writes = writes.filter(survey_ess_id__room_type=room_type)
+    
+    relationship = request.GET.get('relationship')
+    if relationship:
+        writes = writes.filter(survey_ess_id__relationship=relationship)
 
-# def get_queryset(self):
-#     search_keyword = self.request.GET.get('q','')
-#     survey_list = Survey.objects()
+    smoke = request.GET.get('smoke')
+    if smoke:
+        writes = writes.filter(survey_ess_id__smoke=smoke)
 
-#     if search_keyword :
-#         if len(search_keyword) > 1:
-#             search_survey_list = survey_list.filter(title__icontains=search_keyword)
-#             return search_survey_list
-#         else:
-#             message.error(self.request, "검색어를 2글자 이상 입력해주세요.")
-#     return survey_list
+    cleaning = request.GET.get('cleaning')
+    if cleaning:
+        writes = writes.filter(survey_ess_id__cleaning=cleaning)
 
-# def get_context_data(self, **kwargs):
-#     search_keyword = self.request.GET.get('q', '')
+    sleeping_habits_snoring = request.GET.get('sleeping_habits_snoring')
+    if sleeping_habits_snoring:
+        writes = writes.filter(survey_ess_id__sleeping_habits_snoring=sleeping_habits_snoring)
+    sleeping_habits_teeth = request.GET.get('sleeping_habits_teeth')
+    if sleeping_habits_teeth:
+        writes = writes.filter(survey_ess_id__sleeping_habits_teeth=sleeping_habits_teeth)
+    sleeping_habits_nothing = request.GET.get('sleeping_habits_nothing')
+    if sleeping_habits_nothing:
+        writes = writes.filter(survey_ess_id__sleeping_habits_nothing=sleeping_habits_nothing)
 
-#     if len(search_keyword) > 1 :
-#         context['q'] = search_keyword
+    invite_friends = request.GET.get('invite_friends')
+    if invite_friends:
+        writes = writes.filter(survey_ess_id__invite_friends=invite_friends)
 
-#     return context
+    call = request.GET.get('call')
+    if call:
+        writes = writes.filter(survey_ess_id__call=call)
+
+    earphones = request.GET.get('earphones')
+    if earphones:
+        writes = writes.filter(survey_ess_id__earphones=earphones)
+
+    eat = request.GET.get('eat')
+    if eat:
+        writes = writes.filter(survey_ess_id__eat=eat)
+
+    animal_dog = request.GET.get('animal_dog')
+    if animal_dog:
+        writes = writes.filter(survey_ess_id__animal_dog=animal_dog)
+    animal_cat = request.GET.get('animal_cat')
+    if animal_cat:
+        writes = writes.filter(survey_ess_id__animal_cat=animal_cat)
+    animal_no = request.GET.get('animal_no')
+    if animal_no:
+        writes = writes.filter(survey_ess_id__animal_no=animal_no)
+
+
+
+    share = request.GET.get('share')
+    if share:
+        writes = writes.filter(survey_opt_id__share=share)
+
+    toilet = request.GET.get('toilet')
+    if toilet:
+        writes = writes.filter(survey_opt_id__toilet=toilet)
+    
+    ventilate = request.GET.get('ventilate')
+    if ventilate:
+        writes = writes.filter(survey_opt_id__ventilate=ventilate)
+
+    feel_cold = request.GET.get('feel_cold')
+    if feel_cold:
+        writes = writes.filter(survey_opt_id__feel_cold=feel_cold)
+    feel_hot = request.GET.get('feel_hot')
+    if feel_hot:
+        writes = writes.filter(survey_opt_id__feel_hot=feel_hot)
+
+    bug = request.GET.get('bug')
+    if bug:
+        writes = writes.filter(survey_opt_id__bug=bug)
+
+    keyboard = request.GET.get('keyboard')
+    if keyboard:
+        writes = writes.filter(survey_opt_id__keyboard=keyboard)
+    keyboard_checkbox = request.GET.get('keyboard_checkbox')
+    if keyboard_checkbox:
+        writes = writes.filter(survey_opt_id__keyboard_noise=keyboard_checkbox)
+
+    game = request.GET.get('game')
+    if game:
+        writes = writes.filter(survey_opt_id__game=game)
+
+    mbti = request.GET.get('mbti')
+    if mbti:
+        writes = writes.filter(survey_opt_id__mbti=mbti)
+    return(writes)

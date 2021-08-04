@@ -43,10 +43,10 @@
                 </div>
             </div>
             <!-- if 기숙사 -->
-            <div class="question dormitory-number">
+            <div class="question dormitory-number dormitory-only">
                 <h2 class="title">몇 동 룸메이트를 구하시나요?</h1>
                 <div class="answer">
-                    {% if user.user_gender == "man" %}
+                    {% if user.user_gender == "남" %}
                     <input type="radio" id="dormitory-10" name="dormitory-number-man" value="10"><label for="dormitory-10">10동</label>
                     <input type="radio" id="dormitory-8" name="dormitory-number-man" value="8"><label for="dormitory-8">8동</label>
                     <input type="radio" id="dormitory-6" name="dormitory-number-man" value="6"><label for="dormitory-6">6동</label>
@@ -65,25 +65,28 @@
             <div class="question dormitory-date">
                 <h2 class="title">룸메이트와 함께할 기간을 입력해주세요!</h1>
                 <div class="answer">
-                    <select name="dormitory-year-start" class="form-select">
+                    <select type="select" name="dormitory-year-start" class="form-select">
                         <option value="2021" selected>2021</option>
                     </select>
                     <select name="dormitory-semester-start">
+                        <option value="0" selected>----</option>
                         <option value="1" disabled>1학기</option>
                         <option value="S" disabled>여름방학</option>
-                        <option value="2" selected>2학기</option>
+                        <option value="2">2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                     <span>~</span>
                     <select name="dormitory-year-end">
-                        <option value="2021" selected>2021</option>
+                        <option value="0" selected>----</option>
+                        <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023">2024</option>
                     </select>
                     <select name="dormitory-semester-end">
+                        <option value="0" selected>----</option>
                         <option value="1">1학기</option>
                         <option value="S">여름방학</option>
-                        <option value="2" selected>2학기</option>
+                        <option value="2">2학기</option>
                         <option value="W">겨울방학</option>
                     </select>
                 </div>
@@ -98,8 +101,8 @@
             <div class="question time">
                 <h2 class="title">몇시에 자서 몇시에 일어나나요?</h1>
                 <div class="answer">
-                    <input type="time" step='3600' id="wakeup" name="wakeup-time"><label for="wakeup">에 일어나서</label>
-                    <input type="time" step='3600' id="bedtime" name="bed-time"><label for="betime">에 잡니다</label>
+                    <input type="time" id="wakeup" name="wakeup-time"><label for="wakeup">에 일어나서</label>
+                    <input type="time" id="bedtime" name="bed-time"><label for="betime">에 잡니다</label>
                 </div>
             </div>
             <div class="question smoke">
@@ -112,11 +115,11 @@
             <div class="question cleaning">
                 <h2 class="title">한달에 청소는 얼마나 하나요?</h1>
                 <div class="range-detail">
-                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                    <span>선택X</span><span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
                 <div class="answer range">
                     <!-- 0:안함, 1:한달한번, 2:격주1회, 3:주1회 4:주3~4회, 5:매일 =>js로 표시 예정 -->
-                    <input type="range" id="cleaning" name="cleaning" min="0" max="5">
+                    <input type="range" id="cleaning" name="cleaning" min="0" max="6">
                 </div>
             </div>
             <div class="question sleeping-habits">
@@ -125,7 +128,7 @@
                     <input type="checkbox" id="snoring" name="sleeping-habits-snoring" value="True"><label for="snoring">코골이</label>
                     <input type="checkbox" id="grinding-teeth" name="sleeping-habits-teeth" value="True"><label for="grinding-teeth">이갈이</label>
                     <label for="other">기타</label><input type="text" id="other" name="sleeping-habits-other">
-                    <input type="checkbox" id="nothing" name="sleeping-habits-nothing"><label for="nothing">없음</label>
+                    <input type="checkbox" id="nothing" name="sleeping-habits-nothing" class="nothing" value="True"><label for="nothing">없음</label>
                 </div>
             </div>
             <div class="question invite-friends">
@@ -144,10 +147,10 @@
                 </div>
             </div>
             <div class="question earphones">
-                <h2 class="title">방안에서 이어폰을 사용하길 원하시나요?</h1>
+                <h2 class="title">방안에서 이어폰을 사용하시나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="earphones-yes" name="earphones" value="True"><label for="earphones-yes">필수</label>
-                    <input type="radio" id="earphones-no" name="earphones" value="False"><label for="earphones-no">상관없음</label>
+                    <input type="radio" id="earphones-yes" name="earphones" value="True"><label for="earphones-yes">사용함</label>
+                    <input type="radio" id="earphones-no" name="earphones" value="False"><label for="earphones-no">사용안함</label>
                 </div>
             </div>
             <div class="question eat">
@@ -158,12 +161,13 @@
                     <input type="radio" id="eat-no" name="eat" value='2'><label for="eat-no">나가서 먹음</label>
                 </div>
             </div>
-            <div class="question animal">
+            <div class="question animal not-dormitory">
                 <h2 class="title">애완동물을 키우나요?</h1>
                 <div class="answer">
                     <input type="checkbox" id="animal-dog" name="animal" value='0'><label for="animal-dog">강아지</label>
-                    <input type="checkbox" id="animal-cat" name="animal" value='1'><label for="aniaml-cat">고양이</label>
+                    <input type="checkbox" id="animal-cat" name="animal" value='1'><label for="animal-cat">고양이</label>
                     <label>기타</label><input type="text" id="animal-other" name="animal-other">
+                    <input type="checkbox" id="animal-no" name="animal" value='2' class=".nothing"><label for="animal-no">없음</label>
                 </div>
             </div>
             <!-- 선택요소 -->
@@ -171,56 +175,60 @@
             <div class="question share">
                 <h2 class="title">생필품을 룸메와 같이 쓰나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="share-yes" name="share" value='0'><label for="share-yes">공유</label>
-                    <input type="radio" id="share-no" name="share" value='1'><label for="share-snack">각자</label>
+                    <input type="radio" name="share" value='0' checked hidden>
+                    <input type="radio" id="share-yes" name="share" value='1'><label for="share-yes">공유</label>
+                    <input type="radio" id="share-no" name="share" value='2'><label for="share-no">각자</label>
                 </div>
             </div>
             <div class="question toilet">
                 <h2 class="title">화장실 청소는 얼마나 자주 하나요?</h1>
                 <div class="range-detail">
-                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                    <span>선택X</span><span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
                 <div class="answer range">
-                    <input type="range" name="toilet" min="0" max="5">
+                    <input type="range" name="toilet" min="0" max="6" default="0">
                 </div>
             </div>
             <div class="question ventilate" >
                 <h2 class="title">환기는 얼마나 자주 하나요?</h1>
                 <div class="range-detail">
-                    <span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
+                    <span>선택X</span><span>안함</span><span>한달1회</span><span>격주1회</span><span>주1회</span><span>주3~4회</span><span>매일</span>
                 </div>
                 <div class="answer range">
-                    <input type="range" name="ventilate" min="0" max="5">
+                    <input type="range" name="ventilate" min="0" max="6" default="0">
                 </div>
             </div>
             <div class="question feel">
                 <h2 class="title">추위나 더위를 많이 타나요?(에어컨, 보일러 관련)</h1>
                 <div class="answer">
-                    <input type="checkbox" id="feel-cold" name="feel" value="False"><label for="feel-cold">추위를 많이 탐</label>
-                    <input type="checkbox" id="feel-hot" name="feel" value="False"><label for="feel-hot">더위를 많이 탐</label>
+                    <input type="checkbox" id="feel-cold" name="feel_cold" value="False"><label for="feel-cold">추위를 많이 탐</label>
+                    <input type="checkbox" id="feel-hot" name="feel_hot" value="False"><label for="feel-hot">더위를 많이 탐</label>
                 </div>
             </div>
             <div class="question bug">
                 <h2 class="title">벌레를 잘 잡나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="bug-yes" name="bug" value="0"><label for="bug-yes">잘 잡아요</label>
-                    <input type="radio" id="bug-no" name="bug" value="1"><label for="bug-snack">못 잡아요ㅠㅠ</label>
+                    <input type="radio" name="bug" value='0' checked hidden>
+                    <input type="radio" id="bug-yes" name="bug" value="1"><label for="bug-yes">잘 잡아요</label>
+                    <input type="radio" id="bug-no" name="bug" value="2"><label for="bug-no">못 잡아요ㅠㅠ</label>
                 </div>
             </div>
             <div class="question keyboard">
                 <h2 class="title">평소 키보드 소음은 어느정도인가요?</h1>
                 <div class="answer">
-                    <input type="radio" id="keyboard-loud" name="keyboard" value="0"><label for="keyboard-loud">타이핑&게임 자주함</label>
-                    <input type="radio" id="keyboard-no" name="keyboard" value="1"><label for="keyboard-no">거의 안함</label>
+                    <input type="radio" name="keyboard" value='0' checked hidden>
+                    <input type="radio" id="keyboard-loud" name="keyboard" value="1"><label for="keyboard-loud">타이핑&게임 자주함</label>
+                    <input type="radio" id="keyboard-no" name="keyboard" value="2"><label for="keyboard-no">거의 안함</label>
                     <input type="checkbox" id="keyboard-noise" name="keyboard-checkbox"><label for="keyboard-noise">저소음 키보드 사용중</label>
                 </div>
             </div>
             <div class="question game">
                 <h2 class="title">게임을 하시나요?</h1>
                 <div class="answer">
-                    <input type="radio" id="game-yes" name="game" value="0"><label for="game-yes">자주</label>
-                    <input type="radio" id="game-sometimes" name="game" value="1"><label for="game-sometimes">가끔</label>
-                    <input type="radio" id="game-no" name="game" value="2"><label for="game-no">안 함</label>
+                    <input type="radio" name="game" value='0' checked hidden>
+                    <input type="radio" id="game-yes" name="game" value="1"><label for="game-yes">자주</label>
+                    <input type="radio" id="game-sometimes" name="game" value="2"><label for="game-sometimes">가끔</label>
+                    <input type="radio" id="game-no" name="game" value="3"><label for="game-no">안 함</label>
                 </div>
             </div>
             <div class="question mbti">
@@ -234,6 +242,9 @@
             </div>
         </form>
         <p class="next">다음 ></p>
+    </div>
+    <div class="modal" style="display: none;">
+        <p>값을 선택해 주세요!</p>
     </div>
 
     <!-- js -->

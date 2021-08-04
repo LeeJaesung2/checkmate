@@ -3,13 +3,8 @@
 
 {% block content %}
 <div class="signup">
-    <h3 class="title">회원가입</h3>
-    <div class="content">
-
-
-
-<h3>회원가입</h3>
-
+    <div class="sign_content">
+        <h3 class="title">회원가입</h3>
         <form action="" method="POST">
             {% csrf_token %}
             <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
@@ -23,9 +18,23 @@
             Your password can’t be a commonly used password.
             Your password can’t be entirely numeric. -->
             이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
+
+      <div class="sign_gender">
             성별: 
-            <input id="user_gender" type="radio" name="user_gender" value="man">남자
-            <input id="user_gender" type="radio" name="user_gender" value="woman">여자<br><br><br>
+            <input id="user_gender" type="radio" name="user_gender" value="남">남자
+            <input id="user_gender" type="radio" name="user_gender" value="여">여자
+      </div>
+      <br><br><br>
+            <!-- selsect로 수정해야함 -->
+            출생년도:
+            <select name="user_birthyear" id="user_birthyear">
+                <script>
+                    for(i=2021;i>1950;i--){
+                     document.write("<option>"+i+"</option>");
+                    }
+                </script>
+            </select><br><br><br>
+
             국적: 
             <select id="user_nation" name="user_nation">
                 <option value="">선택해주세요.</option>
@@ -53,6 +62,7 @@
         else{
             alert("성별을 선택해주세요.");$("#gender").focus();return false;
         }
+        if($("#user_birthyear").val().length===0){alert("출생년도를 선택해주세요.");$("#user_birthyear").focus();return false;}
         if($("#user_nation").val().length===0){alert("국가를 선택해주세요.");$("#user_nation").focus();return false;}
         if($("#user_nickname").val().length===0){alert("닉네임을 입력해주세요.");$("#user_nickname").focus();return false;}
         

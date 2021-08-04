@@ -1,0 +1,114 @@
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-9Black';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-3Light';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-6Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-7ExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-2ExtraLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+/*----- 타이틀 -----*/
+.main-check{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.main-check > a{
+    font-family: 'yg-jalnan';
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: rgba(93, 148, 255, 1);
+}
+
+.main-check > svg{
+    position: relative;
+    top: 4px;
+}
+
+/*----- 네비바 -----*/
+
+nav{
+    float: right;
+}
+
+nav > .right-menu
+{
+    display: inline-block;
+}
+
+/* nav{
+    display: grid;
+    position: sticky;
+
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    height: 50px;
+    overflow: hidden;
+    padding: 30px;
+} */
+
+nav, .title, .go{
+    font-family: 'yg-jalnan';
+    font-size: 15px;
+}
+button{
+    background-color:transparent;
+    outline: none;
+    border: 0px; box-sizing: none;
+}
+
+footer{
+    font-family: 'S-CoreDream-5Medium';
+    font-size: 10px;
+    width: 100vw;
+    background: #D6D8DD;
+    color: white;
+}
+/* nav ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-self: end;
+    column-gap: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+    color: rgba(93, 148, 255, 1);
+} */

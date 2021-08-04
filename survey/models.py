@@ -71,7 +71,7 @@ class SurveyEssential(models.Model):
     #잠버릇
     sleeping_habits_snoring = models.NullBooleanField(default=False)
     sleeping_habits_teeth = models.NullBooleanField(default=False)
-    sleeping_habits_other = models.CharField(max_length=10)
+    sleeping_habits_other = models.CharField(max_length=10, null=True, blank=True)
     sleeping_habits_nothing = models.NullBooleanField(default=False)
     #친구초대여부
     invite_friends = models.NullBooleanField(default=False)
@@ -91,11 +91,9 @@ class SurveyEssential(models.Model):
         ('2', '나가서 먹음'),
     )
     eat = models.CharField(max_length=1, choices=eat_choice, default='0')
-    animal_choice = (
-        ('0', '강아지'), 
-        ('1', '고양이'),
-    )
-    animal = models.CharField(max_length=1, choices=animal_choice, null=True, blank=True)
+    animal_cat = models.NullBooleanField(default=False)
+    animal_dog= models.NullBooleanField(default=False)
+    animal_no= models.NullBooleanField(default=False)
     animal_other = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):
@@ -103,26 +101,38 @@ class SurveyEssential(models.Model):
 
 
 class SurveyOptional(models.Model):
-    share = models.NullBooleanField()
+    share_choice = (
+        ('0', '선택안함'), 
+        ('1', '공유'),
+        ('2', '각자'),
+    )
+    share = models.CharField(max_length=1, choices=share_choice, default='0')
     toilet = models.IntegerField(null=True, blank=True)
     ventilate = models.IntegerField(null=True, blank=True)
     #더위·추위 탐
     feel_cold = models.NullBooleanField()
     feel_hot = models.NullBooleanField()
     #벌레
-    bug = models.NullBooleanField()
+    bug_choice = (
+        ('0', '선택안함'), 
+        ('1', '잘잡음'),
+        ('2', '못잡음'),
+    )
+    bug = models.CharField(max_length=1, choices=bug_choice, default='0')
     #키보드
     keyboard_choice = (
-        ('0', '타이핑&게임 자주함'), 
-        ('1', '거의 안함'),
+        ('0', '선택안함'),
+        ('1', '타이핑&게임 자주함'), 
+        ('2', '거의 안함'),
     )
     keyboard = models.CharField(max_length=1, choices=keyboard_choice, null=True, blank=True)
     keyboard_noise = models.NullBooleanField()
     #게임
     game_choice = (
-        ('0', '자주'), 
-        ('1', '가끔'),
-        ('2', '안함'),
+        ('0', '선택안함'),
+        ('1', '자주'), 
+        ('2', '가끔'),
+        ('3', '안함'),
     )
     game = models.CharField(max_length=1, choices=game_choice, null=True, blank=True)
     mbti = models.CharField(max_length=4,null=True, blank=True)

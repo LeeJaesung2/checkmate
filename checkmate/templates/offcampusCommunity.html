@@ -2,10 +2,11 @@
 {% load static %}
 
 {% block content %}
-<h3>자취 정보 공유 게시판</h3>
 <div>
+<h3 class="title">자취 정보 공유 게시판</h3>
+<div class="com_sub-content">  
     <a href="">인기 게시글</a>
-    <div>
+    <div class="com_sub-content1">
         <h5>검색</h5>
         <form action="" method="get">
             {% csrf_token %}
@@ -17,16 +18,16 @@
 </div>
 
 {% for post in posts %}     
-<div>
+<div class="com_content">
 
     {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
-    <p class="preface">원룸정보</p>
-    <p>{{ post.preface_2 }}</p>
-    <p>{{ post.title }}</p>
+    <p id="com_content-info" class="preface">원룸정보</p>
+    <p id="com_content-info">{{ post.preface_2 }}</p>
+    <p id="com_content-info">{{ post.title }}</p>
     {% else %}
-    <p class="preface">{{ post.preface }}</p>
-    <p>{{ post.preface_2 }}</p>
-    <p>{{ post.title }}</p>
+    <p id="com_content-info" class="preface">{{ post.preface }}</p>
+    <p id="com_content-info">{{ post.preface_2 }}</p>
+    <p id="com_content-info">{{ post.title }}</p>
     {% endif %}
 
 </div>
@@ -43,6 +44,8 @@
         <li class="page-item"><a class="page-link" href="#">▶</a></li>
     </ul>
 </div>
+</div>
+
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>

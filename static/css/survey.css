@@ -19,6 +19,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'S-CoreDream-4Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -30,7 +37,7 @@
 body{
     /* background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%); */
     background-attachment: fixed;
-    background: linear-gradient(280.91deg, #3F97FF 8.36%, #918EFF 92.43%);
+    background: linear-gradient(280.91deg, #3F97FF 8.36%, #ae8bff 92.43%);
     border-radius: calc(2 * var(--borderWidth));
     z-index: -1;
     animation: animatedgradient 3s ease alternate infinite;
@@ -52,11 +59,6 @@ body{
 h3{
     font-family: 'S-CoreDream-3Light';
     opacity: 0.5;
-}
-
-.second{
-    padding: 100px 100px;
-    
 }
 
 /* 왼쪽 상단 타이틀 */
@@ -160,14 +162,18 @@ input[type=radio]+label, input[type=checkbox]+label{
 }
 
 input[type=radio]:checked+label, input[type=checkbox]:checked+label{
-    font-family: 'S-CoreDream-7ExtraBold';
-    color: #254074;
-    background-color: white;
+    /* font-family: 'S-CoreDream-7ExtraBold'; */
+    /* color: #254074; */
+    /* background-color: white; */
     opacity: 1;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
     font-size: 25px;
-    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
+    /* box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25); */
+    /* border-radius: 8px; */
+}
+
+input[type=radio]:disabled+label, input[type=checkbox]:disabled+label{
+    opacity: 0.3;
 }
 
 input[type=radio]+label:hover, input[type=checkbox]+label:hover{
@@ -300,3 +306,25 @@ input[type=submit]{
     }
 }
 
+.modal{
+    position: fixed;
+    left: 35vw;
+    top: 43vh;
+    width: 30vw;
+    height: 8vh;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+
+}
+
+.modal > p{
+    font-family: 'S-CoreDream-4Regular';
+    color: rgb(82, 82, 82);
+    width: 100%;
+    text-align: center;
+}
