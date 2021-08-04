@@ -2,38 +2,45 @@
 {% load static %}
 
 {% block content %}
-<h3>정보 공유 게시판</h3>
+
 <div>  
-    <a href="">인기 게시글</a>
-    <div>
-        <h5>검색</h5>
-        <form action="" method="get">
-            {% csrf_token %}
-            <input type="text" placeholder="#역세권_오피스텔_어때요?">
-            <button type="submit">검색아이콘</button>
-        </form>
-        <button>+</button>
+    <h3 class="title">정보 공유 게시판</h3>
+    <div class="com_sub-content">  
+        <a href="">인기 게시글</a>
+        <div class="com_sub-content1">
+            <h5>검색</h5>
+            <form action="" method="get">
+                {% csrf_token %}
+                <input type="text" placeholder="#역세권_오피스텔_어때요?">
+                <button type="submit">검색아이콘</button>
+            </form>
+            <button>+</button>
+        </div> 
     </div>
-</div>
-<div>
+    <div class="com_content">
+        <p id="com_content-info">원룸정보</p>
+        <p id="com_content-title">자취 | 보금자리빌</p>
+        <p id="com_content-body">원룸 리뷰입니다.</p>
+    </div>
+
     <div>
         <p>원룸정보</p>
         <p>자취 | 보금자리빌</p>
         <p>원룸 리뷰입니다.</p>
     </div>
-        
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+        </ul>
+    </div>
 </div>
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">▶</a></li>
-    </ul>
-</div>
+
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>

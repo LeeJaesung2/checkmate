@@ -3,13 +3,8 @@
 
 {% block content %}
 <div class="signup">
-    <h3 class="title">회원가입</h3>
-    <div class="content">
-
-
-
-<h3>회원가입</h3>
-
+    <div class="sign_content">
+        <h3 class="title">회원가입</h3>
         <form action="" method="POST">
             {% csrf_token %}
             <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
@@ -23,9 +18,13 @@
             Your password can’t be a commonly used password.
             Your password can’t be entirely numeric. -->
             이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
+
+      <div class="sign_gender">
             성별: 
             <input id="user_gender" type="radio" name="user_gender" value="남">남자
-            <input id="user_gender" type="radio" name="user_gender" value="여">여자<br><br><br>
+            <input id="user_gender" type="radio" name="user_gender" value="여">여자
+      </div>
+      <br><br><br>
             <!-- selsect로 수정해야함 -->
             출생년도:
             <select name="user_birthyear" id="user_birthyear">
@@ -35,6 +34,7 @@
                     }
                 </script>
             </select><br><br><br>
+
             국적: 
             <select id="user_nation" name="user_nation">
                 <option value="">선택해주세요.</option>
