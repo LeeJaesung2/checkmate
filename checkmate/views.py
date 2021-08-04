@@ -38,7 +38,7 @@ def dom_infoWrite(request):
         post.user_id = user
         post.pub_date = timezone.now()
         post.save()
-        return redirect('domitoryCommunity', post.id)
+        return redirect('domitoryView', post.id)
     else:
         user = request.user
         return render(request, 'dom_infoWrite.html',{'user':user})
@@ -82,3 +82,40 @@ def domitoryDelete(request, post_id):
     post = Domitory_Post.objects.get(id=post_id)
     post.delete()
     return redirect('domitoryCommunity')
+
+def offcampusUpdate(request, post_id):
+    if request.method == 'POST':
+        post = Offcampus_Post.objects.get(id=post_id)
+        post.title = request.POST.get('title')
+        post.content = request.POST.get('content')
+        post.preface = request.POST.get('preface')
+        post.preface_2 = request.POST.get('preface_2')
+        user_id = request.POST.get('user_id')
+        user = CustomUser.objects.get(id=user_id)
+        post.user_id = user
+        post.pub_date = timezone.now()
+        post.save()
+        return redirect('offcampusView', post.id)
+    else:
+        post = Offcampus_Post.objects.get(id=post_id)
+        user = request.user
+        return render(request, 'offcampusUpdate.html',{'user':user,'post':post})
+
+
+def domitoryUpdate(request, post_id):
+    if request.method == 'POST':
+        post = Domitory_Post.objects.get(id=post_id)
+        post.title = request.POST.get('title')
+        post.content = request.POST.get('content')
+        post.preface = request.POST.get('preface')
+        post.preface_2 = request.POST.get('preface_2')
+        user_id = request.POST.get('user_id')
+        user = CustomUser.objects.get(id=user_id)
+        post.user_id = user
+        post.pub_date = timezone.now()
+        post.save()
+        return redirect('offcampusView', post.id)
+    else:
+        post = Domitory_Post.objects.get(id=post_id)
+        user = request.user
+        return render(request, 'domitoryUpdate.html',{'user':user,'post':post})

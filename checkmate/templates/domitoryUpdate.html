@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>기숙사 정보 공유 게시판</h3>
+<form action="" method="post">
+	{% csrf_token %}
+
+	<input type="hidden" name="user_id" value="{{ user.id }}">
+	<input type="hidden" name="preface" value="{{ post.preface }}">
+	<input type="hidden" name="preface_2" value="{{ post.preface_2 }}">
+
+	<p>{{ post.preface }} | {{ post.preface_2 }}</p>
+
+	<!-- 말머리 -->
+	<input name="title" type="text" placeholder="이곳에 제목을 작성하세요." value="{{ post.title }}">
+	<!-- 정보 게시판 제목 -->
+	<img src="" alt="profile_image">
+	<!-- 프로필이미지 -->
+	<p>{{ user.user_nickname }}</p>
+	<input type="file" name="image">
+	<!-- 사진 업로드 -->
+	<textarea class="body" name="content" cols="130" rows="20" style="resize: none;" placeholder="   이곳에 본문을 작성하세요."
+	value="{{ post.content }}"></textarea>
+<!-- 정보 게시판 작성 내용 -->
+	<button type="submit">저장</button>
+</form>
+{% endblock %}

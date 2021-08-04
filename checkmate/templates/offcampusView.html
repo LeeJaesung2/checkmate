@@ -19,7 +19,7 @@
 <div>
     <p>{{ post.content }}</p>
     <!-- 내용 -->
-    <a href=""><span>수정</span></a>
+    <a href="{% url 'offcampusUpdate' post.id %}"><span>수정</span></a>
     <a href="{% url 'offcampusDelete' post.id %}"><span>삭제</span></a>
 </div>
 <div>
