@@ -37,14 +37,13 @@
             </linearGradient>
             </defs>
             </svg>            
-        <a href="{% url 'main' %}">checkmate</a>
+        <a href="{% url 'main' %}">CHECKMATE</a>
         <!-- 나중에 삭제하겠습니다. -->
-        <a href="{% url 'survey' %}">내정보 입력-임시</a>
     </div>
     <nav>
         <div class="right-menu">
             <a href="{% url 'searchRoommate' %}">룸메 찾기</a>
-            <a href="{% url 'community' %}">정보 공유</a>
+            <a href="{% url 'offcampusCommunity' %}">정보 공유</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}">로그아웃</a>
             <a href="{% url 'mypageProfile' %}">내정보</a>

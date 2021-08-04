@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+<h3 class="title">자취 정보 공유 게시판</h3>
+<div class="com_sub-content">  
+    <a href="">인기 게시글</a>
+    <div class="com_sub-content1">
+        <h5>검색</h5>
+        <form action="" method="get">
+            {% csrf_token %}
+            <input type="text" placeholder="#역세권_오피스텔_어때요?">
+            <button type="submit">검색아이콘</button>
+        </form>
+        <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
+    </div>
+</div>
+
+{% for post in posts %}     
+<div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
+
+    {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
+    <p id="com_content-info" class="preface">원룸정보</p>
+    <p id="com_content-info">{{ post.preface_2 }}</p>
+    <p id="com_content-info">{{ post.title }}</p>
+    {% else %}
+    <p id="com_content-info" class="preface">{{ post.preface }}</p>
+    <p id="com_content-info">{{ post.preface_2 }}</p>
+    <p id="com_content-info">{{ post.title }}</p>
+    {% endif %}
+
+</div>
+{% endfor %}
+
+<div>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+    </ul>
+</div>
+</div>
+
+<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
+<div class="modal hidden" id="jsModal">
+    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
+</div>
+
+
+<script>
+    const open = document.querySelector(".open");
+    const close = document.querySelector(".modal__closeBtn");
+    const modal = document.querySelector(".modal");
+
+    function init() {
+        open.addEventListener("click", function () {
+            modal.classList.remove("hidden");
+        });
+        close.addEventListener("click", function () {
+            modal.classList.add("hidden");
+        });
+    }
+
+    init();
+</script>
+{% endblock %}

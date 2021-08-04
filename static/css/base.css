@@ -40,6 +40,29 @@
     font-weight: normal;
     font-style: normal;
 }
+
+/* 부트스트랩 브레이크포인트 */
+@media (min-width: 576px) {
+    :root{
+        font-size:7px;
+    }
+}
+@media (min-width: 768px) {
+    :root{
+        font-size:9px;
+    }
+}
+@media (min-width: 992px) {
+    :root{
+        font-size:13px;
+    }
+}
+@media (min-width: 1200px) {
+    :root{
+        font-size:16px;
+    }
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -61,54 +84,53 @@
 
 /*----- 타이틀 -----*/
 .main-check{
-    margin-top: 40px;
-    margin-left: 40px;
+    display: inline-block;
+    margin-top: 3vw;
+    margin-left: 3vw;
 }
 
 .main-check > a{
     font-family: 'yg-jalnan';
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.4rem;
     letter-spacing: 0.1em;
     color: rgba(93, 148, 255, 1);
 }
 
 .main-check > svg{
     position: relative;
-    top: 4px;
+    width: 1.8rem;
+    height: 1.8rem;
+    top: -0.7vh;
+    margin-right: 0.5vw;
 }
 
 /*----- 네비바 -----*/
 
 nav{
+    font-family: 'yg-jalnan';
+    display: inline-block;
     float: right;
+    margin-top: 3vw;
+    margin-right: 3vw;
+    font-size: 1.4rem;
+    color: rgba(93, 148, 255, 1);
+}
+
+nav a {
+    color: rgba(93, 148, 255, 1);
+    text-decoration: none;
+    font-size: 1.0rem;
+    margin-right: 3vw;
 }
 
 nav > .right-menu
 {
     display: inline-block;
+    color: rgba(93, 148, 255, 1);
 }
 
-/* nav{
-    display: grid;
-    position: sticky;
-
-    grid-template-columns: 1fr 3fr;
-    align-items: center;
-    height: 50px;
-    overflow: hidden;
-    padding: 30px;
-} */
-
-nav, .title, .go{
-    font-family: 'yg-jalnan';
-    font-size: 15px;
-}
-button{
-    background-color:transparent;
-    outline: none;
-    border: 0px; box-sizing: none;
-}
+/* 푸터 */
 
 footer{
     font-family: 'S-CoreDream-5Medium';
@@ -117,13 +139,3 @@ footer{
     background: #D6D8DD;
     color: white;
 }
-/* nav ul{
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    justify-self: end;
-    column-gap: 30px;
-    padding-right: 30px;
-    font-size: 16px;
-    color: rgba(93, 148, 255, 1);
-} */

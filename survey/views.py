@@ -33,7 +33,7 @@ def submitSurvey(request):
     # eSurvey.sleeping_habits_snoring = request.POST.get('sleeping-habits-snoring')
     # eSurvey.sleeping_habits_teeth = request.POST['sleeping-habits-teeth']
     # eSurvey.sleeping_habits_nothing = request.POST.get('sleeping-habits-nothing')
-    eSurvey.sleeping_habits_other = request.POST['sleeping-habits-other']
+    eSurvey.sleeping_habits_other = request.POST.get('sleeping-habits-other')
     eSurvey.invite_friends = request.POST.get('invite-friends')
     eSurvey.call = request.POST.get('call')
     eSurvey.earphones = request.POST.get('earphones')

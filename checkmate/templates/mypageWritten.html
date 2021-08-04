@@ -8,14 +8,36 @@
 
 {% block content %}
 <div class="mypage_container bg">
-    <div class="mypage_nav">
-        <h3 class="mypage_title">마이페이지</h3>
-        <!-- border-left 색상 바꾸기 (클릭 모션) -->
-        <ul >
-            <li><a href="">회원정보 수정</a></li>
-            <li><a href="">체크리스트 수정</a></li>
-            <li><a href="">스크랩 목록</a></li>
-            <li><a href="">내가 작성한 글</a></li>
+<div class="mypage_nav">
+    <h3>마이페이지</h3>
+    <!-- border-left 색상 바꾸기 (클릭 모션) -->
+    <ul>
+        <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
+    <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+    <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+    <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+</ul>
+</div>
+<div class="mypage_content">
+    <h3>내가 작성한 글</h3>
+    <button>수정</button>
+    <div>
+        <!-- span for문돌리기 -->
+        <span>
+            <input type="checkbox" name="" id="">
+            <p>제목</p>
+            <p>날짜</p>
+        </span>
+    </div>
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">▶</a></li>
         </ul>
     </div>
     

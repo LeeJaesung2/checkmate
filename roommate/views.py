@@ -64,13 +64,39 @@ def delete(request, write_id):
 
 
 def filter(request, writes):
+    grad = request.GET.get('grad')
+    if grad:
+        writes = writes.filter(survey_ess_id__grade=grad)
+
     room_type = request.GET.get('room_type')
     if room_type:
         writes = writes.filter(survey_ess_id__room_type=room_type)
-    
+
+    dormitory_number_man = request.GET.get('dormitory_number_man')
+    dormitory_number_woman = request.GET.get('dormitory_number_woman')
+    dormitory_number = request.GET.get('dormitory_number')
+    if dormitory_number_man:
+        writes = writes.filter(survey_ess_id__dormitory_number_man=dormitory_number_man)
+    if dormitory_number_woman:
+        writes = writes.filter(survey_ess_id__ormitory_number_woman=dormitory_number_woman)
+    if dormitory_number=='10' or dormitory_number=='8' or dormitory_number=='6' or dormitory_number=='3' or dormitory_number=='2' or dormitory_number=='1':
+        writes = writes.filter(survey_ess_id__dormitory_number_man=dormitory_number)
+    if dormitory_number=='11' or dormitory_number=='9' or dormitory_number=='7' or dormitory_number=='5' or dormitory_number=='4':
+        writes = writes.filter(survey_ess_id__dormitory_number_woman=dormitory_number)
+
     relationship = request.GET.get('relationship')
     if relationship:
         writes = writes.filter(survey_ess_id__relationship=relationship)
+
+    start_wakeup_time = request.GET.get('start_wakeup_time')
+    end_wakeup_time = request.GET.get('end_wakeup_time')
+    if start_wakeup_time and end_wakeup_time:
+        writes = writes.filter(survey_ess_id__wakeup_time__range=(start_wakeup_time,end_wakeup_time))
+
+    start_bed_time = request.GET.get('start_bed_time')
+    end_bed_time = request.GET.get('end_bed_time')
+    if start_bed_time and end_bed_time:
+        writes = writes.filter(survey_ess_id__bed_time__range=(start_bed_time,end_bed_time))
 
     smoke = request.GET.get('smoke')
     if smoke:

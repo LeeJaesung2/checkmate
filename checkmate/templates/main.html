@@ -1,22 +1,26 @@
 {% extends 'base.html' %}
 
-<head> 
-    {% load static %}
-    {% block head %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    {% endblock %}
-</head>
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/main2.css' %}">
+{% endblock %}
 {% block content %}
+<div>
+    <a href="{% url 'survey' %}">내정보 입력-임시</a>
+
 
 <div>
         <div class="content-top">
             <div class="text">
-                <h1 class="title-top">나와 딱 맞는</h1>
-                <h1 class="title-bottom">룸메이트 찾기</h1>
-                <p class="detail">설명설명설명<br>설명설명설명</p>
+                <h1 class="main-title front-title">나와 딱 맞는</h1>
+                <h1 class="main-title front-title">룸메이트 찾기</h1>
+                <div class="title-shadow">
+                    <h1 class="main-title shadow-title">나와 딱 맞는</h1>
+                    <h1 class="main-title shadow-title">룸메이트 찾기</h1>
+                </div>
+                <p class="detail" >설명설명설명<br>설명설명설명</p>
             </div>
-            <!--  -->
-            
+            <img id="main-img" src="{% static 'img/img_main.png' %}" alt="">
         </div>
         <div class="content-bottom">
             <div class="menu-1">
@@ -30,7 +34,7 @@
                 <div class="menu-2">
                     <h1 class="title">정보공유하기</h1>
                     <p class="detail">기숙사, 원룸 정보를 공유 해주세요</p>
-                    <button onclick="location.href='community'">
+                    <button onclick="location.href='offcampusCommunity'">
                         <p>바로가기 ></p>
                         <img src="" alt=""> <!-- 화살표 이미지 추가 -->
                     </button>
