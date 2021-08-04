@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
+from django.utils import timezone
 
 # Create your views here.
 
@@ -17,8 +18,9 @@ def infoWrite(request):
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
+        post.pub_date = timezone.now()
         post.save()
-        return redirect('offcampusCommunity')
+        return redirect('offcampusView', post.id)
     else:
         user = request.user
         return render(request, 'infoWrite.html',{'user':user})
@@ -34,8 +36,9 @@ def dom_infoWrite(request):
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
+        post.pub_date = timezone.now()
         post.save()
-        return redirect('domitoryCommunity')
+        return redirect('domitoryCommunity', post.id)
     else:
         user = request.user
         return render(request, 'dom_infoWrite.html',{'user':user})
@@ -59,3 +62,23 @@ def domitoryCommunity(request):
     posts = Domitory_Post.objects.all()
 
     return render(request, 'domitoryCommunity.html',{'posts':posts})
+
+def offcampusView(request,post_id):
+    
+    post = Offcampus_Post.objects.get(id=post_id)
+    return render(request, 'offcampusView.html',{'post':post})
+
+def domitoryView(request,post_id):
+
+    post = Domitory_Post.objects.get(id=post_id)
+    return render(request, 'domitoryView.html',{'post':post})
+
+def offcampusDelete(request, post_id):
+    post = Offcampus_Post.objects.get(id=post_id)
+    post.delete()
+    return redirect('offcampusCommunity')
+
+def domitoryDelete(request, post_id):
+    post = Domitory_Post.objects.get(id=post_id)
+    post.delete()
+    return redirect('domitoryCommunity')

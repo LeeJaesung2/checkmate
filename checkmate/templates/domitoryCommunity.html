@@ -17,7 +17,7 @@
 </div>
 
 {% for post in posts %}     
-<div>
+<div onclick="location.href='{% url 'domitoryView' post.id %}'">
 
     {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
     <p class="preface">원룸정보</p>

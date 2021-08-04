@@ -8,7 +8,7 @@
 	<div class="info_container-box1">
 {% csrf_token %}
 
-<input type="hidden" name="user_id" value="{{ user.id }}">
+<input type="hidden" name="user_id" value='{{ user.id }}'>
 
 <select class="hashtag" name="preface" onchange="categoryChange(this)">
 	<option>말머리</option>

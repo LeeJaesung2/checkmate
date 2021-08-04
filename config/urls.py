@@ -32,6 +32,13 @@ urlpatterns = [
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
     path('offcampusCommunity/',views.offcampusCommunity, name='offcampusCommunity'),
     path('domitoryCommunity/',views.domitoryCommunity, name='domitoryCommunity'),
+    path('offcampusView/<int:post_id>',views.offcampusView, name='offcampusView'),
+    path('domitoryView/<int:post_id>',views.domitoryView, name='domitoryView'),
+    path('offcampusDelete/<int:post_id>',views.offcampusDelete, name='offcampusDelete'),
+    path('domitoryDelete/<int:post_id>',views.domitoryDelete, name='domitoryDelete'),
+
+
+
 
 
 ]

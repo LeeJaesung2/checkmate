@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h3>{{ post.title }}}}</h3>
+    <!-- 타이틀 -->
+    <p>{{ post.preface }} | {{ post.preface_2 }}</p>
+    <div>
+        <small>{{ post.pub_date }}</small>
+    </div>
+</div>
+<div>
+    <img src="" alt="profile_image">
+    <!-- 프로필이미지 -->
+    <p> {{ post.user_id.user_nickname }} </p>
+    <!-- 닉네임 -->
+</div>
+
+<div>
+    <p>{{ post.content }}</p>
+    <!-- 내용 -->
+    <a href=""><span>수정</span></a>
+    <a href="{% url 'domitoryDelete' post.id %}"><span>삭제</span></a>
+</div>
+<div>
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
+        <li class="page-item"><a class="page-link" href="/domitoryCommunity">목록</a></li>
+        <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
+    </ul>
+</div>
+<script>
+</script>
+{% endblock %}

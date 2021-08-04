@@ -8,6 +8,7 @@ class Offcampus_Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
+    pub_date = models.DateTimeField(auto_now=True)
 
     CHOICES = (
         ('해결했어요', '해결했어요'),
@@ -47,6 +48,7 @@ class Domitory_Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
+    pub_date = models.DateTimeField(auto_now=True)
 
     CHOICES = (
         ('해결했어요', '해결했어요'),
