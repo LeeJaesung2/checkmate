@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
 from django.utils import timezone
+from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
 
@@ -53,8 +55,14 @@ def mypageWritten(request):
     return render(request, 'mypageWritten.html')
 
 def offcampusCommunity(request):
+    search_keyword = request.GET.get('search_keyword')
     posts = Offcampus_Post.objects.all()
-
+    if search_keyword:
+        if len(search_keyword) > 1:
+            posts = posts.filter(title__icontains=search_keyword)
+            return render(request, 'offcampusCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
+        else:
+            message.error(request, '검색어는 2글자 이상 입력해주세요')
     return render(request, 'offcampusCommunity.html',{'posts':posts})
 
 
