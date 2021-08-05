@@ -26,8 +26,7 @@
         {% for post in posts %}
         <div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
 
-            {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or
-            post.preface == '기타' %}
+            {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
             <p id="com_content-info" class="preface">원룸정보</p>
             <p id="com_content-info">{{ post.preface_2 }}</p>
             <p id="com_content-info">{{ post.title }}</p>
@@ -40,12 +39,12 @@
         </div>
         {% endfor %}
         {% else %}
-        {% if search_keyword %}
-        일치하는 검색 결과가 없습니다
-        {% else %}
-        작성된 게시글이 없습니다
+            {% if search_keyword %}
+            일치하는 검색 결과가 없습니다
+            {% else %}
+            작성된 게시글이 없습니다
         {% endif %}
-        {% endif %}
+    {% endif %}
 
 
     </div>
