@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/community,info.css' %}">
+{% endblock %}
 {% block content %}
 <div>
 <h3 class="title">자취 정보 공유 게시판</h3>
@@ -14,8 +16,8 @@
             <button type="submit">검색아이콘</button>
         </form>
         <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
+
     </div>
-</div>
 
 {% if search_keyword %}
 <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
@@ -44,17 +46,20 @@
     {% endif %}
 {% endif %}
 
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">▶</a></li>
-    </ul>
-</div>
+
+    </div>
+    {% endfor %}
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+        </ul>
+    </div>
 </div>
 
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">

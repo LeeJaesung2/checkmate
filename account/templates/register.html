@@ -24,11 +24,17 @@
             Your password can’t be entirely numeric. -->
             이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
 
-      <div class="sign_gender">
-            성별: 
-            <input id="user_gender" type="radio" name="user_gender" value="남">남자
-            <input id="user_gender" type="radio" name="user_gender" value="여">여자
-      </div>
+        <div class="sign_gender">
+                성별: 
+                <div>
+                    <input id="user_gender-men" type="radio" name="user_gender" value="남">
+                    <label for="user_gender-men">남자</label> 
+                </div>
+                <div>
+                    <input id="user_gender-woman" type="radio" name="user_gender" value="여">
+                    <label for="user_gender-woman">여자</label> 
+                </div>
+        </div>
       <br><br><br>
             <!-- selsect로 수정해야함 -->
             출생년도:
@@ -48,8 +54,8 @@
             </select><br><br><br>
             <!-- 프로필 사진: <input type="file" name="image"> -->
             닉네임: <input type="text" id="user_nickname" name="user_nickname" maxlength='8' placeholder="최대 8글자">
-
-            <button id="submit"class="submit" type="submit">Sign Up</button>
+            <br><br><br>
+            <button class="submit" type="submit">Sign Up</button>
         </form>
     </div>
 </div>

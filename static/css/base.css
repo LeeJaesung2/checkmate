@@ -72,10 +72,8 @@
 .pagination{
     list-style-type: none;
     font-family: 'S-CoreDream-3Light';
-    list-style-type: none;
-    margin-top: 50px;
-    margin-left: 8vw;
-    width: 20vw;
+    margin: 50px auto 0px auto;
+    /* width: 50vw; */
 }
 .pagination li{
     float: left;
@@ -134,8 +132,23 @@ nav > .right-menu
 
 footer{
     font-family: 'S-CoreDream-5Medium';
-    font-size: 10px;
+    font-size: 13px;
     width: 100vw;
+    height: auto;
     background: #D6D8DD;
     color: white;
+    padding: 30px 0px 10px 20px;
+}
+
+footer div{
+    display: flex;
+    
+}
+
+.font-bold{
+    font-family: 'S-CoreDream-9Black';
+}
+
+footer p{
+    padding: 0px 10px 10px 20px;
 }
