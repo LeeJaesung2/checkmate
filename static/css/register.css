@@ -1,79 +1,30 @@
-@font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-9Black';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-3Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-6Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-7ExtraBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-2ExtraLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-5Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-    margin: 0;
-    padding: 0;
-}
 
 /* 회원가입 페이지 */
 .signup{
     width: 70vw;
     margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 100px;
+
 }
 .signup .title{
     font-family: Jalnan;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 32px;
+    font-size: 40px;
     color: #254074;
     width: 20vw;
-    /* height: 1vh; */
     white-space  : nowrap;
+    margin-bottom: 60px;
 }
 .sign_content{
     font-family: 'S-CoreDream-3Light';
     font-size: 15px;
     line-height: 24px;
     margin-left: 20vw;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 2px solid #C9C9C9;
+    border: none;
 }
 .sign_content .sign_gender{
     display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 100px 130px 150px;
 }
 .signup input{
     border-top: none;
@@ -82,3 +33,21 @@
     border-bottom: 2px solid #C9C9C9;
     width: 300px;
 } 
+input[type=radio]{
+    width : 20px;
+}
+.submit{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border: 0px solid white;
+    border-bottom: 0;
+    width: 7vw;
+    height: 38px;
+    font-family: 'S-CoreDream-5Medium';
+    background: #3F97FF;
+    border-radius: 10px;
+    color:  #FFFFFF;
+    font-size: 15px;
+    display: block;
+    margin-left: 130px;
+}

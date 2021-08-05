@@ -72,10 +72,8 @@
 .pagination{
     list-style-type: none;
     font-family: 'S-CoreDream-3Light';
-    list-style-type: none;
-    margin-top: 50px;
-    margin-left: 8vw;
-    width: 20vw;
+    margin: 50px auto 0px auto;
+    /* width: 50vw; */
 }
 .pagination li{
     float: left;
