@@ -1,50 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-	<link rel="stylesheet" href="{% static 'css/community,info.css' %}">
+<link rel="stylesheet" href="{% static 'css/community,info.css' %}">
 {% endblock %}
 {% block content %}
 <div>
-<h3 class="title">자취 정보 공유 게시판</h3>
-<div class="com_sub-content">  
-    <a href="">인기 게시글</a>
-    <div class="com_sub-content1">
-        <h5>검색</h5>
-        <form action="" method="get">
-            {% csrf_token %}
-            <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
-            <button type="submit">검색아이콘</button>
-        </form>
-        <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
+    <h3 class="title">자취 정보 공유 게시판</h3>
+    <div class="com_sub-content">
+        <a href="">인기 게시글</a>
+        <div class="com_sub-content1">
+            <h5>검색</h5>
+            <form action="" method="get">
+                {% csrf_token %}
+                <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
+                <button type="submit">검색아이콘</button>
+            </form>
+            <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
 
-    </div>
+        </div>
 
-{% if search_keyword %}
-<h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
-{% endif %}
-{% if posts %}
-{% for post in posts %}     
-<div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
+        {% if search_keyword %}
+        <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
+        {% endif %}
+        {% if posts %}
+        {% for post in posts %}
+        <div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
 
-    {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
-    <p id="com_content-info" class="preface">원룸정보</p>
-    <p id="com_content-info">{{ post.preface_2 }}</p>
-    <p id="com_content-info">{{ post.title }}</p>
-    {% else %}
-    <p id="com_content-info" class="preface">{{ post.preface }}</p>
-    <p id="com_content-info">{{ post.preface_2 }}</p>
-    <p id="com_content-info">{{ post.title }}</p>
-    {% endif %}
+            {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or
+            post.preface == '기타' %}
+            <p id="com_content-info" class="preface">원룸정보</p>
+            <p id="com_content-info">{{ post.preface_2 }}</p>
+            <p id="com_content-info">{{ post.title }}</p>
+            {% else %}
+            <p id="com_content-info" class="preface">{{ post.preface }}</p>
+            <p id="com_content-info">{{ post.preface_2 }}</p>
+            <p id="com_content-info">{{ post.title }}</p>
+            {% endif %}
 
-</div>
-{% endfor %}
-{% else %}
-    {% if search_keyword %}
-    일치하는 검색 결과가 없습니다
-    {% else %}
-    작성된 게시글이 없습니다
-    {% endif %}
-{% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        {% if search_keyword %}
+        일치하는 검색 결과가 없습니다
+        {% else %}
+        작성된 게시글이 없습니다
+        {% endif %}
+        {% endif %}
 
 
     </div>
@@ -82,5 +83,12 @@
     }
 
     init();
+
+    // 커뮤니티에서 nav 고정
+    const box = document.querySelector(".second");
+    box.style.display = "block";
+
+    const highlight = document.getElementById('nav_offcampus');
+    highlight.style.color = "rgba(37, 64, 116, 1)";
 </script>
 {% endblock %}

@@ -5,61 +5,74 @@
 {% endblock %}
 {% block content %}
 <div class="info_container">
-	<h3>기숙사 정보 공유 게시판</h3>
-	<form action="" method="post">
-		<div class="info_container-box1">
-			{% csrf_token %}
+<h3>기숙사 정보 공유 게시판</h3>
+<form action="" method="post">
+	<div class="info_container-box1">
+	{% csrf_token %}
 
-			<input type="hidden" name="user_id" value="{{ user.id }}">
+	<input type="hidden" name="user_id" value="{{ user.id }}">
 
-			<select class="hashtag" name="preface" onchange="categoryChange(this)">
-				<option>말머리</option>
-				<option value="해결했어요">해결했어요</option>
-				<option value="질문있어요">질문있어요</option>
-				<option value="기숙사정보">기숙사정보</option>
-			</select>
+	<select id="preface" class="hashtag" name="preface" onchange="categoryChange(this)">
+		<option value="">말머리</option>
+		<option value="해결했어요">해결했어요</option>
+		<option value="질문있어요">질문있어요</option>
+		<option value="기숙사정보">기숙사정보</option>
+	</select>
 
-			<select class="hashtag" name="preface_2" id="preface_2">
-				<option>세부 선택</option>
-			</select>
-			<!-- 말머리 -->
-			<input type="text" name="title" placeholder="이곳에 제목을 작성하세요.">
-			<!-- 정보 게시판 제목 -->
-		</div>
-		<div class="info_container-box2">
-			<img src="" alt="profile_image">
-			<!-- 프로필이미지 -->
-			<p>{{ user.user_nickname }}</p>
-			<input type="file" name="image">
-			<!-- 사진 업로드 -->
-		</div>
-		<textarea class="body" name="content" cols="130" rows="20" style="resize: none;" placeholder="   이곳에 본문을 작성하세요."></textarea>
-		<!-- 정보 게시판 작성 내용 -->
-		<button type="submit">저장</button>
-	</form>
+	<select name="preface_2" class="hashtag" id="preface_2">
+		<option value="">세부 선택</option>
+	</select>
+	
+	<!-- 말머리 -->
+	<input id="title" name="title" type="text" placeholder="이곳에 제목을 작성하세요.">
+	<!-- 정보 게시판 제목 -->
 </div>
+	<div class="info_container-box2">
+	<img src="" alt="profile_image">
+	<!-- 프로필이미지 -->
+	<p>{{ user.user_nickname }}</p>
+	<input type="file" name="image">
+	<!-- 사진 업로드 -->
+</div>
+	<textarea id="content" class="body" name="content" cols="130" rows="20" style="resize: none;"
+		placeholder="   이곳에 본문을 작성하세요."></textarea>
+	<!-- 정보 게시판 작성 내용 -->
+	<button id="submit" type="submit">저장</button>
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		function categoryChange(preface_1) {
+			var preface_a = ["생활정보", "아람관"];
+			var preface_b = ["생활정보", "아람관"];
+			var preface_c = ["1동", "2동", "3동", "4동", "5동", "6동", "7동", "8동", "9동", "10동", "11동", "개척관",];
+			var target = document.getElementById("preface_2");
 
-<script>
-	function categoryChange(preface_1) {
-		var preface_a = ["생활정보", "아람관"];
-		var preface_b = ["생활정보", "아람관"];
-		var preface_c = ["1동","2동","3동","4동","5동","6동","7동","8동","9동","10동","11동","개척관",];
-		var target = document.getElementById("preface_2");
+			// preface.value와 target.value 값 POST로 불러오기 //
 
-		// preface.value와 target.value 값 POST로 불러오기 //
+			if (preface_1.value == "해결했어요") var d = preface_a;
+			else if (preface_1.value == "질문있어요") var d = preface_b;
+			else if (preface_1.value == "기숙사정보") var d = preface_c;
 
-		if(preface_1.value == "해결했어요") var d = preface_a;
-		else if(preface_1.value == "질문있어요") var d = preface_b;
-		else if(preface_1.value == "기숙사정보") var d = preface_c;
+			target.options.length = 0;
 
-		target.options.length = 0;
-
-		for (x in d) {
-			var opt = document.createElement("option");
-			opt.value = d[x];
-			opt.innerHTML = d[x];
-			target.appendChild(opt);
+			for (x in d) {
+				var opt = document.createElement("option");
+				opt.value = d[x];
+				opt.innerHTML = d[x];
+				target.appendChild(opt);
+			}
 		}
-	}
-	</script>
+
+	$(document).ready(function () {
+		$("#submit").click(function () {
+			if ($("#preface").val().length === 0) { alert("말머리를 선택해주세요."); $("#preface").focus(); return false; }
+			if ($("#preface_2").val().length === 0) { alert("말머리를 선택해주세요."); $("#preface_2").focus(); return false; }
+			if ($("#title").val().length === 0) { alert("제목을 입력해주세요."); $("#title").focus(); return false; }
+			if ($("#content").val().length === 0) { alert("내용을 입력해 주세요."); $("#content").focus(); return false; }
+
+		});
+	});
+</script>
 {% endblock %}
