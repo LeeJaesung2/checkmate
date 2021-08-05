@@ -134,8 +134,23 @@ nav > .right-menu
 
 footer{
     font-family: 'S-CoreDream-5Medium';
-    font-size: 10px;
+    font-size: 13px;
     width: 100vw;
+    height: auto;
     background: #D6D8DD;
     color: white;
+    padding: 30px 0px 10px 20px;
+}
+
+footer div{
+    display: flex;
+    
+}
+
+.font-bold{
+    font-family: 'S-CoreDream-9Black';
+}
+
+footer p{
+    padding: 0px 10px 10px 20px;
 }
