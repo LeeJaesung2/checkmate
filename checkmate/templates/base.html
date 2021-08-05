@@ -2,60 +2,78 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHECKMATE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
     {% block head %}
     {% endblock %}
 </head>
+
 <body>
     <!-- 네비바 -->
     <div class="main-check">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="20" height="20" rx="1" stroke="url(#paint0_linear)" stroke-width="2"/>
-            <rect x="11" y="11" width="11" height="11" fill="url(#paint1_linear)"/>
-            <rect width="11" height="11" fill="url(#paint2_linear)"/>
+            <rect x="1" y="1" width="20" height="20" rx="1" stroke="url(#paint0_linear)" stroke-width="2" />
+            <rect x="11" y="11" width="11" height="11" fill="url(#paint1_linear)" />
+            <rect width="11" height="11" fill="url(#paint2_linear)" />
             <defs>
-            <linearGradient id="paint0_linear" x1="0" y1="0" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#918EFF"/>
-            <stop offset="1" stop-color="#3F97FF"/>
-            </linearGradient>
-            <linearGradient id="paint1_linear" x1="-6.55651e-07" y1="6.55651e-07" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#918EFF"/>
-            <stop offset="1" stop-color="#3F97FF"/>
-            </linearGradient>
-            <linearGradient id="paint2_linear" x1="0" y1="0" x2="22" y2="21.45" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#918EFF"/>
-            <stop offset="1" stop-color="#3F97FF"/>
-            </linearGradient>
+                <linearGradient id="paint0_linear" x1="0" y1="0" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#918EFF" />
+                    <stop offset="1" stop-color="#3F97FF" />
+                </linearGradient>
+                <linearGradient id="paint1_linear" x1="-6.55651e-07" y1="6.55651e-07" x2="22" y2="22"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#918EFF" />
+                    <stop offset="1" stop-color="#3F97FF" />
+                </linearGradient>
+                <linearGradient id="paint2_linear" x1="0" y1="0" x2="22" y2="21.45" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#918EFF" />
+                    <stop offset="1" stop-color="#3F97FF" />
+                </linearGradient>
             </defs>
-            </svg>            
+        </svg>
         <a href="{% url 'main' %}">CHECKMATE</a>
     </div>
     <nav>
-        <div class="right-menu">
-            <a href="{% url 'searchRoommate' %}">룸메 찾기</a>
-            <a href="{% url 'offcampusCommunity' %}">정보 공유</a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}">로그아웃</a>
-            <a href="{% url 'mypageProfile' %}">내정보</a>
-            {% endif %}
-            {% if not user.is_authenticated %}
-            <a href="{% url 'login' %}">로그인</a>
-            {% endif %}
-        <div>
+        <div class="right-menu first">
+            <ul>
+                <li><a href="{% url 'searchRoommate' %}">룸메 찾기</a></li>
+                <li><a href="{% url 'offcampusCommunity' %}">정보 공유</a>
+                    <ul class="second">
+                        <li id="nav_domitory" onclick="location.href='{% url 'domitoryCommunity' %}'">기숙사 정보</li>
+                        <li id="nav_offcampus" onclick="location.href='{% url 'offcampusCommunity' %}'">자취 정보</li>
+                    </ul>
+                </li>
+
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">로그아웃</a></li>
+                <li><a href="{% url 'mypageProfile' %}">내정보</a></li>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}">로그인</a></li>
+                {% endif %}
+            </ul>
+            <div>
     </nav>
     <div class="container">
-    {% block content %}
-        
-    {% endblock %}
+        {% block content %}
+
+        {% endblock %}
     </div>
     <footer>
         <div>
@@ -63,11 +81,11 @@
             <p>경상대학교 멋쟁이사자처럼</p>
         </div>
         <div>
-        <p class="tel">TEL | 055-1234-5678</p>
-        <p class="mail">MAIL | likelionGnu@likelion.org</p>
-        <p class="insta">INSTAGRAM | likelion_gnu</p>
+            <p class="tel">TEL | 055-1234-5678</p>
+            <p class="mail">MAIL | likelionGnu@likelion.org</p>
+            <p class="insta">INSTAGRAM | likelion_gnu</p>
         </div>
     </footer>
 </body>
+
 </html>
-        

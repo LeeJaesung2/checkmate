@@ -87,6 +87,7 @@
     display: inline-block;
     margin-top: 3vw;
     margin-left: 3vw;
+
 }
 
 .main-check > a{
@@ -129,6 +130,37 @@ nav > .right-menu
     display: inline-block;
     color: rgba(93, 148, 255, 1);
 }
+nav li{
+    list-style: none;
+    color:#959595;
+}
+.first li{
+float: left; 
+height:2.5rem;
+position:relative;
+
+}
+.second{
+    position:absolute; top:100%; left:0;
+    display:none;
+    font-family: 'S-CoreDream-6bold';
+    font-size:1rem;
+    padding-left:0;
+    padding-top:0.5rem;
+
+}
+.second li{
+
+    width:100%;
+    padding-left:1rem;
+    border-left: 5px solid rgba(145, 142, 255, 1);
+    
+}
+.first li:hover .second{display:block;}
+
+.first li:active .second{display:block;}
+
+.secont :hover{display:block;}
 
 /* 푸터 */
 
