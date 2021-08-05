@@ -54,6 +54,7 @@ def register(request):
 
 
 def mypageProfile(request):
+    user = request.user
     if request.method == "POST":
         current_password = request.POST.get('user_password')
         user = request.user
@@ -70,7 +71,7 @@ def mypageProfile(request):
         else:
             messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
 
-    return render(request, 'mypageProfile.html')
+    return render(request, 'mypageProfile.html',{'user':user})
 
 
 
