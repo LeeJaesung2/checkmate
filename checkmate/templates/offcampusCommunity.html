@@ -39,12 +39,13 @@
         </div>
         {% endfor %}
         {% else %}
-        {% if search_keyword %}
-        일치하는 검색 결과가 없습니다
-        {% else %}
-        작성된 게시글이 없습니다
+            {% if search_keyword %}
+            일치하는 검색 결과가 없습니다
+            {% else %}
+            작성된 게시글이 없습니다
         {% endif %}
-        {% endif %}
+    {% endif %}
+
     </div>
     <div>
         <ul class="pagination">
