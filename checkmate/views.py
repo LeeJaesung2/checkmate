@@ -67,9 +67,17 @@ def offcampusCommunity(request):
 
 
 def domitoryCommunity(request):
+    search_keyword = request.GET.get('search_keyword')
     posts = Domitory_Post.objects.all()
-
+    if search_keyword:
+        if len(search_keyword) > 1:
+            posts = posts.filter(title__icontains=search_keyword)
+            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
+        else:
+            message.error(request, '검색어는 2글자 이상 입력해주세요')
     return render(request, 'domitoryCommunity.html',{'posts':posts})
+
+    
 
 def offcampusView(request,post_id):
     
