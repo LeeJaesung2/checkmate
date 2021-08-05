@@ -80,7 +80,7 @@
     margin-top: 30px;
     margin-left: 10vw;
     width: 40vw;
-    height: 70vh;
+    height: 2vh;
 
 }
 #com_content-info{
@@ -194,4 +194,11 @@
     border: none;
     border-bottom: 1px solid #C9C9C9;
     width: 100%;
+}
+
+/* 긱사 view  */
+.dom-view_container{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 60px;
 }
