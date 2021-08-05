@@ -84,6 +84,20 @@ def filter(request, writes):
     if dormitory_number=='11' or dormitory_number=='9' or dormitory_number=='7' or dormitory_number=='5' or dormitory_number=='4':
         writes = writes.filter(survey_ess_id__dormitory_number_woman=dormitory_number)
 
+
+    dormitory_year_start = request.GET.get('dormitory_year_start')
+    dormitory_semester_start = request.GET.get('dormitory_semester_start')
+    if dormitory_year_start and dormitory_semester_start:
+        writes = writes.filter(survey_ess_id__dormitory_year_start=dormitory_year_start)
+        writes = writes.filter(survey_ess_id__dormitory_semester_start=dormitory_semester_start)
+
+    dormitory_year_end = request.GET.get('dormitory_year_end')
+    dormitory_semester_end = request.GET.get('dormitory_semester_end')
+    if dormitory_year_end and dormitory_semester_end:
+        writes = writes.filter(survey_ess_id__dormitory_year_end=dormitory_year_end)
+        writes = writes.filter(survey_ess_id__dormitory_semester_end=dormitory_semester_end)
+
+    
     relationship = request.GET.get('relationship')
     if relationship:
         writes = writes.filter(survey_ess_id__relationship=relationship)
