@@ -32,7 +32,8 @@
                 <br><br><br>
                 <button id="login_btn" type="submit">Login</button>
                 <!--<a href="{% url 'register' %}">회원가입</a> -->
-                <button id="kakao-login" type="submit" onclick="location.href='{% url 'kakaoLoginLogic' %}'" >카카오회원가입</button>
+                <a id="kakao-login" href="{% url 'kakaoLoginLogic' %}">카카오회원가입</a>
+
             </form> 
         </div>
     </div>

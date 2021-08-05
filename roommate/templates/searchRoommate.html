@@ -1,35 +1,37 @@
-<!-- {% extends 'base.html' %} -->
+{% extends 'base.html' %}
 {% load static %}
-
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/searchRoommate.css' %}">
+{% endblock %}
 {% block content %}
-<button>룸메추천받기</button>
-<button>필터적용하기</button>
-<!-- 필터 -->
-<small>*내가 원하는 룸메에 대해 적어주세요</small>
-<div>
-    
-</div>
-
 
 <div>
     <div>
         <h3 class="search_title" >룸메 찾기</h3>
     </div>
+    <div class='filter-btn-box'>
+        <div class='filter-btn-box-left'>
+            <small>* 내가 원하는 룸메에 대해 적어주세요</small>
+        </div>
+        <div class='filter-btn-box-right'>
+            <button class='filter-top-btn'>룸메추천받기</button>
+            <button class='filter-top-btn'>필터적용하기</button>
+            <input class='filter-top-btn' type="button" value="˅" id="down" onclick="showfilter()" >
+            <input class='filter-top-btn' type="button" value="˄" id="up" onclick="hidefilter()" >
+        </div>
+    </div>
+
     <div>
         <form action="" method="GET">
             {% csrf_token %}
-            <p>필터적용하기</p>
-            <!-- 필터를 보이게 하는 버튼 -->
-            <input type="button" value="˅" id="down" onclick="showfilter()" >
-            <!-- 필터를 숨기는 버튼 -->
-            <input type="button" value="˄" id="up" onclick="hidefilter()" >
+            <!-- <p>필터적용하기</p> -->
             <div id="filter">
                 <form action="">
-                    <div class="essential">
-                        <div class="filter_grade">
+                    <!-- <div class="essential"> -->
+                        <div class="question filter_grade">
                             <h6 class="title">학년</h6>
                             <div class="answer">
-                                <select name="grad" id="">
+                                <select name="grade" id="">
                                     <option value="">------</option>
                                     <option value="1">1학년</option>
                                     <option value="2">2학년</option>
@@ -40,14 +42,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="filter_room_type">
+                        <div class="question filter_room_type">
                             <h6 class="title">기숙사 or 자취</h6>
                             <div class="answer">
                                 <input type="radio" id="room_type_0" name="room_type" value="0"><label for="room_type_0">기숙사</label>
                                 <input type="radio" id="room_type_1" name="room_type" value="1"><label for="room_type_1">자취</label>
                             </div>
                         </div>
-                        <div class="filter_dormitory_number">
+                        <div class="question filter_dormitory_number">
                             <h6 class="title">기숙사 동</h6>
                             <div class="answer">
                                 {% if user.user_gender == "남" %}
@@ -102,7 +104,7 @@
                                     <option value="2">2학기</option>
                                     <option value="W">겨울방학</option>
                                 </select>
-                                <span>~</span>
+                                <span>부터</span>
                                 <select name="dormitory_year_end">
                                     <option value="">------</option>
                                     <option value="2021">2021</option>
@@ -116,16 +118,17 @@
                                     <option value="2">2학기</option>
                                     <option value="W">겨울방학</option>
                                 </select>
+                                <span>까지</span>
                             </div>
                         </div>
-                        <div class="filter_relationship">
+                        <div class="question filter_relationship">
                             <h6 class="title">룸메와의 관계</h6>
                             <div class="answer">
                                 <input type="radio" id="friendly" name="relationship" value="0"><label for="friendly">친하게</label>
                                 <input type="radio" id="business" name="relationship" value="1"><label for="business">인사만</label>
                             </div>
                         </div>
-                        <div class="filter_wakeup_time">
+                        <div class="question filter_wakeup_time">
                             <h6 class="title">기상시간</h6>
                             <div class="answer">
                                 <input type="time" id="start_wakeup_time" name="start_wakeup_time">
@@ -133,7 +136,7 @@
                                 <input type="time" id="end_wakeup_time" name="end_wakeup_time">
                             </div>
                         </div>
-                        <div class="filter_bed_time">
+                        <div class="question filter_bed_time">
                             <h6 class="title">취침시간</h6>
                             <div class="answer">
                                 <input type="time" id="start_bed_time" name="start_bed_time">
@@ -141,14 +144,14 @@
                                 <input type="time" id="end_bed_time" name="end_bed_time">
                             </div>
                         </div>
-                        <div class="filter_smoke">
+                        <div class="question filter_smoke">
                             <h6 class="title">흡연</h6>
                             <div class="answer">
                                 <input type="radio" id="nonsmoker" name="smoke" value="0"><label for="nonsmoker">비흡연자</label>
                                 <input type="radio" id="smoker" name="smoke" value="1"><label for="smoker">흡연자</label>
                             </div>
                         </div>
-                        <div class="filter_cleaning">
+                        <div class="question filter_cleaning">
                             <h6 class="title">청소주기</h6>
                             <div class="answer">
                                 <select name="cleaning">
@@ -162,7 +165,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="filter_sleeping_habits">
+                        <div class="question filter_sleeping_habits">
                             <h6 class="title">잠버릇</h6>
                             <div class="answer">
                                 <input type="checkbox" id="snoring" name="sleeping_habits_snoring" value="True"><label for="snoring">코골이</label>
@@ -170,14 +173,14 @@
                                 <input type="checkbox" id="nothing" name="sleeping_habits_nothing" value="True"><label for="nothing">없음</label>
                             </div>
                         </div>
-                        <div class="filter_invite_friends">
+                        <div class="question filter_invite_friends">
                             <h6 class="title">친구 초대</h6>
                             <div class="answer">
                                 <input type="radio" id="invite_friends_yes" name="invite_friends" value="True"><label for="invite_friends_yes">예</label>
                                 <input type="radio" id="invite_friends_no" name="invite_friends" value="False"><label for="invite_friends_no">아니요</label>
                             </div>
                         </div>
-                        <div class="filter_call">
+                        <div class="question filter_call">
                             <h6 class="title">실내 통화</h6>
                             <div class="answer">
                                 <input type="radio" id="call_yes" name="call" value='0'><label for="call_yes">예</label>
@@ -185,14 +188,14 @@
                                 <input type="radio" id="call_short" name="call" value='2'><label for="call_short">짧은통화만</label>
                             </div>
                         </div>
-                        <div class="filter_earphones">
+                        <div class="question filter_earphones">
                             <h6 class="title">이어폰 사용</h6>
                             <div class="answer">
                                 <input type="radio" id="earphones_yes" name="earphones" value="True"><label for="earphones_yes">필수</label>
                                 <input type="radio" id="earphones_no" name="earphones" value="False"><label for="earphones_no">사용한함</label>
                             </div>
                         </div>
-                        <div class="filter_eat">
+                        <div class="question filter_eat">
                             <h6 class="title">실내취식</h6>
                             <div class="answer">
                                 <input type="radio" id="eat_yes" name="eat" value='0'><label for="eat_yes">먹음</label>
@@ -200,25 +203,25 @@
                                 <input type="radio" id="eat_no" name="eat" value='2'><label for="eat_no">먹지 않음</label>
                             </div>
                         </div>
-                        <div class="filter_animal not-dormitory">
-                            <h2 class="title">반려동물</h1>
+                        <div class="question filter_animal not-dormitory">
+                            <h6 class="title">반려동물</h6>
                             <div class="answer">
                                 <input type="checkbox" id="animal-dog" name="animal_dog" value='True'><label for="animal-dog">강아지</label>
                                 <input type="checkbox" id="animal-cat" name="animal_cat" value='True'><label for="animal-cat">고양이</label>
                                 <input type="checkbox" id="animal-no" name="animal_no" value='True' class=".nothing"><label for="animal-no">없음</label>
                             </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
 
-                    <div class="optional">
-                        <div class="filter_share">
+                    <!-- <div class="optional"> -->
+                        <div class="question filter_share">
                             <h6 class="title">생필품</h6>
                             <div class="answer">
                                 <input type="radio" id="share_yes" name="share" value='1'><label for="share_yes">공유</label>
                                 <input type="radio" id="share_no" name="share" value='2'><label for="share_snack">각자</label>
                             </div>
                         </div>
-                        <div class="filter_toilet">
+                        <div class="question filter_toilet">
                             <h6 class="title">화장실 청소</h6>
                             <div class="answer">
                                 <select name="toilet">
@@ -232,7 +235,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="filter_ventilate" >
+                        <div class="question filter_ventilate" >
                             <h6 class="title">환기</h6>
                             <div class="answer">
                                 <select name="ventilate">
@@ -246,29 +249,29 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="filter_feel">
+                        <div class="question filter_feel">
                             <h6 class="title">온도</h6>
                             <div class="answer">
                                 <input type="checkbox" id="feel_cold" name="feel_cold" value="False"><label for="feel_cold">추위를 많이 탐</label>
                                 <input type="checkbox" id="feel_hot" name="feel_hot" value="False"><label for="feel_hot">더위를 많이 탐</label>
                             </div>
                         </div>
-                        <div class="filter_bug">
+                        <div class="question filter_bug">
                             <h6 class="title">벌레 퇴치</h6>
                             <div class="answer">
                                 <input type="radio" id="bug_yes" name="bug" value="1"><label for="bug_yes">잘잡음</label>
                                 <input type="radio" id="bug_no" name="bug" value="2"><label for="bug_snack">못잡음</label>
                             </div>
                         </div>
-                        <div class="filter_keyboard">
+                        <div class="question filter_keyboard">
                             <h6 class="title">키보드 소리</h6>
                             <div class="answer">
                                 <input type="radio" id="keyboard_loud" name="keyboard" value="1"><label for="keyboard_loud">타이핑&게임 자주함</label>
-                                <input type="radio" id="keyboard_no" name="keyboard" value="2"><label for="keyboard_no">거의 안함</label>
+                                <input type="radio" id="keyboard_no" name="keyboard" value="2"><label for="keyboard_no">거의 안함</label><br>
                                 <input type="checkbox" id="keyboard_noise" name="keyboard_checkbox" value="True"><label for="keyboard_noise">저소음 키보드 사용중</label>
                             </div>
                         </div>
-                        <div class="filter_game">
+                        <div class="question filter_game">
                             <h6 class="title">게임여부</h6>
                             <div class="answer">
                                 <input type="radio" id="game_yes" name="game" value="1"><label for="game_yes">자주</label>
@@ -276,7 +279,7 @@
                                 <input type="radio" id="game_no" name="game" value="3"><label for="game_no">안 함</label>
                             </div>
                         </div>
-                        <div class="filter_mbti">
+                        <div class="question filter_mbti">
                             <h6 class="title">MBTI</h6>
                             <div class="answer">
                                 <select name="mbti">
@@ -300,14 +303,14 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
                     <!-- 버튼 안보임 -->
-                    <button type="submit">적용하기</button>
+                    <button id='filter-submit' type="submit">적용하기</button>
                 </form>
             </div>
             
             
-            <div>
+            <div class="search_bar">
                 <h2>검색</h2>
                 <div>
                     <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
@@ -381,7 +384,6 @@
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
-
 
 <script>
     const open = document.querySelector(".open");
