@@ -4,6 +4,7 @@ from django.db.models import Q
 from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from account.models import CustomUser
+from datetime import datetime
 
 # Create your views here.
 
@@ -23,7 +24,10 @@ def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
     survey_ess = write_detail.user_id.survey_ess_id
     survey_opt = write_detail.user_id.survey_opt_id
-    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt})
+    age = datetime.today().year - write_detail.user_id.user_birthyear+1
+    pre = write_detail.id - 1
+    next = write_detail.id + 1
+    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next})
 
 def create(request):
     if request.method == 'POST':
@@ -61,9 +65,25 @@ def delete(request, write_id):
 
 
 
-
+def year(age):
+    now = datetime.today().year
+    year = now - int(age) +1
+    return (year)
 
 def filter(request, writes):
+    state = request.GET.get('state')
+    if state:
+        writes = writes.filter(state=state)
+
+    age_start = request.GET.get('age_start')
+    age_end = request.GET.get('age_end')
+    
+    if age_start and age_end:
+        
+        year_end = year(age_start)
+        yser_start = year(age_end)
+        writes = writes.filter(user_id__user_birthyear__range=(yser_start,year_end))
+
     grad = request.GET.get('grad')
     if grad:
         writes = writes.filter(survey_ess_id__grade=grad)
@@ -195,4 +215,5 @@ def filter(request, writes):
     mbti = request.GET.get('mbti')
     if mbti:
         writes = writes.filter(survey_opt_id__mbti=mbti)
+    
     return(writes)

@@ -10,13 +10,17 @@
         <h5>검색</h5>
         <form action="" method="get">
             {% csrf_token %}
-            <input type="text" placeholder="#역세권_오피스텔_어때요?">
+            <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
             <button type="submit">검색아이콘</button>
         </form>
         <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
     </div>
 </div>
 
+{% if search_keyword %}
+<h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
+{% endif %}
+{% if posts %}
 {% for post in posts %}     
 <div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
 
@@ -32,6 +36,13 @@
 
 </div>
 {% endfor %}
+{% else %}
+    {% if search_keyword %}
+    일치하는 검색 결과가 없습니다
+    {% else %}
+    작성된 게시글이 없습니다
+    {% endif %}
+{% endif %}
 
 <div>
     <ul class="pagination">
