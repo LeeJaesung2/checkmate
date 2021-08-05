@@ -52,7 +52,7 @@
                 <option value="KOR">대한민국</option>
                 <option value="CHN">중국</option>
             </select><br><br><br>
-            <!-- 프로필 사진: <input type="file" name="image"> -->
+            프로필 사진: <input type="file" name="image" id="user_image">
             닉네임: <input type="text" id="user_nickname" name="user_nickname" maxlength='8' placeholder="최대 8글자">
             <br><br><br>
             <button class="submit" type="submit">Sign Up</button>
@@ -73,6 +73,7 @@
         else{
             alert("성별을 선택해주세요.");$("#gender").focus();return false;
         }
+        if($("#user_image").val().length===0){alert("프로필 이미지를 설정해주세요.");$("#user_image").focus();return false;}
         if($("#user_birthyear").val().length===0){alert("출생년도를 선택해주세요.");$("#user_birthyear").focus();return false;}
         if($("#user_nation").val().length===0){alert("국가를 선택해주세요.");$("#user_nation").focus();return false;}
         if($("#user_nickname").val().length===0){alert("닉네임을 입력해주세요.");$("#user_nickname").focus();return false;}

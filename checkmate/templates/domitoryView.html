@@ -17,6 +17,7 @@
 </div>
 
 <div>
+    <img src="{{ post.image }}" alt="">
     <p>{{ post.content }}</p>
     <!-- 내용 -->
     <a href="{% url 'domitoryUpdate' post.id %}"><span>수정</span></a>

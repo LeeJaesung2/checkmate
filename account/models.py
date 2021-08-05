@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
     user_gender = models.CharField(max_length=8, verbose_name='성별')
     user_nation = models.CharField(max_length=16, verbose_name='국적')
     user_nickname = models.CharField(max_length=8, unique=True, verbose_name='닉네임')
+    user_image = models.ImageField(upload_to="user_image/%Y/%m/%d", blank=True )
     YEAR_CHOICES = [
         (r,r) for r in range(1950, datetime.date.today().year+1)]
     user_birthyear = models.IntegerField(choices=YEAR_CHOICES, verbose_name='출생년도', default=0)
