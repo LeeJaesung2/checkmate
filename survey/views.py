@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import SurveyEssential, SurveyOptional
 from account.models import CustomUser
 
@@ -61,4 +61,4 @@ def submitSurvey(request):
     user_obj.survey_opt_id = oSurvey
     user_obj.save()
 
-    return render(request, 'survey.html')
+    return redirect('searchRoommate')
