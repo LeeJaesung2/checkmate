@@ -5,20 +5,23 @@ from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from account.models import CustomUser
 from datetime import datetime
+import math
 
 # Create your views here.
 
 def searchRoommate(request):
     search_keyword = request.GET.get('search_keyword')
-    writes = Write.objects
+    writes = Write.objects.all()
     writes = filter(request, writes)
     if search_keyword:
         if len(search_keyword) > 1:
             writes = writes.filter(title__icontains=search_keyword)
-            return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword})
+            writes, page_range = paging(request, writes)
+            return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
         else:
             messages.error(request, '검색어는 2글자 이상 입력해주세요')
-    return render(request, 'searchRoommate.html',{'writes':writes})
+    writes, page_range = paging(request, writes)
+    return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range})
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
@@ -217,3 +220,27 @@ def filter(request, writes):
         writes = writes.filter(survey_opt_id__mbti=mbti)
     
     return(writes)
+
+def paging(request, writes):
+    page = int(request.GET.get('page',1))
+    paginated_by = 5
+    total_count = len(writes)
+    total_page = math.ceil(total_count/paginated_by)
+    
+    if (page<3):
+        if (total_page<6):
+            page_range = range(1, total_page+1)
+        else:
+            page_range = range(1, 6)
+
+    else:
+        if (total_page<page+3):
+            page_range = range(total_page-4, total_page+1)
+        else:
+            page_range = range(page-2, page+3)
+
+    start_index = paginated_by * (page-1)
+    end_index = paginated_by * page
+    writes = writes[start_index:end_index]
+
+    return writes, page_range

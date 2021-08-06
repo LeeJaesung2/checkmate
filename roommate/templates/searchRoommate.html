@@ -354,7 +354,7 @@
             </thead>
             <tbody>
                 {% if writes %}
-                {% for write in writes.all %}
+                {% for write in writes %}
                 <tr>
                     <td>{{ write.get_state_display}}</td>
                     <td>{{ write.user_id.survey_ess_id.get_room_type_display}}</td>
@@ -387,13 +387,11 @@
 
 <div>
     <ul class="pagination">
-        <li class="page_item"><a class="page_link" href="#">◀</a></li>
-        <li class="page_item"><a class="page_link" href="#">1</a></li>
-        <li class="page_item"><a class="page_link" href="#">2</a></li>
-        <li class="page_item"><a class="page_link" href="#">3</a></li>
-        <li class="page_item"><a class="page_link" href="#">4</a></li>
-        <li class="page_item"><a class="page_link" href="#">5</a></li>
-        <li class="page_item"><a class="page_link" href="#">▶</a></li>
+        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        {% for page in page_range %}
+        <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">▶</a></li>
     </ul>
 </div>
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
