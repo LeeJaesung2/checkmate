@@ -1,4 +1,3 @@
-
 /* 정보게시판 */
 .com_container{
     width: 70vw;
@@ -80,8 +79,7 @@
     margin-top: 30px;
     margin-left: 10vw;
     width: 40vw;
-    height: 70vh;
-
+    height: 5vh;
 }
 #com_content-info{
     font-family: 'S-CoreDream-6Bold';
@@ -115,83 +113,4 @@
     color: #1F1F1F;
     white-space  : nowrap;
     width: 100px;
-}
-
-/* infoWrite창 */
-.info_container{
-    width: 70vw;
-    margin: 0 auto;
-    margin-top: 60px;
-}
-.info_container h3{
-    font-family: Jalnan;
-    font-size: 30px;
-    line-height: 42px;
-    color: #254074;
-    padding-bottom: 70px;
-    height: 1vh;
-}
-.hashtag{
-    font-family: 'S-CoreDream-7ExtraBold';
-    font-size: 15px;
-    line-height: 18px;
-    letter-spacing: 0.1em;
-    color: #254074;
-    border: 1px solid #254074;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-.info_container-box1 input{
-    padding-left: 13px;
-    font-family: Jalnan;
-    font-size: 17px;
-    letter-spacing: 0.1em;
-    width: 60%;
-}
-
-.info_container input{
-    border: none;
-}
-.info_container-box1{
-    border: none;
-    border-bottom: 2px solid #C9C9C9;
-    padding-bottom: 10px;
-}
-.info_container button{
-    font-family: Jalnan;
-    font-size: 15px;
-    color: #5D94FF;
-    border: 2px solid #268AFF;
-    background-color: white;
-    box-sizing: border-box;
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
-    margin-left: 60vw;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.info_container-box2{
-    display: grid;
-    grid-template-columns: 8vw 45vw 25vw;
-    padding-top: 30px;
-}
-.info_container-box2 p{
-    font-family: 'S-CoreDream-6Bold';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: -0.1em;
-    color: #454545;
-}
-.info_container .body{
-    margin-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: 'S-CoreDream-3Light';
-    font-size: 15px;
-    border: none;
-    border-bottom: 1px solid #C9C9C9;
-    width: 100%;
 }

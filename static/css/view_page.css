@@ -1,0 +1,64 @@
+/* domitoryView, 룸메이트' detail 파일 연결
+(View, detail) */
+
+/* 긱사 view */
+.view_container{
+    width: 70vw;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.view_box1{
+    display: grid;
+    grid-template-columns: 56vw 1vw;
+    border-bottom: 1px solid #C9C9C9;
+}
+.view_box1 h3{
+    font-family: Jalnan;
+    font-size: 30px;
+    color: #254074;
+    white-space  : nowrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.view_info{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-size: 15px;
+    color: #254074;
+    padding-left: 10px;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 25px;
+    width: 13vw;
+}
+.view_box1 small{
+    font-family: 'S-CoreDream-3Light';
+    font-size: 15px;
+    color: #959595;
+    white-space  : nowrap;
+    margin-top: 40px;
+
+}
+.view_box2{
+    display: grid;
+    grid-template-columns: 10vw 10vw;
+    font-family: 'S-CoreDream-6Bold';
+    font-size: 20px;
+    color: #454545;
+    margin-top: 30px;
+
+}
+.body{
+    font-family: 'S-CoreDream-3Light';
+    font-size: 17px;
+    color: #454545;
+    padding-top: 30px;
+    padding-left: 30px;
+    width: 40vw;
+    height: 50vh;
+}
+.bottom{
+    font-family: 'S-CoreDream-5Medium';
+    font-size: 20px;
+    color: #001F70;
+    float: right;
+}
