@@ -4,25 +4,22 @@
 <link rel="stylesheet" href="{% static 'css/community.css' %}">
 {% endblock %}
 {% block content %}
-<div>
-    <h3 class="title">자취 정보 공유 게시판</h3>
+<div class="com_container">
+    <h3>자취 정보 공유 게시판</h3>
+    <a id="com_t" href="">인기 게시글</a>
     <div class="com_sub-content">
-        <a href="">인기 게시글</a>
-        <div class="com_sub-content1">
             <h5>검색</h5>
             <form action="" method="get">
                 {% csrf_token %}
                 <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
-                <button type="submit">검색아이콘</button>
+                <button id="com_submit" type="submit">검색아이콘</button>
             </form>
             
             {% if user_id %}
-            <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
+            <button id="plus_btn" onclick="location.href='{% url 'infoWrite' %}'">+</button>
             {% else %}
-            <button onclick="alert('글쓰기는 로그인 후에 가능합니다.')">+</button>
+            <button id="plus_btn" onclick="alert('글쓰기는 로그인 후에 가능합니다.')">+</button>
             {% endif %}
-                
-
         </div>
 
         {% if search_keyword %}
@@ -34,12 +31,12 @@
 
             {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
             <p id="com_content-info" class="preface">원룸정보</p>
-            <p id="com_content-info">{{ post.preface_2 }}</p>
-            <p id="com_content-info">{{ post.title }}</p>
+            <p id="com_content-title">{{ post.preface_2 }}</p>
+            <p id="com_content-body">{{ post.title }}</p>
             {% else %}
             <p id="com_content-info" class="preface">{{ post.preface }}</p>
-            <p id="com_content-info">{{ post.preface_2 }}</p>
-            <p id="com_content-info">{{ post.title }}</p>
+            <p id="com_content-title">{{ post.preface_2 }}</p>
+            <p id="com_content-body">{{ post.title }}</p>
             {% endif %}
 
         </div>
