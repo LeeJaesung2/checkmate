@@ -227,11 +227,11 @@ def filter(request, writes):
 
 def paging(request, writes):
     page = int(request.GET.get('page',1))
-    paginated_by = 5
+    paginated_by = 10
     total_count = len(writes)
     total_page = math.ceil(total_count/paginated_by)
     
-    if (page<3):
+    if (page<4):
         if (total_page<6):
             page_range = range(1, total_page+1)
         else:
