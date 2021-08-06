@@ -10,7 +10,7 @@
 <div class="signup">
     <div class="sign_content">
         <h3 class="title">회원가입</h3>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
             <!-- 미디어로 받기 -->
@@ -24,7 +24,7 @@
             Your password can’t be entirely numeric. -->
             이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
 
-        <div class="sign_gender">
+            <div class="sign_gender">
                 성별: 
                 <div>
                     <input id="user_gender-men" type="radio" name="user_gender" value="남">
@@ -34,8 +34,8 @@
                     <input id="user_gender-woman" type="radio" name="user_gender" value="여">
                     <label for="user_gender-woman">여자</label> 
                 </div>
-        </div>
-      <br><br><br>
+            </div>
+            <br><br><br>
             <!-- selsect로 수정해야함 -->
             출생년도:
             <select name="user_birthyear" id="user_birthyear">
@@ -52,7 +52,7 @@
                 <option value="KOR">대한민국</option>
                 <option value="CHN">중국</option>
             </select><br><br><br>
-            프로필 사진: <input type="file" name="image" id="user_image">
+            프로필 사진: <input type="file" name="user_image" accept="user_image/*" id="user_image">
             닉네임: <input type="text" id="user_nickname" name="user_nickname" maxlength='8' placeholder="최대 8글자">
             <br><br><br>
             <button class="submit" type="submit">Sign Up</button>

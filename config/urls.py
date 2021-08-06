@@ -19,7 +19,8 @@ from checkmate import views
 
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.views.static import serve
+from django.conf.urls import url
 
 
 urlpatterns = [
@@ -41,6 +42,7 @@ urlpatterns = [
     path('domitoryDelete/<int:post_id>',views.domitoryDelete, name='domitoryDelete'),
     path('offcampusUpdate/<int:post_id>',views.offcampusUpdate, name='offcampusUpdate'),
     path('domitoryUpdate/<int:post_id>',views.domitoryUpdate, name='domitoryUpdate'),
+    url(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT,})
 
 
 
