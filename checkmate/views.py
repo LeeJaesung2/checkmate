@@ -146,11 +146,11 @@ def domitoryUpdate(request, post_id):
 
 def paging(request, posts):
     page = int(request.GET.get('page',1))
-    paginated_by = 5
+    paginated_by = 10
     total_count = len(posts)
     total_page = math.ceil(total_count/paginated_by)
     
-    if (page<3):
+    if (page<4):
         if (total_page<6):
             page_range = range(1, total_page+1)
         else:
