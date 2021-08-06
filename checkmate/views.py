@@ -4,6 +4,7 @@ from account.models import CustomUser
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
+import math
 
 # Create your views here.
 
@@ -62,10 +63,12 @@ def offcampusCommunity(request):
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
+            posts, page_range = paging(request, posts)
             return render(request, 'offcampusCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
         else:
             message.error(request, '검색어는 2글자 이상 입력해주세요')
-    return render(request, 'offcampusCommunity.html',{'posts':posts})
+    posts, page_range = paging(request, posts)
+    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range})
 
 
 def domitoryCommunity(request):
@@ -74,12 +77,13 @@ def domitoryCommunity(request):
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
-            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
+            posts, page_range = paging(request, posts)
+            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword, 'page_range':page_range})
         else:
             message.error(request, '검색어는 2글자 이상 입력해주세요')
-    return render(request, 'domitoryCommunity.html',{'posts':posts})
-
-    
+    posts, page_range = paging(request, posts)
+    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range})
+     
 
 def offcampusView(request,post_id):
     
@@ -139,3 +143,27 @@ def domitoryUpdate(request, post_id):
         post = Domitory_Post.objects.get(id=post_id)
         user = request.user
         return render(request, 'domitoryUpdate.html',{'user':user,'post':post})
+
+def paging(request, posts):
+    page = int(request.GET.get('page',1))
+    paginated_by = 5
+    total_count = len(posts)
+    total_page = math.ceil(total_count/paginated_by)
+    
+    if (page<3):
+        if (total_page<6):
+            page_range = range(1, total_page+1)
+        else:
+            page_range = range(1, 6)
+
+    else:
+        if (total_page<page+3):
+            page_range = range(total_page-4, total_page+1)
+        else:
+            page_range = range(page-2, page+3)
+
+    start_index = paginated_by * (page-1)
+    end_index = paginated_by * page
+    posts = posts[start_index:end_index]
+
+    return posts, page_range
