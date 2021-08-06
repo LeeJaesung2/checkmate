@@ -15,7 +15,13 @@
                 <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
                 <button type="submit">검색아이콘</button>
             </form>
+            
+            {% if user_id %}
             <button onclick="location.href='{% url 'infoWrite' %}'">+</button>
+            {% else %}
+            <button onclick="alert('글쓰기는 로그인 후에 가능합니다.')">+</button>
+            {% endif %}
+                
 
         </div>
 

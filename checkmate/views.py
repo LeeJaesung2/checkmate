@@ -27,7 +27,10 @@ def infoWrite(request):
         return redirect('offcampusView', post.id)
     else:
         user = request.user
-        return render(request, 'infoWrite.html',{'user':user})
+        if(user):
+            return render(request, 'infoWrite.html',{'user':user})
+        else:
+            return redirect('offcampusCommunity')
 
 
 def dom_infoWrite(request):
@@ -46,7 +49,10 @@ def dom_infoWrite(request):
         return redirect('domitoryView', post.id)
     else:
         user = request.user
-        return render(request, 'dom_infoWrite.html',{'user':user})
+        if(user):
+            return render(request, 'dom_infoWrite.html',{'user':user})
+        else:
+            return redirect('domioryCommunity')
 
 def survey(request):
     return render(request, 'survey.html')
@@ -60,6 +66,7 @@ def mypageWritten(request):
 def offcampusCommunity(request):
     search_keyword = request.GET.get('search_keyword')
     posts = Offcampus_Post.objects.all()
+    user_id = request.user.id
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
@@ -68,12 +75,12 @@ def offcampusCommunity(request):
         else:
             message.error(request, '검색어는 2글자 이상 입력해주세요')
     posts, page_range = paging(request, posts)
-    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range})
-
+    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
 
 def domitoryCommunity(request):
     search_keyword = request.GET.get('search_keyword')
     posts = Domitory_Post.objects.all()
+    user_id = request.user.id
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
@@ -82,18 +89,18 @@ def domitoryCommunity(request):
         else:
             message.error(request, '검색어는 2글자 이상 입력해주세요')
     posts, page_range = paging(request, posts)
-    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range})
+    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
      
 
 def offcampusView(request,post_id):
-    
+    user = request.user
     post = Offcampus_Post.objects.get(id=post_id)
-    return render(request, 'offcampusView.html',{'post':post})
+    return render(request, 'offcampusView.html',{'post':post,'user':user})
 
 def domitoryView(request,post_id):
-
+    user = request.user
     post = Domitory_Post.objects.get(id=post_id)
-    return render(request, 'domitoryView.html',{'post':post})
+    return render(request, 'domitoryView.html',{'post':post,'user':user})
 
 def offcampusDelete(request, post_id):
     post = Offcampus_Post.objects.get(id=post_id)
