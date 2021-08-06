@@ -23,6 +23,12 @@
     font-style: normal;
 }
 @font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'S-CoreDream-6Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
     font-weight: normal;
@@ -42,34 +48,7 @@
 }
 
 
-@font-face {
-    font-family: 'S-CoreDream-5Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
-/* 부트스트랩 브레이크포인트 */
-@media (min-width: 576px) {
-    :root{
-        font-size:7px;
-    }
-}
-@media (min-width: 768px) {
-    :root{
-        font-size:9px;
-    }
-}
-@media (min-width: 992px) {
-    :root{
-        font-size:13px;
-    }
-}
-@media (min-width: 1200px) {
-    :root{
-        font-size:16px;
-    }
-}
 
 *{
     margin: 0;

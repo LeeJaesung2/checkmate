@@ -4,11 +4,14 @@
 
 .container{
     text-align: center;
-    padding: 10vh 9vw;
+    padding: 10vh 10vw;
+    /* width: 960px; */
 }
 
 h6{
     margin: 0;
+    letter-spacing: -0.1em;
+    font-size: 13px;
 }
 
 /* 타이틀 */
@@ -100,6 +103,7 @@ button:first-child{
 .question input+label{
     font-family: 'S-CoreDream-3Light';
     margin-left: 3px;
+    font-size: 13px;
 }
 
 /* 필터-input-time,select */
@@ -111,7 +115,7 @@ button:first-child{
     font-family: 'S-CoreDream-3Light';
 }
 
-.question select:nth-child(1){
+.question select:first-child{
     margin-bottom: 4px;
 }
 .question input[type=time]:first-child{
@@ -140,12 +144,14 @@ button:first-child{
 
 #filter-submit{
     font-family: 'S-CoreDream-6Bold';
+    font-size: 14px;
     grid-column: 2;
     margin: 2% 5% 2% 65%;
     color: #254074;
     border: 1.5px solid #254074;
     border-radius: 10px;
     background-color: white;
+    height: 70%;
     /* padding: 2px 0; */
 
 }

@@ -3,6 +3,7 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/main2.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'css/scss/main_scss.css' %}"> -->
 {% endblock %}
 {% block content %}
 <div>
@@ -10,8 +11,8 @@
 
 
 <div>
-        <div class="content-top">
-            <div class="text">
+        <div class="content-top row justify-content-center ">
+            <div class="text col-lg-5 col-md-6 col-sm-12 p-0">
                 <h1 class="main-title front-title">나와 딱 맞는</h1>
                 <h1 class="main-title front-title">룸메이트 찾기</h1>
                 <div class="title-shadow">
@@ -20,22 +21,24 @@
                 </div>
                 <p class="detail" >설명설명설명<br>설명설명설명</p>
             </div>
-            <img id="main-img" src="{% static 'img/img_main.png' %}" alt="">
+            <div class="main-img col-lg-5 col-md-6 col-sm-12 p-0 d-none d-sm-none d-md-block">
+                 <img class="col-lg-5 col-md-6 col-sm-12" id="main-img"src="{% static 'img/img_main.png' %}" alt="">
+            </div>
         </div>
-        <div class="content-bottom">
-            <div class="menu-1">
+        <div class="content-bottom row justify-content-center">
+            <div class="menu-1 col-lg-5 col-md-6 col-12 p-5">
                 <h1 class="title">룸메이트 찾기</h1>
                 <p class="detail">룸메이트 찾기를 등록한 사람들 중<br>나의 룸메를 찾아보세요</p>
-                <button onclick="location.href='roommate/searchRoommate'">
-                    <p>바로가기 ></p>
+                <button class="float-end shadow-btn" onclick="location.href='roommate/searchRoommate'">
+                    <p class="m-0">바로가기 ></p>
                     <img src="" alt=""> <!-- 화살표 이미지 추가 -->
                 </button>
             </div>
-                <div class="menu-2">
+                <div class="menu-2 col-lg-5 col-md-6 col-12 p-5">
                     <h1 class="title">정보공유하기</h1>
                     <p class="detail">기숙사, 원룸 정보를 공유 해주세요</p>
-                    <button onclick="location.href='offcampusCommunity'">
-                        <p>바로가기 ></p>
+                    <button class="float-end rounded-fill shadow-btn" onclick="location.href='offcampusCommunity'">
+                        <p class="m-0">바로가기 ></p>
                         <img src="" alt=""> <!-- 화살표 이미지 추가 -->
                     </button>
                 </div>
