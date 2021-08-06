@@ -17,7 +17,7 @@
 	<img src="" alt="profile_image">
 	<!-- 프로필이미지 -->
 	<p>{{ user.user_nickname }}</p>
-	<input type="image" src="{{ post.image }}" alt="" name="image">
+	<input type="file" name="image" id="" value="{{ post.image }}">
 	<!-- 사진 업로드 -->
 	<textarea class="body" name="content" cols="130" rows="20" style="resize: none;" placeholder="   이곳에 본문을 작성하세요."
 	value="{{ post.content }}"></textarea>
