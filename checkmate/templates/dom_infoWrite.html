@@ -1,44 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-	<link rel="stylesheet" href="{% static 'css/community,info.css' %}">
+	<link rel="stylesheet" href="{% static 'css/write.css' %}">
 {% endblock %}
 {% block content %}
 <div class="info_container">
-<h3>기숙사 정보 공유 게시판</h3>
-<form action="" method="post">
-	<div class="info_container-box1">
-	{% csrf_token %}
+	<h3>기숙사 정보 공유 게시판</h3>
+	<form action="" method="post">
+		<div class="info_container-box1">
+			{% csrf_token %}
 
-	<input type="hidden" name="user_id" value="{{ user.id }}">
+			<input type="hidden" name="user_id" value="{{ user.id }}">
 
-	<select id="preface" class="hashtag" name="preface" onchange="categoryChange(this)">
-		<option value="">말머리</option>
-		<option value="해결했어요">해결했어요</option>
-		<option value="질문있어요">질문있어요</option>
-		<option value="기숙사정보">기숙사정보</option>
-	</select>
+			<select id="preface" class="hashtag" name="preface" onchange="categoryChange(this)">
+				<option value="">말머리</option>
+				<option value="해결했어요">해결했어요</option>
+				<option value="질문있어요">질문있어요</option>
+				<option value="기숙사정보">기숙사정보</option>
+			</select>
 
-	<select name="preface_2" class="hashtag" id="preface_2">
-		<option value="">세부 선택</option>
-	</select>
-	
-	<!-- 말머리 -->
-	<input id="title" name="title" type="text" placeholder="이곳에 제목을 작성하세요.">
-	<!-- 정보 게시판 제목 -->
-</div>
-	<div class="info_container-box2">
-	<img src="" alt="profile_image">
-	<!-- 프로필이미지 -->
-	<p>{{ user.user_nickname }}</p>
-	<input type="file" name="image" id="">
-	<!-- 사진 업로드 -->
-</div>
-	<textarea id="content" class="body" name="content" cols="130" rows="20" style="resize: none;"
-		placeholder="   이곳에 본문을 작성하세요."></textarea>
-	<!-- 정보 게시판 작성 내용 -->
-	<button id="submit" type="submit">저장</button>
-</form>
+			<select name="preface_2" class="hashtag" id="preface_2">
+				<option value="">세부 선택</option>
+			</select>
+			
+			<!-- 말머리 -->
+			<input id="title" name="title" type="text" placeholder="이곳에 제목을 작성하세요.">
+			<!-- 정보 게시판 제목 -->
+		</div>
+		<div class="info_container-box2">
+			<img src="" alt="profile_image">
+			<!-- 프로필이미지 -->
+			<p>{{ user.user_nickname }}</p>
+			<input type="file" name="image">
+			<!-- 사진 업로드 -->
+		</div>
+		<textarea  class="body" id="content" name="content" cols="130" rows="20" style="resize: none;"
+			placeholder="   이곳에 본문을 작성하세요."></textarea>
+		<!-- 정보 게시판 작성 내용 -->
+		<button id="submit" type="submit">저장</button>
+	</form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

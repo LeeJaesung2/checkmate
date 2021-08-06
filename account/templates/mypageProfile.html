@@ -12,53 +12,30 @@
     <div class="mypage_nav">
         <h3 class="mypage_title">마이페이지</h3>
         <!-- border-left 색상 바꾸기 (클릭 모션) -->
-
-        <a href="{% url 'mypageProfile' %}">회원정보 수정</a>
-        <a href="{% url 'infoWrite' %}">체크리스트 수정</a>
-        <a href="{% url 'mypageScrap' %}">스크랩 목록</a>
-        <a href="{% url 'mypageWritten' %}">내가 작성한 글</a>
+        <ul >
+            <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
+            <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+            <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+        </ul>
 
     </div>
     <div class="mypage_content">
+        <h3 class="mypage_subtitle">회원정보 수정</h3>
+
         <form action="" method="post">
             {% csrf_token %}
-
             <img id="target_img" src="{{ user.user_image }}" style="width:50px; height:50px;">
-            <input type="file" id="user_image" name="user_image" style="display:none;" >
-            <script>
+            <input type="file" id="user_image" name="user_image" style="display:none;">
 
-                $('#target_img').click(function (e) {
-                    e.preventDefault();
-                    $('#user_image').click();
-                });
-
-                var sel_file;
-                $(document).ready(function () {
-                    $("#user_image").on("change", handleImgFileSelect);
-                });
-                function handleImgFileSelect(e) {
-                    var files = e.target.files;
-                    var filesArr = Array.prototype.slice.call(files);
-                    filesArr.forEach(function (f) {
-
-                        if (!f.type.match("image.*")) {
-                            alert("확장자는 이미지 확장자만 가능합니다.");
-                            return;
-                        }
-                        sel_file = f;
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            $("#target_img").attr("src", e.target.result);
-                        }
-                        reader.readAsDataURL(f);
-                    });
-                }
-
-            </script>
             <!-- 프로필사진 -->
-            <input type="text" id="user_nickname" name="user_nickname" maxlength='8' value="{{ user.user_nickname }}"> <br>
-            <!-- 닉네임 -->
 
+            <p>닉네임 변경</p>
+            <input type="text" id="user_nickname" name="user_nickname" maxlength='8' value="{{ user.user_nickname }}"> <br>
+            <br>
+            <!-- 닉네임 -->
+            <!-- <p>ID</p> -->
+            <br><br>
             <p>비밀번호 변경</p>
             <p>
                 {% if messages %}
@@ -69,27 +46,58 @@
             </p>
             {% csrf_token %}
 
-            <p>현재 비밀번호</p>
-            <input type="password" name="user_password"><br>
-            <p>새 비밀번호</p>
-            <input type="password" name="password1"><br>
-            <p>새 비밀번호 확인</p>
-            <input type="password" name="password2"><br>
-            <button class="btn4" type="submit">저장</button>
+            <div class="mypage_content-box2">
+                <p>현재 비밀번호</p>
+                <input type="password" name="user_password"><br><br>
+                <p>새 비밀번호</p>
+                <input type="password" name="password1"><br><br>
+                <p>새 비밀번호 확인</p>
+                <input type="password" name="password2"><br><br>
+                <button class="mypage_btn btn4" type="submit">저장</button>
+            </div>
         </form>
     </div>
 </div>
+
 <img class="open" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="hidden modal">
     <button class="modal__closeBtn">X</button>
 </div>
+
 <script type="text/javascript" src="{% static 'js/modal.js' %}">
-
-
-
-
 </script>
 
+<script>
 
+    $('#target_img').click(function (e) {
+        e.preventDefault();
+        $('#user_image').click();
+    });
+
+    var sel_file;
+    $(document).ready(function () {
+        $("#user_image").on("change", handleImgFileSelect);
+    });
+    function handleImgFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        filesArr.forEach(function (f) {
+
+
+
+
+            if (!f.type.match("image.*")) {
+                alert("확장자는 이미지 확장자만 가능합니다.");
+                return;
+            }
+            sel_file = f;
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#target_img").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    }
+</script>
 
 {% endblock %}

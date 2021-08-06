@@ -1,219 +1,225 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/view_page.css' %}">
+{% endblock %}
 {% block content %}
-<div>
-    <h3>{{write_detail.title}}</h3>
-    <select name="hashtag">
-        <option value=1>원룸정보</option>
-        <option value=2>기숙사정보</option>
-        <option value=3>질문있어요</option>
-        <option value=4>해결했어요</option>
-    </select>
+<div class="view_container">
     <div>
-        <button id="Favorites" onclick="">즐겨찾기</button>
-        <small>pub_date</small>
-    </div>
-</div>
-<div>
-    <img src="" alt="profile_image">
-    <!-- 프로필이미지 -->
-    {% if survey_ess.room_type == 1 %}
-    <p>{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
-    {% else %}
-        {% if survey_ess.dormitory_number_man %}
-        <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
-        {% else %}
-        <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
-        {% endif %}
-    {% endif %}
-    <!-- 자신의 정보 -->
-</div>
-<div>
-    <div>
-        <h3>필수 정보</h3>
+        <h3>{{write_detail.title}}</h3>
+        <select name="hashtag">
+            <option value=1>원룸정보</option>
+            <option value=2>기숙사정보</option>
+            <option value=3>질문있어요</option>
+            <option value=4>해결했어요</option>
+        </select>
         <div>
-            <div>
-                <strong>시기</strong> <p>{{survey_ess.get_dormitory_year_start_display}} {{survey_ess.get_dormitory_semester_start_display}} ~ {{survey_ess.get_dormitory_year_end_display}} {{survey_ess.get_dormitory_semester_end_display}}</p>
-                <strong>기상 시간</strong> 
-                <p>{{survey_ess.wakeup_time}}</p>
-                <strong>취침 시간</strong>
-                <p>{{survey_ess.bed_time}}</p>
-                <strong>흡연</strong> 
-                {% if survey_ess.smoke == True %}
-                <p>O</p>
-                {% else %}
-                <p>X</p>
-                {% endif %}
-                <strong>실내 이어폰</strong>
-                {% if survey_ess.earphones == True %}
-                <p>O</p>
-                {% else %}
-                <p>X</p>
-                {% endif %}
-                <strong>실내 통화</strong>
-                {% if survey_ess.call == True %}
-                <p>O</p>
-                {% else %}
-                <p>X</p>
-                {% endif %}
-                <strong>룸메와의 관계</strong>
-                <p>{{survey_ess.get_relationship_display}}</p>
-            </div>
-            <div><strong>청소 주기</strong>
-                {% if survey_ess.cleaning == 1 %}
-                <p>안함</p>
-                {% elif survey_ess.cleaning == 2%}
-                <p>한달 1회</p>
-                {% elif survey_ess.cleaning == 3%}
-                <p>격주 1회</p>
-                {% elif survey_ess.cleaning == 4%}
-                <p>주 1회</p>
-                {% elif survey_ess.cleaning == 5%}
-                <p>주 3~4회</p>
-                {% elif survey_ess.cleaning == 6%}
-                <p>매일</p>
-                {% endif %}
-                <strong>친구 초대</strong>
-                {% if survey_ess.invite_friends == True %}
-                <p>O</p>
-                {% else %}
-                <p>X</p>
-                {% endif %}
-                <strong>잠버릇</strong>
-                {% if survey_ess.sleeping_habits_snoring == True %}
-                <p>코콜이</p>
-                {% endif %}
-                {% if survey_ess.sleeping_habits_teeth == True %}
-                <p>이갈이</p>
-                {% endif %}
-                {% if survey_ess.sleeping_habits_nothing == True %}
-                <p>없음</p>
-                {% endif %}
-                {% if survey_ess.sleeping_habits_other %}
-                <p>{{survey_ess.sleeping_habits_other}}</p>
-                {% endif %}
-                <strong>실내 취식</strong>
-                <p>{{survey_ess.get_eat_display}}</p>
-                {% if survey_ess.room_type == 1 %}
-                    <strong>반려 동물</strong>
-                    {% if survey_ess.animal_dog == True %}
-                    <p>강아지</p>
-                    {% endif %}
-                    {% if survey_ess.animal_cat == True %}
-                    <p>고양이</p>
-                    {% endif %}
-                    {% if survey_ess.animal_other %}
-                    <p>{{survey_ess.animal_other}}</p>
-                    {% endif %}
-                    {% if survey_ess.animal_no == True %}
-                    <p>없음</p>
-                    {% endif %}
-                {% endif %}
-            </div>
+            <button id="Favorites" onclick="">즐겨찾기</button>
+            <small>pub_date</small>
         </div>
     </div>
-
-
     <div>
-        <h3>선택 정보</h3>
+        <img src="" alt="profile_image">
+        <!-- 프로필이미지 -->
+        {% if survey_ess.room_type == 1 %}
+        <p>{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+        {% else %}
+            {% if survey_ess.dormitory_number_man %}
+            <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            {% else %}
+            <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            {% endif %}
+        {% endif %}
+        <!-- 자신의 정보 -->
+    </div>
+    <div>
         <div>
+            <h3>필수 정보</h3>
             <div>
-                {% if survey_opt.share != 0 %}
-                <strong>생필품 공유</strong>
-                <p>{{survey_opt.get_share_display}}</p>
-                {% endif %}
-                {% if survey_opt.bug != 0 %}
-                <strong>벌레 퇴치</strong>
-                <p>{{survey_opt.get_bug_display}}</p>
-                {% endif %}
-                {% if survey_opt.keyboard != 0 %}
-                <strong>키보드 소리</strong>
-                <p>{{survey_opt.get_keyboard_display}}</p>
-                {% endif %}
-                {% if survey_opt.keyboard_noise == True %}
-                <p>저소음 키보드 사용</p>
-                {% endif %}
-                {% if survey_opt.game != 0 %}
-                <strong>게임 여부</strong>
-                <p>{{survey_opt.get_game_display}}</p>
-                {% endif %}
-            </div>
-            
-            <div>
-                {% if survey_opt.ventilate != 0 %}
-                    {% if survey_opt.ventilate == 1 %}
-                    <strong>환기</strong>
+                <div>
+                    <strong>시기</strong> <p>{{survey_ess.get_dormitory_year_start_display}} {{survey_ess.get_dormitory_semester_start_display}} ~ {{survey_ess.get_dormitory_year_end_display}} {{survey_ess.get_dormitory_semester_end_display}}</p>
+                    <strong>기상 시간</strong> 
+                    <p>{{survey_ess.wakeup_time}}</p>
+                    <strong>취침 시간</strong>
+                    <p>{{survey_ess.bed_time}}</p>
+                    <strong>흡연</strong> 
+                    {% if survey_ess.smoke == True %}
+                    <p>O</p>
+                    {% else %}
+                    <p>X</p>
+                    {% endif %}
+                    <strong>실내 이어폰</strong>
+                    {% if survey_ess.earphones == True %}
+                    <p>O</p>
+                    {% else %}
+                    <p>X</p>
+                    {% endif %}
+                    <strong>실내 통화</strong>
+                    {% if survey_ess.call == True %}
+                    <p>O</p>
+                    {% else %}
+                    <p>X</p>
+                    {% endif %}
+                    <strong>룸메와의 관계</strong>
+                    <p>{{survey_ess.get_relationship_display}}</p>
+                </div>
+                <div><strong>청소 주기</strong>
+                    {% if survey_ess.cleaning == 1 %}
                     <p>안함</p>
-                    {% endif %}
-                    {% if survey_opt.ventilate == 2 %}
-                    <strong>환기</strong>
-                    <p>1일 1회</p>
-                    {% endif %}
-                    {% if survey_opt.ventilate == 3 %}
-                    <strong>환기</strong>
-                    <p>1일 2회</p>
-                    {% endif %}
-                    {% if survey_opt.ventilate == 4 %}
-                    <strong>환기</strong>
-                    <p>1일 3회</p>
-                    {% endif %}
-                    {% if survey_opt.ventilate == 5 %}
-                    <strong>환기</strong>
-                    <p>1일 4회</p>
-                    {% endif %}
-                    {% if survey_opt.ventilate == 6 %}
-                    <strong>환기</strong>
-                    <p>수시</p>
-                    {% endif %}
-                {% endif %}
-                {% if survey_opt.feel_cold == True %}
-                <strong>에어컨/보일러</strong>{{survey_opt.feel_hot}}
-                <p>추위를 많이탐</p>
-                {% endif %}
-                {% if survey_opt.feel_hot == True %}
-                <strong>에어컨/보일러</strong>
-                <p>더위를 많이탐</p>
-                {% endif %}
-                {% if survey_opt.toilet != 0 %}
-                    <strong>화장실 청소</strong>
-                    {% if survey_opt.toilet == 1 %}
-                    <p>안함</p>
-                    {% endif %}
-                    {% if survey_opt.toilet == 2 %}
+                    {% elif survey_ess.cleaning == 2%}
                     <p>한달 1회</p>
-                    {% endif %}
-                    {% if survey_opt.toilet == 3 %}
+                    {% elif survey_ess.cleaning == 3%}
                     <p>격주 1회</p>
-                    {% endif %}
-                    {% if survey_opt.toilet == 4 %}
+                    {% elif survey_ess.cleaning == 4%}
                     <p>주 1회</p>
-                    {% endif %}
-                    {% if survey_opt.toilet == 5 %}
+                    {% elif survey_ess.cleaning == 5%}
                     <p>주 3~4회</p>
-                    {% endif %}
-                    {% if survey_opt.toilet == 6 %}
+                    {% elif survey_ess.cleaning == 6%}
                     <p>매일</p>
                     {% endif %}
-                {% endif %}
-                {% if survey_opt.mbti %}
-                <strong>MBTI</strong>
-                <p>{{survey_opt.mbti}}</p>
-                {% endif %}
+                    <strong>친구 초대</strong>
+                    {% if survey_ess.invite_friends == True %}
+                    <p>O</p>
+                    {% else %}
+                    <p>X</p>
+                    {% endif %}
+                    <strong>잠버릇</strong>
+                    {% if survey_ess.sleeping_habits_snoring == True %}
+                    <p>코콜이</p>
+                    {% endif %}
+                    {% if survey_ess.sleeping_habits_teeth == True %}
+                    <p>이갈이</p>
+                    {% endif %}
+                    {% if survey_ess.sleeping_habits_nothing == True %}
+                    <p>없음</p>
+                    {% endif %}
+                    {% if survey_ess.sleeping_habits_other %}
+                    <p>{{survey_ess.sleeping_habits_other}}</p>
+                    {% endif %}
+                    <strong>실내 취식</strong>
+                    <p>{{survey_ess.get_eat_display}}</p>
+                    {% if survey_ess.room_type == 1 %}
+                        <strong>반려 동물</strong>
+                        {% if survey_ess.animal_dog == True %}
+                        <p>강아지</p>
+                        {% endif %}
+                        {% if survey_ess.animal_cat == True %}
+                        <p>고양이</p>
+                        {% endif %}
+                        {% if survey_ess.animal_other %}
+                        <p>{{survey_ess.animal_other}}</p>
+                        {% endif %}
+                        {% if survey_ess.animal_no == True %}
+                        <p>없음</p>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
+        </div>
 
+
+        <div>
+            <h3>선택 정보</h3>
+            <div>
+                <div>
+                    {% if survey_opt.share != 0 %}
+                    <strong>생필품 공유</strong>
+                    <p>{{survey_opt.get_share_display}}</p>
+                    {% endif %}
+                    {% if survey_opt.bug != 0 %}
+                    <strong>벌레 퇴치</strong>
+                    <p>{{survey_opt.get_bug_display}}</p>
+                    {% endif %}
+                    {% if survey_opt.keyboard != 0 %}
+                    <strong>키보드 소리</strong>
+                    <p>{{survey_opt.get_keyboard_display}}</p>
+                    {% endif %}
+                    {% if survey_opt.keyboard_noise == True %}
+                    <p>저소음 키보드 사용</p>
+                    {% endif %}
+                    {% if survey_opt.game != 0 %}
+                    <strong>게임 여부</strong>
+                    <p>{{survey_opt.get_game_display}}</p>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    {% if survey_opt.ventilate != 0 %}
+                        {% if survey_opt.ventilate == 1 %}
+                        <strong>환기</strong>
+                        <p>안함</p>
+                        {% endif %}
+                        {% if survey_opt.ventilate == 2 %}
+                        <strong>환기</strong>
+                        <p>1일 1회</p>
+                        {% endif %}
+                        {% if survey_opt.ventilate == 3 %}
+                        <strong>환기</strong>
+                        <p>1일 2회</p>
+                        {% endif %}
+                        {% if survey_opt.ventilate == 4 %}
+                        <strong>환기</strong>
+                        <p>1일 3회</p>
+                        {% endif %}
+                        {% if survey_opt.ventilate == 5 %}
+                        <strong>환기</strong>
+                        <p>1일 4회</p>
+                        {% endif %}
+                        {% if survey_opt.ventilate == 6 %}
+                        <strong>환기</strong>
+                        <p>수시</p>
+                        {% endif %}
+                    {% endif %}
+                    {% if survey_opt.feel_cold == True %}
+                    <strong>에어컨/보일러</strong>{{survey_opt.feel_hot}}
+                    <p>추위를 많이탐</p>
+                    {% endif %}
+                    {% if survey_opt.feel_hot == True %}
+                    <strong>에어컨/보일러</strong>
+                    <p>더위를 많이탐</p>
+                    {% endif %}
+                    {% if survey_opt.toilet != 0 %}
+                        <strong>화장실 청소</strong>
+                        {% if survey_opt.toilet == 1 %}
+                        <p>안함</p>
+                        {% endif %}
+                        {% if survey_opt.toilet == 2 %}
+                        <p>한달 1회</p>
+                        {% endif %}
+                        {% if survey_opt.toilet == 3 %}
+                        <p>격주 1회</p>
+                        {% endif %}
+                        {% if survey_opt.toilet == 4 %}
+                        <p>주 1회</p>
+                        {% endif %}
+                        {% if survey_opt.toilet == 5 %}
+                        <p>주 3~4회</p>
+                        {% endif %}
+                        {% if survey_opt.toilet == 6 %}
+                        <p>매일</p>
+                        {% endif %}
+                    {% endif %}
+                    {% if survey_opt.mbti %}
+                    <strong>MBTI</strong>
+                    <p>{{survey_opt.mbti}}</p>
+                    {% endif %}
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
-<div>
-    <p>{{write_detail.body}}</p>
-    <a href="{% url 'update' write_detail.id %}"><span>수정</span></a>
-    <a href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
-</div>
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}">◀ 이전글</a></li>
-        <li class="page-item"><a class="page-link" href="/roommate/searchRoommate">목록</a></li>
-        <li class="page-item"><a class="page-link" href="{% url 'detail' next %}">다음글 ▶</a></li>
-    </ul>
+    <div>
+        <p>{{write_detail.body}}</p>
+        <a href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+        <a href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+    </div>
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}">◀ 이전글</a></li>
+            <li class="page-item"><a class="page-link" href="/roommate/searchRoommate">목록</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'detail' next %}">다음글 ▶</a></li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
