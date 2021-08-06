@@ -24,16 +24,28 @@
         <!-- span for문돌리기 -->
         <div class="mypage_sub-bar">
             <input type="checkbox" name="" id="checkbox">
-            <p>글쓴이</p>
+            <p>카테고리</p>
             <p>제목</p>
         </div>
     
+        
+        {% for d_post in d_posts %}
         <div class="mypage_list">
             <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
-            <p class="mypage_content-title">기숙사 | 남 | 20세</p>
-            <p class="mypage_content-body">안녕하세요 10동 룸메이트 구합니다. 저층 선호합니다.</p>
-            <!-- 글 추가  -->
+            <p class="mypage_content-title">기숙사 정보</p>
+            <p class="mypage_content-body">{{ d_post.title }}</p>
         </div>
+        {% endfor %}
+        {% for o_post in o_posts %}
+        <div class="mypage_list">
+            <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
+            <p class="mypage_content-title">자취 정보</p>
+            <p class="mypage_content-body">{{ o_post.title }}</p>
+        </div>
+        {% endfor %}
+
+
+
         <a class="mypage_delete" href="">삭제하기</a>
         <div>
             <ul class="pagination">

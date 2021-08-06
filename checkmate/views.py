@@ -61,7 +61,10 @@ def mypageScrap(request):
     return render(request, 'mypageScrap.html')
 
 def mypageWritten(request):
-    return render(request, 'mypageWritten.html')
+    user=request.user
+    o_posts = Offcampus_Post.objects.filter(user_id=user)
+    d_posts = Domitory_Post.objects.filter(user_id=user)
+    return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
 
 def offcampusCommunity(request):
     search_keyword = request.GET.get('search_keyword')
