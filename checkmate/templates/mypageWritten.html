@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
-<head> 
-    {% load static %}
-    {% block head %}
-    <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
-    {% endblock %}
-</head>
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="mypage_container bg">
 <div class="mypage_nav">
-    <h3>마이페이지</h3>
+    <h3 class="mypage_title">마이페이지</h3>
     <!-- border-left 색상 바꾸기 (클릭 모션) -->
     <ul>
         <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
@@ -19,45 +17,35 @@
 </ul>
 </div>
 <div class="mypage_content">
-    <h3>내가 작성한 글</h3>
-    <button>수정</button>
-    <div>
-        <!-- span for문돌리기 -->
-        <span>
-            <input type="checkbox" name="" id="">
-            <p>제목</p>
-            <p>날짜</p>
-        </span>
-    </div>
-    <div>
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">◀</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">▶</a></li>
-        </ul>
-    </div>
-    
     <div class="mypage_write-content">
         <h3 class="mypage_subtitle">내가 작성한 글</h3>
         <button class="mypage_btn">수정</button>
     
-            <!-- span for문돌리기 -->
-            <div class="mypage_sub-bar">
-                <input type="checkbox" name="" id="checkbox">
-                <p>글쓴이</p>
-                <p>제목</p>
-            </div>
+        <!-- span for문돌리기 -->
+        <div class="mypage_sub-bar">
+            <input type="checkbox" name="" id="checkbox">
+            <p>카테고리</p>
+            <p>제목</p>
+        </div>
     
+        
+        {% for d_post in d_posts %}
         <div class="mypage_list">
             <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
-            <p class="mypage_content-title">기숙사 | 남 | 20세</p>
-            <p class="mypage_content-body">안녕하세요 10동 룸메이트 구합니다. 저층 선호합니다.</p>
-            <!-- 글 추가  -->
+            <p class="mypage_content-title">기숙사 정보</p>
+            <p class="mypage_content-body">{{ d_post.title }}</p>
         </div>
+        {% endfor %}
+        {% for o_post in o_posts %}
+        <div class="mypage_list">
+            <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
+            <p class="mypage_content-title">자취 정보</p>
+            <p class="mypage_content-body">{{ o_post.title }}</p>
+        </div>
+        {% endfor %}
+
+
+
         <a class="mypage_delete" href="">삭제하기</a>
         <div>
             <ul class="pagination">

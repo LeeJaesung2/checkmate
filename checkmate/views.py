@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
 from django.utils import timezone
+from django.contrib import messages
+from django.db.models import Q
+import math
 
 # Create your views here.
 
@@ -15,6 +18,7 @@ def infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
+        post.image = request.POST.get('image')
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -23,7 +27,10 @@ def infoWrite(request):
         return redirect('offcampusView', post.id)
     else:
         user = request.user
-        return render(request, 'infoWrite.html',{'user':user})
+        if(user):
+            return render(request, 'infoWrite.html',{'user':user})
+        else:
+            return redirect('offcampusCommunity')
 
 
 def dom_infoWrite(request):
@@ -33,6 +40,7 @@ def dom_infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
+        post.image = request.POST.get('image')
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -41,7 +49,10 @@ def dom_infoWrite(request):
         return redirect('domitoryView', post.id)
     else:
         user = request.user
-        return render(request, 'dom_infoWrite.html',{'user':user})
+        if(user):
+            return render(request, 'dom_infoWrite.html',{'user':user})
+        else:
+            return redirect('domioryCommunity')
 
 def survey(request):
     return render(request, 'survey.html')
@@ -50,28 +61,49 @@ def mypageScrap(request):
     return render(request, 'mypageScrap.html')
 
 def mypageWritten(request):
-    return render(request, 'mypageWritten.html')
+    user=request.user
+    o_posts = Offcampus_Post.objects.filter(user_id=user)
+    d_posts = Domitory_Post.objects.filter(user_id=user)
+    return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
 
 def offcampusCommunity(request):
+    search_keyword = request.GET.get('search_keyword')
     posts = Offcampus_Post.objects.all()
-
-    return render(request, 'offcampusCommunity.html',{'posts':posts})
-
+    user_id = request.user.id
+    if search_keyword:
+        if len(search_keyword) > 1:
+            posts = posts.filter(title__icontains=search_keyword)
+            posts, page_range = paging(request, posts)
+            return render(request, 'offcampusCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
+        else:
+            message.error(request, '검색어는 2글자 이상 입력해주세요')
+    posts, page_range = paging(request, posts)
+    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
 
 def domitoryCommunity(request):
+    search_keyword = request.GET.get('search_keyword')
     posts = Domitory_Post.objects.all()
-
-    return render(request, 'domitoryCommunity.html',{'posts':posts})
+    user_id = request.user.id
+    if search_keyword:
+        if len(search_keyword) > 1:
+            posts = posts.filter(title__icontains=search_keyword)
+            posts, page_range = paging(request, posts)
+            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword, 'page_range':page_range})
+        else:
+            message.error(request, '검색어는 2글자 이상 입력해주세요')
+    posts, page_range = paging(request, posts)
+    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
+     
 
 def offcampusView(request,post_id):
-    
+    user = request.user
     post = Offcampus_Post.objects.get(id=post_id)
-    return render(request, 'offcampusView.html',{'post':post})
+    return render(request, 'offcampusView.html',{'post':post,'user':user})
 
 def domitoryView(request,post_id):
-
+    user = request.user
     post = Domitory_Post.objects.get(id=post_id)
-    return render(request, 'domitoryView.html',{'post':post})
+    return render(request, 'domitoryView.html',{'post':post,'user':user})
 
 def offcampusDelete(request, post_id):
     post = Offcampus_Post.objects.get(id=post_id)
@@ -90,6 +122,7 @@ def offcampusUpdate(request, post_id):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
+        post.image = request.POST.get('image')
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -109,6 +142,7 @@ def domitoryUpdate(request, post_id):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
+        post.image = request.POST.get('image')
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -119,3 +153,27 @@ def domitoryUpdate(request, post_id):
         post = Domitory_Post.objects.get(id=post_id)
         user = request.user
         return render(request, 'domitoryUpdate.html',{'user':user,'post':post})
+
+def paging(request, posts):
+    page = int(request.GET.get('page',1))
+    paginated_by = 10
+    total_count = len(posts)
+    total_page = math.ceil(total_count/paginated_by)
+    
+    if (page<4):
+        if (total_page<6):
+            page_range = range(1, total_page+1)
+        else:
+            page_range = range(1, 6)
+
+    else:
+        if (total_page<page+3):
+            page_range = range(total_page-4, total_page+1)
+        else:
+            page_range = range(page-2, page+3)
+
+    start_index = paginated_by * (page-1)
+    end_index = paginated_by * page
+    posts = posts[start_index:end_index]
+
+    return posts, page_range

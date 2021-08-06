@@ -9,6 +9,8 @@ class Offcampus_Post(models.Model):
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to="offcampus_image/%Y/%m/%d",blank=True)
+
 
     CHOICES = (
         ('해결했어요', '해결했어요'),
@@ -49,6 +51,8 @@ class Domitory_Post(models.Model):
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to="domitory_image/%Y/%m/%d", blank=True)
+
 
     CHOICES = (
         ('해결했어요', '해결했어요'),

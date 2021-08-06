@@ -1,49 +1,4 @@
-@font-face {
-    font-family: 'yg-jalnan';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-9Black';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-3Light';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-6Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-7ExtraBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-2ExtraLight';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'S-CoreDream-5Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-*{
-    margin: 0;
-    padding: 0;
-}
+
 /* mypage */
 
 .mypage_container{
@@ -55,8 +10,9 @@
 }
 .mypage_nav{
     border-right: 2px solid #C9C9C9;
-    margin-right: 50px;
+    margin-right: 20px;
     width: 14vw;
+    height: 80%;
 }
 .mypage_title{
     font-family: Jalnan;
@@ -73,7 +29,7 @@
     font-family: 'S-CoreDream-5Medium';
     padding-left: 0px;
 }
-.mypage_nav a{
+.mypage_nav ul a{
     display:inline-block;
     margin-top:20px;
     text-decoration:none;
@@ -82,12 +38,12 @@
     width: 100%;
     white-space  : nowrap;
 }
-.mypage_nav>a:hover{
+.mypage_nav li >a:hover{
 
     color: black;
 }
 
-.mypage_nav>a:active{
+.mypage_nav li >a:active{
 
     border-left:5px solid #3F97FF;
 }
@@ -105,6 +61,7 @@
     border-left:0px; 
     border-bottom: 2px solid rgba(201, 201, 201, 0.7);
 }
+
 input:focus {outline:none;
 background-color: white;}
 input:-webkit-autofill {
@@ -113,8 +70,19 @@ input:-webkit-autofill {
  
 .mypage_content p{
     margin-left: 10px;
+    border-radius: 25px;
+    font-family: 'S-CoreDream-5Medium';
 }
+.mypage_content-box2{
+    margin-top: 40px;
+}
+.mypage_content-box2 p{
+    color: #001F70;
+    font-family: 'S-CoreDream-3Light';
+    margin-left: 30px;
+    text-align: left;
 
+}
 .mypage_write-content, .mypage_scap-content{
     padding-top: 20px;
     width: 60vw;
@@ -141,7 +109,7 @@ input:-webkit-autofill {
     width: 50px;
     height: 30px;
     margin-left: 80%;
-
+    background-color: white;
 }
 .mypage_delete{
     font-family: 'S-CoreDream-3Light';

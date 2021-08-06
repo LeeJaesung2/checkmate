@@ -1,0 +1,116 @@
+/* 정보게시판 */
+.com_container{
+    width: 70vw;
+    height: 70vh;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+.com_container h3{
+    font-family: Jalnan;
+    font-size: 40px;
+    color: #254074;
+    margin: 0px auto;
+    width: 32vw;
+    white-space  : nowrap;
+}
+
+.com_sub-content{
+    border-bottom: 2px solid #C9C9C9;
+    width:  100%;
+    margin: 100px auto 30px auto;
+    display: grid;
+    grid-template-columns: 5vw 50vw 5vw;
+    padding-bottom: 20px;
+    padding-left: 100px;
+}
+
+.com_sub-content input{
+    font-family: 'S-CoreDream-5Medium';
+    width: 95%;
+    height: 35px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    line-height: 24px;
+    color: #000000;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+#com_t{
+    float: right;
+    margin-right: 150px;
+    margin-top: 70px;
+    font-size: 15px;
+    font-family: 'S-CoreDream-5Medium';
+    /* a클릭 없애기 */
+    background: linear-gradient(91.84deg, #6360FF 20%, #268AFF 80%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+#com_submit{
+    border: 0;
+    outline: 0;
+    background-color:transparent;
+    position: relative;
+    left: -30px;
+}
+.com_sub-content h5{
+    font-family: Jalnan;
+    font-size: 20px;
+    color: #254074;
+    padding-top: 5px;
+    white-space  : nowrap;
+}
+.com_sub-content #plus_btn{
+    width: 35px;
+    height: 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+    }
+.com_content{
+    display: grid;
+    grid-template-columns: 10vw 25vw 25vw;
+    margin-top: 30px;
+    margin-left: 10vw;
+    width: 40vw;
+    height: 5vh;
+}
+#com_content-info{
+    font-family: 'S-CoreDream-6Bold';
+    font-size: 15px;
+    text-align: center; 
+    color: #254074;
+    border: 1px solid #254074;
+    box-sizing: border-box;
+    border-radius: 25px;
+    width: 90px;
+    height: 31px;
+    padding-left: 2px;
+    padding-top: 3px;
+}
+#com_content-title{
+    font-family: 'S-CoreDream-5Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    /* text-align: center; */
+    color: #254074;
+}
+#com_content-body{
+    font-family: 'S-CoreDream-3Light';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #1F1F1F;
+    white-space  : nowrap;
+    width: 100px;
+}

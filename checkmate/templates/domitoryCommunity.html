@@ -1,53 +1,66 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/community.css' %}">
+{% endblock %}
 {% block content %}
-<h3>기숙사 정보 공유 게시판</h3>
-<div>
-    <a href="">인기 게시글</a>
-    <div>
+<div class="com_container">
+    <h3>기숙사 정보 공유 게시판</h3>
+    <a id="com_t" href="">인기 게시글</a>
+    <div class="com_sub-content">
         <h5>검색</h5>
         <form action="" method="get">
             {% csrf_token %}
-            <input type="text" placeholder="#역세권_오피스텔_어때요?">
-            <button type="submit">검색아이콘</button>
+            <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
+            <button id="com_submit" type="submit">o</button>
         </form>
-        <button onclick="location.href='{% url 'dom_infoWrite' %}'">+</button>
+        {% if user_id %}
+        <button id="plus_btn" onclick="location.href='{% url 'dom_infoWrite' %}'">+</button>
+        {% else %}
+        <button id="plus_btn" onclick="alert('글쓰기는 로그인 후에 가능합니다.')">+</button>
+        {% endif %}
     </div>
-</div>
-
-{% for post in posts %}     
-<div onclick="location.href='{% url 'domitoryView' post.id %}'">
-
-    {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
-    <p class="preface">원룸정보</p>
-    <p>{{ post.preface_2 }}</p>
-    <p>{{ post.title }}</p>
+    {% if search_keyword %}
+    <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
+    {% endif %}
+    {% if posts %}
+    {% for post in posts %}     
+    <div class="com_content" onclick="location.href='{% url 'domitoryView' post.id %}'">
+        
+        {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
+        <p class="preface" id="com_content-info">원룸정보</p>
+        <p id="com_content-title">{{ post.preface_2 }}</p>
+        <p id="com_content-body">{{ post.title }}</p>
+        {% else %}
+        <p class="preface" id="com_content-info">{{ post.preface }}</p>
+        <p id="com_content-title">{{ post.preface_2 }}</p>
+        <p id="com_content-body">{{ post.title }}</p>
+        {% endif %}
+        
+    </div>
+    {% endfor %}
     {% else %}
-    <p class="preface">{{ post.preface }}</p>
-    <p>{{ post.preface_2 }}</p>
-    <p>{{ post.title }}</p>
+        {% if search_keyword %}
+        일치하는 검색 결과가 없습니다
+        {% else %}
+        작성된 게시글이 없습니다
+        {% endif %}
     {% endif %}
 
-</div>
-{% endfor %}
-
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
-        <li class="page-item"><a class="page-link" href="#">▶</a></li>
-    </ul>
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+            {% for page in page_range %}
+            <li class="page-item"><a class="page-link" href="{% url 'domitoryCommunity'%}?page={{page}}">{{page}}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+        </ul>
+    </div>
 </div>
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
-
 
 <script>
     const open = document.querySelector(".open");
@@ -64,5 +77,13 @@
     }
 
     init();
+
+    
+    // 커뮤니티에서 nav 고정
+    const box = document.querySelector(".second");
+    box.style.display="block";
+    
+    const highlight = document.getElementById('nav_domitory');
+    highlight.style.color ="rgba(37, 64, 116, 1)";
 </script>
 {% endblock %}

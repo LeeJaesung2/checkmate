@@ -10,7 +10,7 @@
 <div class="signup">
     <div class="sign_content">
         <h3 class="title">회원가입</h3>
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="kakao_id", value="{{ kakao_id }}">
             <!-- 미디어로 받기 -->
@@ -24,12 +24,18 @@
             Your password can’t be entirely numeric. -->
             이름<br> <input type="text" id='user_name' name='user_name'><br><br><br>
 
-      <div class="sign_gender">
-            성별: 
-            <input id="user_gender" type="radio" name="user_gender" value="남">남자
-            <input id="user_gender" type="radio" name="user_gender" value="여">여자
-      </div>
-      <br><br><br>
+            <div class="sign_gender">
+                성별: 
+                <div>
+                    <input id="user_gender-men" type="radio" name="user_gender" value="남">
+                    <label for="user_gender-men">남자</label> 
+                </div>
+                <div>
+                    <input id="user_gender-woman" type="radio" name="user_gender" value="여">
+                    <label for="user_gender-woman">여자</label> 
+                </div>
+            </div>
+            <br><br><br>
             <!-- selsect로 수정해야함 -->
             출생년도:
             <select name="user_birthyear" id="user_birthyear">
@@ -46,10 +52,10 @@
                 <option value="KOR">대한민국</option>
                 <option value="CHN">중국</option>
             </select><br><br><br>
-            <!-- 프로필 사진: <input type="file" name="image"> -->
+            프로필 사진: <input type="file" name="user_image" accept="user_image/*" id="user_image">
             닉네임: <input type="text" id="user_nickname" name="user_nickname" maxlength='8' placeholder="최대 8글자">
-
-            <button id="submit"class="submit" type="submit">Sign Up</button>
+            <br><br><br>
+            <button class="submit" type="submit">Sign Up</button>
         </form>
     </div>
 </div>
@@ -67,6 +73,7 @@
         else{
             alert("성별을 선택해주세요.");$("#gender").focus();return false;
         }
+        if($("#user_image").val().length===0){alert("프로필 이미지를 설정해주세요.");$("#user_image").focus();return false;}
         if($("#user_birthyear").val().length===0){alert("출생년도를 선택해주세요.");$("#user_birthyear").focus();return false;}
         if($("#user_nation").val().length===0){alert("국가를 선택해주세요.");$("#user_nation").focus();return false;}
         if($("#user_nickname").val().length===0){alert("닉네임을 입력해주세요.");$("#user_nickname").focus();return false;}

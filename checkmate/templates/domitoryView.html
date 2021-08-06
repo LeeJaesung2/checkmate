@@ -1,34 +1,45 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/view_page.css' %}">
+{% endblock %}
 {% block content %}
-<div>
-    <h3>{{ post.title }}}}</h3>
-    <!-- 타이틀 -->
-    <p>{{ post.preface }} | {{ post.preface_2 }}</p>
-    <div>
+
+<div class="view_container">
+    <p class="view_info">{{ post.preface }} | {{ post.preface_2 }}</p>
+    <div class="view_box1">
+        <h3>{{ post.title }}}}</h3>
+        <!-- 타이틀 -->
         <small>{{ post.pub_date }}</small>
     </div>
-</div>
-<div>
-    <img src="" alt="profile_image">
-    <!-- 프로필이미지 -->
-    <p> {{ post.user_id.user_nickname }} </p>
-    <!-- 닉네임 -->
+    <div class="view_box2">
+        <img src="{{ post.user_id.user_image }}" alt="profile_image" style="width:500px; height:500px;">
+        <!-- 프로필이미지 -->
+        <p> {{ post.user_id.user_nickname }} </p>
+        <!-- 닉네임 -->
+    </div>
+
+    <div >
+        <img src="{{ post.image }}" alt="image">
+        <p class="body">{{ post.content }}</p>
+        <!-- 내용 -->
+        {% if post.user_id.id == user.id %}
+        <div class="bottom">
+            <a href="{% url 'domitoryUpdate' post.id %}"><span>수정</span></a>
+            <a href="{% url 'domitoryDelete' post.id %}"><span>삭제</span></a>
+        </div>
+        {% else %}
+
+        {% endif %}
+    </div>
+    <div>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
+            <li class="page-item"><a class="page-link" href="/domitoryCommunity">목록</a></li>
+            <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
+        </ul>
+    </div>
 </div>
 
-<div>
-    <p>{{ post.content }}</p>
-    <!-- 내용 -->
-    <a href="{% url 'domitoryUpdate' post.id %}"><span>수정</span></a>
-    <a href="{% url 'domitoryDelete' post.id %}"><span>삭제</span></a>
-</div>
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
-        <li class="page-item"><a class="page-link" href="/domitoryCommunity">목록</a></li>
-        <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
-    </ul>
-</div>
-<script>
-</script>
 {% endblock %}

@@ -27,7 +27,24 @@
             <!-- <p>필터적용하기</p> -->
             <div id="filter">
                 <form action="">
-                    <!-- <div class="essential"> -->
+                    <div class="filter_state">
+                        <h6 class="title">상태</h6>
+                        <div class="answer">
+                            <input type="radio" id="state" name="state" value="1"><label for="state">매칭중</label>
+                            <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
+                        </div>
+                    </div>
+                    <div class="essential">
+                        <div class="question filter_age">
+                            <h6 class="title">나이</h6>
+                            <div class="answer">
+                                <input type="number" id="age_start" name="age_start">
+                                <span>~</span>
+                                <input type="number" id="age_end" name="age_end">
+                            </div>
+                        </div>
+                    
+                    <div class="essential">
                         <div class="question filter_grade">
                             <h6 class="title">학년</h6>
                             <div class="answer">
@@ -156,12 +173,12 @@
                             <div class="answer">
                                 <select name="cleaning">
                                     <option value="">------</option>
-                                    <option value="0">안함</option>
-                                    <option value="1">한달1회</option>
-                                    <option value="2">격주1회</option>
-                                    <option value="3">주1회</option>
-                                    <option value="4">주3~4회</option>
-                                    <option value="5">매일</option>
+                                    <option value="1">안함</option>
+                                    <option value="2">한달1회</option>
+                                    <option value="3">격주1회</option>
+                                    <option value="4">주1회</option>
+                                    <option value="5">주3~4회</option>
+                                    <option value="6">매일</option>
                                 </select>
                             </div>
                         </div>
@@ -226,12 +243,12 @@
                             <div class="answer">
                                 <select name="toilet">
                                     <option value="">------</option>
-                                    <option value="0">안함</option>
-                                    <option value="1">한달1회</option>
-                                    <option value="2">격주1회</option>
-                                    <option value="3">주1회</option>
-                                    <option value="4">주3~4회</option>
-                                    <option value="5">매일</option>
+                                    <option value="1">안함</option>
+                                    <option value="2">한달1회</option>
+                                    <option value="3">격주1회</option>
+                                    <option value="4">주1회</option>
+                                    <option value="5">주3~4회</option>
+                                    <option value="6">매일</option>
                                 </select>
                             </div>
                         </div>
@@ -312,12 +329,14 @@
             
             <div class="search_bar">
                 <h2>검색</h2>
-                <div>
-                    <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
-                </div>
-                <div>
-                    <button type="submit">검색</button>
-                </div>
+                <form action="">
+                    <div>
+                        <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                    </div>
+                    <div>
+                        <button type="submit">검색</button>
+                    </div>
+                </form>
             </div>
         </form>
     </div>
@@ -338,10 +357,10 @@
             </thead>
             <tbody>
                 {% if writes %}
-                {% for write in writes.all %}
+                {% for write in writes %}
                 <tr>
-                    <td>{{ write.state}}</td>
-                    <td>{{ write.user_id.survey_ess_id.room_type}}</td>
+                    <td>{{ write.get_state_display}}</td>
+                    <td>{{ write.user_id.survey_ess_id.get_room_type_display}}</td>
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->
                     <td>{{ write.user_id.survey_ess_id.grade}}학년</td>
@@ -371,13 +390,11 @@
 
 <div>
     <ul class="pagination">
-        <li class="page_item"><a class="page_link" href="#">◀</a></li>
-        <li class="page_item"><a class="page_link" href="#">1</a></li>
-        <li class="page_item"><a class="page_link" href="#">2</a></li>
-        <li class="page_item"><a class="page_link" href="#">3</a></li>
-        <li class="page_item"><a class="page_link" href="#">4</a></li>
-        <li class="page_item"><a class="page_link" href="#">5</a></li>
-        <li class="page_item"><a class="page_link" href="#">▶</a></li>
+        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        {% for page in page_range %}
+        <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+        <li class="page-item"><a class="page-link" href="#">▶</a></li>
     </ul>
 </div>
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">

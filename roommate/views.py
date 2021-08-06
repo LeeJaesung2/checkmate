@@ -4,26 +4,37 @@ from django.db.models import Q
 from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from account.models import CustomUser
+from datetime import datetime
+import math
 
 # Create your views here.
 
 def searchRoommate(request):
-    search_keyword = request.GET.get('search_keyword')
-    writes = Write.objects
-    writes = filter(request, writes)
-    if search_keyword:
-        if len(search_keyword) > 1:
-            writes = writes.filter(title__icontains=search_keyword)
-            return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword})
-        else:
-            messages.error(request, '검색어는 2글자 이상 입력해주세요')
-    return render(request, 'searchRoommate.html',{'writes':writes})
+    survey_ess, survey_opt = surveycheck(request)
+    if survey_ess and survey_opt:
+        search_keyword = request.GET.get('search_keyword')
+        writes = Write.objects.all()
+        writes = filter(request, writes)
+        if search_keyword:
+            if len(search_keyword) > 1:
+                writes = writes.filter(title__icontains=search_keyword)
+                writes, page_range = paging(request, writes)
+                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
+            else:
+                messages.error(request, '검색어는 2글자 이상 입력해주세요')
+        writes, page_range = paging(request, writes)
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range})
+    else:
+        return redirect('survey')
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
     survey_ess = write_detail.user_id.survey_ess_id
     survey_opt = write_detail.user_id.survey_opt_id
-    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt})
+    age = datetime.today().year - write_detail.user_id.user_birthyear+1
+    pre = write_detail.id - 1
+    next = write_detail.id + 1
+    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next})
 
 def create(request):
     if request.method == 'POST':
@@ -61,9 +72,25 @@ def delete(request, write_id):
 
 
 
-
+def year(age):
+    now = datetime.today().year
+    year = now - int(age) +1
+    return (year)
 
 def filter(request, writes):
+    state = request.GET.get('state')
+    if state:
+        writes = writes.filter(state=state)
+
+    age_start = request.GET.get('age_start')
+    age_end = request.GET.get('age_end')
+    
+    if age_start and age_end:
+        
+        year_end = year(age_start)
+        yser_start = year(age_end)
+        writes = writes.filter(user_id__user_birthyear__range=(yser_start,year_end))
+
     grad = request.GET.get('grad')
     if grad:
         writes = writes.filter(survey_ess_id__grade=grad)
@@ -84,6 +111,20 @@ def filter(request, writes):
     if dormitory_number=='11' or dormitory_number=='9' or dormitory_number=='7' or dormitory_number=='5' or dormitory_number=='4':
         writes = writes.filter(survey_ess_id__dormitory_number_woman=dormitory_number)
 
+
+    dormitory_year_start = request.GET.get('dormitory_year_start')
+    dormitory_semester_start = request.GET.get('dormitory_semester_start')
+    if dormitory_year_start and dormitory_semester_start:
+        writes = writes.filter(survey_ess_id__dormitory_year_start=dormitory_year_start)
+        writes = writes.filter(survey_ess_id__dormitory_semester_start=dormitory_semester_start)
+
+    dormitory_year_end = request.GET.get('dormitory_year_end')
+    dormitory_semester_end = request.GET.get('dormitory_semester_end')
+    if dormitory_year_end and dormitory_semester_end:
+        writes = writes.filter(survey_ess_id__dormitory_year_end=dormitory_year_end)
+        writes = writes.filter(survey_ess_id__dormitory_semester_end=dormitory_semester_end)
+
+    
     relationship = request.GET.get('relationship')
     if relationship:
         writes = writes.filter(survey_ess_id__relationship=relationship)
@@ -181,4 +222,35 @@ def filter(request, writes):
     mbti = request.GET.get('mbti')
     if mbti:
         writes = writes.filter(survey_opt_id__mbti=mbti)
+    
     return(writes)
+
+def paging(request, writes):
+    page = int(request.GET.get('page',1))
+    paginated_by = 10
+    total_count = len(writes)
+    total_page = math.ceil(total_count/paginated_by)
+    
+    if (page<4):
+        if (total_page<6):
+            page_range = range(1, total_page+1)
+        else:
+            page_range = range(1, 6)
+
+    else:
+        if (total_page<page+3):
+            page_range = range(total_page-4, total_page+1)
+        else:
+            page_range = range(page-2, page+3)
+
+    start_index = paginated_by * (page-1)
+    end_index = paginated_by * page
+    writes = writes[start_index:end_index]
+
+    return writes, page_range
+
+def surveycheck(request):
+    user_id = CustomUser.objects.get(id=request.user.id)
+    survey_ess = user_id.survey_ess_id
+    survey_opt = user_id.survey_opt_id
+    return survey_ess, survey_opt
