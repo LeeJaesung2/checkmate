@@ -11,21 +11,18 @@ import math
 
 def searchRoommate(request):
     survey_ess, survey_opt = surveycheck(request)
-    if survey_ess and survey_opt:
-        search_keyword = request.GET.get('search_keyword')
-        writes = Write.objects.all()
-        writes = filter(request, writes)
-        if search_keyword:
-            if len(search_keyword) > 1:
-                writes = writes.filter(title__icontains=search_keyword)
-                writes, page_range = paging(request, writes)
-                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
-            else:
-                messages.error(request, '검색어는 2글자 이상 입력해주세요')
-        writes, page_range = paging(request, writes)
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range})
-    else:
-        return redirect('survey')
+    search_keyword = request.GET.get('search_keyword')
+    writes = Write.objects.all()
+    writes = filter(request, writes)
+    if search_keyword:
+        if len(search_keyword) > 1:
+            writes = writes.filter(title__icontains=search_keyword)
+            writes, page_range = paging(request, writes)
+            return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
+        else:
+            messages.error(request, '검색어는 2글자 이상 입력해주세요')
+    writes, page_range = paging(request, writes)
+    return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'survey_ess':survey_ess, 'survey_opt':survey_opt})
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
