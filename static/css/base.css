@@ -53,6 +53,8 @@
 *{
     margin: 0;
     padding: 0;
+    color: #454545;
+
 }
 /* 공통적용 */
 
@@ -119,10 +121,12 @@ nav li{
     list-style: none;
     color:#959595;
 }
+
 .first li{
-float: left; 
-height:2.5rem;
-position:relative;
+    font-size: 15px;
+    float: left; 
+    /* height:2.5rem; */
+    position:relative;
 
 }
 .second{
@@ -155,7 +159,6 @@ footer{
     width: 100vw;
     height: auto;
     background: #D6D8DD;
-    color: white;
     padding: 30px 0px 10px 20px;
 }
 
@@ -166,8 +169,10 @@ footer div{
 
 .font-bold{
     font-family: 'S-CoreDream-9Black';
+    color: white;
 }
 
 footer p{
     padding: 0px 10px 10px 20px;
+    color: white;
 }
