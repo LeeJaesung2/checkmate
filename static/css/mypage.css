@@ -1,4 +1,11 @@
-
+*{
+}
+p{
+    margin: 0;
+}
+.container{
+    margin-bottom: 10vh;
+}
 /* mypage */
 
 .mypage_container{
@@ -11,8 +18,9 @@
 .mypage_nav{
     border-right: 2px solid #C9C9C9;
     margin-right: 20px;
-    width: 14vw;
+    width: 200px;
     height: 80%;
+    padding: 15px 10px 0 0;
 }
 .mypage_title{
     font-family: Jalnan;
@@ -31,7 +39,7 @@
 }
 .mypage_nav ul a{
     display:inline-block;
-    margin-top:20px;
+    margin-top:30px;
     text-decoration:none;
     color: #C6C6C6;
     text-align: left;
@@ -54,7 +62,6 @@
 .mypage_content input{
     width: 90%;
     padding:5px;
-    margin:10px;
     border:none;
     border-right:0px; 
     border-top:0px; 
@@ -62,24 +69,25 @@
     border-bottom: 2px solid rgba(201, 201, 201, 0.7);
 }
 
-input:focus {outline:none;
-background-color: white;}
+input:focus {
+    outline:none;
+    background-color: white;
+}
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
  }
  
 .mypage_content p{
-    margin-left: 10px;
+    /* margin-left: 10px; */
     border-radius: 25px;
     font-family: 'S-CoreDream-5Medium';
 }
 .mypage_content-box2{
-    margin-top: 40px;
+    margin-top: 15px;
 }
 .mypage_content-box2 p{
     color: #001F70;
     font-family: 'S-CoreDream-3Light';
-    margin-left: 30px;
     text-align: left;
 
 }
@@ -95,21 +103,33 @@ input:-webkit-autofill {
     font-size: 25px;
     line-height: 26px;
     color: #254074;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     /* width: 200px; */
 }
+
+#target_img{
+    margin: 0 0 20px 0;
+}
+
+#user_name{
+    font-family: 'S-CoreDream-6Bold';
+    height: 50px;
+    font-size: 25px;
+    padding: 0 0 0 10px;
+}
+
 .mypage_btn{
     font-family: 'S-CoreDream-7ExtraBold';
     font-size: 15px;
-    line-height: 20px;
     color: #5D94FF;
-    border: 1px solid #268AFF;
+    border: 2px solid #268AFF;
     box-sizing: border-box;
     border-radius: 10px;
-    width: 50px;
-    height: 30px;
+    /* width: 50px; */
+    /* height: 30px; */
     margin-left: 80%;
     background-color: white;
+    padding: 5px 10px;
 }
 .mypage_delete{
     font-family: 'S-CoreDream-3Light';
@@ -183,4 +203,10 @@ input:-webkit-autofill {
     border-bottom: 1px solid #959595;
 }
 
-
+.open{
+    width: 40px;
+    position: fixed;
+    top: 90vh;
+    left: 90vw;
+    z-index: 10;
+}
