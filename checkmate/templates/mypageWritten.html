@@ -6,24 +6,24 @@
 
 {% block content %}
 <div class="mypage_container bg">
-<div class="mypage_nav">
+<div class="mypage_nav  col-lg-5 col-md-6 col-sm-12 ">
     <h3 class="mypage_title">마이페이지</h3>
     <!-- border-left 색상 바꾸기 (클릭 모션) -->
     <ul>
         <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
-    <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
-    <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
-    <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
-</ul>
+        <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+        <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+        <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+    </ul>
 </div>
-<div class="mypage_content">
+<div class="mypage_content col-lg-5 col-md-6 col-sm-12">
     <div class="mypage_write-content">
         <h3 class="mypage_subtitle">내가 작성한 글</h3>
         <button class="mypage_btn">수정</button>
     
         <!-- span for문돌리기 -->
         <div class="mypage_sub-bar">
-            <input type="checkbox" name="" id="checkbox">
+            <input type="checkbox" name="" id="checkbox" class="mypage_list-checkbox">
             <p>카테고리</p>
             <p>제목</p>
         </div>
@@ -81,6 +81,29 @@
     }
 
     init();
+
+    const mypage_btn = document.querySelector('.mypage_btn');
+    const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
+    let edit = 0;
+
+    for ( var i= 0 ; i <mypage_list_checkbox.length ; i++ ){
+        mypage_list_checkbox[i].style.display = 'none';
+    }
+    mypage_btn.addEventListener('click', function(event) {
+        
+        if(edit==0){
+            edit = 1;
+            for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
+            mypage_list_checkbox[i].style.display = 'block';
+            }
+        }
+        else{
+            edit = 0;
+            for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
+            mypage_list_checkbox[i].style.display = 'none';
+            }
+        }
+    });
 </script>
 </div>
 {% endblock %}

@@ -19,7 +19,7 @@
     font-size: 30px;
     line-height: 32px;  
     color: #254074;
-    white-space  : nowrap;
+    /* white-space  : nowrap; */
     width: 100%;
 }
 .mypage_nav ul{
@@ -36,7 +36,7 @@
     color: #C6C6C6;
     text-align: left;
     width: 100%;
-    white-space  : nowrap;
+    /* white-space  : nowrap; */
 }
 .mypage_nav li >a:hover{
 
@@ -101,7 +101,6 @@ input:-webkit-autofill {
 .mypage_btn{
     font-family: 'S-CoreDream-7ExtraBold';
     font-size: 15px;
-    line-height: 20px;
     color: #5D94FF;
     border: 1px solid #268AFF;
     box-sizing: border-box;
@@ -113,33 +112,29 @@ input:-webkit-autofill {
 }
 .mypage_delete{
     font-family: 'S-CoreDream-3Light';
-    font-style: normal;
-    font-weight: 300;
     font-size: 15px;
-    line-height: 18px;
     color: #001F70;
     white-space  : nowrap;
+    margin-top: 30px;
     margin-left: 80%;
 }
 .mypage_content-title{
     font-family: 'S-CoreDream-5Medium';
-    font-style: normal;
-    font-weight: 500;
     font-size: 15px;
     line-height: 20px;
 }
 .mypage_content-body{
     font-family: 'S-CoreDream-3Light';
-    font-style: normal;
-    font-weight: 300;
     font-size: 15px;
     line-height: 18px;
     text-align: center;
     color: #1F1F1F;
-    white-space  : nowrap;
-    width: 100px;
 }
+/* .mypage_list-checkbox.active{
+    display: block;
+} */
 .mypage_list-checkbox  {
+    /* display: none; */
     width: 20px;
     height: 20px;
     left: 475px;
