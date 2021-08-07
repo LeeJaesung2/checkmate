@@ -5,24 +5,24 @@
 {% endblock %}
 {% block content %}
 
-<div>
+<div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
     <div>
-        <h3 class="search_title" >룸메 찾기</h3>
+        <h3 class="search_title row justify-content-center" >룸메 찾기</h3>
     </div>
-    <div >
-        <div>
-            <p>룸메찾기 게시판에 처음 오셨군요</p>
-            <p>문답을 통해 <strong>내정보</strong>를 먼저 입력해 주세요</p>
-            <button formaction="{% url 'survey' %}"></button>
-            <button ></button>
+    <div id="first_open_modal">
+        <div class="first_open_content">
+            <p>룸메찾기 게시판에 처음 오셨군요!</p>
+            <p>문답을 통해 <strong>내정보</strong>를 먼저 입력해 주세요.</p>
+            <button class="modal-btn" formaction="{% url 'survey' %}">문답하기 ></button>
+            <button class="modal-btn modal-btn-X" onclick="hideFirstModal()">X</button>
         </div>
     </div>
-    <div class='filter-btn-box'>
-        <div class='filter-btn-box-left'>
+    <div class='filter-btn-box row'>
+        <div class='filter-btn-box-left col-6'>
             <small>* 내가 원하는 룸메에 대해 적어주세요</small>
         </div>
-        <div class='filter-btn-box-right'>
-            <button class='filter-top-btn'>룸메추천받기</button>
+        <div class='filter-btn-box-right col-4'>
+            <button class='filter-top-btn '>룸메추천받기</button>
             <button class='filter-top-btn'>필터적용하기</button>
             <input class='filter-top-btn' type="button" value="˅" id="down" onclick="showfilter()" >
             <input class='filter-top-btn' type="button" value="˄" id="up" onclick="hidefilter()" >
@@ -42,7 +42,7 @@
                             <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
                         </div>
                     </div>
-                    <div class="essential">
+                    <!-- <div class="essential"> -->
                         <div class="question filter_age">
                             <h6 class="title">나이</h6>
                             <div class="answer">
@@ -51,8 +51,9 @@
                                 <input type="number" id="age_end" name="age_end">
                             </div>
                         </div>
+                    <!-- </div> -->
                     
-                    <div class="essential">
+                    <!-- <div class="essential"> -->
                         <div class="question filter_grade">
                             <h6 class="title">학년</h6>
                             <div class="answer">
@@ -336,12 +337,12 @@
             
             
             <div class="search_bar">
-                <h2>검색</h2>
-                <form action="">
-                    <div>
-                        <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                <h2 class="">검색</h2>
+                <form action="" class="">
+                    <div class="search-input-box">
+                        <input class="search-input" type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
                     </div>
-                    <div>
+                    <div class="">
                         <button type="submit">검색</button>
                     </div>
                 </form>
@@ -353,7 +354,7 @@
     {% endif %}
     <div>
         <table>
-            <thead>
+            <thead class="table-bar">
                 <tr>
                     <th>상태</th>
                     <th>기숙사/자취</th>
@@ -409,7 +410,6 @@
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
-
 <script>
     const open = document.querySelector(".open");
     const close = document.querySelector(".modal__closeBtn");
@@ -438,6 +438,19 @@
         document.getElementById("down").style.display = "none"
         document.getElementById("up").style.display = "inline-block"
     }
+
+    let surveyCheck = "{{ survey_ess }}";
+    // if(surveyCheck == 'None'){
+        // document.getElementById("first_open_modal").style.display = "block";
+    // }
+    // else{
+        document.getElementById("first_open_modal").style.display = "none";
+    // }
+
+    function hideFirstModal(){
+        document.getElementById("first_open_modal").style.display = "none";
+    }
+        
     
 </script>
 {% endblock %}
