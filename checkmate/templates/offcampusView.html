@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/view_page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
 
 <div class="view_container">
     <p class="view_info">{{ post.preface }} | {{ post.preface_2 }}</p>
     <div class="view_box1">
-        <h3>{{ post.title }}}}</h3>
+        <h3>{{ post.title }}</h3>
         <!-- 타이틀 -->
             <small>{{ post.pub_date }}</small>
     </div>
