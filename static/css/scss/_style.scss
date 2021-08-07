@@ -1,0 +1,96 @@
+//web font load
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream-5Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// function
+@mixin mainText(){
+    text-align: right;
+    width: 100%;
+    font-family: 'Jalnan';
+    font-style: normal;
+    font-size: 3.5rem;
+    margin: 0 0 2vh 0;
+}
+
+@mixin menuStyle($bgColor){
+    .title{
+        font-family: 'yg-jalnan';
+        color: white;
+    }
+    .detail{
+        font-family: 'S-CoreDream-5Medium';
+        color: white;
+        height: 35%;
+    }
+    background-color: $bgColor;
+}
+
+@mixin shadowBtn(){
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border: 0px solid white;
+    border-radius: 100px;
+}
+
+//style scss
+.text{
+    position:relative;
+}
+.main-title{
+    text-align: right;
+    width: 100%;
+    font-family: 'Jalnan';
+    font-size: 3.5rem;
+    margin: 0 0 2vh 0;
+}
+
+.front-title{
+    background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+
+.title-shadow{
+    position:absolute;
+    text-align: right;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+}
+
+#main-img{
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.menu-1{
+    @include menuStyle($mainBlue);
+}
+
+.menu-2{
+    @include menuStyle($mainPurple);
+}
+
+.shadow-btn{
+    @include shadowBtn();
+    height: 50px;
+    font-family: 'yg-jalnan';
+    color:$mainColor;
+    width: 45%;
+}
