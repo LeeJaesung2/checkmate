@@ -130,11 +130,8 @@ input:-webkit-autofill {
     text-align: center;
     color: #1F1F1F;
 }
-/* .mypage_list-checkbox.active{
-    display: block;
-} */
+
 .mypage_list-checkbox  {
-    /* display: none; */
     width: 20px;
     height: 20px;
     left: 475px;
