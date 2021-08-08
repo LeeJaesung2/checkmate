@@ -30,7 +30,7 @@ $.each(range_list, function(index, item){
 
 //////////////////변수선언+초기화//////////////////
 let answer_cnt = 0;
-//첫번째 질문 보이게
+//첫번째 질문 보이게ㅁ
 const $question_list = $('.question');
 $question_list.eq(answer_cnt).show();
 

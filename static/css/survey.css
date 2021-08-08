@@ -328,3 +328,38 @@ input[type=submit]{
     width: 100%;
     text-align: center;
 }
+
+@media screen and (max-width: 768px){
+    .container{
+        height: 50vh;
+    }
+    h3{
+        font-size: 14px;
+    }
+    .question > .title{
+        font-size: 25px;
+    }
+    input[type=number]{
+        width: 80%;
+        font-size: 14px;
+    }
+    input[type=radio]+label, input[type=checkbox]+label{
+        font-size: 14px;
+    }
+    input[type=radio]+label:hover, input[type=checkbox]+label:hover{
+        font-size: 14px;
+        opacity: 1;
+        animation-duration: 0.1s;
+        animation-name: btnZoomIn;
+        animation-fill-mode: forwards;
+    }
+    @keyframes btnZoomIn{
+        from{
+            font-size: 14px;
+        }
+        to{
+            font-size: 18px;
+        }
+    }
+
+}
