@@ -20,8 +20,8 @@ def login_view(request):
                 auth.login(request, user)
             return redirect('main')
         else :
-            messages.warning(request, '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
-            return render(request, 'login.html', {'form':form})
+            fail_login = -1
+            return render(request, 'login.html', {'form':form, 'fail_login':fail_login})
     else:
         
         form = AuthenticationForm()
