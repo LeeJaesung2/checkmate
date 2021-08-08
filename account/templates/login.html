@@ -9,6 +9,13 @@
 {% block content %}
 
 <body>
+    <div class="popup-overlay">
+        <div class="popup">
+            <h4>가입하지 않은 아이디이거나, <br>잘못된 비밀번호입니다.</h4>
+            <div class="popup-close">&times;</div>
+        </div>
+    </div>
+
     <div class="login">
         <h3 class="title-login">LOGIN</h3>
         <br><br><br>
@@ -16,13 +23,6 @@
             <form action="" method="post">
                 
                 {% csrf_token %}
-                <p>
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message.message }}
-                        {% endfor %}
-                    {% endif %}
-                </p>
                 <p>ID</p> <br> <input name="username" type="text">
                 <br><br><br>
                 <p>PASSWORD</p> <br> <input name="password" type="password">
@@ -37,4 +37,13 @@
         </div>
     </div>
 </body>
+<script>
+    document.querySelector(".popup-overlay").style.display="none";
+    if("{{fail_login}}"=="-1"){
+        document.querySelector(".popup-overlay").style.display="block";
+    }
+    document.querySelector(".popup-close").onclick = function() {
+        document.querySelector(".popup-overlay").style.display="none";
+    } 
+</script>
 {% endblock %}
