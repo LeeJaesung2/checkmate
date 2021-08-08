@@ -13,22 +13,21 @@
         <div class="first_open_content">
             <p>룸메찾기 게시판에 처음 오셨군요!</p>
             <p>문답을 통해 <strong>내정보</strong>를 먼저 입력해 주세요.</p>
-            <button class="modal-btn" formaction="{% url 'survey' %}">문답하기 ></button>
-            <button class="modal-btn modal-btn-X" onclick="hideFirstModal()">X</button>
+            <button class="btn modal-btn" formaction="{% url 'survey' %}">문답하기 ></button>
+            <button class="btn modal-btn modal-btn-X" onclick="hideFirstModal()">X</button>
         </div>
     </div>
     <div class='filter-btn-box row'>
         <div class='filter-btn-box-left col-6'>
-            <small>* 내가 원하는 룸메에 대해 적어주세요</small>
+            <small class="d-none d-md-block">* 내가 원하는 룸메에 대해 적어주세요</small>
         </div>
-        <div class='filter-btn-box-right col-5'>
+        <div class='filter-btn-box-right col-12 col-md-5'>
             <button class='filter-top-btn'>룸메추천받기</button>
             <button class='filter-top-btn'>필터적용하기</button>
             <input id="down" class='filter-top-btn' type="button" hidden onclick="showfilter()"><label id="filter-dropdown"for="down"><i class="fal fa-caret-square-down"></i></label>
             <input id="up" class='filter-top-btn' type="button" hidden onclick="hidefilter()" ><label id="filter-dropup"for="up"><i class="fal fa-caret-square-up"></i></label>
         </div>
     </div>
-
     <div>
         <form action="" method="GET">
             {% csrf_token %}
@@ -341,9 +340,7 @@
                 <form action="" class="">
                     <div class="search-input-box">
                         <input class="search-input" type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
-                    </div>
-                    <div class="">
-                        <button type="submit"><i class="fal fa-search"></i></button>
+                        <button id="search_btn" type="submit"><i class="fal fa-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -441,18 +438,18 @@
     }
 
 
+    // survey페이지로 이동하는 모달입니다.
     let surveyCheck = "{{ survey_ess }}";
-    // if(surveyCheck == 'None'){
-        // document.getElementById("first_open_modal").style.display = "block";
-    // }
-    // else{
+    if(surveyCheck == 'None'){
+        document.getElementById("first_open_modal").style.display = "block";
+    }
+    else{
         document.getElementById("first_open_modal").style.display = "none";
-    // }
+    }
 
     function hideFirstModal(){
         document.getElementById("first_open_modal").style.display = "none";
     }
-        
-    
+
 </script>
 {% endblock %}

@@ -18,7 +18,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body style="min-width: 300px">
     <!-- 네비바 -->
     <div class="main-check">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@
             </svg>            
         <a class="d-none d-sm-inline"href="{% url 'main' %}">CHECKMATE</a>
     </div>
-    <nav>
+    <nav >
         <div class="right-menu first">
             <ul>
                 <li><a href="{% url 'searchRoommate' %}">룸메 찾기</a></li>
@@ -55,11 +55,11 @@
                 </li>
 
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">로그아웃</a></li>
-                <li><a href="{% url 'mypageProfile' %}">내정보</a></li>
+                <li><a href="{% url 'logout' %}" style="color: rgb(129, 129, 129);">로그아웃</a></li>
+                <li><a href="{% url 'mypageProfile' %}" style="color: rgb(129, 129, 129);">내정보</a></li>
                 {% endif %}
                 {% if not user.is_authenticated %}
-                <li><a href="{% url 'login' %}">로그인</a></li>
+                <li><a href="{% url 'login' %}" style="color: rgb(129, 129, 129);">로그인</a></li>
                 {% endif %}
             </ul>
             <div>
@@ -75,7 +75,7 @@
             <p>경상대학교 멋쟁이사자처럼</p>
         </div>
         <div>
-            <p class="tel">TEL | 055-1234-5678</p>
+            <p class="tel">TEL | None</p>
             <p class="mail">MAIL | likelionGnu@likelion.org</p>
             <p class="insta">INSTAGRAM | likelion_gnu</p>
         </div>
