@@ -51,28 +51,10 @@
     </div>    
 </div>
 
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
-<div class="modal hidden" id="jsModal">
-    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
-</div>
-
 
 
 <script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
-
-    function init(){
-        open.addEventListener("click",function(){
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click",function(){
-            modal.classList.add("hidden");
-        });
-    }
-
-    init();
+   
 
     const mypage_btn = document.querySelector('.mypage_btn');
     const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');

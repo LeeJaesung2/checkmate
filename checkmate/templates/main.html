@@ -3,6 +3,7 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/main2.css' %}">
+
 <!-- <link rel="stylesheet" href="{% static 'css/scss/main_scss.css' %}"> -->
 {% endblock %}
 {% block content %}
@@ -46,4 +47,12 @@
         </div>
     </div>
 
+
+    {% endblock %}
+
+    {% block last %}
+    <script>
+        let open_btn = document.querySelector("#btn-modal");
+        open_btn.style.display="none";
+    </script>
     {% endblock %}

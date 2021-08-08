@@ -115,10 +115,4 @@
     width: 100px;
 }
 
-.open{
-    width: 40px;
-    position: fixed;
-    top: 90vh;
-    left: 90vw;
-    z-index: 10;
-}
+
