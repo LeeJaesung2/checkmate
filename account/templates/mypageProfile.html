@@ -35,13 +35,6 @@
             <!-- <p>ID</p> -->
             <br><br>
             <p>비밀번호 변경</p>
-            <p>
-                {% if messages %}
-                {% for message in messages %}
-                {{ message.message }}
-                {% endfor %}
-                {% endif %}
-            </p>
             {% csrf_token %}
 
             <div class="mypage_content-box2">

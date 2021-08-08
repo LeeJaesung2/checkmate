@@ -28,6 +28,11 @@
             <input class='filter-top-btn' type="button" value="˄" id="up" onclick="hidefilter()" >
         </div>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message.message }}
+        {% endfor %}
+    {% endif %}
 
     <div>
         <form action="" method="GET">
@@ -372,7 +377,7 @@
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->
                     <td>{{ write.user_id.survey_ess_id.grade}}학년</td>
-                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</td>
+                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</a></td>
                     <!-- <td> 적합도 구현X </td> -->
                 </tr>
                 {% endfor %}
@@ -398,7 +403,7 @@
 
 <div>
     <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        <li class="page-item"><a class="page-link" href="">◀</a></li>
         {% for page in page_range %}
         <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}">{{page}}</a></li>
         {% endfor %}
