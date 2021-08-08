@@ -62,7 +62,7 @@
     list-style-type: none;
     font-family: 'S-CoreDream-3Light';
     margin: 50px auto 0px auto;
-    /* width: 50vw; */
+    width: 100%;
 }
 .pagination li{
     float: left;
@@ -80,16 +80,16 @@
 .main-check > a{
     font-family: 'yg-jalnan';
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 20px;
     letter-spacing: 0.1em;
     color: rgba(93, 148, 255, 1);
 }
 
 .main-check > svg{
     position: relative;
-    width: 1.8rem;
-    height: 1.8rem;
-    top: -0.7vh;
+    width: 20px;
+    height: 20px;
+    top: -0.4vh;
     margin-right: 0.5vw;
 }
 
@@ -101,14 +101,14 @@ nav{
     float: right;
     margin-top: 3vw;
     margin-right: 3vw;
-    font-size: 1.4rem;
+    font-size: 20px;
     color: rgba(93, 148, 255, 1);
 }
 
 nav a {
     color: rgba(93, 148, 255, 1);
     text-decoration: none;
-    font-size: 1.0rem;
+    font-size: 15px;
     margin-right: 3vw;
 }
 

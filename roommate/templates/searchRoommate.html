@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 
-<div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
     <div>
         <h3 class="search_title row justify-content-center" >룸메 찾기</h3>
     </div>
@@ -21,11 +21,11 @@
         <div class='filter-btn-box-left col-6'>
             <small>* 내가 원하는 룸메에 대해 적어주세요</small>
         </div>
-        <div class='filter-btn-box-right col-4'>
-            <button class='filter-top-btn '>룸메추천받기</button>
+        <div class='filter-btn-box-right col-5'>
+            <button class='filter-top-btn'>룸메추천받기</button>
             <button class='filter-top-btn'>필터적용하기</button>
-            <input class='filter-top-btn' type="button" value="˅" id="down" onclick="showfilter()" >
-            <input class='filter-top-btn' type="button" value="˄" id="up" onclick="hidefilter()" >
+            <input id="down" class='filter-top-btn' type="button" hidden onclick="showfilter()"><label id="filter-dropdown"for="down"><i class="fal fa-caret-square-down"></i></label>
+            <input id="up" class='filter-top-btn' type="button" hidden onclick="hidefilter()" ><label id="filter-dropup"for="up"><i class="fal fa-caret-square-up"></i></label>
         </div>
     </div>
 
@@ -35,14 +35,14 @@
             <!-- <p>필터적용하기</p> -->
             <div id="filter">
                 <form action="">
-                    <div class="filter_state">
-                        <h6 class="title">상태</h6>
-                        <div class="answer">
-                            <input type="radio" id="state" name="state" value="1"><label for="state">매칭중</label>
-                            <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
-                        </div>
-                    </div>
                     <!-- <div class="essential"> -->
+                        <div class="question filter_state">
+                            <h6 class="title">상태</h6>
+                            <div class="answer">
+                                <input type="radio" id="state" name="state" value="1"><label for="state">매칭중</label>
+                                <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
+                            </div>
+                        </div>
                         <div class="question filter_age">
                             <h6 class="title">나이</h6>
                             <div class="answer">
@@ -55,11 +55,11 @@
                     
                     <!-- <div class="essential"> -->
                         <div class="question filter_grade">
-                            <h6 class="title">학년</h6>
+                            <h6 class="title dropdown">학년</h6>
                             <div class="answer">
                                 <select name="grade" id="">
                                     <option value="">------</option>
-                                    <option value="1">1학년</option>
+                                    <option value="1 dropdown-item">1학년</option>
                                     <option value="2">2학년</option>
                                     <option value="3">3학년</option>
                                     <option value="4">4학년</option>
@@ -331,19 +331,19 @@
                         </div>
                     <!-- </div> -->
                     <!-- 버튼 안보임 -->
-                    <button id='filter-submit' type="submit">적용하기</button>
+                    <button class="btn" id='filter-submit' type="submit">적용하기</button>
                 </form>
             </div>
             
             
             <div class="search_bar">
-                <h2 class="">검색</h2>
+                <h2 class="d-none d-md-block">검색</h2>
                 <form action="" class="">
                     <div class="search-input-box">
                         <input class="search-input" type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
                     </div>
                     <div class="">
-                        <button type="submit">검색</button>
+                        <button type="submit"><i class="fal fa-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -353,14 +353,14 @@
     <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
     {% endif %}
     <div>
-        <table>
-            <thead class="table-bar">
+        <table class="table table-responsive">
+            <thead class="thead-light">
                 <tr>
-                    <th>상태</th>
-                    <th>기숙사/자취</th>
-                    <th>성별</th>
-                    <th>나이</th>
-                    <th>제목</th>
+                    <th scope="col" style="width: 10%">상태</th>
+                    <th scope="col" style="width: 10%">기숙사/자취</th>
+                    <th scope="col" style="width: 10%">성별</th>
+                    <th scope="col" style="width: 10%">나이</th>
+                    <th scope="col" style="width: 55%">제목</th>
                     <!-- <th>적합도</th> 구현X -->
                 </tr>
             </thead>
@@ -368,7 +368,7 @@
                 {% if writes %}
                 {% for write in writes %}
                 <tr>
-                    <td>{{ write.get_state_display}}</td>
+                    <td scope="row">{{ write.get_state_display}}</td>
                     <td>{{ write.user_id.survey_ess_id.get_room_type_display}}</td>
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->
@@ -380,32 +380,32 @@
                 {% else %}
                     {% if search_keyword %}
                     <tr>
-                        <td>일치하는 검색 결과가 없습니다</td>
+                        <td scope="row" colspan="5">일치하는 검색 결과가 없습니다</td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td>작성된 게시글이 없습니다</td>
+                        <td scope="row" colspan="5">작성된 게시글이 없습니다</td>
                     </tr>
                     {% endif %}
                 {% endif %}
             </tbody>
         </table>
+        <div>
+            <a class="btn btn-light float-end new-content" href="{% url 'create' %}">글쓰기</a>
+        </div>
+    </div>
+    <div class="pagination-box">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
+            {% for page in page_range %}
+            <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a></li>
+            {% endfor %}
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">▶</a></li>
+        </ul>
     </div>
 </div>
 
-<div>
-    <a href="{% url 'create' %}">새로 만들기</a>
-</div>
 
-<div>
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">◀</a></li>
-        {% for page in page_range %}
-        <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}">{{page}}</a></li>
-        {% endfor %}
-        <li class="page-item"><a class="page-link" href="#">▶</a></li>
-    </ul>
-</div>
 <img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
 <div class="modal hidden" id="jsModal">
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
@@ -416,6 +416,7 @@
     const modal = document.querySelector(".modal");
     filter.style.display='none'
     up.style.display='none'
+    document.getElementById("filter-dropup").style.display = "none";
     
 
     function init(){
@@ -430,14 +431,15 @@
     init();
     function hidefilter(){
         document.getElementById("filter").style.display = "none";
-        document.getElementById("up").style.display = "none"
-        document.getElementById("down").style.display = "inline-block"
+        document.getElementById("filter-dropup").style.display = "none"
+        document.getElementById("filter-dropdown").style.display = "inline-block"
     }
     function showfilter(){
         document.getElementById("filter").style.display = "grid"
-        document.getElementById("down").style.display = "none"
-        document.getElementById("up").style.display = "inline-block"
+        document.getElementById("filter-dropdown").style.display = "none"
+        document.getElementById("filter-dropup").style.display = "inline-block"
     }
+
 
     let surveyCheck = "{{ survey_ess }}";
     // if(surveyCheck == 'None'){
