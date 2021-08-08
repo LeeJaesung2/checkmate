@@ -23,7 +23,8 @@
 
 
             <div class="mypage_sub-bar">
-                <input class="mypage_list-checkbox"  type="checkbox" name="" id="checkbox">
+                <input class="mypage_list-checkbox boss_checkbox"  type="checkbox" name="" id="checkbox"
+                onclick="checkAll()">
                 <p>글쓴이</p>
                 <p>제목</p>
             </div>
@@ -50,51 +51,49 @@
     </div>    
 </div>
 
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
-<div class="modal hidden" id="jsModal">
-    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
-</div>
-
 
 
 <script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
-
-    function init(){
-        open.addEventListener("click",function(){
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click",function(){
-            modal.classList.add("hidden");
-        });
-    }
-
-    init();
+   
 
     const mypage_btn = document.querySelector('.mypage_btn');
     const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
     let edit = 0;
 
     for ( var i= 0 ; i <mypage_list_checkbox.length ; i++ ){
-        mypage_list_checkbox[i].style.display = 'none';
+        mypage_list_checkbox[i].style.visibility = 'hidden';
     }
     mypage_btn.addEventListener('click', function(event) {
         
         if(edit==0){
             edit = 1;
             for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.display = 'block';
+            mypage_list_checkbox[i].style.visibility = 'visible';
             }
         }
         else{
             edit = 0;
             for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.display = 'none';
+            mypage_list_checkbox[i].style.visibility = 'hidden';
             }
         }
     });
+    
+    const boss_checkbox = document.querySelector('.boss_checkbox');
+    let choose = 0;
+
+    function checkAll(){
+        if(boss_checkbox.checked==true){
+            for ( var i = 0; i<mypage_list_checkbox.length ; i++){
+                mypage_list_checkbox[i].checked = true;
+            }
+       }
+        if(boss_checkbox.checked==false){
+           for(var i=0; i<mypage_list_checkbox.length; i++){
+                mypage_list_checkbox[i].checked=false;  
+            }
+        }
+    }
 
 </script>
 

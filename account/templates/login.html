@@ -37,13 +37,20 @@
         </div>
     </div>
 </body>
+
+{% endblock %}
+
+{% block last %}
 <script>
-    document.querySelector(".popup-overlay").style.display="none";
+      document.querySelector(".popup-overlay").style.display="none";
     if("{{fail_login}}"=="-1"){
         document.querySelector(".popup-overlay").style.display="block";
     }
     document.querySelector(".popup-close").onclick = function() {
         document.querySelector(".popup-overlay").style.display="none";
     } 
+  
+    let open_btn = document.querySelector("#btn-modal");
+    open_btn.style.display="none";
 </script>
 {% endblock %}
