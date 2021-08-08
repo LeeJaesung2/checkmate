@@ -28,6 +28,11 @@
             <input id="up" class='filter-top-btn' type="button" hidden onclick="hidefilter()" ><label id="filter-dropup"for="up"><i class="fal fa-caret-square-up"></i></label>
         </div>
     </div>
+    {% if messages %}
+        {% for message in messages %}
+            {{ message.message }}
+        {% endfor %}
+    {% endif %}
     <div>
         <form action="" method="GET">
             {% csrf_token %}
@@ -370,7 +375,7 @@
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->
                     <td>{{ write.user_id.survey_ess_id.grade}}학년</td>
-                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</td>
+                    <td><a href="{% url 'detail' write.id %}">{{ write.title }}</a></td>
                     <!-- <td> 적합도 구현X </td> -->
                 </tr>
                 {% endfor %}
@@ -408,24 +413,12 @@
     <button class="modal__closeBtn" id="jsCloseBtn">X</button>
 </div>
 <script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
+    
     filter.style.display='none'
     up.style.display='none'
     document.getElementById("filter-dropup").style.display = "none";
     
 
-    function init(){
-        open.addEventListener("click",function(){
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click",function(){
-            modal.classList.add("hidden");
-        });
-    }
-
-    init();
     function hidefilter(){
         document.getElementById("filter").style.display = "none";
         document.getElementById("filter-dropup").style.display = "none"

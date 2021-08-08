@@ -74,27 +74,11 @@
         </ul>
     </div>
 </div>
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
-<div class="modal hidden" id="jsModal">
-    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
-</div>
+
+
+
 
 <script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
-
-    function init() {
-        open.addEventListener("click", function () {
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click", function () {
-            modal.classList.add("hidden");
-        });
-    }
-
-    init();
-
     
     // 커뮤니티에서 nav 고정
     const box = document.querySelector(".second");
@@ -103,4 +87,5 @@
     const highlight = document.getElementById('nav_domitory');
     highlight.style.color ="rgba(37, 64, 116, 1)";
 </script>
+
 {% endblock %}

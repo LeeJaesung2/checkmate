@@ -170,6 +170,7 @@ h5{
     width: 100px;
 }
 
+
 .open{
     width: 40px;
     position: fixed;
@@ -198,3 +199,4 @@ h5{
         grid-column: 1/1;
     }
 }
+
