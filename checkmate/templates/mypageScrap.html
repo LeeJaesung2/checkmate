@@ -19,12 +19,12 @@
 <div class="mypage_content">
     <div class="mypage_scap-content">
         <h3 class="mypage_subtitle">스크랩</h3>
-        <button  class="mypage_btn">수정</button>
+        <button  class="mypage_btn" onclick="active_edit()" id="active">수정</button>
+        <button  class="mypage_btn" onclick="deactive_edit()" id="deactive">수정</button>
 
 
             <div class="mypage_sub-bar">
-                <input class="mypage_list-checkbox boss_checkbox"  type="checkbox" name="" id="checkbox"
-                onclick="checkAll()">
+                <input class="mypage_list-checkbox boss_checkbox"  type="checkbox" name="" id="checkbox" onclick="checkAll()">
                 <p>글쓴이</p>
                 <p>제목</p>
             </div>
@@ -32,19 +32,19 @@
 
         <!-- span for문돌리기 -->
         <div class="mypage_list">
-            <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
-            <p class="mypage_content-title">기숙사 | 남 | 20세</p>
-            <p class="mypage_content-body">안녕하세요 10동 룸메이트 구합니다. 저층 선호합니다.</p>
+            {% for scrap in scraps %}
+            <input class="mypage_list-checkbox" id="checkboxs" type='checkbox' name='checkbox'/>
+            <p class="mypage_content-title">{{ scrap.write.survey_ess_id.get_room_type_display }} | {{ scrap.write.user_id.user_gender }} | {{ scrap.write.survey_ess_id.grade }}학년</p>
+            <p class="mypage_content-body"><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
+            {% endfor %}
         </div>
-        <a class="mypage_delete" href="">삭제하기</a>
+        <a class="mypage_delete" id="delete" href="">삭제하기</a>
         <div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                {% for page in page_range %}
+                <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a></li>
+                {% endfor %}
                 <li class="page-item"><a class="page-link" href="#">▶</a></li>
             </ul>
         </div>
@@ -94,7 +94,36 @@
             }
         }
     }
+    init();
 
+    // 수정중
+    document.getElementById("deactive").style.display = "none"
+    document.getElementById("checkbox").style.display = "none"
+    document.getElementById("checkboxs").style.display = "none"
+    document.getElementById("delete").style.display = "none"
+    function active_edit(){
+        document.getElementById("active").style.display = "none"
+        document.getElementById("deactive").style.display = "inline-block"
+        document.getElementById("checkbox").style.display = "inline-block"
+        document.getElementById("checkboxs").style.display = "inline-block"
+        document.getElementById("delete").style.display = "inline-block"
+
+    }
+    function deactive_edit(){
+        document.getElementById("deactive").style.display = "none"
+        document.getElementById("active").style.display = "inline-block"
+        document.getElementById("checkbox").style.display = "none"
+        document.getElementById("checkboxs").style.display = "none"
+        document.getElementById("delete").style.display = "none"
+        
+        
+    }
+
+    function selectAll(selectAll)  {
+        const checkboxes = document.getElementsByName('checkbox');
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;})
+    }
 </script>
 
 {% endblock %}

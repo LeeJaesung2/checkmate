@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
+from .models import Scrap
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
 import math
+from datetime import datetime
 
 # Create your views here.
 
@@ -58,7 +60,16 @@ def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-    return render(request, 'mypageScrap.html')
+    scraps = Scrap.objects.all()
+    user_id = request.user.id
+    scraps = scraps.filter(user_id__id=user_id)
+    scraps, page_range = paging(request, scraps)
+    return render(request, 'mypageScrap.html',{'scraps':scraps, 'page_range':page_range})
+
+def delete(request, write_id):
+    scrap = Scrap.objects.get(id=write_id)
+    scrap.delete()
+    return redirect('searchRoommate')
 
 def mypageWritten(request):
     user=request.user
