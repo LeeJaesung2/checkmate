@@ -5,6 +5,12 @@
 <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
+<div class="popup-overlay">
+    <div class="popup">
+        <h4>이미 스크랩된 게시물 입니다</h4>
+        <div class="popup-close">&times;</div>
+    </div>
+</div>
 
 <div class="view_container">
     <div>
@@ -230,4 +236,16 @@
         </ul>
     </div>
 </div>
+<script>
+    document.querySelector(".popup-overlay").style.display="none";
+  if("{{aleary_scrap}}"=="-1"){
+      document.querySelector(".popup-overlay").style.display="block";
+  }
+  document.querySelector(".popup-close").onclick = function() {
+      document.querySelector(".popup-overlay").style.display="none";
+  } 
+
+  let open_btn = document.querySelector("#btn-modal");
+  open_btn.style.display="none";
+</script>
 {% endblock %}
