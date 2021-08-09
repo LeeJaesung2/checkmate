@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
+from .models import Scrap
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
 import math
+from datetime import datetime
 
 # Create your views here.
 

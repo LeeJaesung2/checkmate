@@ -26,6 +26,7 @@
  
                 <input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'
                     onclick='selectAll(this);'>
+
                 <p>글쓴이</p>
                 <p>제목</p>
             </div>
@@ -50,17 +51,16 @@
             {% endfor %}
 
             <button class="mypage_delete">삭제하기</button>
-            <div>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">▶</a></li>
-                </ul>
+        <div>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">◀</a></li>
+                {% for page in page_range %}
+                <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a></li>
+                {% endfor %}
+                <li class="page-item"><a class="page-link" href="#">▶</a></li>
+            </ul>
             </div>
+
         </div>
     </div>
 
@@ -108,6 +108,7 @@
             })
         }
 
+
         //포스트 삭제 기능.
         delete_btn.addEventListener('click', function (event) {
             const frm = document.getElementById('frm');
@@ -126,9 +127,8 @@
         });
 
 
-
-
     </script>
+
 
 
     {% endblock %}

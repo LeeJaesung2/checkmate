@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
 from account.models import CustomUser
+from roommate.models import Write
 
 # Create your models here.
 
@@ -94,4 +95,8 @@ class Domitory_Post(models.Model):
         )
         # 앞의 값으로 저장되고 출력 시 뒤의 값으로 출력
         preface_2 = models.CharField(max_length=10, choices=CHOICES_2)
-        
+
+
+class Scrap(models.Model):
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    write = models.ForeignKey(Write, on_delete=models.CASCADE)

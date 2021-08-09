@@ -4,8 +4,10 @@ from django.db.models import Q
 from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from account.models import CustomUser
+from checkmate.models import Scrap
 from datetime import datetime
 import math
+
 
 # Create your views here.
 
@@ -31,6 +33,19 @@ def detail(request, write_id):
     age = datetime.today().year - write_detail.user_id.user_birthyear+1
     pre = write_detail.id - 1
     next = write_detail.id + 1
+    scrap = request.GET.get("Favorites")
+    if(scrap):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = Scrap.objects.all()
+        aleady = aleady.filter(write=write_detail)
+        aleady = aleady.filter(user_id=user_id)
+        if aleady:
+            messages.error(request, '이미 스크랩된 게시물 입니다')
+        else:
+            scrap = Scrap()
+            scrap.user_id = user_id
+            scrap.write = write_detail
+            scrap.save()
     return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next})
 
 def create(request):

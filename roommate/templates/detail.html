@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
+
 <div class="view_container">
     <div>
         <h3>{{write_detail.title}}</h3>
@@ -15,7 +16,14 @@
             <option value=4>해결했어요</option>
         </select>
         <div>
-            <button id="Favorites" onclick="">즐겨찾기</button>
+            <form action="" method="GET">
+                <button id="Favorites" type="submit" name="Favorites" value="scrap">스크랩</button>
+            </form>
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message.message }}
+                {% endfor %}
+            {% endif %}
             <small>pub_date</small>
         </div>
     </div>
