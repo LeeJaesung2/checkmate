@@ -110,10 +110,14 @@ small{
 }
 
 .filter-btn-box button, .filter-btn-box input{
-    /* font-family: ; */
+    font-family: 'S-CoreDream-5Medium';
+    font-size: 14px;
     border: 0px solid white;
     background-color: white;
     padding: 5px;
+}
+.filter-btn-box button:last-child{
+    padding-right: 0;
 }
 .filter-btn-box button:first-child{
     background-color: none;
