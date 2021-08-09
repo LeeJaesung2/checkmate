@@ -21,7 +21,6 @@
             <h3 class="mypage_subtitle row">스크랩</h3>
             <button class="mypage_btn row">수정</button>
 
-
             <div class="mypage_sub-bar row">
                 <div class="col-2">
                 <input class="checkbox_all" type="checkbox" name="written" id="checkbox" value='selectall'
@@ -29,6 +28,13 @@
                 </div>
                 <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
                 <p class="p-2 col-5" style="margin-top:0;">제목</p>
+            </div>
+            <div>
+                {% for scrap in scraps %}
+                    <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all">
+                    <p>{{ scrap.write.user_id.user_nickname }}</p>
+                    <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
+                {% endfor %}
             </div>
 
             <button class="mypage_delete">삭제하기</button>
@@ -55,6 +61,7 @@
         const mypage_btn = document.querySelector('.mypage_btn');
         const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
         const checkbox_all = document.querySelectorAll('.checkbox_all');
+        const delete_btn = document.querySelector('.mypage_delete');
 
         let edit = 0;
         delete_btn.style.visibility = 'hidden';
