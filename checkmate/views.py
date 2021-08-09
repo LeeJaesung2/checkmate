@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
+from .models import Scrap_roommate
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
@@ -60,7 +61,12 @@ def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-        return render(request, 'mypageScrap.html')
+    scraps = Scrap_roommate.objects.all()
+    user_id = request.user.id
+    scraps = scraps.filter(user_id__id=user_id)
+    scraps, page_range = paging(request, scraps)
+    return render(request, 'mypageScrap.html',{'scraps':scraps, 'page_range':page_range})
+
 
 def mypageWritten(request):
     user=request.user
