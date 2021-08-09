@@ -69,16 +69,18 @@ def mypageScrap(request):
         num = 0
         for i in d_posts:
             if str(num) in delete_array:
-                i.delete()
+                i.like=0
+                j.save()
             num+=1
 
         for j in o_posts:
             if str(num) in delete_array:
-                j.delete()
+                j.like=0
+                j.save()
             num+=1
             print(delete_array)
 
-        return redirect('mypageWritten')
+        return redirect('mypageScrap')
 
 
     else:
