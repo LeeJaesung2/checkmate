@@ -18,10 +18,10 @@
         <!-- 프로필이미지 -->
         <p> {{ post.user_id.user_nickname }} </p>
         <!-- 닉네임 -->
-        <button onclick="location.href='{% url "domitory_scrap" post.id %}'">스크랩! 디자인 수정부탁합니당~</button>
+        <button onclick="location.href='{% url " domitory_scrap" post.id %}'">스크랩! 디자인 수정부탁합니당~</button>
     </div>
 
-    <div >
+    <div>
         <img src="{{ post.image }}" alt="image">
         <p class="body">{{ post.content }}</p>
         <!-- 내용 -->
