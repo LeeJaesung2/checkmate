@@ -2,6 +2,7 @@ from django.db import models
 from account.models import CustomUser
 from survey.models import SurveyEssential, SurveyOptional
 
+
 # Create your models here.
 
 class Write(models.Model):

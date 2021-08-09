@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.db.models import Q
 import math
 from datetime import datetime
+from roommate.models import Write
 
 # Create your views here.
 
@@ -53,37 +54,14 @@ def dom_infoWrite(request):
         if(user):
             return render(request, 'dom_infoWrite.html',{'user':user})
         else:
-            return redirect('domioryCommunity')
+            return redirect('domitoryCommunity')
 
 def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-    user=request.user
-    o_posts = Offcampus_Post.objects.filter(user_id=user, like=1)
-    d_posts = Domitory_Post.objects.filter(user_id=user, like=1)
-    if request.method == 'POST':
-        delete_array = request.POST.getlist('delete_array[]')
-
-        num = 0
-        for i in d_posts:
-            if str(num) in delete_array:
-                i.like=0
-                j.save()
-            num+=1
-
-        for j in o_posts:
-            if str(num) in delete_array:
-                j.like=0
-                j.save()
-            num+=1
-            print(delete_array)
-
-        return redirect('mypageScrap')
-
-
-    else:
-        return render(request, 'mypageScrap.html',{'o_posts':o_posts,'d_posts':d_posts})
+    
+        return render(request, 'mypageScrap.html')
 
 def mypageWritten(request):
     user=request.user
