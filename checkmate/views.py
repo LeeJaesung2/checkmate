@@ -64,7 +64,26 @@ def mypageWritten(request):
     user=request.user
     o_posts = Offcampus_Post.objects.filter(user_id=user)
     d_posts = Domitory_Post.objects.filter(user_id=user)
-    return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
+    if request.method == 'POST':
+        delete_array = request.POST.getlist('delete_array[]')
+
+        num = 0
+        for i in d_posts:
+            if str(num) in delete_array:
+                i.delete()
+            num+=1
+
+        for j in o_posts:
+            if str(num) in delete_array:
+                j.delete()
+            num+=1
+            print(delete_array)
+
+        return redirect('mypageWritten')
+
+    else:
+        return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
+
 
 def offcampusCommunity(request):
     search_keyword = request.GET.get('search_keyword')
