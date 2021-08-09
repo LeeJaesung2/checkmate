@@ -10,6 +10,8 @@ class Offcampus_Post(models.Model):
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="offcampus_image/%Y/%m/%d",blank=True)
+    like = models.IntegerField(default=0)
+    # 스크랩 표시를 위한 용도 ( 스크랩 = 1 ) ( 스크랩X = 0 ) 
 
 
     CHOICES = (
@@ -52,6 +54,7 @@ class Domitory_Post(models.Model):
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="domitory_image/%Y/%m/%d", blank=True)
+    like = models.IntegerField(default=0)
 
 
     CHOICES = (

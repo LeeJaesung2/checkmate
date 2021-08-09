@@ -6,95 +6,129 @@
 
 {% block content %}
 <div class="mypage_container bg">
-<div class="mypage_nav">
-    <h3 class="mypage_title">마이페이지</h3>
-    <!-- border-left 색상 바꾸기 (클릭 모션) -->
-    <ul>
-        <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
-        <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
-        <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
-        <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
-    </ul>
-</div>
-<div class="mypage_content">
-    <div class="mypage_scap-content">
-        <h3 class="mypage_subtitle">스크랩</h3>
-        <button  class="mypage_btn">수정</button>
+    <div class="mypage_nav">
+        <h3 class="mypage_title">마이페이지</h3>
+        <!-- border-left 색상 바꾸기 (클릭 모션) -->
+        <ul>
+            <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
+            <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+            <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+        </ul>
+    </div>
+    <div class="mypage_content">
+        <div class="mypage_scap-content">
+            <h3 class="mypage_subtitle">스크랩</h3>
+            <button class="mypage_btn">수정</button>
 
 
             <div class="mypage_sub-bar">
-                <input class="mypage_list-checkbox boss_checkbox"  type="checkbox" name="" id="checkbox"
-                onclick="checkAll()">
+ 
+                <input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'
+                    onclick='selectAll(this);'>
                 <p>글쓴이</p>
                 <p>제목</p>
             </div>
 
+            <form action="" method="post" id="frm">
+                {% csrf_token %}
+            </form>
 
-        <!-- span for문돌리기 -->
-        <div class="mypage_list">
-            <input class="mypage_list-checkbox" type="checkbox" name="" id="checkbox">
-            <p class="mypage_content-title">기숙사 | 남 | 20세</p>
-            <p class="mypage_content-body">안녕하세요 10동 룸메이트 구합니다. 저층 선호합니다.</p>
+            {% for post in d_posts %}
+            <div class="mypage_list"  onclick='location.href="{% url 'domitoryView' post.id %}"'>
+                <input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written" id="checkbox">
+                <p class="mypage_content-title">{{ post.user_id.survey_ess_id.get_room_type_display }} | {{ post.user_id.survey_ess_id.get_grade_display }} | {{ post.user_id.user_gender }} </p>
+                <p class="mypage_content-body">{{ post.title }}</p>
+            </div>
+            {% endfor %}
+            {% for post in o_posts %}
+            <div class="mypage_list" onclick='location.href="{% url 'offcampusView' post.id %}"'>
+                <input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written" id="checkbox">
+                <p class="mypage_content-title">{{ post.preface }}</p>
+                <p class="mypage_content-body">{{ post.title }}</p>
+            </div>
+            {% endfor %}
+
+            <button class="mypage_delete">삭제하기</button>
+            <div>
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">◀</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#">▶</a></li>
+                </ul>
+            </div>
         </div>
-        <a class="mypage_delete" href="">삭제하기</a>
-        <div>
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">▶</a></li>
-            </ul>
-        </div>
-    </div>    
-</div>
+    </div>
 
 
 
-<script>
-   
+    <script>
 
-    const mypage_btn = document.querySelector('.mypage_btn');
-    const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
-    let edit = 0;
 
-    for ( var i= 0 ; i <mypage_list_checkbox.length ; i++ ){
-        mypage_list_checkbox[i].style.visibility = 'hidden';
-    }
-    mypage_btn.addEventListener('click', function(event) {
-        
-        if(edit==0){
-            edit = 1;
-            for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.visibility = 'visible';
-            }
+        const mypage_btn = document.querySelector('.mypage_btn');
+        const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
+        const delete_btn = document.querySelector('.mypage_delete');
+        const checkbox_all = document.querySelectorAll('.checkbox_all');
+
+        let edit = 0;
+        delete_btn.style.visibility = 'hidden';
+
+        for (var i = 0; i < checkbox_all.length; i++) {
+            checkbox_all[i].style.visibility = 'hidden';
         }
-        else{
-            edit = 0;
-            for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.visibility = 'hidden';
+        mypage_btn.addEventListener('click', function (event) {
+
+            if (edit == 0) {
+                edit = 1;
+                for (var i = 0; i < checkbox_all.length; i++) {
+                    checkbox_all[i].style.visibility = 'visible';
+                }
+                delete_btn.style.visibility = 'visible';
             }
+            else {
+                edit = 0;
+                for (var i = 0; i < checkbox_all.length; i++) {
+                    checkbox_all[i].style.visibility = 'hidden';
+                }
+                delete_btn.style.visibility = 'hidden';
+            }
+        });
+
+        //체크박스 전체선택 기능
+        function selectAll(selectAll) {
+            const checkboxes = document.getElementsByName('written');
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+                //체크박스의 checked 값을 'Select All' element의 check 값(selectAll.checked)과 동일하게 변경
+            })
         }
-    });
-    
-    const boss_checkbox = document.querySelector('.boss_checkbox');
-    let choose = 0;
 
-    function checkAll(){
-        if(boss_checkbox.checked==true){
-            for ( var i = 0; i<mypage_list_checkbox.length ; i++){
-                mypage_list_checkbox[i].checked = true;
+        //포스트 삭제 기능.
+        delete_btn.addEventListener('click', function (event) {
+            const frm = document.getElementById('frm');
+            for (var i = 0; i < mypage_list_checkbox.length; i++) {
+                if (mypage_list_checkbox[i].checked) {
+                    var newNode = document.createElement("input");
+                    newNode.value = i;
+                    newNode.name = "delete_array[]";
+                    //POST로 보낼 차례 데이터 만들기
+                    frm.appendChild(newNode);
+                    console.log(newNode.value);
+                }
             }
-       }
-        if(boss_checkbox.checked==false){
-           for(var i=0; i<mypage_list_checkbox.length; i++){
-                mypage_list_checkbox[i].checked=false;  
-            }
-        }
-    }
+            frm.submit();
 
-</script>
+        });
 
-{% endblock %}
+
+
+
+    </script>
+
+
+    {% endblock %}

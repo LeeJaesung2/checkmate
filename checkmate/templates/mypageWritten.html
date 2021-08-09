@@ -37,14 +37,14 @@
 
 
             {% for post in d_posts %}
-            <div class="mypage_list">
+            <div class="mypage_list"  onclick='location.href="{% url 'domitoryView' post.id %}"'>
                 <input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written" id="checkbox">
                 <p class="mypage_content-title">기숙사 정보</p>
                 <p class="mypage_content-body">{{ post.title }}</p>
             </div>
             {% endfor %}
             {% for post in o_posts %}
-            <div class="mypage_list">
+            <div class="mypage_list" onclick='location.href="{% url 'offcampusView' post.id %}"'>
                 <input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written" id="checkbox">
                 <p class="mypage_content-title">자취 정보</p>
                 <p class="mypage_content-body">{{ post.title }}</p>
