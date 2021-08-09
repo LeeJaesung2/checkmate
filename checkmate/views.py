@@ -60,22 +60,56 @@ def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-    scraps = Scrap.objects.all()
-    user_id = request.user.id
-    scraps = scraps.filter(user_id__id=user_id)
-    scraps, page_range = paging(request, scraps)
-    return render(request, 'mypageScrap.html',{'scraps':scraps, 'page_range':page_range})
+    user=request.user
+    o_posts = Offcampus_Post.objects.filter(user_id=user, like=1)
+    d_posts = Domitory_Post.objects.filter(user_id=user, like=1)
+    if request.method == 'POST':
+        delete_array = request.POST.getlist('delete_array[]')
 
-def delete(request, write_id):
-    scrap = Scrap.objects.get(id=write_id)
-    scrap.delete()
-    return redirect('searchRoommate')
+        num = 0
+        for i in d_posts:
+            if str(num) in delete_array:
+                i.like=0
+                j.save()
+            num+=1
+
+        for j in o_posts:
+            if str(num) in delete_array:
+                j.like=0
+                j.save()
+            num+=1
+            print(delete_array)
+
+        return redirect('mypageScrap')
+
+
+    else:
+        return render(request, 'mypageScrap.html',{'o_posts':o_posts,'d_posts':d_posts})
 
 def mypageWritten(request):
     user=request.user
     o_posts = Offcampus_Post.objects.filter(user_id=user)
     d_posts = Domitory_Post.objects.filter(user_id=user)
-    return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
+    if request.method == 'POST':
+        delete_array = request.POST.getlist('delete_array[]')
+
+        num = 0
+        for i in d_posts:
+            if str(num) in delete_array:
+                i.delete()
+            num+=1
+
+        for j in o_posts:
+            if str(num) in delete_array:
+                j.delete()
+            num+=1
+            print(delete_array)
+
+        return redirect('mypageWritten')
+
+    else:
+        return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
+
 
 def offcampusCommunity(request):
     search_keyword = request.GET.get('search_keyword')
@@ -188,3 +222,17 @@ def paging(request, posts):
     posts = posts[start_index:end_index]
 
     return posts, page_range
+
+def domitory_scrap(request, post_id):
+    post=Domitory_Post.objects.get(id=post_id)
+    post.like = 1
+    post.save()
+
+    return redirect('domitoryView', post.id)
+
+def offcampus_scrap(request, post_id):
+    post=Offcampus_Post.objects.get(id=post_id)
+    post.like = 1
+    post.save()
+
+    return redirect('offcampusView', post.id)
