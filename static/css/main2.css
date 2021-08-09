@@ -1,4 +1,4 @@
-@media (max-width: 767px) {
+@media (max-width: 567px) {
     .main-title{
         text-align:center !important;
         font-size: 40px;
@@ -6,6 +6,17 @@
     .text > .detail{
         text-align:center !important;
         font-size: 20px;
+        margin-bottom: 20px !important;
+    }
+}
+@media (min-width: 567px) {
+    .main-title{
+        text-align:center !important;
+        font-size: 60px;
+    }
+    .text > .detail{
+        text-align:center !important;
+        font-size: 30px;
         margin-bottom: 20px !important;
     }
 }
