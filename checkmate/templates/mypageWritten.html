@@ -66,24 +66,30 @@
 
     const mypage_btn = document.querySelector('.mypage_btn');
     const mypage_list_checkbox = document.querySelectorAll('.mypage_list-checkbox');
+    const delete_btn = document.querySelector('.mypage_delete');
+
     let edit = 0;
+    delete_btn.style.visibility='hidden';
 
     for ( var i= 0 ; i <mypage_list_checkbox.length ; i++ ){
-        mypage_list_checkbox[i].style.display = 'none';
+        mypage_list_checkbox[i].style.visibility = 'hidden';
     }
     mypage_btn.addEventListener('click', function(event) {
         
         if(edit==0){
             edit = 1;
             for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.display = 'block';
+            mypage_list_checkbox[i].style.visibility = 'visible';
             }
+            delete_btn.style.visibility='visible';
         }
         else{
             edit = 0;
             for ( var i = 0 ; i<mypage_list_checkbox.length ; i++){
-            mypage_list_checkbox[i].style.display = 'none';
+            mypage_list_checkbox[i].style.visibility = 'hidden';
             }
+            delete_btn.style.visibility='hidden';
+
         }
     });
 </script>
