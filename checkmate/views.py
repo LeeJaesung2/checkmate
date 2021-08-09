@@ -67,6 +67,7 @@ def mypageScrap(request):
     scraps, page_range = paging(request, scraps)
     return render(request, 'mypageScrap.html',{'scraps':scraps, 'page_range':page_range})
 
+
 def mypageWritten(request):
     user=request.user
     o_posts = Offcampus_Post.objects.filter(user_id=user)
@@ -94,7 +95,7 @@ def mypageWritten(request):
 
 def offcampusCommunity(request):
     search_keyword = request.GET.get('search_keyword')
-    posts = Offcampus_Post.objects.all()
+    posts = Offcampus_Post.objects.all().order_by('-pub_date','view')
     user_id = request.user.id
     if search_keyword:
         if len(search_keyword) > 1:
@@ -108,7 +109,7 @@ def offcampusCommunity(request):
 
 def domitoryCommunity(request):
     search_keyword = request.GET.get('search_keyword')
-    posts = Domitory_Post.objects.all()
+    posts = Domitory_Post.objects.all().order_by('-pub_date','view')
     user_id = request.user.id
     if search_keyword:
         if len(search_keyword) > 1:
@@ -124,11 +125,15 @@ def domitoryCommunity(request):
 def offcampusView(request,post_id):
     user = request.user
     post = Offcampus_Post.objects.get(id=post_id)
+    post.view += 1 
+    post.save()
     return render(request, 'offcampusView.html',{'post':post,'user':user})
 
 def domitoryView(request,post_id):
     user = request.user
     post = Domitory_Post.objects.get(id=post_id)
+    post.view += 1 
+    post.save()
     return render(request, 'domitoryView.html',{'post':post,'user':user})
 
 def offcampusDelete(request, post_id):
@@ -204,16 +209,12 @@ def paging(request, posts):
 
     return posts, page_range
 
-def domitory_scrap(request, post_id):
-    post=Domitory_Post.objects.get(id=post_id)
-    post.like = 1
-    post.save()
+def domitory_popular(request):
+    posts=Domitory_Post.objects.filter(view__gte = 20).order_by('-pub_date')
 
-    return redirect('domitoryView', post.id)
+    return render(request,'domitoryCommunity.html',{'posts':posts})
 
-def offcampus_scrap(request, post_id):
-    post=Offcampus_Post.objects.get(id=post_id)
-    post.like = 1
-    post.save()
+def offcampus_popular(request):
+    posts=Offcampus_Post.objects.filter(view__gte = 20).order_by('-pub_date')
 
-    return redirect('offcampusView', post.id)
+    return render(request,'offcampusCommunity.html',{'posts':posts})
