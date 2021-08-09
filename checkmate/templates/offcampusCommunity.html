@@ -4,23 +4,26 @@
 <link rel="stylesheet" href="{% static 'css/community.css' %}">
 {% endblock %}
 {% block content %}
-<div class="com_container">
+<div class="com_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2"">
     <h3>자취 정보 공유 게시판</h3>
-    <a id="com_t" href="">인기 게시글</a>
-    <div class="com_sub-content">
-            <h5>검색</h5>
-            <form action="" method="get">
-                {% csrf_token %}
-                <input type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="#역세권_오피스텔_어때요?">
-                <button id="com_submit" type="submit">o</button>
-            </form>
-            
+    <a id="com_t" class="col-3 offset-8 col-md-2 offset-md-10" href="">인기 게시글</a>
+    <div class="search_bar">
+        <h2 class="d-none d-md-block">검색</h2>
+        <form action="" class="" method="get">
+            {% csrf_token %}
+            <div class="search-input-box">
+                <input  type="text" class="search-input" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
+                <button id="search_btn" type="submit"><i class="fal fa-search"></i></button>
+            </div>
+        </form>
+        <div>
             {% if user_id %}
-            <button id="plus_btn" onclick="location.href='{% url 'infoWrite' %}'">+</button>
+            <button id="plus_btn" onclick='location.href="{% url 'dom_infoWrite' %}"'><i class="fal fa-plus"></i></button>
             {% else %}
-            <button id="plus_btn" onclick="alert('글쓰기는 로그인 후에 가능합니다.')">+</button>
+            <button id="plus_btn" onclick="alert('글쓰기는 로그인 후에 가능합니다.')"><i class="fal fa-plus"></i></button>
             {% endif %}
         </div>
+    </div>
 
         {% if search_keyword %}
         <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
@@ -52,12 +55,12 @@
     </div>
 
     <div>
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
             {% for page in page_range %}
-            <li class="page-item"><a class="page-link" href="{% url 'offcampusCommunity'%}?page={{page}}">{{page}}</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'offcampusCommunity'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a></li>
             {% endfor %}
-            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">▶</a></li>
         </ul>
     </div>
 </div>

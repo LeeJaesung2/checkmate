@@ -1,5 +1,6 @@
 .container{
     text-align: center;
+    padding-top:10vh;
     min-height: 100vh;
 }
 
@@ -38,7 +39,7 @@ h5{
 
 .search_bar form{
     display: flex;
-    width: 90%;
+    width: 87%;
 }
 .search_bar > h2{
     font-size: 20px;

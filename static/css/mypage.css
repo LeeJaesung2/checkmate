@@ -1,5 +1,3 @@
-*{
-}
 p{
     margin: 0;
 }
@@ -24,7 +22,7 @@ p{
 }
 .mypage_title{
     font-family: Jalnan;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 32px;  
     color: #254074;
     /* white-space  : nowrap; */
@@ -32,7 +30,7 @@ p{
 }
 .mypage_nav ul{
     list-style: none;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 20px;
     font-family: 'S-CoreDream-5Medium';
     padding-left: 0px;
@@ -100,7 +98,7 @@ input:-webkit-autofill {
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 26px;
     color: #254074;
     padding-bottom: 20px;

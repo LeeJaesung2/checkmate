@@ -6,7 +6,7 @@
 {% block content %}
 <div class="com_container col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
     <h3 class="row justify-content-center">기숙사 정보 공유 게시판</h3>
-        <a id="com_t" class="col-3 offset-8 col-md-2 offset-md-10" href="">인기 게시글</a>
+    <a id="com_t" class="col-3 offset-8 col-md-2 offset-md-10" href="">인기 게시글</a>
     <div class="search_bar">
         <h2 class="d-none d-md-block">검색</h2>
         <form action="" class="" method="get">
@@ -53,12 +53,12 @@
     {% endif %}
 
     <div>
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">◀</a></li>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
             {% for page in page_range %}
-            <li class="page-item"><a class="page-link" href="{% url 'domitoryCommunity'%}?page={{page}}">{{page}}</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'domitoryCommunity'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a></li>
             {% endfor %}
-            <li class="page-item"><a class="page-link" href="#">▶</a></li>
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">▶</a></li>
         </ul>
     </div>
 </div>

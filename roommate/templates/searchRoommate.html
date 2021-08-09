@@ -18,10 +18,10 @@
         </div>
     </div>
     <div class='filter-btn-box row'>
-        <div class='filter-btn-box-left col-6'>
+        <div class='filter-btn-box-left col-6 d-none d-md-block' >
             <small>* 내가 원하는 룸메에 대해 적어주세요</small>
         </div>
-        <div class='filter-btn-box-right col-5'>
+        <div class='filter-btn-box-right col-12 col-md-5'>
             <button class='filter-top-btn'>룸메추천받기</button>
             <button class='filter-top-btn'>필터적용하기</button>
             <input id="down" class='filter-top-btn' type="button" hidden onclick="showfilter()"><label id="filter-dropdown"for="down"><i class="fal fa-caret-square-down"></i></label>
@@ -35,26 +35,21 @@
             <!-- <p>필터적용하기</p> -->
             <div id="filter">
                 <form action="">
-                    <!-- <div class="essential"> -->
-                        <div class="question filter_state">
-                            <h6 class="title">상태</h6>
-                            <div class="answer">
-                                <input type="radio" id="state" name="state" value="1"><label for="state">매칭중</label>
-                                <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
-                            </div>
+                    <div class="question filter_state">
+                        <h6 class="title">상태</h6>
+                        <div class="answer">
+                            <input type="radio" id="state" name="state" value="1"><label for="state">매칭중</label>
+                            <input type="radio" id="state" name="state" value="2"><label for="state">매칭완료</label>
                         </div>
-
-                        <div class="question filter_age">
-                            <h6 class="title">나이</h6>
-                            <div class="answer">
-                                <input type="number" id="age_start" name="age_start">
-                                <span>~</span>
-                                <input type="number" id="age_end" name="age_end">
-                            </div>
+                    </div>
+                    <div class="question filter_age">
+                        <h6 class="title">나이</h6>
+                        <div class="answer">
+                            <input type="number" id="age_start" name="age_start">
+                            <span>~</span>
+                            <input type="number" id="age_end" name="age_end">
                         </div>
-                    <!-- </div> -->
-                    
-                    <!-- <div class="essential"> -->
+                    </div>
                         <div class="question filter_grade">
                             <h6 class="title dropdown">학년</h6>
                             <div class="answer">
@@ -238,9 +233,6 @@
                                 <input type="checkbox" id="animal-no" name="animal_no" value='True' class=".nothing"><label for="animal-no">없음</label>
                             </div>
                         </div>
-                    <!-- </div> -->
-
-                    <!-- <div class="optional"> -->
                         <div class="question filter_share">
                             <h6 class="title">생필품</h6>
                             <div class="answer">
@@ -330,7 +322,6 @@
                                 </select>
                             </div>
                         </div>
-                    <!-- </div> -->
                     <!-- 버튼 안보임 -->
                     <button class="btn" id='filter-submit' type="submit">적용하기</button>
                 </form>
@@ -342,8 +333,6 @@
                 <form action="" class="">
                     <div class="search-input-box">
                         <input class="search-input" type="text" name="search_keyword" value="{{ search_keyword }}" placeholder="검색어를 입력해주세요">
-                    </div>
-                    <div class="">
                         <button type="submit"><i class="fal fa-search"></i></button>
                     </div>
                 </form>
