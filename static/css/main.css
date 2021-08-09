@@ -63,7 +63,7 @@
 .content-top .text .title-top, .content-top .text .title-bottom{
     position: relative;
     width: 100%;
-    font-family: Jalnan;
+    font-family: 'yg-jalnan';
     font-style: normal;
     font-weight: bold;
     font-size: 60px;
@@ -156,7 +156,7 @@
 }
 
 .menu-1 > .title, .menu-2 > .title{
-    font-family: Jalnan;
+    font-family: 'yg-jalnan';
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
@@ -190,7 +190,7 @@ button{
 }
 
 button p{
-    font-family: 'Jalnan';
+    font-family: 'yg-jalnan';
     font-style: normal;
     font-weight: bold;
     font-size: 20px;

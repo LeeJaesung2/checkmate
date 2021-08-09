@@ -9,6 +9,11 @@ h5{
     margin-bottom: 15px;
 }
 
+h3{
+    font-family: 'S-CoreDream-3Light';
+    opacity: 0.5;
+}
+
 /* 정보게시판 */
 .com_container{
     /* width: 70vw; */
@@ -121,7 +126,7 @@ h5{
     left: -30px;
 }
 .com_sub-content h5{
-    font-family: Jalnan;
+    font-family: 'yg-jalnan';
     font-size: 20px;
     color: #254074;
     padding-top: 5px;

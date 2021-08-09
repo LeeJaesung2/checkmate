@@ -18,7 +18,7 @@ p{
     padding: 15px 10px 0 0;
 }
 .mypage_title{
-    font-family: Jalnan;
+    font-family: 'yg-jalnan';
     font-size: 25px;
     line-height: 32px;  
     color: #254074;
@@ -92,7 +92,7 @@ input:-webkit-autofill {
 }
 
 .mypage_subtitle{
-    font-family: Jalnan;
+    font-family: 'yg-jalnan';
     font-style: normal;
     font-weight: bold;
     font-size: 20px;

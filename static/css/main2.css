@@ -59,7 +59,7 @@
 .main-title{
     text-align: right;
     width: 100%;
-    font-family: 'Jalnan';
+    font-family: 'yg-jalnan';
     font-style: normal;
     margin: 0 0 2vh 0;
 
@@ -120,7 +120,7 @@
 }
 
 .menu-1 > .title, .menu-2 > .title{
-    font-family: 'Jalnan';
+    font-family: 'yg-jalnan';
     font-weight: bold;
     font-size: 2rem;
     color: #FFFFFF;
@@ -145,7 +145,7 @@ button{
 }
 
 button p{
-    font-family: 'Jalnan';
+    font-family: 'yg-jalnan';
     line-height: 2.5rem;
     text-align: center;
     vertical-align: middle;
