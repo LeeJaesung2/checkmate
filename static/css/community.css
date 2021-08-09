@@ -1,13 +1,19 @@
+.container{
+    text-align: center;
+    min-height: 100vh;
+}
+
 h5{
     font-family: 'S-CoreDream-6Bold';
     margin-bottom: 15px;
 }
+
 /* 정보게시판 */
 .com_container{
-    width: 70vw;
-    height: 70vh;
-    margin: 0 auto;
-    margin-top: 100px;
+    /* width: 70vw; */
+    /* height: 70vh; */
+    /* margin: 0 auto; */
+    /* margin-top: 100px; */
 }
 .com_container h3{
     font-size: 30px;
@@ -182,9 +188,6 @@ h5{
 @media screen and (max-width: 768px){
     .table{
         font-size: 12px;
-    }
-    #first_open_modal{
-        width: 350px;
     }
     .search_bar form{
         width: 100%;
