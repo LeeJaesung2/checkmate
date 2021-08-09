@@ -142,13 +142,13 @@ nav li{
 }
 .second li{
     width:100%;
-    padding: 0 0 5px 7px;
+    padding: 5px 0 5px 7px;
     border-left: 3px solid rgba(145, 142, 255, 1);
     
 }
 
 .second li:last-child{
-    padding: 0 0 0px 7px;
+    padding: 5px 0 0px 7px;
 }
 
 .second li:hover{

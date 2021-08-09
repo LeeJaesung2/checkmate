@@ -42,8 +42,9 @@ urlpatterns = [
     path('domitoryDelete/<int:post_id>',views.domitoryDelete, name='domitoryDelete'),
     path('offcampusUpdate/<int:post_id>',views.offcampusUpdate, name='offcampusUpdate'),
     path('domitoryUpdate/<int:post_id>',views.domitoryUpdate, name='domitoryUpdate'),
-    path('domitory_scrap/<int:post_id>',views.domitory_scrap, name='domitory_scrap'),
-    path('offcampus_scrap/<int:post_id>',views.offcampus_scrap, name='offcampus_scrap'),
+    path('domitory_popular/',views.domitory_popular, name='domitory_popular'),
+    path('offcampus_popular/',views.offcampus_popular, name='offcampus_popular'),
+
     url(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT,})
 
 
