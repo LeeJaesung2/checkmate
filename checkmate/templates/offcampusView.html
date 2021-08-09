@@ -11,15 +11,16 @@
     <div class="view_box1">
         <h3>{{ post.title }}</h3>
         <!-- 타이틀 -->
-            <small>{{ post.pub_date }}</small>
+        <button class="scrapBtn" >
+            <i class="far fa-star" id="star"></i></button>
+        <small>{{ post.pub_date }}</small>
+        <!-- <i class="fas fa-star" id="fillStar"></i> -->
     </div>
     <div class="view_box2">
         <img src="{{ post.user_id.user_image }}" alt="profile_image">
         <!-- 프로필이미지 -->
         <p> {{ post.user_id.user_nickname }} </p>
-        <!-- 닉네임 -->
-
-        <button onclick="location.href='{% url "offcampus_scrap" post.id %}'">스크랩! 디자인 수정부탁합니당~</button>
+        <!-- 닉네임 -->        
     </div>
 
     <div>
@@ -44,4 +45,38 @@
         </ul>
     </div>
 </div>
+
+<!-- 스크랩 모달창 -->
+<div class="popup">
+    <h4> 스크랩 완료! </h4>
+    <div class="popup-close">&times;</div>
+</div>
+
+<script>
+    const scrapBtn = document.querySelector('.scrapBtn');
+    const popup = document.querySelector('.popup');
+
+    popup.style.display="none";
+
+    function open(){ 
+        scrapBtn.addEventListener('click', function (event){ 
+        popup.style.display = 'block';  
+        })
+    } 
+    open();
+    document.querySelector(".popup-close").onclick = function() {
+        document.querySelector(".popup").style.display="none";
+        }
+
+    // const star = document.querySelector('#star');
+    // const fstar = document.querySelector('#fillStar');
+
+    // fstar.style.display="none";
+    
+    // star.addEventListener('click', function() {
+    //     star.classList.toggle('fstar');
+    // });
+
+// if 별 클릭하면 1사진으로 바뀌고 그 상태에서 또 클릭하면 다시 0 사진으로 바뀌고. 
+</script>
 {% endblock %}
