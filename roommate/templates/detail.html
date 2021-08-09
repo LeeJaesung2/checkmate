@@ -5,12 +5,6 @@
 <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
-<div class="popup-overlay">
-    <div class="popup">
-        <h4>이미 스크랩된 게시물 입니다</h4>
-        <div class="popup-close">&times;</div>
-    </div>
-</div>
 
 <div class="view_container">
     <div>
@@ -22,14 +16,6 @@
             <option value=4>해결했어요</option>
         </select>
         <div>
-            <form action="" method="GET">
-                <button id="Favorites" type="submit" name="Favorites" value="scrap">스크랩</button>
-            </form>
-            {% if messages %}
-                {% for message in messages %}
-                    {{ message.message }}
-                {% endfor %}
-            {% endif %}
             <small>pub_date</small>
         </div>
     </div>
@@ -236,16 +222,5 @@
         </ul>
     </div>
 </div>
-<script>
-    document.querySelector(".popup-overlay").style.display="none";
-  if("{{aleary_scrap}}"=="-1"){
-      document.querySelector(".popup-overlay").style.display="block";
-  }
-  document.querySelector(".popup-close").onclick = function() {
-      document.querySelector(".popup-overlay").style.display="none";
-  } 
 
-  let open_btn = document.querySelector("#btn-modal");
-  open_btn.style.display="none";
-</script>
 {% endblock %}
