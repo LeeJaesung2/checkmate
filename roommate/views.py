@@ -40,7 +40,8 @@ def detail(request, write_id):
         aleady = aleady.filter(write=write_detail)
         aleady = aleady.filter(user_id=user_id)
         if aleady:
-            messages.error(request, '이미 스크랩된 게시물 입니다')
+            aleary_scrap = -1
+            return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next,'aleary_scrap':aleary_scrap})
         else:
             scrap = Scrap()
             scrap.user_id = user_id
