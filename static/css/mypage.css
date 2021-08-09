@@ -1,5 +1,3 @@
-*{
-}
 p{
     margin: 0;
 }
@@ -9,9 +7,6 @@ p{
 /* mypage */
 
 .mypage_container{
-    display: grid;
-    width: 70vw;
-    margin: 0 auto;
     margin-top: 100px;
     grid-template-columns: 1fr 3fr;
 }
@@ -19,12 +14,12 @@ p{
     border-right: 2px solid #C9C9C9;
     margin-right: 20px;
     width: 200px;
-    height: 80%;
+    height: 60vh;
     padding: 15px 10px 0 0;
 }
 .mypage_title{
     font-family: Jalnan;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 32px;  
     color: #254074;
     /* white-space  : nowrap; */
@@ -32,7 +27,7 @@ p{
 }
 .mypage_nav ul{
     list-style: none;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 20px;
     font-family: 'S-CoreDream-5Medium';
     padding-left: 0px;
@@ -78,9 +73,9 @@ input:-webkit-autofill {
  }
  
 .mypage_content p{
-    /* margin-left: 10px; */
-    border-radius: 25px;
     font-family: 'S-CoreDream-5Medium';
+    margin-top: 10px;
+    border-radius: 25px;
 }
 .mypage_content-box2{
     margin-top: 15px;
@@ -92,15 +87,15 @@ input:-webkit-autofill {
 
 }
 .mypage_write-content, .mypage_scap-content{
-    padding-top: 20px;
-    width: 60vw;
+    /* padding-top: 20px; */
+    /* width: 60vw; */
 }
 
 .mypage_subtitle{
     font-family: Jalnan;
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     line-height: 26px;
     color: #254074;
     padding-bottom: 20px;
@@ -155,8 +150,6 @@ input:-webkit-autofill {
 .mypage_list-checkbox  {
     width: 20px;
     height: 20px;
-    left: 475px;
-    top: 298px;
     border: 1px solid #959595;
     box-sizing: border-box;
     border-radius: 2px;
@@ -164,8 +157,6 @@ input:-webkit-autofill {
 #checkbox{
     width: 16px;
     height: 16px;
-    left: 475px;
-    top: 298px;
     border: 1px solid #959595;
     box-sizing: border-box;
     border-radius: 2px;
@@ -180,15 +171,15 @@ input:-webkit-autofill {
     border-radius: 2px;
 } */
 .mypage_list{
-    display: grid;
-    grid-template-columns: 6vw 17vw 25vw;
+    /* display: grid; */
+    /* grid-template-columns: 6vw 17vw 25vw; */
     padding-top: 20px;
     height: 70vh;
 }
 
 .mypage_sub-bar{
-    display: grid;
-    grid-template-columns: 8vw 25vw 25vw;
+    /* display: grid; */
+    /* grid-template-columns: 8vw 25vw 25vw; */
     font-family: 'S-CoreDream-5Medium';
     color: #254074;
     font-size: 17px;

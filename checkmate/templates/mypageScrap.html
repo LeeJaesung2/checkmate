@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="mypage_container bg">
-    <div class="mypage_nav">
+<div class="mypage_container bg row justify-content-center">
+    <div class="mypage_nav col-4 d-none d-md-block">
         <h3 class="mypage_title">마이페이지</h3>
         <!-- border-left 색상 바꾸기 (클릭 모션) -->
         <ul>
@@ -16,18 +16,18 @@
             <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
         </ul>
     </div>
-    <div class="mypage_content">
+    <div class="mypage_content col-10 col-md-8">
         <div class="mypage_scap-content">
-            <h3 class="mypage_subtitle">스크랩</h3>
-            <button class="mypage_btn">수정</button>
+            <h3 class="mypage_subtitle row">스크랩</h3>
+            <button class="mypage_btn row">수정</button>
 
-
-            <div class="mypage_sub-bar">
-                <div>
-                    <input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'onclick='selectAll(this);'>
+            <div class="mypage_sub-bar row">
+                <div class="col-2">
+                <input class="checkbox_all" type="checkbox" name="written" id="checkbox" value='selectall'
+                    onclick='selectAll(this);'>
                 </div>
-                <p>글쓴이</p>
-                <p>제목</p>
+                <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
+                <p class="p-2 col-5" style="margin-top:0;">제목</p>
             </div>
             <div>
                 {% for scrap in scraps %}
