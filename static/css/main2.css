@@ -128,7 +128,8 @@
 
 .menu-1 > .detail, .menu-2 > .detail{
     font-family: 'S-CoreDream-4Regular';
-    font-size: 1rem;
+    font-size: 15px;
+    line-height: 1.5;
     color: #FFFFFF;
     height: 35%;
 }
