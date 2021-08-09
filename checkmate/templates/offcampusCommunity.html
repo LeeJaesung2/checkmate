@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="{% static 'css/community.css' %}">
 {% endblock %}
 {% block content %}
-<div class="com_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2"">
+<div class="com_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
     <h3>자취 정보 공유 게시판</h3>
-    <a id="com_t" class="col-3 offset-8 col-md-2 offset-md-10" href="{% url 'offcampus_popular' %}>인기 게시글</a>
+    <a id="com_t" class="col-3 offset-8 col-md-2 offset-md-10" href="{% url 'offcampus_popular' %}">인기 게시글</a>
     <div class="search_bar">
         <h2 class="d-none d-md-block">검색</h2>
         <form action="" class="" method="get">
@@ -24,34 +24,48 @@
             {% endif %}
         </div>
     </div>
-
-        {% if search_keyword %}
-        <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
-        {% endif %}
-        {% if posts %}
-        {% for post in posts %}
-        <div class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
-
-            {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
-            <p id="com_content-info" class="preface">원룸정보</p>
-            <p id="com_content-title">{{ post.preface_2 }}</p>
-            <p id="com_content-body">{{ post.title }}</p>
+<!--  -->
+    <div>
+        <table class="table table-responsive table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">상태</th>
+                    <th scope="col">분류</th>
+                    <th scope="col">제목</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if search_keyword %}
+                <h5> &nbsp; '{{ search_keyword }}' 검색 결과입니다</h5>
+                {% endif %}
+                {% if posts %}
+                {% for post in posts %}     
+                <tr class="com_content" onclick="location.href='{% url 'domitoryView' post.id %}'">
+                    {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
+                    <td  scope="row" class="preface" id="com_content-info">원룸정보</td>
+                    <td id="com_content-title">{{ post.preface_2 }}</td>
+                    <td id="com_content-body">{{ post.title }}</td>
+                    {% else %}
+                    <td class="preface btn mt-1 p-1" id="com_content-info" disabled>{{ post.preface }}</td>
+                    <td id="com_content-title">{{ post.preface_2 }}</td>
+                    <td id="com_content-body">{{ post.title }}</td>
+                    {% endif %}
+                </tr>
+            </div>
+            {% endfor %}
             {% else %}
-            <p id="com_content-info" class="preface">{{ post.preface }}</p>
-            <p id="com_content-title">{{ post.preface_2 }}</p>
-            <p id="com_content-body">{{ post.title }}</p>
+                {% if search_keyword %}
+                <tr>
+                    <td scope="row" colspan="5">일치하는 검색 결과가 없습니다</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td scope="row" colspan="5">작성된 게시글이 없습니다</td>
+                </tr>
+                {% endif %}
             {% endif %}
-
-        </div>
-        {% endfor %}
-        {% else %}
-            {% if search_keyword %}
-            일치하는 검색 결과가 없습니다
-            {% else %}
-            작성된 게시글이 없습니다
-        {% endif %}
-    {% endif %}
-
+            </tbody>
+        </table>
     </div>
 
     <div>

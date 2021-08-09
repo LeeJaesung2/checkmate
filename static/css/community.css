@@ -62,6 +62,7 @@ h3{
 }
 .search-input{
     width: calc(97% - 30px);
+    height: 25px;
     border: 0;
     padding: 5px 15px;
     border-radius: 100px;
@@ -141,8 +142,8 @@ h3{
     border-radius: 100px;
     }
 .com_content{
-    display: grid;
-    grid-template-columns: 10vw 25vw 25vw;
+    /* display: grid; */
+    /* grid-template-columns: 10vw 25vw 25vw; */
     margin-top: 30px;
     margin-left: 10vw;
     width: 40vw;
@@ -150,7 +151,7 @@ h3{
 }
 #com_content-info{
     font-family: 'S-CoreDream-6Bold';
-    font-size: 15px;
+    font-size: 14px;
     text-align: center; 
     color: #254074;
     border: 1px solid #254074;
@@ -163,25 +164,27 @@ h3{
 }
 #com_content-title{
     font-family: 'S-CoreDream-5Medium';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 24px;
+    font-size: 14px;
     /* text-align: center; */
     color: #254074;
 }
 #com_content-body{
     font-family: 'S-CoreDream-3Light';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 15px;
     text-align: center;
     color: #1F1F1F;
-    white-space  : nowrap;
-    width: 100px;
+    white-space : nowrap;
 }
 
+thead tr th:first-child{
+    width: 15%;
+}
+thead tr th:nth-child(2){
+    width: 15%;
+}
+thead tr th:nth-child(3){
+    width: 70%;
+}
 
 .open{
     width: 40px;
@@ -191,21 +194,30 @@ h3{
     z-index: 10;
 }
 
+
 @media screen and (max-width: 768px){
-    .table{
-        font-size: 12px;
+    .container{
+        padding-top: 0;
     }
     .search_bar form{
         width: 100%;
     }
-    #filter{
-        grid-template-columns: 100%;
+    .com_container h3{
+        font-size: 25px;
+        margin-bottom: 20px;
     }
-    .question{
-        grid-column: 1/1;
+    #com_content-title, #com_content-info, #com_content-body{
+        font-size: 13px;
     }
-    #filter-submit{
-        grid-column: 1/1;
+    thead tr th:first-child{
+        width: 20%;
     }
+    thead tr th:nth-child(2){
+        width: 25%;
+    }
+    thead tr th:nth-child(3){
+        width: 55%;
+    }
+
 }
 

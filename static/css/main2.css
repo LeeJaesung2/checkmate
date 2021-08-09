@@ -1,9 +1,12 @@
-@media (min-width: 576px) {
+@media (max-width: 767px) {
     .main-title{
-        font-size: 70px;
+        text-align:center !important;
+        font-size: 40px;
     }
     .text > .detail{
-        font-size: 25px;
+        text-align:center !important;
+        font-size: 20px;
+        margin-bottom: 20px !important;
     }
 }
 @media (min-width: 768px) {
@@ -11,7 +14,7 @@
         font-size: 45px;
     }
     .text > .detail{
-        font-size: 15px;
+        font-size: 20px;
     }
 }
 @media (min-width: 992px) {
@@ -134,8 +137,7 @@
     height: 35%;
 }
 
-button{
-    float: right;
+.shadow-btn{
     width: 45%;
     height: 2.5rem;
     background: #FFFFFF;

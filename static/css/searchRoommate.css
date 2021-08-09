@@ -269,6 +269,7 @@ select+span{
 }
 .search-input{
     width: calc(95% - 30px);
+    height: 25px;
     border: 0;
     padding: 5px 15px;
 }
@@ -298,11 +299,15 @@ table td{
 
 }
 
-table thead{
-    border-color:rgb(231, 231, 231);
-    border-bottom-width: 1px;
-    border-bottom: 1px 0 rgb(210, 210, 210);
-    /* height: 5vh; */
+thead tr th:first-child, 
+thead tr th:nth-child(3), thead tr th:nth-child(4){
+    width: 10%;
+}
+thead tr th:nth-child(2){
+    width: 15%;
+}
+thead tr th:nth-child(5){
+    width: 55%;
 }
 
 /* 글쓰기버튼 */
@@ -328,9 +333,10 @@ pagination-box{
 }
 
 @media screen and (max-width: 768px){
-    .table{
-        font-size: 12px;
+    .container{
+        padding-top: 0;
     }
+
     #first_open_modal{
         width: 350px;
     }
@@ -345,5 +351,24 @@ pagination-box{
     }
     #filter-submit{
         grid-column: 1/1;
+    }
+
+    .search_title{
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    .table{
+        font-size: 13px;
+    }
+    thead tr th:first-child, 
+    thead tr th:nth-child(3), thead tr th:nth-child(4){
+        width: 12%;
+    }
+    thead tr th:nth-child(2){
+        width: 20%;
+    }
+    thead tr th:nth-child(5){
+       width: 44%;
     }
 }
