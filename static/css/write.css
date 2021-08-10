@@ -1,7 +1,7 @@
 /* 모든 글쓰는 창은 다 연결(write, update) */
 /* infoWrite창 */
 .info_container{
-    width: 70vw;
+    /* width: 70vw; */
     margin: 0 auto;
     margin-top: 60px;
 }
@@ -26,6 +26,8 @@
     border: 1px solid #254074;
     box-sizing: border-box;
     border-radius: 10px;
+    /* padding-left: 10px; */
+    text-align: center;
 }
 .info_container-box1 input{
     padding-left: 13px;
