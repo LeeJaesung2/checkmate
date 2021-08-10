@@ -28,6 +28,11 @@
     <div class="mypage_content col-10 col-md-8">
         <div class="mypage_scap-content">
             <h3 class="mypage_subtitle row">스크랩</h3>
+            <!-- <form action="">
+                <button class="mypage_btn row" >룸메이트 찾기</button>
+                <button class="mypage_btn row" >기숙사 정보</button>
+                <button class="mypage_btn row" >자취 정보</button>
+            </form> -->
             <button class="mypage_btn row">수정</button>
 
             <div class="mypage_sub-bar row">
@@ -38,24 +43,70 @@
                 <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
                 <p class="p-2 col-5" style="margin-top:0;">제목</p>
             </div>
-            <div>
-                {% for scrap in scraps %}
-                    <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all">
-                    <p>{{ scrap.write.user_id.user_nickname }}</p>
-                    <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
-                {% endfor %}
+            <div clss="room">
+                <div>
+                    {% for scrap in scraps %}
+                        <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all">
+                        <p>{{ scrap.write.user_id.user_nickname }}</p>
+                        <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
+                    {% endfor %}
+                </div>
+    
+                <button class="mypage_delete">삭제하기</button>
+                <div>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+                        {% for page in page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div clss="dom">
+                <div>
+                    {% for scrap in dom_scraps %}
+                        <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all">
+                        <p>{{ scrap.write.user_id.user_nickname }}</p>
+                        <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
+                    {% endfor %}
+                </div>
+    
+                <button class="mypage_delete">삭제하기</button>
+                <div>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+                        {% for page in dom_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <button class="mypage_delete">삭제하기</button>
-            <div>
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                    {% for page in page_range %}
-                    <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
-                    </li>
+            <div clss="off">
+                <div>
+                    {% for scrap in off_scraps %}
+                        <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all">
+                        <p>{{ scrap.write.user_id.user_nickname }}</p>
+                        <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
                     {% endfor %}
-                    <li class="page-item"><a class="page-link" href="#">▶</a></li>
-                </ul>
+                </div>
+    
+                <button class="mypage_delete">삭제하기</button>
+                <div>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">◀</a></li>
+                        {% for page in off_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+                    </ul>
+                </div>
             </div>
 
         </div>

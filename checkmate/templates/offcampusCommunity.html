@@ -18,7 +18,7 @@
         </form>
         <div>
             {% if user_id %}
-            <button id="plus_btn" onclick='location.href="{% url 'dom_infoWrite' %}"'><i class="fal fa-plus"></i></button>
+            <button id="plus_btn" onclick='location.href="{% url 'infoWrite' %}"'><i class="fal fa-plus"></i></button>
             {% else %}
             <button id="plus_btn" onclick="alert('글쓰기는 로그인 후에 가능합니다.')"><i class="fal fa-plus"></i></button>
             {% endif %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
-from .models import Scrap_roommate
+from .models import Scrap_roommate, Scrap_dom, Scrap_off
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
@@ -61,12 +61,19 @@ def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-    scraps = Scrap_roommate.objects.all()
     user_id = request.user.id
-    scraps = scraps.filter(user_id__id=user_id)
-    scraps, page_range = paging(request, scraps)
-    return render(request, 'mypageScrap.html',{'scraps':scraps, 'page_range':page_range})
+    room_scraps = Scrap_roommate.objects.all()
+    room_scraps = room_scraps.filter(user_id__id=user_id)
+    room_scraps, room_page_range = paging(request, room_scraps)
 
+    dom_scraps = Scrap_dom.objects.all()
+    dom_scraps = dom_scraps.filter(user_id__id=user_id)
+    dom_scraps, dom_page_range = paging(request, dom_scraps)
+
+    off_scraps = Scrap_off.objects.all()
+    off_scraps = off_scraps.filter(user_id__id=user_id)
+    off_scraps, off_page_range = paging(request, off_scraps)
+    return render(request, 'mypageScrap.html',{'room_scraps':room_scraps, 'room_page_range':room_page_range, 'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range, 'off_scraps':off_scraps, 'off_page_range':off_page_range})
 
 def mypageWritten(request):
     user=request.user
@@ -127,6 +134,19 @@ def offcampusView(request,post_id):
     post = Offcampus_Post.objects.get(id=post_id)
     post.view += 1 
     post.save()
+    scrap = request.GET.get("Favorites")
+    if(scrap):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = Scrap_off.objects.all()
+        aleady = aleady.filter(Offcampus_Post=post)
+        aleady = aleady.filter(user_id=user_id)
+        if aleady:
+            messages.error(request, '이미 스크랩된 게시물 입니다')
+        else:
+            scrap = Scrap_off()
+            scrap.user_id = user_id
+            scrap.Offcampus_Post = post
+            scrap.save()
     return render(request, 'offcampusView.html',{'post':post,'user':user})
 
 def domitoryView(request,post_id):
@@ -134,6 +154,19 @@ def domitoryView(request,post_id):
     post = Domitory_Post.objects.get(id=post_id)
     post.view += 1 
     post.save()
+    scrap = request.GET.get("Favorites")
+    if(scrap):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = Scrap_dom.objects.all()
+        aleady = aleady.filter(Domitory_Post=post)
+        aleady = aleady.filter(user_id=user_id)
+        if aleady:
+            messages.error(request, '이미 스크랩된 게시물 입니다')
+        else:
+            scrap = Scrap_dom()
+            scrap.user_id = user_id
+            scrap.Domitory_Post = post
+            scrap.save()
     return render(request, 'domitoryView.html',{'post':post,'user':user})
 
 def offcampusDelete(request, post_id):
