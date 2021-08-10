@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
 from .models import Scrap_roommate, Scrap_dom, Scrap_off
@@ -65,15 +65,29 @@ def mypageScrap(request):
     room_scraps = Scrap_roommate.objects.all()
     room_scraps = room_scraps.filter(user_id__id=user_id)
     room_scraps, room_page_range = paging(request, room_scraps)
+    # 체크된 항목 삭제하기
+    first_id = room_scraps[0].id
+    for id in range(first_id,first_id+len(room_scraps)): #범위 설정 어떻게 해야되지??
+        if (request.POST.get("check[]")=='on'):
+            scrap = get_object_or_404(Scrap_roommate, pk=id)
+            scrap.delete()
 
+    return render(request, 'mypageScrap.html',{'room_scraps':room_scraps,'room_page_range':room_page_range})
+
+def mypageScrap_dom(request):
+    user_id = request.user.id
     dom_scraps = Scrap_dom.objects.all()
     dom_scraps = dom_scraps.filter(user_id__id=user_id)
     dom_scraps, dom_page_range = paging(request, dom_scraps)
+    return render(request, 'mypageScrap_dom.html',{'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range})
 
+def mypageScrap_off(request):
+    user_id = request.user.id
     off_scraps = Scrap_off.objects.all()
     off_scraps = off_scraps.filter(user_id__id=user_id)
     off_scraps, off_page_range = paging(request, off_scraps)
-    return render(request, 'mypageScrap.html',{'room_scraps':room_scraps, 'room_page_range':room_page_range, 'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range, 'off_scraps':off_scraps, 'off_page_range':off_page_range})
+    return render(request, 'mypageScrap_off.html',{'off_scraps':off_scraps, 'off_page_range':off_page_range})
+
 
 def mypageWritten(request):
     user=request.user

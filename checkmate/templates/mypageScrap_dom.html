@@ -30,11 +30,12 @@
             <h3 class="mypage_subtitle row">스크랩</h3>
             <form action="">
                 <button class="row" formaction="{% url 'mypageScrap' %}">룸메이트 찾기</button>
-                <button class="row" formaction="{% url 'mypageScrap_dom' %}" >기숙사 정보</button>
+                <button class="row" formaction="{% url 'mypageScrap_dom' %}">기숙사 정보</button>
                 <button class="row" formaction="{% url 'mypageScrap_off' %}">자취 정보</button>
             </form>
             
-            <div id="room">
+            
+            <div id="dom">
                 <button class="mypage_btn row">수정</button>
 
                 <div class="mypage_sub-bar row">
@@ -44,23 +45,19 @@
                     <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
                     <p class="p-2 col-5" style="margin-top:0;">제목</p>
                 </div>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div>
-                        {% for scrap in room_scraps %}
-                            <input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all">
-                            <p>{{ scrap.write.user_id.user_nickname }}</p>
-                            <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
-                        {% endfor %}
-                    </div>
-        
-                    <button type='submit' class="mypage_delete">삭제하기</button>
-                </form>
-                
+                <div>
+                    {% for scrap in dom_scraps %}
+                        <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}">
+                        <p>{{ scrap.Domitory_Post.user_id.user_nickname }}</p>
+                        <p><a href="{% url 'domitoryView' scrap.Domitory_Post.id %}">{{ scrap.Domitory_Post.title }}</a></p>
+                    {% endfor %}
+                </div>
+    
+                <button class="mypage_delete">삭제하기</button>
                 <div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                        {% for page in room_page_range %}
+                        {% for page in dom_page_range %}
                         <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
                         </li>
                         {% endfor %}
@@ -68,6 +65,8 @@
                     </ul>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
@@ -106,7 +105,7 @@
 
         //체크박스 전체선택 기능
         function selectAll(selectAll) {
-            const checkboxes = document.querySelectorAll('.mypage_list-checkbox');
+            const checkboxes = document.getElementsByName('written');
 
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
