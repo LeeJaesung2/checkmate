@@ -47,9 +47,9 @@ class SurveyEssential(models.Model):
     )
     dormitory_semester_choice = (
         ('1', '1학기'), 
-        ('S', '여름방학'),
-        ('2', '2학기'),
-        ('W', '겨울방학'),
+        ('2', '여름방학'),
+        ('3', '2학기'),
+        ('4', '겨울방학'),
         )
     dormitory_year_start = models.CharField(max_length=4, choices=dormitory_year_choice, default='2021')
     dormitory_semester_start = models.CharField(max_length=1, choices=dormitory_semester_choice, default='1')

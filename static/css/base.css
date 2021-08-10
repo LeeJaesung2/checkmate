@@ -137,8 +137,27 @@ footer p{
     color: white;
 }
 
-@media screen and (max-width: 765px){
+/* 채팅아이콘 */
+.open{
+    width: 40px;
+    position: fixed;
+    top: 90vh;
+    left: 90vw;
+    z-index: 10;
+}
+
+
+@media screen and (max-width: 768px){
     footer div:nth-child(2){
         display: block;
     }
+    
+    .open{
+        width: 35px;
+        position: fixed;
+        top: 90vh;
+        left: 80vw;
+        z-index: 10;
+    }
+    
 }

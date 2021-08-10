@@ -329,37 +329,118 @@ input[type=submit]{
     text-align: center;
 }
 
+/* 모바일 설정 */
+.previous-mobile, .next-mobile{
+    display: none;
+}
 @media screen and (max-width: 768px){
     .container{
-        height: 50vh;
+        height: auto;
+        width: 100vw;
+        justify-content: center;
+    }
+    .progress{
+        margin: 30px auto;
+    }
+    .previous, .next{
+        display: none;
+    }
+    .previous-mobile, .next-mobile{
+        display: inline-block;
+        position: fixed;
+    }
+    .previous-mobile{
+        top: 40vh;
+        left: 9vw;
+    }
+    .next-mobile{
+        top:40vh;
+        left: 91vw;
     }
     h3{
         font-size: 14px;
     }
+    .front-bar > .text{
+        font-size: 10px;
+    }
+    .question-box{
+        width: 80vw;
+    }
     .question > .title{
-        font-size: 25px;
+        font-size: 20px;
+        margin: 0;
+    }
+    .question > .answer{
+        width: 80vw;
+    }
+    input{
+        font-size: 15px;
+
     }
     input[type=number]{
-        width: 80%;
-        font-size: 14px;
+        width: 100px;
+        margin: 15px 0;
     }
     input[type=radio]+label, input[type=checkbox]+label{
-        font-size: 14px;
+        width: 170px;
+        display: block;
+        margin: 0 auto;
+        font-size: 15px;
+        padding: 5px;
     }
-    input[type=radio]+label:hover, input[type=checkbox]+label:hover{
-        font-size: 14px;
+    input[type=radio]:checked+label, input[type=checkbox]:checked+label{
+        display: block;
+        font-size: 18px;
         opacity: 1;
         animation-duration: 0.1s;
         animation-name: btnZoomIn;
         animation-fill-mode: forwards;
     }
+    input[type=text]{
+        font-size: 15px;
+        margin: 20px 10px;
+    }
+    input[type=time]{
+        font-size: 15px;
+    }
+    input[type=range]{
+        width: 200px;
+    }
+    .range-detail{
+        width: 250px;
+        margin: 10px auto;
+        font-size: 10.5px;
+        letter-spacing: -0.5px;
+    }
+    select{
+        margin-top: 15px;
+        font-size: 15px;
+        height: 30px;
+
+    }
+    .submit{
+        width: 80%;
+        margin: 0 auto 40px auto;
+        height: 40px;
+    }
+    input[type=submit]{
+        font-size: 20px;
+        height: 2
+        }
     @keyframes btnZoomIn{
         from{
-            font-size: 14px;
+            font-size: 15px;
         }
         to{
             font-size: 18px;
         }
+    }
+    .modal{
+        left: 10vw;
+        width: 80vw;
+    }
+    .modal > p{
+        font-size: 13px;
     }
 
 }

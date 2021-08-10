@@ -6,41 +6,49 @@
 {% endblock %}
 {% block content %}
 
-<div class="view_container">
-    <div>
-        <h3>{{write_detail.title}}</h3>
-        <form action="" method="GET">
+<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+    <div class="col-12">
+        <h3 class="write-title">{{write_detail.title}}</h3>
+        <hr>
+        <form class="float-end" action="" method="GET">
             <button id="Favorites" type="submit" name="Favorites" value="scrap">스크랩</button>
         </form>
-        <select name="hashtag">
-            <option value=1>원룸정보</option>
-            <option value=2>기숙사정보</option>
-            <option value=3>질문있어요</option>
-            <option value=4>해결했어요</option>
-        </select>
-        <div>
-            <small>pub_date</small>
+        <!-- 이거 없어두 되는거 아닌가요! -->
+        <!-- <div class="row">
+            <select class="write-class col-3 form-select " aria-label="Default select example">
+                <option selected>----</option>
+                <option value="1">원룸정보</option>
+                <option value="2">기숙사정보</option>
+                <option value="3">질문있어요</option>
+                <option value=4>해결했어요</option>
+            </select>
+        </div> -->
+        <div class="float-end">
+            <!-- 모델에 pub_date추가해야함 -->
+            <small>2021. 1. 2</small>
         </div>
     </div>
-    <div>
-        <img src="" alt="profile_image">
+    <div class="writer-info row">
+        <!-- 이미지 들어오면 col-1로 변경 -->
+        <img class="col-3"src="" alt="profile_image">
         <!-- 프로필이미지 -->
         {% if survey_ess.room_type == 1 %}
-        <p>{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+        <p class="col-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
         {% else %}
             {% if survey_ess.dormitory_number_man %}
-            <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-12 col-md-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% else %}
-            <p>{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-12 col-md-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% endif %}
         {% endif %}
         <!-- 자신의 정보 -->
     </div>
-    <div>
-        <div>
-            <h3>필수 정보</h3>
-            <div>
-                <div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row  checklist-box mb-2">
+            <h3 class="p-3">필수 정보</h3>
+            <div class="p-3">
+                <!-- <div> -->
                     <strong>시기</strong> <p>{{survey_ess.get_dormitory_year_start_display}} {{survey_ess.get_dormitory_semester_start_display}} ~ {{survey_ess.get_dormitory_year_end_display}} {{survey_ess.get_dormitory_semester_end_display}}</p>
                     <strong>기상 시간</strong> 
                     <p>{{survey_ess.wakeup_time}}</p>
@@ -66,8 +74,9 @@
                     {% endif %}
                     <strong>룸메와의 관계</strong>
                     <p>{{survey_ess.get_relationship_display}}</p>
-                </div>
-                <div><strong>청소 주기</strong>
+                <!-- </div> -->
+                <!-- <div> -->
+                    <strong>청소 주기</strong>
                     {% if survey_ess.cleaning == 1 %}
                     <p>안함</p>
                     {% elif survey_ess.cleaning == 2%}
@@ -117,15 +126,14 @@
                         <p>없음</p>
                         {% endif %}
                     {% endif %}
-                </div>
+                <!-- </div> -->
             </div>
         </div>
 
-
-        <div>
-            <h3>선택 정보</h3>
-            <div>
-                <div>
+        <div class="row checklist-box">
+            <h3 class="p-3">선택 정보</h3>
+            <div class="p-3">
+                <!-- <div> -->
                     {% if survey_opt.share != 0 %}
                     <strong>생필품 공유</strong>
                     <p>{{survey_opt.get_share_display}}</p>
@@ -145,9 +153,9 @@
                     <strong>게임 여부</strong>
                     <p>{{survey_opt.get_game_display}}</p>
                     {% endif %}
-                </div>
+                <!-- </div> -->
                 
-                <div>
+                <!-- <div> -->
                     {% if survey_opt.ventilate != 0 %}
                         {% if survey_opt.ventilate == 1 %}
                         <strong>환기</strong>
@@ -207,21 +215,21 @@
                     <strong>MBTI</strong>
                     <p>{{survey_opt.mbti}}</p>
                     {% endif %}
-                </div>
+                <!-- </div> -->
 
             </div>
         </div>
     </div>
-    <div>
+    <div class="detail-body">
         <p>{{write_detail.body}}</p>
-        <a href="{% url 'update' write_detail.id %}"><span>수정</span></a>
-        <a href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        <a class="btn btn-light" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+        <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
     </div>
-    <div>
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}">◀ 이전글</a></li>
-            <li class="page-item"><a class="page-link" href="/roommate/searchRoommate">목록</a></li>
-            <li class="page-item"><a class="page-link" href="{% url 'detail' next %}">다음글 ▶</a></li>
+    <div class="">
+        <ul class="pagination justify-content-center my-4">
+            <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}" style="color:#254074; border:0;">◀ 이전글</a></li>
+            <li class="page-item"><a class="page-link" href="/roommate/searchRoommate" style="color:#254074; border:0;">목록</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'detail' next %}" style="color:#254074; border:0;">다음글 ▶</a></li>
         </ul>
     </div>
 </div>
