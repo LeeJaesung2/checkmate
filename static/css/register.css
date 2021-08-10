@@ -51,3 +51,35 @@ input[type=radio]{
     display: block;
     margin-left: 130px;
 }
+@media screen and (max-width: 768px){
+
+    .sign_content{
+        margin: 0 auto 0 auto;
+        /* padding: 0 auto 0 2vw; */
+        width: 100%;
+    }
+    .sign_content h3{
+        text-align: center;
+        white-space  : nowrap;
+        margin-bottom: 70px;
+    }
+    .sign_content form{
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: left;
+    }
+    .sign_content .sign_gender{
+        width: 100%;
+    }
+    .sign_content .sign_gender{
+        display: grid;
+        grid-template-columns: 20vw 20vw 20vw;
+    }
+    .submit{
+        width: 70%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: 50px;
+    }
+}
