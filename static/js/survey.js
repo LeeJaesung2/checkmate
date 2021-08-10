@@ -10,7 +10,7 @@ $('h3').eq(1).hide(); //두번째 h3 선택질문 설명 문구 가리기
 
 $('input[type=submit], .submit').hide();
 
-$('.previous').css('opacity', '0');
+$('.previous, .previous-mobile').css('opacity', '0');
 
 const q_num = 13; //필수 질문 인덱스(14개)
 const q_max = 23; //전체 질문 인덱스(24개)
@@ -56,7 +56,7 @@ function previousFade(q_cur){
 //질문을 스크롤형으로 변환하는 함수
 function setScrollType(dormitoryOpt){
     //다음·이전 버튼 없애기
-    $(".next, .previous").animate({
+    $(".next, .previous, .next-mobile, .previous-mobile").animate({
         'opacity': '0'
     });
     $(".container").css('height', 'auto');
@@ -92,11 +92,11 @@ function setScrollType(dormitoryOpt){
 //////////////////이벤트리스너//////////////////
 //이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
 //이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
-$('.next').on('click', function(){
+$('.next, .next-mobile').on('click', function(){
     //큰 if는 유효성 검사.
-    if (vaildation() == true){
+    // if (vaildation() == true){
         if(answer_cnt == 0) {
-            $('.previous').animate({
+            $('.previous, .previous-mobile').animate({
                 opacity: '1'
             }, 200);
         }
@@ -128,10 +128,10 @@ $('.next').on('click', function(){
         answer_cnt++;
         nextFade(answer_cnt);
         reloadProgressBar(answer_cnt);
-    }
+    // }
 })
 
-$('.previous').on('click', function(){
+$('.previous, .previous-mobile').on('click', function(){
     if(answer_cnt == 1) {
         $(this).animate({
             'opacity': '0',

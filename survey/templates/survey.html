@@ -12,7 +12,7 @@
 </head>
 
 
-<body>
+<body style="min-width: 360px;">
     <!-- 네비바 없음 -->
     <h1 class="top title">내 정보 입력하기</h1>
     <!-- 진행바 -->
@@ -27,6 +27,7 @@
     <!-- 문답 -->
     <div class="container">
         <p class="previous">< 이전</p>
+        <p class="previous-mobile"><</p>
         <form action="{% url 'submitSurvey' %}" method="POST" class="question-box">
             {% csrf_token %}
             <div class="question grade">
@@ -171,7 +172,7 @@
                 </div>
             </div>
             <!-- 선택요소 -->
-            <h3 class="second" >*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다.</h3>
+            <h3 class="second" >*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다. (스크롤 해주세요!)</h3>
             <div class="question share">
                 <h2 class="title">생필품을 룸메와 같이 쓰나요?</h1>
                 <div class="answer">
@@ -242,6 +243,8 @@
             </div>
         </form>
         <p class="next">다음 ></p>
+        <p class="next-mobile">></p>
+
     </div>
     <div class="modal" style="display: none;">
         <p>값을 선택해 주세요!</p>

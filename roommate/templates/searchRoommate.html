@@ -432,12 +432,12 @@
 
 
     let surveyCheck = "{{ survey_ess }}";
-    // if(surveyCheck == 'None'){
-        // document.getElementById("first_open_modal").style.display = "block";
-    // }
-    // else{
+    if(surveyCheck == 'None'){
+        document.getElementById("first_open_modal").style.display = "block";
+    }
+    else{
         document.getElementById("first_open_modal").style.display = "none";
-    // }
+    }
 
     function hideFirstModal(){
         document.getElementById("first_open_modal").style.display = "none";
