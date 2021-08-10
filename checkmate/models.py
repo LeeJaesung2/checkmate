@@ -98,4 +98,12 @@ class Domitory_Post(models.Model):
 
 class Scrap_roommate(models.Model):
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    write = models.ForeignKey(Write, on_delete=models.CASCADE) 
+    write = models.ForeignKey(Write, on_delete=models.CASCADE)
+
+class Scrap_dom(models.Model):
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    Domitory_Post = models.ForeignKey(Domitory_Post, on_delete=models.CASCADE)
+
+class Scrap_off(models.Model):
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    Offcampus_Post = models.ForeignKey(Offcampus_Post, on_delete=models.CASCADE)
