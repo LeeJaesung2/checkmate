@@ -30,9 +30,11 @@
                 <a class="find" href="">아이디 / 비밀번호 찾기</a>
                 <!-- maxlength='5' 비밀 번호 최대길이 추후에 추가 -->
                 <br><br><br>
-                <button id="login_btn" type="submit">Login</button>
-                <!--<a href="{% url 'register' %}">회원가입</a> -->
-                <button id="kakao-login" formaction="{% url 'kakaoLoginLogic' %}" >카카오회원가입</button>
+                <div class="btn-box">
+                    <button id="login_btn" type="submit">Login</button>
+                    <!--<a href="{% url 'register' %}">회원가입</a> -->
+                    <button id="kakao-login" formaction="{% url 'kakaoLoginLogic' %}" >카카오회원가입</button>
+                </div>
             </form> 
         </div>
     </div>

@@ -350,7 +350,7 @@ pagination-box{
         grid-column: 1/1;
     }
     #filter-submit{
-        grid-column: 1/1;
+        grid-column: 1/2;
     }
 
     .search_title{
