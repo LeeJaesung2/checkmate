@@ -358,7 +358,7 @@
                 {% if writes %}
                 {% for write in writes %}
                 <tr>
-                    <td scope="row">{{ write.get_state_display}}</td>
+                    <td scope="row" class="record-state">{{ write.get_state_display}}</td>
                     <td>{{ write.user_id.survey_ess_id.get_room_type_display}}</td>
                     <td>{{ write.user_id.user_gender}}</td>
                     <!-- 나이모델X학년으로 적어둠 -->

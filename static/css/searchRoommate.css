@@ -1,7 +1,7 @@
 
 .container{
     text-align: center;
-    padding-top: 10vh;
+    padding-top: 5vh;
     min-height: 100vh;
 }
 
@@ -310,6 +310,12 @@ thead tr th:nth-child(5){
     width: 55%;
 }
 
+.record-state{
+    font-family: 'S-CoreDream-7ExtraBold';
+    font-size: 15px;
+    color: #254074;
+}
+
 /* 글쓰기버튼 */
 .new-content
 {
@@ -320,16 +326,6 @@ thead tr th:nth-child(5){
 /*  */
 pagination-box{
     margin: 0 auto;
-}
-
-
-/* 채팅아이콘 */
-.open{
-    width: 40px;
-    position: fixed;
-    top: 90vh;
-    left: 90vw;
-    z-index: 10;
 }
 
 @media screen and (max-width: 768px){
@@ -358,8 +354,17 @@ pagination-box{
         margin-bottom: 20px;
     }
 
+    /* 게시판 */
     .table{
         font-size: 13px;
+    }
+    .table td, .table th{
+        padding: 0;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .table th{
+        padding-bottom: 4px;
     }
     thead tr th:first-child, 
     thead tr th:nth-child(3), thead tr th:nth-child(4){
