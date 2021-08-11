@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<link rel="stylesheet" href="{% static 'css/searchRoommate.css' %}">
+<link rel="stylesheet" href="{% static 'css/view_page.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="mypage_container bg row justify-content-center">
+    <div class="mypage_nav col-4 d-none d-md-block">
+        <h3 class="mypage_title">마이페이지</h3>
+        <!-- border-left 색상 바꾸기 (클릭 모션) -->
+        <ul>
+            <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
+            <li><a href="{% url 'mypageCheckupdate' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+            <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+        </ul>
+    </div>
+    <!-- 모바일버전 nav -->
+    <div class="mypage_nav_mobile row d-block d-md-none">
+        <ul>
+            <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
+            <li><a href="{% url 'mypageCheckupdate' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
+            <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
+        </ul>
+    </div>
+    <div class="mypage_content col-10 col-md-8">
+        <div class="mypage_write-content">
+            <h3 class="mypage_subtitle">체크리스트 수정</h3>
+
+            <div id="filter" class="update">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="question filter_age">
+                        <h6 class="title">나이</h6>
+                        <div class="answer">
+                            <input type="number" id="age" name="age" value="{{ age }}">
+                        </div>
+                    </div>
+                    <div class="question filter_grade">
+                        <h6 class="title dropdown">학년</h6>
+                        <div class="answer">
+                            <select name="grade" class="grade" id="">
+                                <option value="">------</option>
+                                <option value="1">1학년</option>
+                                <option value="2">2학년</option>
+                                <option value="3">3학년</option>
+                                <option value="4">4학년</option>
+                                <option value="5">5학년</option>
+                                <option value="6">6학년</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="question filter_room_type">
+                        <h6 class="title">기숙사 or 자취</h6>
+                        <div class="answer">
+                            <input type="radio" id="room_type_0" name="room_type" value="0"><label
+                                for="room_type_0">기숙사</label>
+                            <input type="radio" id="room_type_1" name="room_type" value="1"><label
+                                for="room_type_1">자취</label>
+                        </div>
+                    </div>
+
+                    <div class="question filter_dormitory_number">
+                        <h6 class="title">기숙사 동</h6>
+                        <div class="answer">
+                            {% if user.user_gender == "남" %}
+                            <select class="dormitory_number_man" name="dormitory_number_man" id=""
+                                data-dormitory_number_man="{{ eSurvey.dormitory_number_man }}">
+                                <option value="">------</option>
+                                <option value="10">10동</option>
+                                <option value="8">8동</option>
+                                <option value="6">6동</option>
+                                <option value="3">3동</option>
+                                <option value="2">2동</option>
+                                <option value="1">1동</option>
+                            </select>
+                            {% elif user.user_gender == "여" %}
+                            <select class="dormitory_number_woman" name="dormitory_number_woman" id=""
+                                data-dormitory_number_woman="11동">
+                                <option value="">------</option>
+                                <option value="11">11동</option>
+                                <option value="9">9동</option>
+                                <option value="7">7동</option>
+                                <option value="5">5동</option>
+                                <option value="4">4동</option>
+                            </select>
+                            {% else %}
+                            <select class="dormitory_number" name="dormitory_number" id="">
+                                <option value="">------</option>
+                                <option value="11">11동</option>
+                                <option value="10">10동</option>
+                                <option value="9">9동</option>
+                                <option value="8">8동</option>
+                                <option value="7">7동</option>
+                                <option value="6">6동</option>
+                                <option value="5">5동</option>
+                                <option value="4">4동</option>
+                                <option value="3">3동</option>
+                                <option value="2">2동</option>
+                                <option value="1">1동</option>
+                            </select>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="question dormitory_date">
+                        <h6 class="title">기간</h6>
+                        <div class="answer">
+                            <select class="dormitory_year_start" name="dormitory_year_start">
+                                <option value="">------</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                            </select>
+                            <select class="dormitory_semester_start" name="dormitory_semester_start">
+                                <option value="">------</option>
+                                <option value="1" disabled>1학기</option>
+                                <option value="S" disabled>여름방학</option>
+                                <option value="2">2학기</option>
+                                <option value="W">겨울방학</option>
+                            </select>
+                            <span>부터</span>
+                            <select class="dormitory_year_end" name="dormitory_year_end">
+                                <option value="">------</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2024</option>
+                            </select>
+                            <select class="dormitory_semester_end" name="dormitory_semester_end">
+                                <option value="">------</option>
+                                <option value="1">1학기</option>
+                                <option value="S">여름방학</option>
+                                <option value="2">2학기</option>
+                                <option value="W">겨울방학</option>
+                            </select>
+                            <span>까지</span>
+                        </div>
+                    </div>
+                    <div class="question filter_relationship">
+                        <h6 class="title">룸메와의 관계</h6>
+                        <div class="answer">
+                            <input type="radio" id="friendly" name="relationship" value="0"><label
+                                for="friendly">친하게</label>
+                            <input type="radio" id="business" name="relationship" value="1"><label
+                                for="business">인사만</label>
+                        </div>
+                    </div>
+                    <div class="question filter_wakeup_time">
+                        <h6 class="title">기상시간</h6>
+                        <div class="answer">
+                            <input type="time" id="wakeup_time" name="wakeup_time" value='{{ eSurvey.wakeup_time }}'>
+                        </div>
+                    </div>
+                    <div class="question filter_bed_time">
+                        <h6 class="title">취침시간</h6>
+                        <div class="answer">
+                            <input type="time" id="bed_time" name="bed_time" value='{{ eSurvey.bed_time }}'>
+                        </div>
+                    </div>
+                    <div class="question filter_smoke">
+                        <h6 class="title">흡연</h6>
+                        <div class="answer">
+                            <input type="radio" id="nonsmoker" name="smoke" value="False"><label
+                                for="nonsmoker">비흡연자</label>
+                            <input type="radio" id="smoker" name="smoke" value="True"><label for="smoker">흡연자</label>
+                        </div>
+                    </div>
+                    <div class="question filter_cleaning">
+                        <h6 class="title">청소주기</h6>
+                        <div class="answer">
+                            <select class="cleaning" name="cleaning">
+                                <option value="">------</option>
+                                <option value="1">안함</option>
+                                <option value="2">한달1회</option>
+                                <option value="3">격주1회</option>
+                                <option value="4">주1회</option>
+                                <option value="5">주3~4회</option>
+                                <option value="6">매일</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="question filter_sleeping_habits">
+                        <h6 class="title">잠버릇</h6>
+                        <div class="answer">
+                            <input type="checkbox" id="snoring" name="sleeping_habits_snoring" value="True"><label
+                                for="snoring">코골이</label>
+                            <input type="checkbox" id="grinding_teeth" name="sleeping_habits_teeth" value="True"><label
+                                for="grinding_teeth">이갈이</label>
+                            <input type="checkbox" id="nothing" name="sleeping_habits_nothing" value="True"><label
+                                for="nothing">없음</label>
+                        </div>
+                    </div>
+                    <div class="question filter_invite_friends">
+                        <h6 class="title">친구 초대</h6>
+                        <div class="answer">
+                            <input type="radio" id="invite_friends_yes" name="invite_friends" value="True"><label
+                                for="invite_friends_yes">예</label>
+                            <input type="radio" id="invite_friends_no" name="invite_friends" value="False"><label
+                                for="invite_friends_no">아니요</label>
+                        </div>
+                    </div>
+                    <div class="question filter_call">
+                        <h6 class="title">실내 통화</h6>
+                        <div class="answer">
+                            <input type="radio" id="call_yes" name="call" value='0'><label for="call_yes">예</label>
+                            <input type="radio" id="call_no" name="call" value='1'><label for="call_no">아니요</label>
+                            <input type="radio" id="call_short" name="call" value='2'><label
+                                for="call_short">짧은통화만</label>
+                        </div>
+                    </div>
+                    <div class="question filter_earphones">
+                        <h6 class="title">이어폰 사용</h6>
+                        <div class="answer">
+                            <input type="radio" id="earphones_yes" name="earphones" value="True"><label
+                                for="earphones_yes">필수</label>
+                            <input type="radio" id="earphones_no" name="earphones" value="False"><label
+                                for="earphones_no">사용한함</label>
+                        </div>
+                    </div>
+                    <div class="question filter_eat">
+                        <h6 class="title">실내취식</h6>
+                        <div class="answer">
+                            <input type="radio" id="eat_yes" name="eat" value='0'><label for="eat_yes">먹음</label>
+                            <input type="radio" id="eat_snack" name="eat" value='1'><label for="eat_snack">간식만</label>
+                            <input type="radio" id="eat_no" name="eat" value='2'><label for="eat_no">먹지 않음</label>
+                        </div>
+                    </div>
+                    <div class="question filter_animal not-dormitory">
+                        <h6 class="title">반려동물</h6>
+                        <div class="answer">
+                            <input type="checkbox" id="animal-dog" name="animal_dog"><label for="animal-dog">강아지</label>
+                            <input type="checkbox" id="animal-cat" name="animal_cat"><label for="animal-cat">고양이</label>
+                            <input type="checkbox" id="animal-no" name="animal_no" class=".nothing"><label
+                                for="animal-no">없음</label>
+                        </div>
+                    </div>
+                    <div class="question filter_share">
+                        <h6 class="title">생필품</h6>
+                        <div class="answer">
+
+                            {% if oSurvey.share == '1' %}
+                            <input type="radio" id="share_yes" name="share" value='1'><label for="share_yes"
+                                checked="on">공유</label>
+                            <input type="radio" id="share_no" name="share" value='2'><label for="share_snack">각자</label>
+                            {% else %}
+                            <input type="radio" id="share_yes" name="share" value='1'><label for="share_yes">공유</label>
+                            <input type="radio" id="share_no" name="share" value='2'><label for="share_snack"
+                                checked="on">각자</label>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="question filter_toilet">
+                        <h6 class="title">화장실 청소</h6>
+                        <div class="answer">
+                            <select class="toilet" name="toilet">
+                                <option value="">------</option>
+                                <option value="1">안함</option>
+                                <option value="2">한달1회</option>
+                                <option value="3">격주1회</option>
+                                <option value="4">주1회</option>
+                                <option value="5">주3~4회</option>
+                                <option value="6">매일</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="question filter_ventilate">
+                        <h6 class="title">환기</h6>
+                        <div class="answer">
+                            <select class="ventilate" name="ventilate">
+                                <option value="">------</option>
+                                <option value="0">안함</option>
+                                <option value="1">1일1회</option>
+                                <option value="2">1일2회</option>
+                                <option value="3">1일3회</option>
+                                <option value="4">1일4회</option>
+                                <option value="5">수시</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="question filter_feel">
+                        <h6 class="title">온도</h6>
+                        <div class="answer">
+                            <input type="checkbox" id="feel_cold" name="feel_cold"><label for="feel_cold">추위를 많이
+                                탐</label>
+                            <input type="checkbox" id="feel_hot" name="feel_hot"><label for="feel_hot">더위를 많이 탐</label>
+                        </div>
+                    </div>
+                    <div class="question filter_bug">
+                        <h6 class="title">벌레 퇴치</h6>
+                        <div class="answer">
+                            <input type="radio" id="bug_yes" name="bug" value="1"><label for="bug_yes">잘잡음</label>
+                            <input type="radio" id="bug_no" name="bug" value="2"><label for="bug_snack">못잡음</label>
+                        </div>
+                    </div>
+                    <div class="question filter_keyboard">
+                        <h6 class="title">키보드 소리</h6>
+                        <div class="answer">
+                            <input type="radio" id="keyboard_loud" name="keyboard" value="1"><label
+                                for="keyboard_loud">타이핑&게임
+                                자주함</label>
+                            <input type="radio" id="keyboard_no" name="keyboard" value="2"><label for="keyboard_no">거의
+                                안함</label><br>
+                            <input type="checkbox" id="keyboard_noise" name="keyboard_checkbox"><label
+                                for="keyboard_noise">저소음
+                                키보드 사용중</label>
+                        </div>
+                    </div>
+                    <div class="question filter_game">
+                        <h6 class="title">게임여부</h6>
+                        <div class="answer">
+                            <input type="radio" id="game_yes" name="game" value="1"><label for="game_yes">자주</label>
+                            <input type="radio" id="game_sometimes" name="game" value="2"><label
+                                for="game_sometimes">가끔</label>
+                            <input type="radio" id="game_no" name="game" value="3"><label for="game_no">안 함</label>
+                        </div>
+                    </div>
+                    <div class="question filter_mbti">
+                        <h6 class="title">MBTI</h6>
+                        <div class="answer">
+                            <select class="mbti" name="mbti">
+                                <option value="">--------</option>
+                                <option value="ESTJ">ESTJ</option>
+                                <option value="ESTP">ESTP</option>
+                                <option value="ESFJ">ESFJ</option>
+                                <option value="ESFP">ESFP</option>
+                                <option value="ENTJ">ENTJ</option>
+                                <option value="ENTP">ENTP</option>
+                                <option value="ENFJ">ENFJ</option>
+                                <option value="ENFP">ENFP</option>
+                                <option value="ISTJ">ISTJ</option>
+                                <option value="ISTP">ISTP</option>
+                                <option value="ISFJ">ISFJ</option>
+                                <option value="ISFP">ISFP</option>
+                                <option value="INTJ">INTJ</option>
+                                <option value="INTP">INTP</option>
+                                <option value="INFJ">INFJ</option>
+                                <option value="INFP">INFP</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn" id='filter-submit2' type="submit">적용하기</button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block last %}
+<script>
+    $(".grade").val("{{ eSurvey.grade }}").prop("selected", true);
+    //학년
+
+    //기숙사 or 자취
+    $("input:radio[name='room_type']:radio[value='{{ eSurvey.room_type }}']").prop('checked', true);
+
+
+    $(".dormitory_number_man").val("{{ eSurvey.dormitory_number_man }}").prop("selected", true);
+    $(".dormitory_number_woman").val("{{ eSurvey.dormitory_number_woman }}").prop("selected", true);
+    $(".dormitory_number").val("{{ eSurvey.dormitory_number }}").prop("selected", true);
+    //기숙사 동
+
+    $(".dormitory_year_start").val("{{ eSurvey.dormitory_year_start }}").prop("selected", true);
+    $(".dormitory_semester_start").val("{{ eSurvey.dormitory_semester_start }}").prop("selected", true);
+    $(".dormitory_year_end").val("{{ eSurvey.dormitory_year_end }}").prop("selected", true);
+    $(".dormitory_semester_end").val("{{ eSurvey.dormitory_semester_end }}").prop("selected", true);
+
+    //룸메와의 관계
+    $("input:radio[name='relationship']:radio[value='{{ eSurvey.relationship }}']").prop('checked', true);
+
+
+    //흡연
+    $("input:radio[name='smoke']:radio[value='{{ eSurvey.smoke }}']").prop('checked', true);
+
+    //청소
+    $(".cleaning").val("{{ eSurvey.cleaning }}").prop("selected", true);
+
+    //잠버릇
+    if ("{{ eSurvey.sleeping_habits_snoring }}") {
+        $("input:checkbox[name='sleeping_habits_snoring']").prop("checked", true);
+    }
+    if ("{{ eSurvey.sleeping_habits_teeth }}") {
+        $("input:checkbox[name='sleeping_habits_teeth']").prop("checked", true);
+    }
+    if ("{{ eSurvey.sleeping_habits_nothing }}") {
+        $("input:checkbox[name='sleeping_habits_nothing']").prop("checked", true);
+    }
+    //친구초대
+    $("input:radio[name='invite_friends']:radio[value='{{ eSurvey.invite_friends }}']").prop('checked', true);
+
+    //실내통화
+    $("input:radio[name='call']:radio[value='{{ eSurvey.call }}']").prop('checked', true);
+
+    //이어폰
+    $("input:radio[name='earphones']:radio[value='{{ eSurvey.earphones }}']").prop('checked', true);
+
+    //실내취식
+    $("input:radio[name='eat']:radio[value='{{ eSurvey.eat }}']").prop('checked', true);
+
+    //반려동물
+    if ("{{ eSurvey.animal_dog }}") {
+        $("input:checkbox[name='animal_dog']").prop("checked", true);
+    }
+    if ("{{ eSurvey.animal_cat }}") {
+        $("input:checkbox[name='animal_cat']").prop("checked", true);
+    }
+    if ("{{ eSurvey.animal_no }}") {
+        $("input:checkbox[name='animal_no']").prop("checked", true);
+    }
+
+
+
+    //생필품
+    $("input:radio[name='share']:radio[value='{{ oSurvey.share }}']").prop('checked', true);
+
+    //화장실    
+    $(".toilet").val("{{ oSurvey.toilet }}").prop("selected", true);
+    //환기
+    $(".ventilate").val("{{ oSurvey.ventilate }}").prop("selected", true);
+
+    //온도
+    if ("{{ oSurvey.feel_cold }}") {
+        $("input:checkbox[name='feel_cold']").prop("checked", true);
+    }
+    if ("{{ oSurvey.feel_hot }}") {
+        $("input:checkbox[name='feel_hot']").prop("checked", true);
+    }
+
+    //벌레퇴치
+    $("input:radio[name='bug']:radio[value='{{ oSurvey.bug }}']").prop('checked', true);
+
+    //키보드소리
+    $("input:radio[name='keyboard']:radio[value='{{ oSurvey.keyboard }}']").prop('checked', true);
+
+    //게임여부
+    $("input:radio[name='game']:radio[value='{{ oSurvey.game }}']").prop('checked', true);
+    if ("{{ oSurvey.keyboard_noise }}") {
+        $("input:checkbox[name='keyboard_checkbox']").prop("checked", true);
+    }
+
+    //mbti
+    $(".mbti").val("{{ oSurvey.mbti }}").prop("selected", true);
+
+</script>
+{% endblock %}

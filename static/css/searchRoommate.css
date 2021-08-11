@@ -235,6 +235,18 @@ select+span{
     height: 70%;
     /* padding: 2px 0; */
 }
+#filter-submit2{
+    font-family: 'S-CoreDream-6Bold';
+    font-size: 14px;
+    grid-column: 2;
+    margin: 2% 5% 2% 65%;
+    color: #254074;
+    border: 1.5px solid #254074;
+    border-radius: 10px;
+    background-color: white;
+    height: 40px;
+    /* padding: 2px 0; */
+}
 
 
 #keyboard_noise{
