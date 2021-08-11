@@ -27,47 +27,51 @@
     </div>
     <div class="mypage_content col-10 col-md-8">
         <div class="mypage_scap-content">
-            <h3 class="mypage_subtitle row">스크랩</h3>
-            <form action="">
-                <button class="row" formaction="{% url 'mypageScrap' %}">룸메이트 찾기</button>
-                <button class="row" formaction="{% url 'mypageScrap_dom' %}" >기숙사 정보</button>
-                <button class="row" formaction="{% url 'mypageScrap_off' %}">자취 정보</button>
+            <h3 class="mypage_subtitle" style="margin-bottom: 0; padding-bottom: 20px;">스크랩</h3>
+            <form action="" class="btn-group">
+                <button class="btn btn-light category-btn" formaction="{% url 'mypageScrap' %}" style="">룸메이트 찾기</button>
+                <button class="btn btn-light category-btn" formaction="{% url 'mypageScrap_dom' %}" style="">기숙사 정보</button>
+                <button class="btn btn-light category-btn" formaction="{% url 'mypageScrap_off' %}"style="color: #254074;">자취 정보</button>
             </form>
-
-            <div id="off">
-                <button class="mypage_btn row">수정</button>
-
-                <div class="mypage_sub-bar row">
-                    <div class="col-2">
-                        <input class="checkbox_all" type="checkbox" name="written" id="checkbox" value='selectall' onclick='selectAll(this);'>
-                    </div>
-                    <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
-                    <p class="p-2 col-5" style="margin-top:0;">제목</p>
-                </div>
+            <button class="mypage_btn btn btn-light float-end">수정</button>
+            <div id="off" class="mt-4">
                 <form action="" method="POST">
                     {% csrf_token %}
                     <div>
-                        {% for scrap in off_scraps %}
-                            <input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}">
-                            <p>{{ scrap.Offcampus_Post.user_id.user_nickname }}</p>
-                            <p><a href="{% url 'offcampusView' scrap.Offcampus_Post.id %}">{{ scrap.Offcampus_Post.title }}</a></p>
-                        {% endfor %}
+                        <table class="table table-responsive table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width: 10%;"><input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'
+                                        onclick='selectAll(this)'>/th>
+                                    <th scope="col" style="width: 30%;"">글쓴이</th>
+                                    <th scope="col" style="width: 60%;"">제목</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                {% for scrap in off_scraps %}   
+                                    <td><input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}"></td>
+                                    <td>{{ scrap.write.user_id.user_nickname }}</td>
+                                    <td><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></td>
+                                {% endfor %}
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
                     </div>
-        
-                    <button type="submit" class="mypage_delete">삭제하기</button>
+                    <button type='submit' class="mypage_delete btn btn-outline-danger float-end m-4">삭제하기</button>
                 </form>
                 <div>
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">◀</a></li>
-                        {% for page in off_page_range %}
-                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}">{{page}}</a>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#" style="color:#76787d; border:0;">◀</a></li>
+                        {% for page in room_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
                         </li>
                         {% endfor %}
-                        <li class="page-item"><a class="page-link" href="#">▶</a></li>
+                        <li class="page-item"><a class="page-link" href="#"  style="color:#254074; border:0;">▶</a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

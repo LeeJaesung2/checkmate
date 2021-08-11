@@ -51,6 +51,14 @@ p{
 
     border-left:5px solid #3F97FF;
 }
+/* 카테고리 버튼 */
+.category-btn{
+    color: #777777; 
+    /* border: 2px solid #254074; */
+    font-family: 'S-CoreDream-5Medium';
+    background-color: white;
+
+}
 
 /*  */
 .mypage_content{
@@ -76,8 +84,8 @@ input:-webkit-autofill {
  
 .mypage_content p{
     font-family: 'S-CoreDream-5Medium';
-    margin-top: 10px;
-    border-radius: 25px;
+    /* margin-top: 10px; */
+    /* border-radius: 25px; */
 }
 .mypage_content-box2{
     margin-top: 15px;
@@ -100,7 +108,7 @@ input:-webkit-autofill {
     font-size: 20px;
     line-height: 26px;
     color: #254074;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     /* width: 200px; */
 }
 
@@ -115,26 +123,24 @@ input:-webkit-autofill {
     padding: 0 0 0 10px;
 }
 
-.mypage_btn{
+/* .mypage_btn{
     font-family: 'S-CoreDream-7ExtraBold';
     font-size: 15px;
     color: #5D94FF;
     border: 2px solid #268AFF;
     box-sizing: border-box;
     border-radius: 10px;
-    /* width: 50px; */
-    /* height: 30px; */
     margin-left: 80%;
     background-color: white;
     padding: 5px 10px;
-}
+} */
 .mypage_delete{
     font-family: 'S-CoreDream-3Light';
     font-size: 15px;
-    color: #001F70;
+    /* color: #001F70; */
     white-space  : nowrap;
-    margin-top: 30px;
-    margin-left: 80%;
+    /* margin-top: 30px; */
+    /* margin-left: 80%; */
 }
 .mypage_content-title{
     font-family: 'S-CoreDream-5Medium';
@@ -156,12 +162,13 @@ input:-webkit-autofill {
     box-sizing: border-box;
     border-radius: 2px;
 }
-#checkbox{
+input[type=checkbox]{
     width: 16px;
     height: 16px;
     border: 1px solid #959595;
     box-sizing: border-box;
     border-radius: 2px;
+    vertical-align: middle;
 }
 /* .mypage_btn:checked ~ .mypage_list-checkbox  {
     width: 20px;
@@ -185,17 +192,45 @@ input:-webkit-autofill {
     font-family: 'S-CoreDream-5Medium';
     color: #254074;
     font-size: 17px;
-    width: 53vw;
+    /* width: 53vw; */
     border-bottom: 1px solid #959595;
 }
 
-.open{
-    width: 40px;
-    position: fixed;
-    top: 90vh;
-    left: 90vw;
-    z-index: 10;
+/* 테이블 */
+table{
+    font-family: 'S-CoreDream-4Regular';
+    font-size: 14px;
+    width:100%;
+    /* min-height: 60vh; */
+    text-align: center;
+    align-items: center;
 }
+
+table input{
+
+}
+
+thead > tr > th:nth-child(2){
+    letter-spacing: -2px;
+}
+
+table td{
+    font-family: 'S-CoreDream-3Light';
+
+}
+
+thead tr th:first-child{
+    width: 40%;
+}
+
+thead tr th:nth-child(2){
+    width: 60%;
+}
+
+.table>:not(:last-child)>:last-child>* {
+    border-bottom: 1px solid #a8a8a8;
+}
+
 
 @media screen and (max-width: 768px){
     /* 모바일 네비바 */
@@ -240,4 +275,8 @@ input:-webkit-autofill {
         margin: 0;
     }
 
+    /* 버튼 */
+    .category-btn, .mypage_btn, .btn{
+        font-size:14px;
+    }
 }
