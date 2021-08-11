@@ -48,7 +48,7 @@
                     {% csrf_token %}
                     <div>
                         {% for scrap in room_scraps %}
-                            <input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all">
+                            <input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}">
                             <p>{{ scrap.write.user_id.user_nickname }}</p>
                             <p><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></p>
                         {% endfor %}
