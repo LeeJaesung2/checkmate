@@ -78,6 +78,11 @@ h5{
     line-height: 1;
 }
 
+a.modal-btn{
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
 .modal-btn-X{
     position: absolute;
     width: 30px;
