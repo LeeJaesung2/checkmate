@@ -94,7 +94,7 @@ function setScrollType(dormitoryOpt){
 //이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
 $('.next, .next-mobile').on('click', function(){
     //큰 if는 유효성 검사.
-    // if (vaildation() == true){
+    if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous, .previous-mobile').animate({
                 opacity: '1'
@@ -128,7 +128,7 @@ $('.next, .next-mobile').on('click', function(){
         answer_cnt++;
         nextFade(answer_cnt);
         reloadProgressBar(answer_cnt);
-    // }
+    }
 })
 
 $('.previous, .previous-mobile').on('click', function(){
