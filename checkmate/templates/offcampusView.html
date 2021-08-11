@@ -21,29 +21,31 @@
     <div class="popup-close">&times;</div>
 </div>
 
-<div class="view_container">
-    <p class="view_info">{{ post.preface }} | {{ post.preface_2 }}</p>
+<div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+    <p class="view_info btn">{{ post.preface }} | {{ post.preface_2 }}</p>
     <div class="view_box1">
         <h3>{{ post.title }}</h3>
         <form action="" method="GET">
             {% if user.is_authenticated %}
-            <button id="Favorites" type="submit" name="Favorites" value="scrap">
+            <button class="float-end p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
+
                 <i class="far fa-star" id="star"></i></button>
             {% endif %}
         </form>
         <!-- 타이틀 -->
-        <small>{{ post.pub_date }}</small>
+        <small class="float-end p-2" >{{ post.pub_date }}</small>
         <!-- <i class="fas fa-star" id="fillStar"></i> -->
     </div>
     <div class="view_box2">
         <img src="{{ post.user_id.user_image.url }}" alt="profile_image" style="width:50px; height:50px;">
+
         <!-- 프로필이미지 -->
-        <p> {{ post.user_id.user_nickname }} </p>
+        <p class="col-12 col-md-3"> {{ post.user_id.user_nickname }} </p>
 
         <!-- 닉네임 -->        
 
     </div>
-
+    <hr>
     <div>
         <p class="body">
         {% if post.image %}
@@ -53,8 +55,8 @@
         <!-- 내용 -->
         {% if post.user_id.id == user.id %}
         <div class="bottom">
-            <a href="{% url 'offcampusUpdate' post.id %}"><span>수정</span></a>
-            <a href="{% url 'offcampusDelete' post.id %}"><span>삭제</span></a>
+            <a href="{% url 'offcampusUpdate' post.id %}" class="btn btn-light"><span>수정</span></a>
+            <a href="{% url 'offcampusDelete' post.id %}" class="btn btn-light"><span>삭제</span></a>
         </div>
         {% else %}
         {% endif %}

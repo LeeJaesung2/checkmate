@@ -1,5 +1,8 @@
 /* 모든 글쓰는 창은 다 연결(write, update) */
 /* infoWrite창 */
+p{
+    margin: 0;
+}
 .info_container{
     /* width: 70vw; */
     margin: 0 auto;
@@ -14,7 +17,7 @@
     height: 1vh;
 }
 .title{
-    width: 80%;
+    /* width: 80%; */
     font-family: ''
 }
 .hashtag{
@@ -25,7 +28,7 @@
     color: #254074;
     border: 1px solid #254074;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 50px;
     /* padding-left: 10px; */
     text-align: center;
 }
@@ -34,7 +37,7 @@
     font-family: 'yg-jalnan';
     font-size: 17px;
     letter-spacing: 0.1em;
-    width: 60%;
+    /* width: 60%; */
     margin-top: 15px;
 }
 
@@ -61,8 +64,8 @@
     margin-bottom: 30px;
 }
 .info_container-box2{
-    display: grid;
-    grid-template-columns: 8vw 45vw 25vw;
+    /* display: grid; */
+    /* grid-template-columns: 8vw 45vw 25vw; */
     padding-top: 30px;
 }
 .info_container-box2 p{
@@ -75,7 +78,7 @@
     color: #454545;
 }
 .info_container .body{
-    margin-top: 40px;
+    margin-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     font-family: 'S-CoreDream-3Light';
@@ -91,11 +94,11 @@
     border: 1px solid #254074;
     box-sizing: border-box;
     border-radius: 25px;
-    width: 13vw;
-    height: 5vh;
-    padding-left: 18px;
+    /* width: 150px;
+    height: 30px; */
+    /* padding-left: 18px;
     padding-top: 2px;
-    margin-left: 10px;
+    margin-left: 10px; */
 
 }
 
