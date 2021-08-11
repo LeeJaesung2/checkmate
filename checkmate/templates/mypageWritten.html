@@ -52,15 +52,15 @@
                                 {% for post in d_posts %} 
                                 <tr>
                                     <td><input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written"></td>
-                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'domitoryView' post.id %}"'>기숙사 정보</p></td>
-                                    <td><p class="mypage_content-body" onclick='location.href="{% url 'domitoryView' post.id %}"'>{{ post.title }}</p></td>
+                                    <td class="mypage_content-title" onclick='location.href="{% url 'domitoryView' post.id %}"'>기숙사 정보</td>
+                                    <td class="mypage_content-body" onclick='location.href="{% url 'domitoryView' post.id %}"'>{{ post.title }}</td>
                                 </tr> 
                                 {% endfor %} 
                                 {% for post in o_posts %}
                                 <tr>
                                     <td><input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written"></td>
-                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'offcampusView' post.id %}"'>자취 정보</p></td>
-                                    <td><p class="mypage_content-body" onclick='location.href="{% url 'offcampusView' post.id %}"'>{{ post.title }}</p></td>
+                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'offcampusView' post.id %}"'>자취 정보</td>
+                                    <td class="mypage_content-body" onclick='location.href="{% url 'offcampusView' post.id %}"'>{{ post.title }}</td>
                                 </tr>
                                 {% endfor %} 
                             </div>
