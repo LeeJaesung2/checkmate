@@ -5,13 +5,30 @@
 <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
+<div class="popup">
+    <h4>스크랩 성공!</h4>
+    <div class="popup-close">&times;</div> 
+</div>
+
+<div class="popup2">
+    {% if messages %}
+    <h4>
+        {% for message in messages %}
+        {{ message.message }}
+        {% endfor %}
+    </h4>
+        {% endif %}
+    <div class="popup-close">&times;</div>
+</div>
 
 <div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
     <div class="col-12">
         <h3 class="write-title">{{write_detail.title}}</h3>
         <hr>
         <form class="float-end" action="" method="GET">
+            {% if user.is_authenticated %}
             <button id="Favorites" type="submit" name="Favorites" value="scrap">스크랩</button>
+            {% endif %}
         </form>
         <!-- 이거 없어두 되는거 아닌가요! -->
         <!-- <div class="row">
@@ -30,7 +47,7 @@
     </div>
     <div class="writer-info row">
         <!-- 이미지 들어오면 col-1로 변경 -->
-        <img class="col-3"src="" alt="profile_image">
+        <img class="col-3"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image">
         <!-- 프로필이미지 -->
         {% if survey_ess.room_type == 1 %}
         <p class="col-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
@@ -134,22 +151,22 @@
             <h3 class="p-3">선택 정보</h3>
             <div class="p-3">
                 <!-- <div> -->
-                    {% if survey_opt.share != 0 %}
+                    {% if survey_opt.share != '0' %}
                     <strong>생필품 공유</strong>
                     <p>{{survey_opt.get_share_display}}</p>
                     {% endif %}
-                    {% if survey_opt.bug != 0 %}
+                    {% if survey_opt.bug != '0' %}
                     <strong>벌레 퇴치</strong>
                     <p>{{survey_opt.get_bug_display}}</p>
                     {% endif %}
-                    {% if survey_opt.keyboard != 0 %}
+                    {% if survey_opt.keyboard != '0' %}
                     <strong>키보드 소리</strong>
                     <p>{{survey_opt.get_keyboard_display}}</p>
                     {% endif %}
                     {% if survey_opt.keyboard_noise == True %}
                     <p>저소음 키보드 사용</p>
                     {% endif %}
-                    {% if survey_opt.game != 0 %}
+                    {% if survey_opt.game != '0' %}
                     <strong>게임 여부</strong>
                     <p>{{survey_opt.get_game_display}}</p>
                     {% endif %}
@@ -222,8 +239,10 @@
     </div>
     <div class="detail-body">
         <p>{{write_detail.body}}</p>
+        {% if write_detail.user_id.id == user.id %}
         <a class="btn btn-light" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
         <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        {% endif %}
     </div>
     <div class="">
         <ul class="pagination justify-content-center my-4">
@@ -234,4 +253,33 @@
     </div>
 </div>
 
+
+<script>
+    document.querySelector(".popup").style.display="none";
+    document.querySelector(".popup2").style.display="none";
+    const scrapBtn = document.querySelector('.scrapBtn');
+    const popup = document.querySelector('.popup');
+    const popup2 = document.querySelector('.popup2');
+    const popupClose = document.querySelector('.popup-close');
+
+
+    document.querySelector(".popup-close").onclick = function() {
+        document.querySelector(".popup").style.display="none";
+        document.querySelector(".popup2").style.display="none";
+    }
+    
+
+    popup.style.display="none";
+    popup2.style.display="none";
+
+
+    if("{{fail}}"=="0"){
+        popup.style.display = 'block'; 
+    }
+    if("{{fail}}"=="1"){
+        popup2.style.display = 'block'; 
+    }
+
+
+</script>
 {% endblock %}

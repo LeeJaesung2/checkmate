@@ -5,21 +5,38 @@
     <link rel="stylesheet" href="{% static 'css/view_page.css' %}">
 {% endblock %}
 {% block content %}
+<div class="popup">
+    <h4>스크랩 성공!</h4>
+    <div class="popup-close">&times;</div> 
+</div>
+
+<div class="popup2">
+    {% if messages %}
+    <h4>
+        {% for message in messages %}
+        {{ message.message }}
+        {% endfor %}
+    </h4>
+        {% endif %}
+    <div class="popup-close">&times;</div>
+</div>
 
 <div class="view_container">
     <p class="view_info">{{ post.preface }} | {{ post.preface_2 }}</p>
     <div class="view_box1">
         <h3>{{ post.title }}</h3>
         <form action="" method="GET">
+            {% if user.is_authenticated %}
             <button id="Favorites" type="submit" name="Favorites" value="scrap">
                 <i class="far fa-star" id="star"></i></button>
+            {% endif %}
         </form>
         <!-- 타이틀 -->
         <small>{{ post.pub_date }}</small>
         <!-- <i class="fas fa-star" id="fillStar"></i> -->
     </div>
     <div class="view_box2">
-        <img src="{{ post.user_id.user_image }}" alt="profile_image">
+        <img src="{{ post.user_id.user_image.url }}" alt="profile_image" style="width:50px; height:50px;">
         <!-- 프로필이미지 -->
         <p> {{ post.user_id.user_nickname }} </p>
 
@@ -28,8 +45,10 @@
     </div>
 
     <div>
-        <p class="body"> 
+        <p class="body">
+        {% if post.image %}
         <img src="{{ post.image }}" alt="image">
+        {% endif %}
         {{ post.content }} </p>
         <!-- 내용 -->
         {% if post.user_id.id == user.id %}
@@ -43,9 +62,9 @@
     </div>
     <div>
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'offcampusView' pre%}">◀ 이전글</a></li>
             <li class="page-item"><a class="page-link" href="/offcampusCommunity">목록</a></li>
-            <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'offcampusView' next%}">다음글 ▶</a></li>
         </ul>
     </div>
 </div>
@@ -57,30 +76,31 @@
 </div>
 
 <script>
+    document.querySelector(".popup").style.display="none";
+    document.querySelector(".popup2").style.display="none";
     const scrapBtn = document.querySelector('.scrapBtn');
     const popup = document.querySelector('.popup');
+    const popup2 = document.querySelector('.popup2');
+    const popupClose = document.querySelector('.popup-close');
 
-    popup.style.display="none";
 
-    function open(){ 
-        scrapBtn.addEventListener('click', function (event){ 
-        popup.style.display = 'block';  
-        })
-    } 
-    open();
     document.querySelector(".popup-close").onclick = function() {
         document.querySelector(".popup").style.display="none";
-        }
-
-    // const star = document.querySelector('#star');
-    // const fstar = document.querySelector('#fillStar');
-
-    // fstar.style.display="none";
+        document.querySelector(".popup2").style.display="none";
+    }
     
-    // star.addEventListener('click', function() {
-    //     star.classList.toggle('fstar');
-    // });
 
-// if 별 클릭하면 1사진으로 바뀌고 그 상태에서 또 클릭하면 다시 0 사진으로 바뀌고. 
+    popup.style.display="none";
+    popup2.style.display="none";
+
+
+    if("{{fail}}"=="0"){
+        popup.style.display = 'block'; 
+    }
+    if("{{fail}}"=="1"){
+        popup2.style.display = 'block'; 
+    }
+
+
 </script>
 {% endblock %}

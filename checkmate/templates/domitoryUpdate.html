@@ -24,7 +24,7 @@
 		</div>
 		<div class="info_container-box2">
 
-			<img src="" alt="profile_image">
+			<img src="{{ user.user_image.url }}" alt="profile_image" style="width:50px; height:50px;">
 			<!-- 프로필이미지 -->
 			<p>{{ user.user_nickname }}</p>
 			<input type="file" name="image" id="" value="{{ post.image }}">

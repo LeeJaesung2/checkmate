@@ -40,7 +40,7 @@
                 {% endif %}
                 {% if posts %}
                 {% for post in posts %}     
-                <tr class="com_content" onclick="location.href='{% url 'domitoryView' post.id %}'">
+                <tr class="com_content" onclick="location.href='{% url 'offcampusView' post.id %}'">
                     {% if post.preface_2 == '정문' or post.preface == '후문' or post.preface == '남문' or post.preface == '호탄' or post.preface == '기타' %}
                     <td  scope="row" class="preface" id="com_content-info">원룸정보</td>
                     <td id="com_content-title">{{ post.preface_2 }}</td>

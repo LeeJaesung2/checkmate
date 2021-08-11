@@ -61,16 +61,13 @@ def survey(request):
     return render(request, 'survey.html')
 
 def mypageScrap(request):
-    user_id = request.user.id
-    room_scraps = Scrap_roommate.objects.all()
-
     #체크된 항목 삭제
     checked = request.POST.getlist('check[]')
     for check in checked:
         scrap = get_object_or_404(Scrap_roommate, pk=check)
         scrap.delete()
-
-    room_scraps = Scrap_roommate.objects.all()
+    user_id = request.user.id
+    room_scraps = Scrap_roommate.objects.all().order_by('-id')
     room_scraps = room_scraps.filter(user_id__id=user_id)
     room_scraps, room_page_range = paging(request, room_scraps)
     
@@ -78,25 +75,23 @@ def mypageScrap(request):
     return render(request, 'mypageScrap.html',{'room_scraps':room_scraps,'room_page_range':room_page_range})
 
 def mypageScrap_dom(request):
-    user_id = request.user.id
-    dom_scraps = Scrap_dom.objects.all()
     checked = request.POST.getlist('check[]')
     for check in checked:
         scrap = get_object_or_404(Scrap_dom, pk=check)
         scrap.delete()
-    dom_scraps = Scrap_dom.objects.all()
+    user_id = request.user.id
+    dom_scraps = Scrap_dom.objects.all().order_by('-id')
     dom_scraps = dom_scraps.filter(user_id__id=user_id)
     dom_scraps, dom_page_range = paging(request, dom_scraps)
     return render(request, 'mypageScrap_dom.html',{'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range})
 
 def mypageScrap_off(request):
-    user_id = request.user.id
-    off_scraps = Scrap_off.objects.all()
     checked = request.POST.getlist('check[]')
     for check in checked:
         scrap = get_object_or_404(Scrap_off, pk=check)
         scrap.delete()
-    off_scraps = Scrap_off.objects.all()
+    user_id = request.user.id
+    off_scraps = Scrap_off.objects.all().order_by('-id')
     off_scraps = off_scraps.filter(user_id__id=user_id)
     off_scraps, off_page_range = paging(request, off_scraps)
     return render(request, 'mypageScrap_off.html',{'off_scraps':off_scraps, 'off_page_range':off_page_range})
@@ -162,19 +157,31 @@ def offcampusView(request,post_id):
     post.view += 1 
     post.save()
     scrap = request.GET.get("Favorites")
+    pre = post.id - 1
+    next = post.id +1
+    user_id = CustomUser.objects.get(id=request.user.id)
+    aleady = Scrap_off.objects.all()
+    aleady = aleady.filter(Offcampus_Post=post)
+    aleady = aleady.filter(user_id=user_id)
     if(scrap):
-        user_id = CustomUser.objects.get(id=request.user.id)
-        aleady = Scrap_off.objects.all()
-        aleady = aleady.filter(Offcampus_Post=post)
-        aleady = aleady.filter(user_id=user_id)
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
+            fail = 1
+            return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
+
         else:
             scrap = Scrap_off()
             scrap.user_id = user_id
             scrap.Offcampus_Post = post
             scrap.save()
-    return render(request, 'offcampusView.html',{'post':post,'user':user})
+            fail = 0
+            return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
+    if aleady:
+        okscrap = 0
+        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    else:
+        okscrap = 1
+        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 def domitoryView(request,post_id):
     user = request.user
@@ -182,19 +189,31 @@ def domitoryView(request,post_id):
     post.view += 1 
     post.save()
     scrap = request.GET.get("Favorites")
+    pre = post.id - 1
+    next = post.id +1
+    user_id = CustomUser.objects.get(id=request.user.id)
+    aleady = Scrap_dom.objects.all()
+    aleady = aleady.filter(Domitory_Post=post)
+    aleady = aleady.filter(user_id=user_id)
     if(scrap):
-        user_id = CustomUser.objects.get(id=request.user.id)
-        aleady = Scrap_dom.objects.all()
-        aleady = aleady.filter(Domitory_Post=post)
-        aleady = aleady.filter(user_id=user_id)
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
+            fail = 1
+            return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
         else:
             scrap = Scrap_dom()
             scrap.user_id = user_id
             scrap.Domitory_Post = post
             scrap.save()
-    return render(request, 'domitoryView.html',{'post':post,'user':user})
+            fail = 0
+            return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
+    if aleady:
+        okscrap = 0
+        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    else:
+        okscrap = 1
+        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+
 
 def offcampusDelete(request, post_id):
     post = Offcampus_Post.objects.get(id=post_id)
@@ -239,7 +258,7 @@ def domitoryUpdate(request, post_id):
         post.user_id = user
         post.pub_date = timezone.now()
         post.save()
-        return redirect('offcampusView', post.id)
+        return redirect('domitoryView', post.id)
     else:
         post = Domitory_Post.objects.get(id=post_id)
         user = request.user
