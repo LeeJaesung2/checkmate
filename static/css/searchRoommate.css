@@ -333,8 +333,13 @@ pagination-box{
         padding-top: 0;
     }
 
+    /* 모달 */
     #first_open_modal{
-        width: 350px;
+        width: 320px;
+        left: calc(50vw - 160px);
+    }
+    #first_open_modal p{
+        font-size: 13px;
     }
     .search_bar form{
         width: 100%;
