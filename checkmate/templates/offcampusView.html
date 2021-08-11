@@ -6,27 +6,27 @@
 {% endblock %}
 {% block content %}
 
-<div class="view_container">
-    <p class="view_info">{{ post.preface }} | {{ post.preface_2 }}</p>
+<div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+    <p class="view_info btn">{{ post.preface }} | {{ post.preface_2 }}</p>
     <div class="view_box1">
         <h3>{{ post.title }}</h3>
         <form action="" method="GET">
-            <button id="Favorites" type="submit" name="Favorites" value="scrap">
+            <button class="float-end p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
                 <i class="far fa-star" id="star"></i></button>
         </form>
         <!-- 타이틀 -->
-        <small>{{ post.pub_date }}</small>
+        <small class="float-end p-2" >{{ post.pub_date }}</small>
         <!-- <i class="fas fa-star" id="fillStar"></i> -->
     </div>
-    <div class="view_box2">
-        <img src="{{ post.user_id.user_image }}" alt="profile_image">
+    <div class="view_box2 row">
+        <img src="{{ post.user_id.user_image }}" alt="profile_image" class="col-2 col-md-2 mb-2">
         <!-- 프로필이미지 -->
-        <p> {{ post.user_id.user_nickname }} </p>
+        <p class="col-12 col-md-3"> {{ post.user_id.user_nickname }} </p>
 
         <!-- 닉네임 -->        
 
     </div>
-
+    <hr>
     <div>
         <p class="body"> 
         <img src="{{ post.image }}" alt="image">
@@ -34,18 +34,18 @@
         <!-- 내용 -->
         {% if post.user_id.id == user.id %}
         <div class="bottom">
-            <a href="{% url 'offcampusUpdate' post.id %}"><span>수정</span></a>
-            <a href="{% url 'offcampusDelete' post.id %}"><span>삭제</span></a>
+            <a href="{% url 'offcampusUpdate' post.id %}" class="btn btn-light"><span>수정</span></a>
+            <a href="{% url 'offcampusDelete' post.id %}" class="btn btn-light"><span>삭제</span></a>
         </div>
         {% else %}
         {% endif %}
 
     </div>
     <div>
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">◀ 이전글</a></li>
-            <li class="page-item"><a class="page-link" href="/offcampusCommunity">목록</a></li>
-            <li class="page-item"><a class="page-link" href="#">다음글 ▶</a></li>
+        <ul class="pagination justify-content-center mb-5">
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀ 이전글</a></li>
+            <li class="page-item"><a class="page-link" href="/offcampusCommunity" style="color:#254074; border:0;">목록</a></li>
+            <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">다음글 ▶</a></li>
         </ul>
     </div>
 </div>

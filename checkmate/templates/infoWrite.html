@@ -7,10 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="info_container">
-
-
-	<h3>자취 정보 공유 게시판</h3>
+<div class="info_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+	<h3 class="row justify-content-center">자취 정보 공유 게시판</h3>
 
 	<form action="" method="post">
 		<div class="info_container-box1">
@@ -18,26 +16,26 @@
 
 			<input type="hidden" name="user_id" value='{{ user.id }}'>
 
-			<select id="preface" class="hashtag" name="preface" onchange="categoryChange(this)">
+			<select id="preface" class="hashtag btn col-4 col-md-2" name="preface" onchange="categoryChange(this)">
 				<option value="">말머리</option>
 				<option value="해결했어요">해결했어요</option>
 				<option value="질문있어요">질문있어요</option>
 				<option value="원룸정보">원룸정보</option>
 			</select>
 
-			<select class="hashtag" name="preface_2" id="preface_2">
+			<select class="hashtag btn col-4 col-md-2" name="preface_2" id="preface_2">
 				<option value="">세부 선택</option>
 			</select>
 			
 			<!-- 말머리 -->
-			<input id="title"name="title" type="text" placeholder="이곳에 제목을 작성하세요.">
+			<input id="title"name="title" type="text" placeholder="이곳에 제목을 작성하세요." class="col-12 col-md-8">
 			<!-- 정보 게시판 제목 -->
 		</div>
-		<div class="info_container-box2">
-			<img src="" alt="profile_image">
+		<div class="info_container-box2 row">
+			<img src="" alt="profile_image" class="col-2 col-md-2 mb-2">
 			<!-- 프로필이미지 -->
-			<p>{{ user.user_nickname }}</p>
-			<input type="file" name="image" id="">
+			<p class="col-9 col-md-7 mb-2">{{ user.user_nickname }}</p>
+			<input type="file" name="image" id="" class="col-12 col-md-3">
 			<!-- 사진 업로드 -->
 		</div>
 		<textarea id="content"class="body" name="content" cols="130" rows="20" style="resize: none;"

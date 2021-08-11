@@ -1,15 +1,18 @@
 /* domitoryView, 룸메이트' detail 파일 연결
 (View, detail) */
+p{
+   margin: 0;
+}
 
 /* 긱사 view */
 .view_container{
-    width: 70vw;
-    margin: 0 auto;
-    margin-top: 60px;
+    /* width: 70vw; */
+    /* margin: 0 auto; */
+    /* margin-top: 60px; */
 }
 .view_box1{
-    display: grid;
-    grid-template-columns: 56vw 1vw;
+    /* display: grid; */
+    /* grid-template-columns: 56vw 1vw; */
     border-bottom: 1px solid #C9C9C9;
 }
 .view_box1 h3{
@@ -18,7 +21,7 @@
     color: #254074;
     white-space  : nowrap;
     margin-top: 10px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 .view_info{
     font-family: 'S-CoreDream-7ExtraBold';
@@ -28,19 +31,20 @@
     border: 1px solid #254074;
     box-sizing: border-box;
     border-radius: 25px;
-    width: 13vw;
+    /* width: 150px;
+    height: 50px; */
 }
 .view_box1 small{
     font-family: 'S-CoreDream-3Light';
     font-size: 15px;
     color: #959595;
     white-space  : nowrap;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 
 }
 .view_box2{
-    display: grid;
-    grid-template-columns: 10vw 10vw;
+    /* display: grid; */
+    /* grid-template-columns: 10vw 10vw; */
     font-family: 'S-CoreDream-6Bold';
     font-size: 20px;
     color: #454545;
@@ -168,6 +172,9 @@
  }
 
  @media screen and (max-width: 768px){
+   .view_container{
+      padding: 0 15px;
+   }
     .write-title{
         margin-top: 30px;
     }
