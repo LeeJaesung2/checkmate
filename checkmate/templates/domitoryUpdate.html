@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="{% static 'css/write.css' %}">
 {% endblock %}
 {% block content %}
-<div class="info_container">
+<div class="info_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
 
 	<h3>기숙사 정보 공유 게시판</h3>
 	<form action="" method="post">
@@ -14,22 +14,22 @@
 			<input type="hidden" name="user_id" value="{{ user.id }}">
 			<input type="hidden" name="preface" value="{{ post.preface }}">
 			<input type="hidden" name="preface_2" value="{{ post.preface_2 }}">
-			<div class="info_info">
-				<p>{{ post.preface }} | {{ post.preface_2 }}</p>
+			<div class="info_info btn">
+				<p style="color: #254074;">{{ post.preface }} | {{ post.preface_2 }}</p>
 			</div>	
 
 			<!-- 말머리 -->
-			<input id="title" name="title" type="text" placeholder="이곳에 제목을 작성하세요." value="{{ post.title }}">
+			<input id="title" name="title" type="text" placeholder="이곳에 제목을 작성하세요." value="{{ post.title }}" class="col-12 col-md-8">
 			<!-- 정보 게시판 제목 -->
 		</div>
-		<div class="info_container-box2">
-
-			<img src="" alt="profile_image">
+		<div class="info_container-box2 row">
+			<img src="" alt="profile_image" class="col-2 col-md-2 mb-2">
 			<!-- 프로필이미지 -->
-			<p>{{ user.user_nickname }}</p>
-			<input type="file" name="image" id="" value="{{ post.image }}">
+			<p class="col-9 col-md-7 mb-2">{{ user.user_nickname }}</p>
+			<input type="file" name="image" id="" value="{{ post.image }}" class="col-12 col-md-3">
 			<!-- 사진 업로드 -->
 		</div>
+		<hr>
 		<textarea id="content" class="body" name="content" cols="130" rows="20" style="resize: none;" placeholder="   이곳에 본문을 작성하세요."
 		value="{{ post.content }}"></textarea>
 		<!-- 정보 게시판 작성 내용 -->
