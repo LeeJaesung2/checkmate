@@ -44,15 +44,18 @@
                     <p class="p-2 col-5" style="margin-top:0;">글쓴이</p>
                     <p class="p-2 col-5" style="margin-top:0;">제목</p>
                 </div>
-                <div>
-                    {% for scrap in off_scraps %}
-                        <input type="checkbox" name="written" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}">
-                        <p>{{ scrap.Offcampus_Post.user_id.user_nickname }}</p>
-                        <p><a href="{% url 'offcampusView' scrap.Offcampus_Post.id %}">{{ scrap.Offcampus_Post.title }}</a></p>
-                    {% endfor %}
-                </div>
-    
-                <button class="mypage_delete">삭제하기</button>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        {% for scrap in off_scraps %}
+                            <input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}">
+                            <p>{{ scrap.Offcampus_Post.user_id.user_nickname }}</p>
+                            <p><a href="{% url 'offcampusView' scrap.Offcampus_Post.id %}">{{ scrap.Offcampus_Post.title }}</a></p>
+                        {% endfor %}
+                    </div>
+        
+                    <button type="submit" class="mypage_delete">삭제하기</button>
+                </form>
                 <div>
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">◀</a></li>
@@ -103,7 +106,7 @@
 
         //체크박스 전체선택 기능
         function selectAll(selectAll) {
-            const checkboxes = document.getElementsByName('written');
+            const checkboxes = document.querySelectorAll('.mypage_list-checkbox');
 
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;

@@ -63,19 +63,27 @@ def survey(request):
 def mypageScrap(request):
     user_id = request.user.id
     room_scraps = Scrap_roommate.objects.all()
+
+    #체크된 항목 삭제
+    checked = request.POST.getlist('check[]')
+    for check in checked:
+        scrap = get_object_or_404(Scrap_roommate, pk=check)
+        scrap.delete()
+
+    room_scraps = Scrap_roommate.objects.all()
     room_scraps = room_scraps.filter(user_id__id=user_id)
     room_scraps, room_page_range = paging(request, room_scraps)
-    # 체크된 항목 삭제하기
-    first_id = room_scraps[0].id
-    for id in range(first_id,first_id+len(room_scraps)): #범위 설정 어떻게 해야되지??
-        if (request.POST.get("check[]")=='on'):
-            scrap = get_object_or_404(Scrap_roommate, pk=id)
-            scrap.delete()
+    
 
     return render(request, 'mypageScrap.html',{'room_scraps':room_scraps,'room_page_range':room_page_range})
 
 def mypageScrap_dom(request):
     user_id = request.user.id
+    dom_scraps = Scrap_dom.objects.all()
+    checked = request.POST.getlist('check[]')
+    for check in checked:
+        scrap = get_object_or_404(Scrap_dom, pk=check)
+        scrap.delete()
     dom_scraps = Scrap_dom.objects.all()
     dom_scraps = dom_scraps.filter(user_id__id=user_id)
     dom_scraps, dom_page_range = paging(request, dom_scraps)
@@ -83,6 +91,11 @@ def mypageScrap_dom(request):
 
 def mypageScrap_off(request):
     user_id = request.user.id
+    off_scraps = Scrap_off.objects.all()
+    checked = request.POST.getlist('check[]')
+    for check in checked:
+        scrap = get_object_or_404(Scrap_off, pk=check)
+        scrap.delete()
     off_scraps = Scrap_off.objects.all()
     off_scraps = off_scraps.filter(user_id__id=user_id)
     off_scraps, off_page_range = paging(request, off_scraps)
