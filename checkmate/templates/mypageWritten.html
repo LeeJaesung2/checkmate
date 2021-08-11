@@ -25,13 +25,77 @@
             <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
         </ul>
     </div>
+
+
+
+
+
+
     <div class="mypage_content col-10 col-md-8">
+        <div class="mypage_scap-content">
+            <h3 class="mypage_subtitle" style="margin-bottom: 0; padding-bottom: 20px;">내가 작성한 글</h3>
+            <button class="mypage_btn btn btn-light float-end">수정</button>
+            <div id="room" class="mt-4">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <table class="table table-responsive table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width: 10%;"><input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'
+                                        onclick='selectAll(this)'></th>
+                                    <th scope="col" style="width: 40%;">카테고리</th>
+                                    <th scope="col" style="width: 50%;">제목</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for post in d_posts %} 
+                                <tr>
+                                    <td><input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written"></td>
+                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'domitoryView' post.id %}"'>기숙사 정보</p></td>
+                                    <td><p class="mypage_content-body" onclick='location.href="{% url 'domitoryView' post.id %}"'>{{ post.title }}</p></td>
+                                </tr> 
+                                {% endfor %} 
+                                {% for post in o_posts %}
+                                <tr>
+                                    <td><input class="mypage_list-checkbox checkbox_all" type="checkbox" name="written"></td>
+                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'offcampusView' post.id %}"'>자취 정보</p></td>
+                                    <td><p class="mypage_content-body" onclick='location.href="{% url 'offcampusView' post.id %}"'>{{ post.title }}</p></td>
+                                </tr>
+                                {% endfor %} 
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type='submit' class="mypage_delete btn btn-outline-danger float-end m-4">삭제하기</button>
+                </form>
+                <!-- 페이지네이션 링크 수정 필요 -->
+                <div>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
+                        {% for page in room_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
+                        </li>
+                        {% endfor %}
+                        <li class="page-item"><a class="page-link" href="#"  style="color:#254074; border:0;">▶</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- <div class="mypage_content col-10 col-md-8">
         <div class="mypage_write-content">
             <h3 class="mypage_subtitle">내가 작성한 글</h3>
-            <button class="mypage_btn">수정</button>
+            <button class="mypage_btn btn btn-light float-end">수정</button>
 
                 
-            <!-- span for문돌리기 -->
             <div class="mypage_sub-bar">
                 
                 <input type="checkbox" name="written" id="checkbox" class="checkbox_all" value='selectall'
@@ -75,7 +139,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script>
 
