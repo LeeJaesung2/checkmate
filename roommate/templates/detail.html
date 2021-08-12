@@ -54,7 +54,7 @@
     <div class="container-fluid">
         <div class="row  checklist-box mb-2">
             <h3 class="p-3">필수 정보</h3>
-            <div class="p-3">
+            <div class="p-3 p-m-b">
                 <!-- <div> -->
                     <strong>시기</strong> <p>{{survey_ess.get_dormitory_year_start_display}} {{survey_ess.get_dormitory_semester_start_display}} ~ {{survey_ess.get_dormitory_year_end_display}} {{survey_ess.get_dormitory_semester_end_display}}</p>
                     <strong>기상 시간</strong> 
@@ -139,7 +139,7 @@
 
         <div class="row checklist-box">
             <h3 class="p-3">선택 정보</h3>
-            <div class="p-3">
+            <div class="p-3 p-m-b">
                 <!-- <div> -->
                     {% if survey_opt.share != '0' %}
                     <strong>생필품 공유</strong>
@@ -228,7 +228,7 @@
         </div>
     </div>
     <div class="detail-body">
-        <p>{{write_detail.body}}</p>
+        <p class="mb-4">{{write_detail.body}}</p>
         {% if write_detail.user_id.id == user.id %}
         <a class="btn btn-light" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
         <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>

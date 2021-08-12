@@ -4,6 +4,11 @@ p{
    margin: 0;
 }
 
+.p-m-b > p
+{
+   margin-bottom: 10px;
+}
+
 /* 긱사 view */
 .view_container{
     /* width: 70vw; */
