@@ -104,6 +104,9 @@ def mypageCheckupdate(request):
             eSurvey.animal_other = request.POST.get('animal_other')
             eSurvey.save()
 
+            print(request.POST['wakeup_time'])
+            print(request.POST['bed_time'])
+
 
 
             oSurvey.share = request.POST['share']
@@ -118,8 +121,8 @@ def mypageCheckupdate(request):
             oSurvey.mbti = request.POST['mbti']
             oSurvey.save()
 
-        return render(request, 'mypageCheckupdate.html',{'eSurvey':eSurvey, 'oSurvey':oSurvey})
+        return redirect('mypageCheckupdate')
     else:
-        print(eSurvey.wakeup_time)
+  
 
         return render(request, 'mypageCheckupdate.html',{'eSurvey':eSurvey, 'oSurvey':oSurvey,'user':user,'age':age})
