@@ -57,21 +57,24 @@ def mypageProfile(request):
     user = request.user
     user_id = CustomUser.objects.get(id=user.id)
     if request.method == "POST":
-        user_id.user_nickname = request.POST.get('user_nickname')
-        user_id.save()
         current_password = request.POST.get('user_password') 
-        if check_password(current_password,user.password):
-            new_password = request.POST.get('password1')
-            new_password_check = request.POST.get('password2')
-            if new_password == new_password_check :
-                user.set_password(new_password)
-                user.save()
-                login(request,user)
-                return redirect('main')
+        if current_password:
+            if check_password(current_password,user.password):
+                new_password = request.POST.get('password1')
+                new_password_check = request.POST.get('password2')
+                if new_password == new_password_check :
+                    user.set_password(new_password)
+                    user.save()
+                    login(request,user)
+                    messages.warning(request, "성공~^^")
+                else:
+                    messages.warning(request, '새로 입력한 비밀번호가 서로 일치하지 않습니다.')
             else:
-                messages.warning(request, '새로 입력한 비밀번호가 서로 일치하지 않습니다.')
-        else:
-            messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
+                messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
+        if request.POST.get('user_nickname'):
+            user_id.user_nickname = request.POST.get('user_nickname')
+            user_id.save()
+        return redirect('mypageProfile')
     return render(request, 'mypageProfile.html',{'user':user})
 
 

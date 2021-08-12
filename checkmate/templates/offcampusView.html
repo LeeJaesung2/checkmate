@@ -46,7 +46,7 @@
 
     </div>
     <hr>
-    <div>
+    <div class="mb-5">
         <p class="body">
         {% if post.image %}
         <img src="{{ post.image.url }}" alt="image" style="width:80%;">
@@ -58,6 +58,7 @@
             <a href="{% url 'offcampusUpdate' post.id %}" class="btn btn-light"><span>수정</span></a>
             <a href="{% url 'offcampusDelete' post.id %}" class="btn btn-light"><span>삭제</span></a>
         </div>
+        <br><br>
         {% else %}
         {% endif %}
 
