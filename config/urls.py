@@ -47,7 +47,6 @@ urlpatterns = [
     path('domitory_popular/',views.domitory_popular, name='domitory_popular'),
     path('offcampus_popular/',views.offcampus_popular, name='offcampus_popular'),
 
-
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

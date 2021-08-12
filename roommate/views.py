@@ -25,52 +25,53 @@ def searchRoommate(request):
             else:
                 messages.error(request, '검색어는 2글자 이상 입력해주세요')
         writes, page_range, next_page, pre_page = paging(request, writes)
+        
+        if CustomUser.objects.get(id=request.user.id).survey_ess_id:
+            mysurvey_ess_id = CustomUser.objects.get(id=request.user.id).survey_ess_id.id
+            mysurvey = list(SurveyEssential.objects.filter(id = mysurvey_ess_id).values())[0]
+            mysurvey_value = list(mysurvey.values())[2:]
+            fitness_str = ''
+            for writer in writes:
+                persentage = 0
+                index = 0
+                matchcnt = 0
+                othersurvey_ess_id = writer.user_id.survey_ess_id.id
+                if othersurvey_ess_id == mysurvey_ess_id :
+                    fitness_str += "100,"
+                else :
+                    othersurvey = list(SurveyEssential.objects.filter(id = othersurvey_ess_id).values())[0]
+                    othersurvey_value = list(othersurvey.values())[2:]
+                    for i in mysurvey_value:
+                        if i == othersurvey_value[index]:
+                            if 2<index<7:
+                                matchcnt+=0.25
+                            elif 7<index<10:
+                                mytime = mysurvey_value[index].hour*60 + mysurvey_value[index].minute
 
-        mysurvey_ess_id = CustomUser.objects.get(id=request.user.id).survey_ess_id.id
-        mysurvey = list(SurveyEssential.objects.filter(id = mysurvey_ess_id).values())[0]
-        mysurvey_value = list(mysurvey.values())[2:]
-        fitness_str = ''
-        for writer in writes:
-            persentage = 0
-            index = 0
-            matchcnt = 0
-            othersurvey_ess_id = writer.user_id.survey_ess_id.id
-            if othersurvey_ess_id == mysurvey_ess_id :
-                fitness_str += "100,"
-            else :
-                othersurvey = list(SurveyEssential.objects.filter(id = othersurvey_ess_id).values())[0]
-                othersurvey_value = list(othersurvey.values())[2:]
-                for i in mysurvey_value:
-                    if i == othersurvey_value[index]:
-                        if 2<index<7:
-                            matchcnt+=0.25
-                        elif 7<index<10:
-                            mytime = mysurvey_value[index].hour*60 + mysurvey_value[index].minute
+                                othertime = othersurvey_value[index].hour*60 + othersurvey_value[index].minute
 
-                            othertime = othersurvey_value[index].hour*60 + othersurvey_value[index].minute
-
-                            temp = mytime - othertime
-                            if -60<temp<60:
-                                matchcnt+=1
-                            elif -90<temp<90:
-                                matchcnt+=0.75
-                            elif -120<temp<120:
-                                matchcnt+=0.5
-                    # elif index == 12:
-                    #     temp = i - othersurvey[index]
-                    #     if -1<i<1:
-                    #         matchcnt+=1
-                    #     elif -2<i<2:
-                    #         matchcnt+=0.75
-                        else:
-                            matchcnt += 1
-                    index += 1
-                persentage = matchcnt/index*100
-            fitness = "%0.1f" %persentage
-            fitness_str += str(fitness)+","
-
-
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'survey_ess':survey_ess, 'survey_opt':survey_opt, 'next_page':next_page, 'pre_page':pre_page,'fitness_str':fitness_str})
+                                temp = mytime - othertime
+                                if -60<temp<60:
+                                    matchcnt+=1
+                                elif -90<temp<90:
+                                    matchcnt+=0.75
+                                elif -120<temp<120:
+                                    matchcnt+=0.5
+                        # elif index == 12:
+                        #     temp = i - othersurvey[index]
+                        #     if -1<i<1:
+                        #         matchcnt+=1
+                        #     elif -2<i<2:
+                        #         matchcnt+=0.75
+                            else:
+                                matchcnt += 1
+                        index += 1
+                    persentage = matchcnt/index*100
+                fitness = "%0.1f" %persentage
+                fitness_str += str(fitness)+","
+            return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'survey_ess':survey_ess, 'survey_opt':survey_opt, 'next_page':next_page, 'pre_page':pre_page,'fitness_str':fitness_str})
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
+    
     else:
         search_keyword = request.GET.get('search_keyword')
         writes = Write.objects.all().order_by('-id')
