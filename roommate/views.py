@@ -20,12 +20,12 @@ def searchRoommate(request):
         if search_keyword:
             if len(search_keyword) > 1:
                 writes = writes.filter(title__icontains=search_keyword)
-                writes, page_range = paging(request, writes)
-                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
+                writes, page_range, next_page, pre_page = paging(request, writes)
+                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
             else:
                 messages.error(request, '검색어는 2글자 이상 입력해주세요')
-        writes, page_range = paging(request, writes)
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'survey_ess':survey_ess, 'survey_opt':survey_opt})
+        writes, page_range, next_page, pre_page = paging(request, writes)
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'survey_ess':survey_ess, 'survey_opt':survey_opt, 'next_page':next_page, 'pre_page':pre_page})
     else:
         search_keyword = request.GET.get('search_keyword')
         writes = Write.objects.all().order_by('-id')
@@ -33,12 +33,12 @@ def searchRoommate(request):
         if search_keyword:
             if len(search_keyword) > 1:
                 writes = writes.filter(title__icontains=search_keyword)
-                writes, page_range = paging(request, writes)
-                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range})
+                writes, page_range, next_page, pre_page = paging(request, writes)
+                return render(request, 'searchRoommate.html',{'writes':writes,'search_keyword':search_keyword, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
             else:
                 messages.error(request, '검색어는 2글자 이상 입력해주세요')
-        writes, page_range = paging(request, writes)
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range})
+        writes, page_range, next_page, pre_page = paging(request, writes)
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
@@ -56,21 +56,18 @@ def detail(request, write_id):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
             fail = 1
-            return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail})
         else:
             scrap = Scrap_roommate()
             scrap.user_id = user_id
             scrap.write = write_detail
             scrap.save()
             fail = 0
-            return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail})
+        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail})
     if aleady:
         okscrap = 0
-        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
-
     else:
         okscrap = 1
-        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 def create(request):
     if request.method == 'POST':
@@ -263,6 +260,8 @@ def filter(request, writes):
 
 def paging(request, writes):
     page = int(request.GET.get('page',1))
+    next_page = int(request.GET.get('page',1))+1
+    pre_page = int(request.GET.get('page',1))-1
     paginated_by = 10
     total_count = len(writes)
     total_page = math.ceil(total_count/paginated_by)
@@ -283,7 +282,7 @@ def paging(request, writes):
     end_index = paginated_by * page
     writes = writes[start_index:end_index]
 
-    return writes, page_range
+    return writes, page_range, next_page, pre_page
 
 def surveycheck(request):
     user_id = CustomUser.objects.get(id=request.user.id)

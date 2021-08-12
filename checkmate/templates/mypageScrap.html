@@ -63,12 +63,12 @@
                 </form>
                 <div>
                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{pre_page}}" style="color:#254074; border:0;">◀</a></li>
                         {% for page in room_page_range %}
                         <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
                         </li>
                         {% endfor %}
-                        <li class="page-item"><a class="page-link" href="#"  style="color:#254074; border:0;">▶</a></li>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{next_page}}"  style="color:#254074; border:0;">▶</a></li>
                     </ul>
                 </div>
             </div>
