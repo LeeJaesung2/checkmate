@@ -53,7 +53,8 @@
                                 <tr>
                                     <td><input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}"></td>
                                     <td>{{ scrap.Domitory_Post.user_id.user_nickname }}</td>
-                                    <td><a href="{% url 'detail' scrap.Domitory_Post.id %}">{{ scrap.Domitory_Post.title }}</a></td>
+                                    <td><a href="{% url 'domitoryView' scrap.Domitory_Post.id %}">{{ scrap.Domitory_Post.title }}</a></td>
+                                {% endfor %}
                                 </tr>
                                 {% endfor %}
                             </div>
@@ -64,12 +65,12 @@
                 </form>
                 <div>
                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#" style="color:#254074; border:0;">◀</a></li>
-                        {% for page in room_page_range %}
-                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap_dom'%}?page={{pre_page}}" style="color:#254074; border:0;">◀</a></li>
+                        {% for page in dom_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap_dom'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
                         </li>
                         {% endfor %}
-                        <li class="page-item"><a class="page-link" href="#"  style="color:#254074; border:0;">▶</a></li>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageScrap_dom'%}?page={{next_page}}"  style="color:#254074; border:0;">▶</a></li>
                     </ul>
                 </div>
             </div>

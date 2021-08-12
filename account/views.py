@@ -5,6 +5,7 @@ import json
 from django.contrib import auth
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
+from .models import CustomUser
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 
@@ -54,9 +55,11 @@ def register(request):
 
 def mypageProfile(request):
     user = request.user
+    user_id = CustomUser.objects.get(id=user.id)
     if request.method == "POST":
-        current_password = request.POST.get('user_password')
-        user = request.user
+        user_id.user_nickname = request.POST.get('user_nickname')
+        user_id.save()
+        current_password = request.POST.get('user_password') 
         if check_password(current_password,user.password):
             new_password = request.POST.get('password1')
             new_password_check = request.POST.get('password2')
@@ -69,7 +72,6 @@ def mypageProfile(request):
                 messages.warning(request, '새로 입력한 비밀번호가 서로 일치하지 않습니다.')
         else:
             messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
-
     return render(request, 'mypageProfile.html',{'user':user})
 
 
