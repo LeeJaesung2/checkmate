@@ -4,5 +4,6 @@ from survey import views
 urlpatterns = [
     path('', views.survey, name="survey"),
     path('submitSurvey', views.submitSurvey, name="submitSurvey"),
+    path('mypageCheckupdate', views.mypageCheckupdate, name="mypageCheckupdate"),
 
 ]

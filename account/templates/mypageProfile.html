@@ -13,7 +13,7 @@
         <!-- border-left 색상 바꾸기 (클릭 모션) -->
         <ul >
             <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
-            <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageCheckupdate' %}">체크리스트 수정</a></li>
             <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
             <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
         </ul>
@@ -22,7 +22,7 @@
     <div class="mypage_nav_mobile row d-block d-md-none">
         <ul >
             <li><a href="{% url 'mypageProfile' %}">회원정보 수정</a></li>
-            <li><a href="{% url 'infoWrite' %}">체크리스트 수정</a></li>
+            <li><a href="{% url 'mypageCheckupdate' %}">체크리스트 수정</a></li>
             <li><a href="{% url 'mypageScrap' %}">스크랩 목록</a></li>
             <li><a href="{% url 'mypageWritten' %}">내가 작성한 글</a></li>
         </ul>
@@ -32,7 +32,7 @@
 
         <form action="" method="post">
             {% csrf_token %}
-            <img id="target_img" src="{{ user.user_image }}" style="width:50px; height:50px;">
+            <img id="target_img" src="{{ user.user_image.url }}" style="width:50px; height:50px;">
             <input type="file" id="user_image" name="user_image" style="display:none;">
             <span id="user_name">{{ user.user_name }}</span>
             <!-- 프로필사진 -->
