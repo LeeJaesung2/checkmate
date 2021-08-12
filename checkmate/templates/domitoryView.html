@@ -28,7 +28,8 @@
         <form action="" method="GET">
             {% if user.is_authenticated %}
             <button class="scrapBtn float-end p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
-                <i class="far fa-star" id="star"></i></button>
+                <i class="far fa-star" id="star"></i>
+                <i class='fas fa-star' id="fstar"></i></button>
             {% endif %}
         </form>
         <!-- 타이틀 -->
@@ -68,6 +69,7 @@
     const popupClose = document.querySelector('.popup-close');
     popup.style.display="none";
     popup2.style.display="none";
+    document.querySelector("#fstar").style.display = 'none';
 
 
     document.querySelector(".popup-close").onclick = function() {
@@ -79,9 +81,19 @@
 
     if("{{fail}}"=="0"){
         popup.style.display = 'block'; 
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
+
     }
     if("{{fail}}"=="1"){
         popup2.style.display = 'block'; 
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
+    }
+    
+    if("{{ okscrap }}" == "0"){
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
     }
 
 

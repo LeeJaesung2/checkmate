@@ -101,27 +101,15 @@ def mypageScrap_off(request):
 
 def mypageWritten(request):
     user=request.user
-    o_posts = Offcampus_Post.objects.filter(user_id=user)
     d_posts = Domitory_Post.objects.filter(user_id=user)
-    if request.method == 'POST':
-        delete_array = request.POST.getlist('delete_array[]')
+    d_posts, dom_page_range, dom_next_page, dom_pre_page = paging(request, d_posts)
+    return render(request, 'mypageWritten.html',{'d_posts':d_posts, 'dom_page_range':dom_page_range, 'dom_next_page':dom_next_page, 'dom_pre_page':dom_pre_page})
 
-        num = 0
-        for i in d_posts:
-            if str(num) in delete_array:
-                i.delete()
-            num+=1
-
-        for j in o_posts:
-            if str(num) in delete_array:
-                j.delete()
-            num+=1
-            print(delete_array)
-
-        return redirect('mypageWritten')
-
-    else:
-        return render(request, 'mypageWritten.html',{'o_posts':o_posts,'d_posts':d_posts})
+def mypageWritten_off(request):
+    user=request.user
+    o_posts = Offcampus_Post.objects.filter(user_id=user)
+    o_posts, off_page_range, off_next_page, off_pre_page = paging(request, o_posts)
+    return render(request, 'mypageWritten_off.html',{'o_posts':o_posts, 'off_page_range':off_page_range, 'off_next_page':off_next_page, 'off_pre_page':off_pre_page})
 
 
 def offcampusCommunity(request):

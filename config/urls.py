@@ -35,6 +35,7 @@ urlpatterns = [
     path('mypageScrap_dom/',views.mypageScrap_dom, name='mypageScrap_dom'),
     path('mypageScrap_off/',views.mypageScrap_off, name='mypageScrap_off'),
     path('mypageWritten/',views.mypageWritten, name='mypageWritten'),
+    path('mypageWritten_off/',views.mypageWritten_off, name='mypageWritten_off'),
     path('offcampusCommunity/',views.offcampusCommunity, name='offcampusCommunity'),
     path('domitoryCommunity/',views.domitoryCommunity, name='domitoryCommunity'),
     path('offcampusView/<int:post_id>',views.offcampusView, name='offcampusView'),
