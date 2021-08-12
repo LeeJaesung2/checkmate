@@ -108,17 +108,23 @@ def mypageCheckupdate(request):
             print(request.POST['bed_time'])
 
 
-
-            oSurvey.share = request.POST['share']
-            oSurvey.toilet = request.POST['toilet']
-            oSurvey.ventilate = request.POST['ventilate']
+            if request.POST.get('share'):
+                oSurvey.share = request.POST.get('share')
+            if request.POST.get('toilet'):
+                oSurvey.toilet = request.POST.get('toilet')
+            if request.POST.get('ventilate'): 
+                oSurvey.ventilate = request.POST.get('ventilate')
             oSurvey.feel_cold = True if request.POST.get('feel_cold')=='on' else False
             oSurvey.feel_hot = True if request.POST.get('feel_hot')=='on' else False
-            oSurvey.bug = request.POST.get('bug')
-            oSurvey.keyboard = request.POST.get('keyboard')
+            if request.POST.get('bug'): 
+                oSurvey.bug = request.POST.get('bug')
+            if request.POST.get('keyboard'): 
+                oSurvey.keyboard = request.POST.get('keyboard')
             oSurvey.keyboard_noise = True if request.POST.get('keyboard_checkboxg')=='on' else False
-            oSurvey.game = request.POST.get('game')
-            oSurvey.mbti = request.POST['mbti']
+            if request.POST.get('game'): 
+                oSurvey.game = request.POST.get('game')
+            if request.POST['mbti']: 
+                oSurvey.mbti = request.POST['mbti']
             oSurvey.save()
 
         return redirect('mypageCheckupdate')

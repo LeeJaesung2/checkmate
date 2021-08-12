@@ -21,7 +21,8 @@ def infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
-        post.image = request.FILES['image']
+        if request.FILES :
+            post.image = request.FILES['image']
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -43,7 +44,8 @@ def dom_infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
-        post.image = request.FILES['image']
+        if request.FILES :
+            post.image = request.FILES['image']
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user

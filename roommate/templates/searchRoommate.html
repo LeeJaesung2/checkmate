@@ -351,13 +351,14 @@
                     <th scope="col">성별</th>
                     <th scope="col">나이</th>
                     <th scope="col">제목</th>
-                    <!-- <th>적합도</th> 구현X -->
+                    <th scope="col">적합도</th>
+
                 </tr>
             </thead>
             <tbody>
                 {% if writes %}
                 {% for write in writes %}
-                <tr>
+                <tr class="tablebody">
                     <td scope="row" class="record-state">{{ write.get_state_display}}</td>
                     <td>{{ write.user_id.survey_ess_id.get_room_type_display}}</td>
                     <td>{{ write.user_id.user_gender}}</td>
@@ -398,29 +399,20 @@
 </div>
 
 
-<img class="open" id="jsBtn" src="{% static 'img/chat_icon.png' %}" alt="">
-<div class="modal hidden" id="jsModal">
-    <button class="modal__closeBtn" id="jsCloseBtn">X</button>
-</div>
 <script>
-    const open = document.querySelector(".open");
-    const close = document.querySelector(".modal__closeBtn");
-    const modal = document.querySelector(".modal");
-    filter.style.display='none'
-    up.style.display='none'
-    document.getElementById("filter-dropup").style.display = "none";
-    
 
-    function init(){
-        open.addEventListener("click",function(){
-            modal.classList.remove("hidden");
-        });
-        close.addEventListener("click",function(){
-            modal.classList.add("hidden");
-        });
+    var str = "{{ fitness_str }}";
+    var tr = document.querySelectorAll('tr');
+    let arr = str.split(",");
+    for(let i = 0 ; i < tr.length; i++){
+        var child = document.createElement('td');
+            var txt = arr[i] + "%"
+            child.append(txt);
+            tr[i+1].append(child);
     }
 
-    init();
+
+
     function hidefilter(){
         document.getElementById("filter").style.display = "none";
         document.getElementById("filter-dropup").style.display = "none"

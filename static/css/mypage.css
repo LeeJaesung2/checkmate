@@ -123,17 +123,10 @@ input:-webkit-autofill {
     padding: 0 0 0 10px;
 }
 
-/* .mypage_btn{
-    font-family: 'S-CoreDream-7ExtraBold';
-    font-size: 15px;
-    color: #5D94FF;
-    border: 2px solid #268AFF;
-    box-sizing: border-box;
-    border-radius: 10px;
-    margin-left: 80%;
-    background-color: white;
-    padding: 5px 10px;
-} */
+.mypage_btn{
+    font-family: 'S-CoreDream-5Medium';
+
+}
 .mypage_delete{
     font-family: 'S-CoreDream-3Light';
     font-size: 15px;
@@ -278,5 +271,6 @@ thead tr th:nth-child(2){
     /* 버튼 */
     .category-btn, .mypage_btn, .btn{
         font-size:14px;
+        
     }
 }
