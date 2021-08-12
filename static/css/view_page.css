@@ -117,7 +117,8 @@ p{
  }
 
  /* 글쓴이 정보 */
- writer-info{
+ .writer-info{
+   font-family: 'S-CoreDream-3Light';
 
  }
 

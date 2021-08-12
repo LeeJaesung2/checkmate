@@ -27,7 +27,10 @@
         <hr>
         <form class="float-end" action="" method="GET">
             {% if user.is_authenticated %}
-            <button id="Favorites" type="submit" name="Favorites" value="scrap">스크랩</button>
+            <button class="scrapBtn" id="Favorites" type="submit" name="Favorites" value="scrap">
+                <i class="far fa-star" id="star"></i>
+                <i class='fas fa-star' id="fstar"></i>
+                </button>
             {% endif %}
         </form>
         <div class="float-end">
@@ -37,7 +40,7 @@
     </div>
     <div class="writer-info row">
         <!-- 이미지 들어오면 col-1로 변경 -->
-        <img class="col-3"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image">
+        <img class="col-3"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:60px; height:60px;">
         <!-- 프로필이미지 -->
         {% if survey_ess.room_type == 1 %}
         <p class="col-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
@@ -251,6 +254,7 @@
     const popupClose = document.querySelector('.popup-close');
     popup.style.display="none";
     popup2.style.display="none";
+    document.querySelector("#fstar").style.display = 'none';
 
 
     document.querySelector(".popup-close").onclick = function() {
@@ -262,10 +266,21 @@
 
     if("{{fail}}"=="0"){
         popup.style.display = 'block'; 
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
+
     }
     if("{{fail}}"=="1"){
         popup2.style.display = 'block'; 
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
     }
+    
+    if("{{ okscrap }}" == "0"){
+        document.querySelector("#star").style.display = 'none';
+        document.querySelector("#fstar").style.display = 'block';
+    }
+
 
 </script>
 {% endblock %}
