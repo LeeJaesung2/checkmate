@@ -329,8 +329,9 @@ thead tr th:nth-child(5){
 
 .record-state{
     font-family: 'S-CoreDream-7ExtraBold';
-    font-size: 15px;
+    font-size: 14px;
     color: #254074;
+    letter-spacing: -0.5px;
 }
 
 /* 글쓰기버튼 */
@@ -364,7 +365,7 @@ pagination-box{
     #filter{
         grid-template-columns: 100%;
     }
-    .question{
+    .question{ 
         grid-column: 1/1;
     }
     #filter-submit{
@@ -388,6 +389,10 @@ pagination-box{
     .table th{
         padding-bottom: 4px;
     }
+    .table td{
+        font-size: 13px;
+        padding: 5px 0;
+    }
     thead tr th:first-child, 
     thead tr th:nth-child(3), thead tr th:nth-child(4){
         width: 12%;
@@ -397,5 +402,11 @@ pagination-box{
     }
     thead tr th:nth-child(5){
        width: 44%;
+    }
+    .record-state{
+        font-family: 'S-CoreDream-7ExtraBold';
+        font-size: 11px;
+        color: #254074;
+        letter-spacing: -2.5px;
     }
 }

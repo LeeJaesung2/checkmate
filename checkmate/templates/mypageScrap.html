@@ -48,13 +48,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
                                 {% for scrap in room_scraps %}   
+                                <tr>
                                     <td><input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}"></td>
                                     <td>{{ scrap.write.user_id.user_nickname }}</td>
                                     <td><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></td>
-                                {% endfor %}
                                 </tr> 
+                                {% endfor %}
                             </div>
                             </tbody>
                         </table>

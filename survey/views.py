@@ -123,3 +123,4 @@ def mypageCheckupdate(request):
         print(eSurvey.wakeup_time)
 
         return render(request, 'mypageCheckupdate.html',{'eSurvey':eSurvey, 'oSurvey':oSurvey,'user':user,'age':age})
+        
