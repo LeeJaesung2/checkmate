@@ -13,6 +13,7 @@ p{
     /* width: 70vw; */
     /* margin: 0 auto; */
     /* margin-top: 60px; */
+    min-height: 100vh;
 }
 .view_box1{
     /* display: grid; */
