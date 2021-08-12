@@ -52,8 +52,8 @@
                                 <tr>
                                 {% for scrap in off_scraps %}   
                                     <td><input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}"></td>
-                                    <td>{{ scrap.write.user_id.user_nickname }}</td>
-                                    <td><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></td>
+                                    <td>{{ scrap.Offcampus_Post.user_id.user_nickname }}</td>
+                                    <td><a href="{% url 'detail' scrap.Offcampus_Post.id %}">{{ scrap.Offcampus_Post.title }}</a></td>
                                 {% endfor %}
                                 </tr>
                             </div>
