@@ -35,20 +35,19 @@
         </form>
         <div class="float-end">
             <!-- 모델에 pub_date추가해야함 -->
-            <small>2021. 1. 2</small>
+            <small class="p-3">2021. 1. 2</small>
         </div>
     </div>
     <div class="writer-info row">
-        <!-- 이미지 들어오면 col-1로 변경 -->
-        <img class="col-3"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:60px; height:60px;">
+        <img class="col-2"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:30px; height:30px; padding: 0;" >
         <!-- 프로필이미지 -->
         {% if survey_ess.room_type == 1 %}
-        <p class="col-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+        <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
         {% else %}
             {% if survey_ess.dormitory_number_man %}
-            <p class="col-12 col-md-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% else %}
-            <p class="col-12 col-md-9" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% endif %}
         {% endif %}
         <!-- 자신의 정보 -->
@@ -107,18 +106,20 @@
                     <p>X</p>
                     {% endif %}
                     <strong>잠버릇</strong>
-                    {% if survey_ess.sleeping_habits_snoring == True %}
-                    <p>코콜이</p>
-                    {% endif %}
-                    {% if survey_ess.sleeping_habits_teeth == True %}
-                    <p>이갈이</p>
-                    {% endif %}
-                    {% if survey_ess.sleeping_habits_nothing == True %}
-                    <p>없음</p>
-                    {% endif %}
-                    {% if survey_ess.sleeping_habits_other %}
-                    <p>{{survey_ess.sleeping_habits_other}}</p>
-                    {% endif %}
+                    <div>
+                        {% if survey_ess.sleeping_habits_snoring == True %}
+                        <p>코콜이</p>
+                        {% endif %}
+                        {% if survey_ess.sleeping_habits_teeth == True %}
+                        <p>이갈이</p>
+                        {% endif %}
+                        {% if survey_ess.sleeping_habits_nothing == True %}
+                        <p>없음</p>
+                        {% endif %}
+                        {% if survey_ess.sleeping_habits_other %}
+                        <p>{{survey_ess.sleeping_habits_other}}</p>
+                        {% endif %}
+                    </div>
                     <strong>실내 취식</strong>
                     <p>{{survey_ess.get_eat_display}}</p>
                     {% if survey_ess.room_type == 1 %}

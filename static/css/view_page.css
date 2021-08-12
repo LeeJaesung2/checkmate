@@ -4,8 +4,7 @@ p{
    margin: 0;
 }
 
-.p-m-b > p
-{
+.p-m-b p, .p-m-b strong{
    margin-bottom: 10px;
 }
 
@@ -63,7 +62,7 @@ p{
     padding-top: 30px;
     padding-left: 30px;
     width: 40vw;
-    height: 50vh;
+    padding-bottom:30px;
 }
 .bottom{
     font-family: 'S-CoreDream-5Medium';
@@ -193,6 +192,10 @@ p{
         display: inline-block;
         font-family: 'S-CoreDream-4Regular';
         width: 30%
+     }
+
+     .profile-title{
+        font-size: 13px;
      }
     
 }
