@@ -7,7 +7,7 @@
 {% block content %}
 <div class="popup">
     <h4>스크랩 성공!</h4>
-    <div class="popup-close">&times;</div> 
+    <a href="{% url 'offcampusView' post.id %}"><div class="popup-close" >&times;</div> </a>
 </div>
 
 <div class="popup2">
@@ -18,7 +18,7 @@
         {% endfor %}
     </h4>
         {% endif %}
-    <div class="popup2-close">&times;</div>
+        <a href="{% url 'offcampusView' post.id %}"><div class="popup2-close">&times;</div></a>
 </div>
 
 <div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
@@ -28,8 +28,8 @@
         <form action="" method="GET">
             {% if user.is_authenticated %}
             <button class="scrapBtn float-end p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
-
-                <i class="far fa-star" id="star"></i></button>
+                <i class="far fa-star" id="star"></i>
+                <i class='fas fa-star' id="fstar"></i></button>
             {% endif %}
         </form>
         <!-- 타이틀 -->
@@ -46,35 +46,33 @@
 
     </div>
     <hr>
-    <div>
-        <p class="body">
+    <div class="mb-5">
+        
         {% if post.image %}
         <img src="{{ post.image.url }}" alt="image" style="width:80%;">
         {% endif %}
-        {{ post.content }} </p>
+        <p class="body">{{ post.content }} </p>
         <!-- 내용 -->
         {% if post.user_id.id == user.id %}
         <div class="bottom">
             <a href="{% url 'offcampusUpdate' post.id %}" class="btn btn-light"><span>수정</span></a>
             <a href="{% url 'offcampusDelete' post.id %}" class="btn btn-light"><span>삭제</span></a>
         </div>
+        <br><br>
         {% else %}
         {% endif %}
 
     </div>
-
 </div>
 
-
 <script>
+
     const scrapBtn = document.querySelector('.scrapBtn');
     const popup = document.querySelector('.popup');
     const popup2 = document.querySelector('.popup2');
-    const popupClose = document.querySelector('.popup-close');
     popup.style.display="none";
     popup2.style.display="none";
     document.querySelector("#fstar").style.display = 'none';
-
 
     document.querySelector(".popup-close").onclick = function() {
         document.querySelector(".popup").style.display="none";

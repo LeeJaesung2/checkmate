@@ -18,7 +18,7 @@
         {% endfor %}
     </h4>
         {% endif %}
-    <div class="popup2-close">&times;</div>
+    <a href="{% url 'detail' write_detail.id %}"><div class="popup2-close">&times;</div></a>
 </div>
 
 <div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
@@ -231,20 +231,16 @@
             </div>
         </div>
     </div>
+
     <div class="detail-body">
         <p class="mb-4">{{write_detail.body}}</p>
         {% if write_detail.user_id.id == user.id %}
-        <a class="btn btn-light" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
-        <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        <a class="btn btn-light float-end" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+        <a class="btn btn-light float-end" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        <br><br>
         {% endif %}
     </div>
-    <div class="">
-        <ul class="pagination justify-content-center my-4">
-            <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}" style="color:#254074; border:0;">◀ 이전글</a></li>
-            <li class="page-item"><a class="page-link" href="/roommate/searchRoommate" style="color:#254074; border:0;">목록</a></li>
-            <li class="page-item"><a class="page-link" href="{% url 'detail' next %}" style="color:#254074; border:0;">다음글 ▶</a></li>
-        </ul>
-    </div>
+
 </div>
 
 

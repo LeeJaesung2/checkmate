@@ -7,7 +7,7 @@
 {% block content %}
 <div class="popup">
     <h4>스크랩 성공!</h4>
-    <div class="popup-close">&times;</div> 
+    <a href="{% url 'domitoryView' post.id %}"><div class="popup-close">&times;</div> </a>
 </div>
 
 <div class="popup2">
@@ -18,7 +18,7 @@
         {% endfor %}
     </h4>
         {% endif %}
-    <div class="popup2-close">&times;</div>
+    <a href="{% url 'domitoryView' post.id %}"><div class="popup2-close">&times;</div></a>
 </div>
 
 <div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
@@ -67,11 +67,9 @@
     const scrapBtn = document.querySelector('.scrapBtn');
     const popup = document.querySelector('.popup');
     const popup2 = document.querySelector('.popup2');
-    const popupClose = document.querySelector('.popup-close');
     popup.style.display="none";
     popup2.style.display="none";
     document.querySelector("#fstar").style.display = 'none';
-
 
     document.querySelector(".popup-close").onclick = function() {
         document.querySelector(".popup").style.display="none";
