@@ -52,8 +52,8 @@
                                 <tr>
                                 {% for scrap in dom_scraps %}   
                                     <td><input type="checkbox" name="check[]" class="mypage_list-checkbox checkbox_all" value="{{scrap.id}}"></td>
-                                    <td>{{ scrap.write.user_id.user_nickname }}</td>
-                                    <td><a href="{% url 'detail' scrap.write.id %}">{{ scrap.write.title }}</a></td>
+                                    <td>{{ scrap.Domitory_Post.user_id.user_nickname }}</td>
+                                    <td><a href="{% url 'detail' scrap.Domitory_Post.id %}">{{ scrap.Domitory_Post.title }}</a></td>
                                 {% endfor %}
                                 </tr>
                             </div>
