@@ -51,11 +51,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for post in d_posts %} 
+                                {% for post in o_posts %}
                                 <tr>
-                                    <td class="mypage_content-title" onclick='location.href="{% url 'domitoryView' post.id %}"'>기숙사 정보</td>
-                                    <td class="mypage_content-body" onclick='location.href="{% url 'domitoryView' post.id %}"'>{{ post.title }}</td>
-                                </tr> 
+                                    <td><p class="mypage_content-title" onclick='location.href="{% url 'offcampusView' post.id %}"'>자취 정보</td>
+                                    <td class="mypage_content-body" onclick='location.href="{% url 'offcampusView' post.id %}"'>{{ post.title }}</td>
+                                </tr>
                                 {% endfor %} 
                             </div>
                             </tbody>
@@ -65,16 +65,17 @@
                 <!-- 페이지네이션 링크 수정 필요 -->
                 <div>
                     <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten'%}?page={{dom_pre_page}}" style="color:#254074; border:0;">◀</a></li>
-                        {% for page in dom_page_range %}
-                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten_off'%}?page={{off_pre_page}}" style="color:#254074; border:0;">◀</a></li>
+                        {% for page in off_page_range %}
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten_off'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a>
                         </li>
                         {% endfor %}
-                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten'%}?page={{dom_next_page}}"  style="color:#254074; border:0;">▶</a></li>
+                        <li class="page-item"><a class="page-link" href="{% url 'mypageWritten_off'%}?page={{off_next_page}}"  style="color:#254074; border:0;">▶</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}
