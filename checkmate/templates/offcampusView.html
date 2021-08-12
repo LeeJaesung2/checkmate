@@ -48,8 +48,8 @@
     <hr>
     <div>
         <p class="body">
-        {% if post.image %}
-        <img src="{{ post.image }}" alt="image">
+        {% if post.image.url %}
+        <img src="{{ post.image.url }}" alt="image" style="width:80%;">
         {% endif %}
         {{ post.content }} </p>
         <!-- 내용 -->
