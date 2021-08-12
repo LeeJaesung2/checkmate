@@ -388,6 +388,10 @@ pagination-box{
     .table th{
         padding-bottom: 4px;
     }
+    .table td{
+        font-size: 13px;
+        padding: 5px 0;
+    }
     thead tr th:first-child, 
     thead tr th:nth-child(3), thead tr th:nth-child(4){
         width: 12%;
