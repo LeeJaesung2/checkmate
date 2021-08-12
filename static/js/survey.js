@@ -301,3 +301,27 @@ $(".nothing").change(function(){
     else
         $(this).siblings().attr('disabled', false);
 })
+
+
+/*-----------------함께할 기간 disabled 처리-----------------*/
+
+$("select[name=dormitory-semester-start], select[name=dormitory-year-end]").change(function(){
+    const $startYear= $("select[name=dormitory-year-start]").val()
+    const $endYear = $("select[name=dormitory-year-end]").val()
+    const $startSemIdx = $("select[name=dormitory-semester-start] option:selected").prevAll().size();
+    console.log($startSemIdx);
+    if($startYear == $endYear){
+        
+        $("select[name=dormitory-semester-end]").children().attr('disabled', false);
+        let targetDisabled = $("select[name=dormitory-semester-end]").children().slice(1, $startSemIdx);
+        targetDisabled.attr('disabled', true);
+    }
+    else if($startYear > $endYear){
+        if($endYear != "0")
+            openModal('기간을 올바르게 선택해 주세요');
+    }
+    else{
+        $("select[name=dormitory-semester-end]").children().attr('disabled', false);
+    }
+
+})
