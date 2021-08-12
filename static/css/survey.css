@@ -61,6 +61,9 @@ h3{
     opacity: 0.5;
 }
 
+.previous, .next{
+    cursor: pointer;
+}
 /* 왼쪽 상단 타이틀 */
 .top.title{
     text-align: left;

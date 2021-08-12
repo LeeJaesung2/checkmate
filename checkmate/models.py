@@ -10,7 +10,7 @@ class Offcampus_Post(models.Model):
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="offcampus_image/%Y/%m/%d",blank=True)
+    image = models.ImageField(upload_to="offcampus_image/%Y/%m/%d",blank=True, null=True)
     view = models.IntegerField(default=0)
 
 
@@ -53,7 +53,7 @@ class Domitory_Post(models.Model):
     content = models.TextField()
     user_id = models.ForeignKey(CustomUser,on_delete=CASCADE)
     pub_date = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="domitory_image/%Y/%m/%d", blank=True)
+    image = models.ImageField(upload_to="domitory_image/%Y/%m/%d", blank=True, null=True)
     view = models.IntegerField(default=0)
 
 

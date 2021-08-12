@@ -42,8 +42,8 @@
         <!-- 닉네임 -->
     </div>
     <hr>
-    <div class="mb-5">
-        {% if post.image.url %}
+    <div>
+        {% if post.image %}
         <img src="{{ post.image.url }}" alt="image" style="width:80%">
         {% endif %}
         <p class="body">{{ post.content }}</p>
