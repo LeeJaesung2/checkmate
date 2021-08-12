@@ -351,7 +351,7 @@
                     <th scope="col">성별</th>
                     <th scope="col">나이</th>
                     <th scope="col">제목</th>
-                    <th scope="col">적합도</th>
+                    <th scope="col" id="fitness">적합도</th>
 
                 </tr>
             </thead>
@@ -400,16 +400,9 @@
 
 
 <script>
-
-    var str = "{{ fitness_str }}";
-    var tr = document.querySelectorAll('tr');
-    let arr = str.split(",");
-    for(let i = 0 ; i < tr.length; i++){
-        var child = document.createElement('td');
-            var txt = arr[i] + "%"
-            child.append(txt);
-            tr[i+1].append(child);
-    }
+    document.getElementById("filter").style.display = "none";
+    document.getElementById("filter-dropup").style.display = "none"
+    
 
     function hidefilter(){
         document.getElementById("filter").style.display = "none";
@@ -423,13 +416,21 @@
     }
 
 
-    let surveyCheck = "{{ survey_ess }}";
-    console.log(surveyCheck);
-    if(surveyCheck == 'None'){
-        document.getElementById("first_open_modal").style.display = "block";
+    if("{{ survey_ess }}"){
+        document.getElementById("first_open_modal").style.display = "none";
+        var str = "{{ fitness_str }}";
+        var tr = document.querySelectorAll('tr');
+        let arr = str.split(",");
+        for(let i = 0 ; i < tr.length; i++){
+            var child = document.createElement('td');
+            var txt = arr[i] + "%"
+            child.append(txt);
+            tr[i+1].append(child);
+    }
     }
     else{
-        document.getElementById("first_open_modal").style.display = "none";
+        document.getElementById("first_open_modal").style.display = "block";
+        document.getElementById("fitness").style.display = "none"
     }
 
     function hideFirstModal(){
