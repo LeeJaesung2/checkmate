@@ -56,7 +56,9 @@ def register(request):
 def mypageProfile(request):
     user = request.user
     user_id = CustomUser.objects.get(id=user.id)
+    message_alert = ""
     if request.method == "POST":
+        past_nickname = user_id.user_nickname
         current_password = request.POST.get('user_password') 
         if current_password:
             if check_password(current_password,user.password):
@@ -66,19 +68,17 @@ def mypageProfile(request):
                     user.set_password(new_password)
                     user.save()
                     login(request,user)
-                    messages.warning(request, "성공~^^")
+                    message_alert = "비밀번호가 변경되었습니다."
                 else:
                     messages.warning(request, '새로 입력한 비밀번호가 서로 일치하지 않습니다.')
             else:
                 messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
-        if request.POST.get('user_nickname'):
+        if past_nickname!= request.POST.get('user_nickname'):
             user_id.user_nickname = request.POST.get('user_nickname')
             user_id.save()
-        return redirect('mypageProfile')
-    return render(request, 'mypageProfile.html',{'user':user})
-
-
-
+            message_alert = "닉네임이 변경되었습니다."
+            return redirect('/account/mypageProfile?success=1')
+    return render( request, 'mypageProfile.html',{'user':user, 'message_alert':message_alert, 'success' : request.GET.get('success', '0')})
 
 def kakaoLoginLogic(request):
     _restApiKey = 'f9d119f1d082709b083b6ee7e2333682'
