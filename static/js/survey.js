@@ -90,11 +90,11 @@ function setScrollType(dormitoryOpt){
 }
 
 //////////////////이벤트리스너//////////////////
-//이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용
-//이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은?
+//이전or다음 버튼을 연속 클릭 했을 시 애니메이션 빠르게 적용하기위해 nextClickCnt사용 => 삭제
+//이렇게 하지말고...next누를 때마다 이전 요소를 전부 fadeOut시키고 마지막 요소를 fadeIn 시키는 방법은? => ㅇㅋ 성공
 $('.next, .next-mobile').on('click', function(){
     //큰 if는 유효성 검사.
-    if (vaildation() == true){
+    // if (vaildation() == true){
         if(answer_cnt == 0) {
             $('.previous, .previous-mobile').animate({
                 opacity: '1'
@@ -128,7 +128,7 @@ $('.next, .next-mobile').on('click', function(){
         answer_cnt++;
         nextFade(answer_cnt);
         reloadProgressBar(answer_cnt);
-    }
+    // }
 })
 
 $('.previous, .previous-mobile').on('click', function(){
@@ -300,4 +300,24 @@ $(".nothing").change(function(){
         $(this).siblings().attr('disabled', true);
     else
         $(this).siblings().attr('disabled', false);
+})
+
+/*-----------------함께할 기간 disabled 처리-----------------*/
+
+$("select[name=dormitory-semester-start], select[name=dormitory-year-end]").change(function(){
+    const $startYear= $("select[name=dormitory-year-start]").val()
+    const $endYear = $("select[name=dormitory-year-end]").val()
+    const $startSem = $("select[name=dormitory-semester-start] option").index("select[name=dormitory-semester-start] option:selected");
+    console.log($startSem);
+    if($startYear == $endYear){
+        // let startSemEqVal = $("select[name=dormitory-semester-end]").children().slice(0, )
+    }
+    else if($startYear > $endYear){
+        if($endYear != "0")
+            openModal('기간을 올바르게 선택해 주세요');
+    }
+    else{
+        $("select[name=dormitory-semester-end]").siblings().attr('disabled', flase);
+    }
+
 })
