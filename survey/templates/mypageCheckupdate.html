@@ -35,7 +35,7 @@
         <div class="mypage_write-content">
             <h3 class="mypage_subtitle">체크리스트 수정</h3>
 
-            <div id="filter" class="update">
+            <div id="filter" class="update" style="display: block;">
                 <form action="" method="post">
                     {% csrf_token %}
                     <div class="question filter_age">
@@ -154,13 +154,13 @@
                     <div class="question filter_wakeup_time">
                         <h6 class="title">기상시간</h6>
                         <div class="answer">
-                            <input type="time" id="wakeup_time" name="wakeup_time" value='{{ eSurvey.wakeup_time }}'>
+                            <input type="time" id="wakeup_time" name="wakeup_time" value="{{ eSurvey.wakeup_time | date:'H:i' }}">
                         </div>
                     </div>
                     <div class="question filter_bed_time">
                         <h6 class="title">취침시간</h6>
                         <div class="answer">
-                            <input type="time" id="bed_time" name="bed_time" value='{{ eSurvey.bed_time }}'>
+                            <input type="time" id="bed_time" name="bed_time" value="{{ eSurvey.bed_time | date:'H:i' }}">
                         </div>
                     </div>
                     <div class="question filter_smoke">
@@ -355,10 +355,10 @@
 
 </div>
 
-
 {% endblock %}
 
 {% block last %}
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
     $(".grade").val("{{ eSurvey.grade }}").prop("selected", true);
     //학년
@@ -379,7 +379,6 @@
 
     //룸메와의 관계
     $("input:radio[name='relationship']:radio[value='{{ eSurvey.relationship }}']").prop('checked', true);
-
 
     //흡연
     $("input:radio[name='smoke']:radio[value='{{ eSurvey.smoke }}']").prop('checked', true);

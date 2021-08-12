@@ -18,7 +18,7 @@
         {% endfor %}
     </h4>
         {% endif %}
-    <div class="popup-close">&times;</div>
+    <div class="popup2-close">&times;</div>
 </div>
 
 <div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
@@ -42,8 +42,8 @@
     </div>
     <hr>
     <div>
-        {% if post.image %}
-        <img src="{{ post.image }}" alt="image">
+        {% if post.image.url %}
+        <img src="{{ post.image.url }}" alt="image" style="width:80%">
         {% endif %}
         <p class="body">{{ post.content }}</p>
         <!-- 내용 -->
@@ -67,23 +67,21 @@
 
 
 <script>
-    document.querySelector(".popup").style.display="none";
-    document.querySelector(".popup2").style.display="none";
+
     const scrapBtn = document.querySelector('.scrapBtn');
     const popup = document.querySelector('.popup');
     const popup2 = document.querySelector('.popup2');
     const popupClose = document.querySelector('.popup-close');
+    popup.style.display="none";
+    popup2.style.display="none";
 
 
     document.querySelector(".popup-close").onclick = function() {
         document.querySelector(".popup").style.display="none";
+    }
+    document.querySelector(".popup2-close").onclick = function() {
         document.querySelector(".popup2").style.display="none";
     }
-    
-
-    popup.style.display="none";
-    popup2.style.display="none";
-
 
     if("{{fail}}"=="0"){
         popup.style.display = 'block'; 

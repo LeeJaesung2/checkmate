@@ -388,11 +388,11 @@
     </div>
     <div class="pagination-box">
         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{ page_obj.previous_page_number }}" style="color:#254074; border:0;">◀</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{ pre_page }}" style="color:#254074; border:0;">◀</a></li>
             {% for page in page_range %}
             <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{page}}" style="color:#254074; border:0;">{{page}}</a></li>
             {% endfor %}
-            <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{ page_obj.next_page_number }}" style="color:#254074; border:0;">▶</a></li>
+            <li class="page-item"><a class="page-link" href="{% url 'searchRoommate'%}?page={{ next_page }}" style="color:#254074; border:0;">▶</a></li>
         </ul>
     </div>
 </div>
@@ -434,6 +434,7 @@
 
 
     let surveyCheck = "{{ survey_ess }}";
+    console.log(surveyCheck);
     if(surveyCheck == 'None'){
         document.getElementById("first_open_modal").style.display = "block";
     }

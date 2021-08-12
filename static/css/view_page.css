@@ -4,6 +4,11 @@ p{
    margin: 0;
 }
 
+.p-m-b > p
+{
+   margin-bottom: 10px;
+}
+
 /* 긱사 view */
 .view_container{
     /* width: 70vw; */
@@ -76,7 +81,7 @@ p{
 }
 
 /* 스크랩 모달창 */
-.popup{
+.popup, .popup2{
     position: absolute;
     top: 50%;
     left: 49%;
@@ -89,7 +94,7 @@ p{
     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
  }
- .popup h4{
+ .popup h4, .popup2 h4{
     text-align: center;
     font-size: 20px;
     font-family: 'yg-jalnan';
@@ -97,7 +102,7 @@ p{
     margin-top: 20px;
 
  }
- .popup .popup-close{
+ .popup .popup-close, .popup2 .popup2-close{
     position: absolute;
     top: 5px;
     right: -10px;

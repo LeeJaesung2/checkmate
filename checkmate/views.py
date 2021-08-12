@@ -21,7 +21,7 @@ def infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
-        post.image = request.POST.get('image')
+        post.image = request.FILES['image']
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -43,7 +43,7 @@ def dom_infoWrite(request):
         post.content = request.POST.get('content')
         post.preface = request.POST.get('preface')
         post.preface_2 = request.POST.get('preface_2')
-        post.image = request.POST.get('image')
+        post.image = request.FILES['image']
         user_id = request.POST.get('user_id')
         user = CustomUser.objects.get(id=user_id)
         post.user_id = user
@@ -69,10 +69,10 @@ def mypageScrap(request):
     user_id = request.user.id
     room_scraps = Scrap_roommate.objects.all().order_by('-id')
     room_scraps = room_scraps.filter(user_id__id=user_id)
-    room_scraps, room_page_range = paging(request, room_scraps)
+    room_scraps, room_page_range, room_next_page, room_pre_page = paging(request, room_scraps)
     
 
-    return render(request, 'mypageScrap.html',{'room_scraps':room_scraps,'room_page_range':room_page_range})
+    return render(request, 'mypageScrap.html',{'room_scraps':room_scraps,'room_page_range':room_page_range, 'room_next_page':room_next_page, 'room_pre_page':room_pre_page})
 
 def mypageScrap_dom(request):
     checked = request.POST.getlist('check[]')
@@ -82,8 +82,8 @@ def mypageScrap_dom(request):
     user_id = request.user.id
     dom_scraps = Scrap_dom.objects.all().order_by('-id')
     dom_scraps = dom_scraps.filter(user_id__id=user_id)
-    dom_scraps, dom_page_range = paging(request, dom_scraps)
-    return render(request, 'mypageScrap_dom.html',{'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range})
+    dom_scraps, dom_page_range, dom_next_page, dom_pre_page = paging(request, dom_scraps)
+    return render(request, 'mypageScrap_dom.html',{'dom_scraps':dom_scraps, 'dom_page_range':dom_page_range, 'dom_next_page':dom_next_page, 'dom_pre_page':dom_pre_page})
 
 def mypageScrap_off(request):
     checked = request.POST.getlist('check[]')
@@ -93,8 +93,8 @@ def mypageScrap_off(request):
     user_id = request.user.id
     off_scraps = Scrap_off.objects.all().order_by('-id')
     off_scraps = off_scraps.filter(user_id__id=user_id)
-    off_scraps, off_page_range = paging(request, off_scraps)
-    return render(request, 'mypageScrap_off.html',{'off_scraps':off_scraps, 'off_page_range':off_page_range})
+    off_scraps, off_page_range, off_next_page, off_pre_page = paging(request, off_scraps)
+    return render(request, 'mypageScrap_off.html',{'off_scraps':off_scraps, 'off_page_range':off_page_range, 'off_next_page':off_next_page, 'off_pre_page':off_pre_page})
 
 
 def mypageWritten(request):
@@ -129,12 +129,12 @@ def offcampusCommunity(request):
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
-            posts, page_range = paging(request, posts)
-            return render(request, 'offcampusCommunity.html',{'posts':posts, 'search_keyword':search_keyword})
+            posts, page_range, next_page, pre_page = paging(request, posts)
+            return render(request, 'offcampusCommunity.html',{'posts':posts, 'search_keyword':search_keyword, 'next_page':next_page, 'pre_page':pre_page})
         else:
-            message.error(request, '검색어는 2글자 이상 입력해주세요')
-    posts, page_range = paging(request, posts)
-    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
+            messages.error(request, '검색어는 2글자 이상 입력해주세요')
+    posts, page_range, next_page, pre_page = paging(request, posts)
+    return render(request, 'offcampusCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id, 'next_page':next_page, 'pre_page':pre_page})
 
 def domitoryCommunity(request):
     search_keyword = request.GET.get('search_keyword')
@@ -143,12 +143,12 @@ def domitoryCommunity(request):
     if search_keyword:
         if len(search_keyword) > 1:
             posts = posts.filter(title__icontains=search_keyword)
-            posts, page_range = paging(request, posts)
-            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword, 'page_range':page_range})
+            posts, page_range, next_page, pre_page = paging(request, posts)
+            return render(request, 'domitoryCommunity.html',{'posts':posts, 'search_keyword':search_keyword, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
         else:
-            message.error(request, '검색어는 2글자 이상 입력해주세요')
-    posts, page_range = paging(request, posts)
-    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id})
+            messages.error(request, '검색어는 2글자 이상 입력해주세요')
+    posts, page_range, next_page, pre_page = paging(request, posts)
+    return render(request, 'domitoryCommunity.html',{'posts':posts, 'page_range':page_range,'user_id':user_id, 'next_page':next_page, 'pre_page':pre_page})
      
 
 def offcampusView(request,post_id):
@@ -167,21 +167,18 @@ def offcampusView(request,post_id):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
             fail = 1
-            return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
-
         else:
             scrap = Scrap_off()
             scrap.user_id = user_id
             scrap.Offcampus_Post = post
             scrap.save()
             fail = 0
-            return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
+        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
     if aleady:
         okscrap = 0
-        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
     else:
         okscrap = 1
-        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 def domitoryView(request,post_id):
     user = request.user
@@ -199,20 +196,18 @@ def domitoryView(request,post_id):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
             fail = 1
-            return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
         else:
             scrap = Scrap_dom()
             scrap.user_id = user_id
             scrap.Domitory_Post = post
             scrap.save()
             fail = 0
-            return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
+        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
     if aleady:
         okscrap = 0
-        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
     else:
         okscrap = 1
-        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 
 def offcampusDelete(request, post_id):
@@ -266,6 +261,8 @@ def domitoryUpdate(request, post_id):
 
 def paging(request, posts):
     page = int(request.GET.get('page',1))
+    next_page = int(request.GET.get('page',1))+1
+    pre_page = int(request.GET.get('page',1))-1
     paginated_by = 10
     total_count = len(posts)
     total_page = math.ceil(total_count/paginated_by)
@@ -286,7 +283,7 @@ def paging(request, posts):
     end_index = paginated_by * page
     posts = posts[start_index:end_index]
 
-    return posts, page_range
+    return posts, page_range, next_page, pre_page
 
 def domitory_popular(request):
     posts=Domitory_Post.objects.filter(view__gte = 20).order_by('-pub_date')
