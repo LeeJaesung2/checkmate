@@ -23,29 +23,30 @@
 
 <div class="view_container col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
     <p class="view_info btn">{{ post.preface }} | {{ post.preface_2 }}</p>
-    <div class="view_box1">
+    <div class="view_box1 row mt-2">
         <h3>{{ post.title }}</h3>
-        <form action="" method="GET">
-            {% if user.is_authenticated %}
-            <button class="scrapBtn float-end p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
-                <i class="far fa-star" id="star"></i>
-                <i class='fas fa-star' id="fstar"></i></button>
-            {% endif %}
-        </form>
-        <!-- 타이틀 -->
-        <small class="float-end p-2" >{{ post.pub_date }}</small>
-        <!-- <i class="fas fa-star" id="fillStar"></i> -->
+        <div class="">
+            <!-- 타이틀 -->
+            <form action="" method="GET" class="float-end">
+                {% if user.is_authenticated %}
+                <button class="scrapBtn p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
+                    <i class="far fa-star" id="star"></i>
+                    <i class='fas fa-star' id="fstar"></i></button>
+                    {% endif %}
+                </form>
+                <small class="p-2 float-end" style="margin-left: 10pxw;">{{ post.pub_date }}</small>
+            <!-- <i class="fas fa-star" id="fillStar"></i> -->
+        </div>
     </div>
-    <div class="view_box2 row">
-        <img src="{{ post.user_id.user_image.url }}" alt="profile_image" style="width: 30px; height:30px; padding: 0;">
+    <div class="view_box2 row my-4">
+        <img class="col-1" src="{{ post.user_id.user_image.url }}" alt="profile_image" style="width: 30px; height:30px; padding: 0;">
 
         <!-- 프로필이미지 -->
-        <p class="col-12 col-md-5"> {{ post.user_id.user_nickname }} </p>
+        <p class="col-10 col-md-5"> {{ post.user_id.user_nickname }} </p>
 
         <!-- 닉네임 -->        
 
     </div>
-    <hr>
     <div class="mb-5">
         {% if post.image %}
         <img src="{{ post.image.url }}" alt="image" style="width:80%;">

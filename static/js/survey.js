@@ -1,4 +1,4 @@
-// $document.ready(function(){
+
 /*------------------------포매팅함수------------------------*/
 function format() { var args = Array.prototype.slice.call (arguments, 1); 
     return arguments[0].replace (/\{(\d+)\}/g, function (match, index) { return args[index]; }); }
@@ -116,11 +116,13 @@ $('.next, .next-mobile').on('click', function(){
         console.log(answer_cnt);
         //마지막 필수질문 처리
         if(answer_cnt==12 && $('input[name=room-type]:checked').val()=='0'){//긱사생이면 마지막질문(animal) 그냥 넘겨버리기
+            alert("*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다. (스크롤 해주세요!)");
             setScrollType(true);
             reloadProgressBar(q_num);
             return;
         }
         else if(answer_cnt == 13){ //자취생일 때
+            alert("*다음부터는 꼭 답하지 않아도 되는 선택 문항입니다. (스크롤 해주세요!)");
             setScrollType(false);
             reloadProgressBar(q_num);
             return;
@@ -295,8 +297,6 @@ function openModal(string){
 /*-----------------다중 답변(체크박스) disabled 처리-----------------*/
 
 $(".nothing").change(function(){
-    // let $q_name = $(this).attr('name');
-    // $("input[name='"+$q_name+"']").attr('')
     if($(this).is(':checked'))
         $(this).siblings().attr('disabled', true);
     else
@@ -304,14 +304,16 @@ $(".nothing").change(function(){
 })
 
 /*-----------------함께할 기간 disabled 처리-----------------*/
-
-$("select[name=dormitory-semester-start], select[name=dormitory-year-end]").change(function(){
+const $dormitoryEelement = $("select[name=dormitory-semester-start], select[name=dormitory-year-end], select[name=dormitory-semester-end]")
+$dormitoryEelement.change(function(){
     const $startYear= $("select[name=dormitory-year-start]").val()
     const $endYear = $("select[name=dormitory-year-end]").val()
-    const $startSemIdx = $("select[name=dormitory-semester-start] option:selected").prevAll().size();
+    const $startSem = $("select[name=dormitory-semester-start]").val()
+    const $endSem = $("select[name=dormitory-semester-end]").val()
+
+    const $startSemIdx = $("select[name=dormitory-semester-start] option:selected").prevAll().length;
     console.log($startSemIdx);
     if($startYear == $endYear){
-        
         $("select[name=dormitory-semester-end]").children().attr('disabled', false);
         let targetDisabled = $("select[name=dormitory-semester-end]").children().slice(1, $startSemIdx);
         targetDisabled.attr('disabled', true);
@@ -325,17 +327,6 @@ $("select[name=dormitory-semester-start], select[name=dormitory-year-end]").chan
     }
 })
 
-
-/*-----------------엔터키 방지-----------------*/
-document.addEventListener('keydown', function(event) {
-    if (event.keyCode == 13) {
-      event.preventDefault();
-    };
-  }, true);
-
+$(document).keypress(function(e) { if (e.keyCode == 13) e.preventDefault(); });
 function preventDefault(){
-    
 }
-
-//document.ready 닫힘
-// });
