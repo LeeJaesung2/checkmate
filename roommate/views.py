@@ -96,10 +96,11 @@ def detail(request, write_id):
     pre = write_detail.id - 1
     next = write_detail.id + 1
     scrap = request.GET.get("Favorites")
-    user_id = CustomUser.objects.get(id=request.user.id)
     aleady = Scrap_roommate.objects.all()
-    aleady = aleady.filter(write=write_detail)
-    aleady = aleady.filter(user_id=user_id)
+    if(request.user.id):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = aleady.filter(write=write_detail)
+        aleady = aleady.filter(user_id=user_id)
     if(scrap):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
