@@ -326,6 +326,16 @@ $("select[name=dormitory-semester-start], select[name=dormitory-year-end]").chan
 })
 
 
+/*-----------------엔터키 방지-----------------*/
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+    };
+  }, true);
+
+function preventDefault(){
+    
+}
 
 //document.ready 닫힘
 // });
