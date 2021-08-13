@@ -149,10 +149,11 @@ def offcampusView(request,post_id):
     scrap = request.GET.get("Favorites")
     pre = post.id - 1
     next = post.id +1
-    user_id = CustomUser.objects.get(id=request.user.id)
     aleady = Scrap_off.objects.all()
-    aleady = aleady.filter(Offcampus_Post=post)
-    aleady = aleady.filter(user_id=user_id)
+    if(request.user.id):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = aleady.filter(Offcampus_Post=post)
+        aleady = aleady.filter(user_id=user_id)
     if(scrap):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
@@ -178,10 +179,11 @@ def domitoryView(request,post_id):
     scrap = request.GET.get("Favorites")
     pre = post.id - 1
     next = post.id +1
-    user_id = CustomUser.objects.get(id=request.user.id)
     aleady = Scrap_dom.objects.all()
-    aleady = aleady.filter(Domitory_Post=post)
-    aleady = aleady.filter(user_id=user_id)
+    if(request.user.id)
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = aleady.filter(Domitory_Post=post)
+        aleady = aleady.filter(user_id=user_id)
     if(scrap):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
