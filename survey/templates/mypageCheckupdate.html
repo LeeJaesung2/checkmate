@@ -431,10 +431,10 @@
     $(".ventilate").val("{{ oSurvey.ventilate }}").prop("selected", true);
 
     //온도
-    if ("{{ oSurvey.feel_cold }}") {
+    if ("{{ oSurvey.feel_cold }}" == "True") {
         $("input:checkbox[name='feel_cold']").prop("checked", true);
     }
-    if ("{{ oSurvey.feel_hot }}") {
+    if ("{{ oSurvey.feel_hot }}" == "True") {
         $("input:checkbox[name='feel_hot']").prop("checked", true);
     }
 
@@ -446,7 +446,7 @@
 
     //게임여부
     $("input:radio[name='game']:radio[value='{{ oSurvey.game }}']").prop('checked', true);
-    if ("{{ oSurvey.keyboard_noise }}") {
+    if ("{{ oSurvey.keyboard_noise }}" == "True") {
         $("input:checkbox[name='keyboard_checkbox']").prop("checked", true);
     }
 
