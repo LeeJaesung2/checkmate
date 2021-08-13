@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block content %}
-
+{% if success == '1' %}
+<script>
+    alert('닉네임이 변경되었습니다.')
+</script>
+{% endif %}
 <div class="mypage_container bg row justify-content-center">
     <div class="mypage_nav col-4 d-none d-md-block">
         <h3 class="mypage_title">마이페이지</h3>
@@ -70,7 +74,12 @@
 
 
 <script>
-
+    
+    var message_alert = "{{message_alert}}"
+    if (message_alert) {
+        alert(message_alert)
+    }
+    
     $('#target_img').click(function (e) {
         e.preventDefault();
         $('#user_image').click();
