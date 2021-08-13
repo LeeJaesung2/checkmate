@@ -1,4 +1,4 @@
-$document.ready(function(){
+// $document.ready(function(){
 /*------------------------포매팅함수------------------------*/
 function format() { var args = Array.prototype.slice.call (arguments, 1); 
     return arguments[0].replace (/\{(\d+)\}/g, function (match, index) { return args[index]; }); }
@@ -328,4 +328,4 @@ $("select[name=dormitory-semester-start], select[name=dormitory-year-end]").chan
 
 
 //document.ready 닫힘
-});
+// });
