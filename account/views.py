@@ -83,14 +83,14 @@ def mypageProfile(request):
 
 def kakaoLoginLogic(request):
     _restApiKey = 'f9d119f1d082709b083b6ee7e2333682'
-    _redirectUrl = 'http://127.0.0.1:8000/account/kakaoLoginLogicRedirect'
+    _redirectUrl = 'http://checkmate-likelion.herokuapp.com/account/kakaoLoginLogicRedirect'
     _url = f'https://kauth.kakao.com/oauth/authorize?client_id={_restApiKey}&redirect_uri={_redirectUrl}&response_type=code'
     return redirect(_url)
 
 def kakaoLoginLogicRedirect(request):
     _qs = request.GET['code']
     _restApiKey = 'f9d119f1d082709b083b6ee7e2333682'
-    _redirect_uri = 'http://127.0.0.1:8000/account/kakaoLoginLogicRedirect'
+    _redirect_uri = 'http://checkmate-likelion.herokuapp.com/account/kakaoLoginLogicRedirect'
     _url = f'https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={_restApiKey}&redirect_uri={_redirect_uri}&code={_qs}'
     _res = requests.post(_url)
     _result = _res.json()
