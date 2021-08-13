@@ -180,7 +180,7 @@ def domitoryView(request,post_id):
     pre = post.id - 1
     next = post.id +1
     aleady = Scrap_dom.objects.all()
-    if(request.user.id)
+    if(request.user.id):
         user_id = CustomUser.objects.get(id=request.user.id)
         aleady = aleady.filter(Domitory_Post=post)
         aleady = aleady.filter(user_id=user_id)
