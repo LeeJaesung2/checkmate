@@ -27,7 +27,7 @@ MESSAGE_LEVEL = messages_constants.DEBUG
 SECRET_KEY = 'django-insecure-0+&saukwmj69rldg%0qx25@l90*j)qmq-b(je12$2q^sptmk@n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
