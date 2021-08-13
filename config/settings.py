@@ -26,17 +26,15 @@ MESSAGE_LEVEL = messages_constants.DEBUG
 SECRET_KEY = 'django-insecure-0+&saukwmj69rldg%0qx25@l90*j)qmq-b(je12$2q^sptmk@n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
-    'chat.apps.ChatConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,15 +46,8 @@ INSTALLED_APPS = [
     'survey.apps.SurveyConfig',
     'roommate.apps.RoommateConfig',
 ]
-ASGI_APPLICATION = 'config.routing.application'
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -64,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -90,10 +82,21 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dem16is9ke21e7',
+        'USER':'wudswnzgbgonvb',
+        'PASSWORD':'134b03befeb32efc887012d145ecb4e221515b21b938b9ff1401d62424332f79',
+        'HOST':'ec2-34-194-14-176.compute-1.amazonaws.com',
+        'PORT':'5432',
     }
 }
 

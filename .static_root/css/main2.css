@@ -1,0 +1,172 @@
+@media (max-width: 566px) {
+    .main-title{
+        text-align:center !important;
+        font-size: 40px;
+    }
+    .text > .detail{
+        text-align:center !important;
+        font-size: 17px;
+        margin-bottom: 20px !important;
+    }
+}
+@media (min-width: 567px) {
+    .main-title{
+        text-align:center;
+        font-size: 60px;
+    }
+    .text > .detail{
+        text-align:center;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+}
+@media (min-width: 768px) {
+    .main-title{
+        text-align:right;
+        font-size: 45px;
+    }
+    .text > .detail{
+        text-align:right;
+        font-size: 17px;
+    }
+}
+@media (min-width: 992px) {
+    .main-title{
+        text-align:right;
+        font-size: 50px;
+        padding: 0 3vw 0 0;
+    }
+    .text > .detail{
+        text-align:right;
+        font-size: 17px;
+        padding: 0 3vw 0 0;
+    }
+}
+@media (min-width: 1200px) {
+    .main-title{
+        text-align:right;
+        font-size: 60px;
+        padding: 0 4vw 0 0;
+    }
+    .text > .detail{
+        text-align:right;
+        font-size: 20px;
+        padding: 0 4vw 0 0;
+    }
+}
+
+.container{
+}
+
+.content-top{
+    margin: 5vh 0 0 0;
+}
+
+.content-bottom{
+    margin: 0 0 10vh 0;
+
+}
+
+/* 메인 텍스트 */
+.text{
+    position: relative;
+    margin: auto 0 ;
+}
+
+.text, title-shadow{
+}
+
+.main-title{
+    /* text-align: right; */
+    width: 100%;
+    font-family: 'yg-jalnan';
+    font-style: normal;
+    margin: 0 0 2vh 0;
+
+}
+
+.front-title{
+    background: linear-gradient(98.11deg, #918EFF 7.66%, #3F97FF 97.55%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    color: transparent;
+}
+
+.title-shadow{
+    position:absolute;
+    text-align: right;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+}
+
+.text > .detail{
+    width: 100%;
+    /* text-align: right; */
+    font-family: 'S-CoreDream-5Medium';
+    color: #3F97FF;
+    margin: 3vh 0 0 0;
+}
+
+/* 메인 이미지 */
+.main-img{
+
+}
+
+#main-img{
+    width: 100%;
+    object-fit: cover;
+}
+
+/* 메뉴 */
+
+.menu-1,.menu-2{
+    position: relative;
+    height: 250px;
+    color:white;
+}
+
+.menu-1{
+    background: #3F97FF;
+}
+
+.menu-2{
+    background-color: rgba(145, 142, 255, 1);
+}
+
+.menu-1 > .title, .menu-2 > .title{
+    font-family: 'yg-jalnan';
+    font-weight: bold;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+.menu-1 > .detail, .menu-2 > .detail{
+    font-family: 'S-CoreDream-4Regular';
+    font-size: 15px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    height: 35%;
+}
+
+.shadow-btn{
+    width: 45%;
+    height: 2.5rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+    border: 0px solid white;
+    border-radius: 100px;
+}
+
+button p{
+    font-family: 'yg-jalnan';
+    line-height: 2.5rem;
+    text-align: center;
+    vertical-align: middle;
+    color: #254074;
+}
