@@ -6,6 +6,7 @@ from survey.models import SurveyEssential, SurveyOptional
 from checkmate.models import Scrap_roommate
 from account.models import CustomUser
 from datetime import datetime, timezone
+from django.utils import timezone
 import math
 
 
