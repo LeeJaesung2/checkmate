@@ -74,9 +74,10 @@ def mypageProfile(request):
             else:
                 messages.warning(request, '현재 비밀번호가 일치하지 않습니다.')
         if past_nickname!= request.POST.get('user_nickname'):
+            print(past_nickname)
+            print(request.POST.get('user_nickname'))
             user_id.user_nickname = request.POST.get('user_nickname')
             user_id.save()
-            message_alert = "닉네임이 변경되었습니다."
             return redirect('/account/mypageProfile?success=1')
     return render( request, 'mypageProfile.html',{'user':user, 'message_alert':message_alert, 'success' : request.GET.get('success', '0')})
 
