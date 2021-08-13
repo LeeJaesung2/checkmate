@@ -383,7 +383,9 @@
         </table>
         <div>
             {% if user.is_authenticated %}
+            {% if survey_ess %}
             <a class="btn btn-light float-end new-content" href="{% url 'create' %}">글쓰기</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
