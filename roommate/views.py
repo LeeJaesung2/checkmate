@@ -5,7 +5,7 @@ from .models import Write
 from survey.models import SurveyEssential, SurveyOptional
 from checkmate.models import Scrap_roommate
 from account.models import CustomUser
-from datetime import datetime
+from datetime import datetime, timezone
 import math
 
 
@@ -128,6 +128,7 @@ def create(request):
         write.user_id =  user_id
         write.survey_ess_id =  user_id.survey_ess_id
         write.survey_opt_id = user_id.survey_opt_id
+        write.pub_date = timezone.now()
         write.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:
