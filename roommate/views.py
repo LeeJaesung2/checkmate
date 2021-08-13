@@ -73,6 +73,8 @@ def searchRoommate(request):
         return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
     
     else:
+        a = 1 
+        # 로그인 안된 상태 확인
         search_keyword = request.GET.get('search_keyword')
         writes = Write.objects.all().order_by('-id')
         writes = filter(request, writes)
@@ -84,7 +86,7 @@ def searchRoommate(request):
             else:
                 messages.error(request, '검색어는 2글자 이상 입력해주세요')
         writes, page_range, next_page, pre_page = paging(request, writes)
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page,'a':a})
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)

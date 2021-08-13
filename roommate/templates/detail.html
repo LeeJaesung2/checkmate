@@ -41,7 +41,7 @@
     <div class="writer-info row">
         <img class="col-2"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:30px; height:30px; padding: 0;" >
         <!-- 프로필이미지 -->
-        {% if survey_ess.room_type == 1 %}
+        {% if survey_ess.room_type == '1' %}
         <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
         {% else %}
             {% if survey_ess.dormitory_number_man %}

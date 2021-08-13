@@ -219,6 +219,13 @@ select{
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
 }
 
+option{
+    color:#254074;
+}
+option:disabled{
+    color:gray;
+}
+
 /* input-time */
 input[type=time]{
     font-size: 17px;
