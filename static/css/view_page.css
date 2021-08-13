@@ -60,9 +60,9 @@ p{
     font-family: 'S-CoreDream-3Light';
     font-size: 17px;
     color: #454545;
-    padding-top: 30px;
-    padding-left: 30px;
-    width: 40vw;
+    /* padding-top: 30px; */
+    /* padding-left: 30px; */
+    /* width: 40vw; */
     padding-bottom:30px;
 }
 .bottom{
@@ -189,14 +189,17 @@ p{
         width: 65%
      }
     
-     .checklist-box strong{
-        display: inline-block;
-        font-family: 'S-CoreDream-4Regular';
-        width: 30%
-     }
+   .checklist-box strong{
+      display: inline-block;
+      font-family: 'S-CoreDream-4Regular';
+      width: 30%
+   }
 
-     .profile-title{
-        font-size: 13px;
-     }
+   .profile-title{
+      font-size: 13px;
+   }
+   .view_box1 h3{
+      font-size: 25px;
+   }
     
 }
