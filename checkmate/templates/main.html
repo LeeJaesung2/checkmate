@@ -51,6 +51,11 @@
     {% endblock %}
 
     {% block last %}
+    {% if success == '1' %}
+    <script>
+        alert('회원가입이 완료되었습니다.')
+    </script>
+    {% endif %}
     <script>
         let open_btn = document.querySelector("#btn-modal");
         open_btn.style.display="none";
