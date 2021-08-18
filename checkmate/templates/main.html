@@ -2,17 +2,18 @@
 
 {% load static %}
 {% block head %}
+{% if success == '1' %}
+<script>
+    alert('회원가입이 완료되었습니다.');
+</script>
+{% endif %}
 <link rel="stylesheet" href="{% static 'css/main2.css' %}">
 
 <!-- <link rel="stylesheet" href="{% static 'css/scss/main_scss.css' %}"> -->
 {% endblock %}
+
 {% block content %}
 
-{% if success == '1' %}
-<script>
-    alert('회원가입이 완료되었습니다.')
-</script>
-{% endif %}
 
 
 <div>
