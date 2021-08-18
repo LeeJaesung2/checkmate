@@ -110,12 +110,12 @@ def detail(request, write_id):
             scrap.write = write_detail
             scrap.save()
             fail = 0
-        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail, 'comments':comments})
+        return render(request, 'detail.html',{'write_detail':write_detail,'comments':comments ,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail})
     if aleady:
         okscrap = 0
     else:
         okscrap = 1
-    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap, 'comments':comments})
+    return render(request, 'detail.html',{'write_detail':write_detail,'comments':comments,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 def commnet_action(request, write_id):
     if(request.method == "POST"):
