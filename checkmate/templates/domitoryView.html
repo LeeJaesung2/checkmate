@@ -63,6 +63,7 @@
 
         {% endif %}
     </div>
+    <hr>
     <div>
         {% if user.is_authenticated %}
         <form action="{% url 'commnet_action_dom' post.id %}" method="POST">
