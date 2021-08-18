@@ -12,7 +12,7 @@ from roommate.models import Write
 # Create your views here.
 
 def main(request):
-    return render(request,'main.html')
+    return render(request,'main.html',{'success' : request.GET.get('success', '0')})
 
 def infoWrite(request):
     if request.method == 'POST':
