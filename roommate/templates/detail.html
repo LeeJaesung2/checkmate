@@ -21,7 +21,7 @@
     <a href="{% url 'detail' write_detail.id %}"><div class="popup2-close">&times;</div></a>
 </div>
 
-<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2 mx-2 mx-md-0">
+<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2 mb-5">
     <div class="view_box1 row mt-2">
         <h3 class="write-title mt-4">{{write_detail.title}}</h3>
         <div class="">
@@ -240,20 +240,26 @@
         <br><br>
         {% endif %}
     </div>
+    <hr>
     <div>
         {% if user.is_authenticated %}
         <form action="{% url 'commnet_action' write_detail.id %}" method="POST">
             {% csrf_token %}
-            <h5>작성하기</h5><textarea cols="20" rows="2" name="comment"></textarea>
-            <input type="submit" value="등록">
+            <h5 style="font-family: 'S-CoreDream-6Bold';">댓글 작성하기</h5>
+            <div class="form-floating">
+                <textarea class="form-control mb-2" placeholder="Leave a comment here" id="floatingTextarea" cols="20" rows="2" name="comment"></textarea>
+                <label for="floatingTextarea">Comments</label>
+                <input class="btn btn-light col-2 offset-10" type="submit" value="등록">
+              </div>
         </form>
         {% endif %}
     </div>
     {% for comment in comments %}
-    <div>
-        <div>{{ comment.writer }} : {{comment.comment}}</div>
+    <div class="row p-1 my-2" style="background-color: rgb(248, 248, 248); border-radius: 10px;">
+        <div class="col-2" style="font-family: 'S-CoreDream-5Medium'; font-size: 16px;">{{ comment.writer }} </div>
+        <div class="col-9" style="font-family: 'S-CoreDream-3Light';">{{comment.comment}}</div>
         {% if comment.writer == user.user_nickname %}
-        <a href="{% url 'comment_del' write_detail.id comment.id %}">삭제</a>
+        <a class="btn btn-outline-danger col-1" href="{% url 'comment_del' write_detail.id comment.id %}" style="border:0; padding: 0;">삭제</a>
         {% endif %}
     </div>
     {% endfor %}
