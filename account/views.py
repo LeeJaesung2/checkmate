@@ -40,6 +40,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             auth.login(request,user)
+            return redirect('/checkmate/main?success=1')
         return redirect('main')
     else:
         _token = request.session['access_token']
