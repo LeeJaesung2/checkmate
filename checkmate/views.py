@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from checkmate.models import Offcampus_Post,Domitory_Post
 from account.models import CustomUser
-from .models import Scrap_roommate, Scrap_dom, Scrap_off
+from .models import Scrap_roommate, Scrap_dom, Scrap_off, Comment_dom, Comment_off
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
@@ -150,6 +150,7 @@ def offcampusView(request,post_id):
     pre = post.id - 1
     next = post.id +1
     aleady = Scrap_off.objects.all()
+    comments = Comment_off.objects.filter(write=post)
     if(request.user.id):
         user_id = CustomUser.objects.get(id=request.user.id)
         aleady = aleady.filter(Offcampus_Post=post)
@@ -164,12 +165,12 @@ def offcampusView(request,post_id):
             scrap.Offcampus_Post = post
             scrap.save()
             fail = 0
-        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail})
+        return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail':fail,'comments':comments})
     if aleady:
         okscrap = 0
     else:
         okscrap = 1
-    return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'offcampusView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap,'comments':comments})
 
 def domitoryView(request,post_id):
     user = request.user
@@ -180,6 +181,7 @@ def domitoryView(request,post_id):
     pre = post.id - 1
     next = post.id +1
     aleady = Scrap_dom.objects.all()
+    comments = Comment_dom.objects.filter(write=post)
     if(request.user.id):
         user_id = CustomUser.objects.get(id=request.user.id)
         aleady = aleady.filter(Domitory_Post=post)
@@ -194,13 +196,44 @@ def domitoryView(request,post_id):
             scrap.Domitory_Post = post
             scrap.save()
             fail = 0
-        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail})
+        return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'fail': fail,'comments':comments})
     if aleady:
         okscrap = 0
     else:
         okscrap = 1
-    return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'domitoryView.html',{'post':post,'user':user, 'pre':pre, 'next':next, 'okscrap':okscrap,'comments':comments})
 
+def commnet_action_dom(request, post_id):
+    write = get_object_or_404(Domitory_Post, pk=post_id)
+    if(request.method == "POST"):
+        comment = Comment_dom()
+        comment.writer = CustomUser.objects.get(id=request.user.id).user_nickname
+        comment.comment = request.POST.get("comment")
+        comment.create_date = timezone.now()
+        comment.write = write
+        comment.save()
+    return redirect('/domitoryView/'+str(post_id))
+
+def commnet_action_off(request, post_id):
+    write = get_object_or_404(Offcampus_Post, pk=post_id)
+    if(request.method == "POST"):
+        comment = Comment_off()
+        comment.writer = CustomUser.objects.get(id=request.user.id).user_nickname
+        comment.comment = request.POST.get("comment")
+        comment.create_date = timezone.now()
+        comment.write = write
+        comment.save()
+    return redirect('/offcampusView/'+str(post_id))
+
+def comment_del_dom(request,post_id,comment_id):
+    comment = get_object_or_404(Comment_dom,pk=comment_id)
+    comment.delete()
+    return redirect('/domitoryView/'+str(post_id))
+
+def comment_del_off(request,post_id,comment_id):
+    comment = get_object_or_404(Comment_off,pk=comment_id)
+    comment.delete()
+    return redirect('/offcampusView/'+str(post_id))
 
 def offcampusDelete(request, post_id):
     post = Offcampus_Post.objects.get(id=post_id)

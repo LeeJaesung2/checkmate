@@ -107,3 +107,19 @@ class Scrap_dom(models.Model):
 class Scrap_off(models.Model):
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     Offcampus_Post = models.ForeignKey(Offcampus_Post, on_delete=models.CASCADE)
+
+class Comment_dom (models.Model):
+    writer = models.CharField(max_length=8)
+    comment = models.CharField(max_length=200)
+    write = models.ForeignKey("Domitory_Post", related_name="comments", on_delete=models.CASCADE)
+    create_date=models.DateTimeField()
+    def __str__(self):
+        return self.writer
+
+class Comment_off (models.Model):
+    writer = models.CharField(max_length=8)
+    comment = models.CharField(max_length=200)
+    write = models.ForeignKey("Offcampus_Post", related_name="comments", on_delete=models.CASCADE)
+    create_date=models.DateTimeField()
+    def __str__(self):
+        return self.writer

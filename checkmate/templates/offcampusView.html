@@ -60,6 +60,23 @@
         {% endif %}
 
     </div>
+    <div>
+        {% if user.is_authenticated %}
+        <form action="{% url 'commnet_action_off' post.id %}" method="POST">
+            {% csrf_token %}
+            <h5>작성하기</h5><textarea cols="20" rows="2" name="comment"></textarea>
+            <input type="submit" value="등록">
+        </form>
+        {% endif %}
+    </div>
+    {% for comment in comments %}
+    <div>
+        <div>{{ comment.writer }} : {{comment.comment}}</div>
+        {% if comment.writer == user.user_nickname %}
+        <a href="{% url 'comment_del_off' post.id comment.id %}">삭제</a>
+        {% endif %}
+    </div>
+    {% endfor %}
 </div>
 
 <script>
