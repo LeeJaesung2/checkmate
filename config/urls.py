@@ -45,6 +45,10 @@ urlpatterns = [
     path('domitoryUpdate/<int:post_id>',views.domitoryUpdate, name='domitoryUpdate'),
     path('domitory_popular/',views.domitory_popular, name='domitory_popular'),
     path('offcampus_popular/',views.offcampus_popular, name='offcampus_popular'),
+    path('commnet_action_dom/<int:post_id>', views.commnet_action_dom, name='commnet_action_dom'),
+    path('commnet_action_off/<int:post_id>', views.commnet_action_off, name='commnet_action_off'),
+    path('comment_del_dom/<int:post_id>/<int:comment_id>', views.comment_del_dom, name="comment_del_dom"),
+    path('comment_del_off/<int:post_id>/<int:comment_id>', views.comment_del_off, name="comment_del_off")
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
