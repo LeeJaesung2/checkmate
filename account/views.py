@@ -41,7 +41,7 @@ def register(request):
             user = form.save()
             auth.login(request,user)
             return redirect('main')
-        return redirect('main')
+        return redirect('?success=1')
     else:
         _token = request.session['access_token']
         _url = 'https://kapi.kakao.com/v2/user/me'
