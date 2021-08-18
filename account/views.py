@@ -40,7 +40,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             auth.login(request,user)
-            return redirect('https://checkmate-likelion.herokuapp.com?success=1')
+            return redirect('https://checkmate-likelion.herokuapp.com/?success=1')
     else:
         _token = request.session['access_token']
         _url = 'https://kapi.kakao.com/v2/user/me'
