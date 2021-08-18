@@ -24,7 +24,6 @@ def login_view(request):
             fail_login = -1
             return render(request, 'login.html', {'form':form, 'fail_login':fail_login})
     else:
-        
         form = AuthenticationForm()
         return render(request, 'login.html', {'form':form})
 
