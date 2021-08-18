@@ -238,13 +238,18 @@
         <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
         {% endif %}
     </div>
-    <div class="">
-        <ul class="pagination justify-content-center my-4">
-            <li class="page-item"><a class="page-link" href="{% url 'detail' pre %}" style="color:#254074; border:0;">◀ 이전글</a></li>
-            <li class="page-item"><a class="page-link" href="/roommate/searchRoommate" style="color:#254074; border:0;">목록</a></li>
-            <li class="page-item"><a class="page-link" href="{% url 'detail' next %}" style="color:#254074; border:0;">다음글 ▶</a></li>
-        </ul>
+    <div>
+        <form action="{% url 'commnet_action' write.id %}" method="POST">
+            {% csrf_token %}
+            <h5>작성하기</h5><textarea cols="20" rows="2"></textarea>
+            <input type="submit" value="등록">
+        </form>
     </div>
+    {% for comment in comments %}
+    <div>
+        <div>{{ comment.writer }} : {{comment.comment}}</div>
+    </div>
+    {% endfor %}
 </div>
 
 
