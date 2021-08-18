@@ -219,6 +219,9 @@ thead tr th:nth-child(3){
     thead tr th:nth-child(3){
         width: 45%;
     }
+    td {
+        white-space: nowrap;
+    }
 
 }
 
