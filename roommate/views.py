@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Write
+from .models import Write, Comment
 from survey.models import SurveyEssential, SurveyOptional
 from checkmate.models import Scrap_roommate
 from account.models import CustomUser
 from datetime import datetime, timezone
 from django.utils import timezone
 import math
+from django.utils import timezone
 
 
 # Create your views here.
@@ -112,12 +113,23 @@ def detail(request, write_id):
             scrap.write = write_detail
             scrap.save()
             fail = 0
-        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail})
+        return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'fail':fail, 'comments':comments})
     if aleady:
         okscrap = 0
     else:
         okscrap = 1
-    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
+    return render(request, 'detail.html',{'write_detail':write_detail,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap, 'comments':comments})
+
+def commnet_action(request, write_id):
+    if(request.method == "POST"):
+        write = get_object_or_404(Write, pk=write_id)
+        comment = Comment()
+        comment.writer = CustomUser.objects.get(id=request.user.id).user_nickname
+        comment.comment = request.POST.get()
+        comment.create_date = timezone.now()
+        comment.write = write
+        comment.save()
+    return redirect('/roommate/detail/'+str(write_id))
 
 def create(request):
     if request.method == 'POST':

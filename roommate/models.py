@@ -22,3 +22,11 @@ class Write(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment (models.Model):
+    writer = models.CharField(max_length=8)
+    comment = models.CharField(max_length=200)
+    write = models.ForeignKey("Write", related_name="comments", on_delete=models.CASCADE)
+    create_date=models.DateTimeField()
+    def __str__(self):
+        return self.writer
