@@ -255,7 +255,7 @@
         {% endif %}
     </div>
     {% for comment in comments %}
-    <div class="row p-1 my-2" style="background-color: rgb(248, 248, 248); border-radius: 10px;">
+    <div class="row p-1 my-2" style="background-color: #F9FAFB; border-radius: 10px;">
         <div class="col-2" style="font-family: 'S-CoreDream-5Medium'; font-size: 16px;">{{ comment.writer }} </div>
         <div class="col-9" style="font-family: 'S-CoreDream-3Light';">{{comment.comment}}</div>
         {% if comment.writer == user.user_nickname %}
