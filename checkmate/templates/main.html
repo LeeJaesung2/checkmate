@@ -7,8 +7,12 @@
 <!-- <link rel="stylesheet" href="{% static 'css/scss/main_scss.css' %}"> -->
 {% endblock %}
 {% block content %}
-<div>
-    <!-- <a href="{% url 'survey' %}">내정보 입력-임시</a> -->
+
+{% if success == '1' %}
+    <script>
+        alert('회원가입이 완료되었습니다.')
+    </script>
+    {% endif %}
 
 
 <div>
@@ -51,11 +55,7 @@
     {% endblock %}
 
     {% block last %}
-    {% if success == '1' %}
-    <script>
-        alert('회원가입이 완료되었습니다.')
-    </script>
-    {% endif %}
+   
     <script>
         let open_btn = document.querySelector("#btn-modal");
         open_btn.style.display="none";
