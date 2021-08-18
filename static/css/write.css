@@ -37,8 +37,6 @@ p{
     font-family: 'yg-jalnan';
     font-size: 17px;
     letter-spacing: 0.1em;
-    /* width: 60%; */
-    margin-top: 15px;
 }
 
 .info_container input{
@@ -105,5 +103,8 @@ p{
 @media screen and (max-width: 768px){
     .info_container{
         padding: 0 15px;
+    }
+    .info_container-box1 input{
+        margin-top: 15px;
     }
 }

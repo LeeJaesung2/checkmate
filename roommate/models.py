@@ -8,6 +8,7 @@ from survey.models import SurveyEssential, SurveyOptional
 class Write(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
+    pub_date = models.DateTimeField(auto_now=True)
 
     state_choice = (
         ('1', '매칭중'), 

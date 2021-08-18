@@ -5,7 +5,8 @@ from .models import Write, Comment
 from survey.models import SurveyEssential, SurveyOptional
 from checkmate.models import Scrap_roommate
 from account.models import CustomUser
-from datetime import datetime
+from datetime import datetime, timezone
+from django.utils import timezone
 import math
 from django.utils import timezone
 
@@ -74,6 +75,8 @@ def searchRoommate(request):
         return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
     
     else:
+        a = 1 
+        # 로그인 안된 상태 확인
         search_keyword = request.GET.get('search_keyword')
         writes = Write.objects.all().order_by('-id')
         writes = filter(request, writes)
@@ -85,7 +88,7 @@ def searchRoommate(request):
             else:
                 messages.error(request, '검색어는 2글자 이상 입력해주세요')
         writes, page_range, next_page, pre_page = paging(request, writes)
-        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page})
+        return render(request, 'searchRoommate.html',{'writes':writes, 'page_range':page_range, 'next_page':next_page, 'pre_page':pre_page,'a':a})
 
 def detail(request, write_id):
     write_detail = get_object_or_404(Write, pk=write_id)
@@ -95,11 +98,11 @@ def detail(request, write_id):
     pre = write_detail.id - 1
     next = write_detail.id + 1
     scrap = request.GET.get("Favorites")
-    user_id = CustomUser.objects.get(id=request.user.id)
     aleady = Scrap_roommate.objects.all()
-    aleady = aleady.filter(write=write_detail)
-    aleady = aleady.filter(user_id=user_id)
-    comments = Comment.objects.filter(write=write_id)
+    if(request.user.id):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = aleady.filter(write=write_detail)
+        aleady = aleady.filter(user_id=user_id)
     if(scrap):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
@@ -138,6 +141,7 @@ def create(request):
         write.user_id =  user_id
         write.survey_ess_id =  user_id.survey_ess_id
         write.survey_opt_id = user_id.survey_opt_id
+        write.pub_date = timezone.now()
         write.save()
         return redirect('/roommate/detail/'+str(write.id))
     else:

@@ -324,7 +324,10 @@ thead tr th:nth-child(2){
     width: 15%;
 }
 thead tr th:nth-child(5){
-    width: 55%;
+    width: 45%;
+}
+thead tr th:nth-child(6){
+    width: 10%;
 }
 
 .record-state{
@@ -401,7 +404,11 @@ pagination-box{
         width: 20%;
     }
     thead tr th:nth-child(5){
-       width: 44%;
+       width: 34%;
+    }
+    thead tr th:nth-child(6){
+        letter-spacing: -2.5px;
+        width: 10%;
     }
     .record-state{
         font-family: 'S-CoreDream-7ExtraBold';

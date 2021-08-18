@@ -18,41 +18,41 @@
         {% endfor %}
     </h4>
         {% endif %}
-    <div class="popup2-close">&times;</div>
+    <a href="{% url 'detail' write_detail.id %}"><div class="popup2-close">&times;</div></a>
 </div>
 
-<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
-    <div class="col-12">
-        <h3 class="write-title">{{write_detail.title}}</h3>
-        <hr>
-        <form class="float-end" action="" method="GET">
-            {% if user.is_authenticated %}
-            <button class="scrapBtn" id="Favorites" type="submit" name="Favorites" value="scrap">
-                <i class="far fa-star" id="star"></i>
-                <i class='fas fa-star' id="fstar"></i>
-                </button>
-            {% endif %}
-        </form>
-        <div class="float-end">
-            <!-- 모델에 pub_date추가해야함 -->
-            <small class="p-3">2021. 1. 2</small>
+<div class="col-12 col-md-12 offset-md-0 col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2 mx-2 mx-md-0">
+    <div class="view_box1 row mt-2">
+        <h3 class="write-title mt-4">{{write_detail.title}}</h3>
+        <div class="">
+            <!-- 타이틀 -->
+            <form action="" method="GET" class="float-end">
+                {% if user.is_authenticated %}
+                <button class="scrapBtn p-2" id="Favorites" type="submit" name="Favorites" value="scrap">
+                    <i class="far fa-star" id="star"></i>
+                    <i class='fas fa-star' id="fstar"></i></button>
+                    {% endif %}
+                </form>
+                <small class="p-2 float-end" style="">{{ write_detail.pub_date }}</small>
+            <!-- <i class="fas fa-star" id="fillStar"></i> -->
         </div>
     </div>
-    <div class="writer-info row">
-        <img class="col-2"src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:30px; height:30px; padding: 0;" >
+
+    <div class="view_box2 row my-4">
+        <img class="col-1" src="{{ write_detail.user_id.user_image.url }}" alt="profile_image" style="width:30px; height:30px; padding: 0;" >
         <!-- 프로필이미지 -->
-        {% if survey_ess.room_type == 1 %}
-        <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+        {% if survey_ess.room_type == '1' %}
+        <p class="col-10 col-md-7 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
         {% else %}
             {% if survey_ess.dormitory_number_man %}
-            <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-10 col-md-7 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_man}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% else %}
-            <p class="col-10 col-md-9 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
+            <p class="col-10 col-md-7 profile-title" style="margin: 0;">{{survey_ess.get_room_type_display}} | {{survey_ess.dormitory_number_woman}}동 | {{write_detail.user_id.user_gender}} | {{age}}살 | {{survey_ess.grade}}학년</p>
             {% endif %}
         {% endif %}
         <!-- 자신의 정보 -->
     </div>
-    <hr>
+
     <div class="container-fluid">
         <div class="row  checklist-box mb-2">
             <h3 class="p-3">필수 정보</h3>
@@ -231,11 +231,13 @@
             </div>
         </div>
     </div>
+
     <div class="detail-body">
         <p class="mb-4">{{write_detail.body}}</p>
         {% if write_detail.user_id.id == user.id %}
-        <a class="btn btn-light" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
-        <a class="btn btn-light" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        <a class="btn btn-light float-end" href="{% url 'update' write_detail.id %}"><span>수정</span></a>
+        <a class="btn btn-light float-end" href="{% url 'delete' write_detail.id %}"><span>삭제</span></a>
+        <br><br>
         {% endif %}
     </div>
     <div>

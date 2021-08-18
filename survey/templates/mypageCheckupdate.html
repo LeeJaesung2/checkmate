@@ -41,7 +41,7 @@
                     <div class="question filter_age">
                         <h6 class="title">나이</h6>
                         <div class="answer">
-                            <input type="number" id="age" name="age" value="{{ age }}">
+                            <input type="number" id="age" name="age" value="{{ age }}" style="height: 20px; margin: 0;">
                         </div>
                     </div>
                     <div class="question filter_grade">
@@ -121,9 +121,9 @@
                             <select class="dormitory_semester_start" name="dormitory_semester_start">
                                 <option value="">------</option>
                                 <option value="1" disabled>1학기</option>
-                                <option value="S" disabled>여름방학</option>
-                                <option value="2">2학기</option>
-                                <option value="W">겨울방학</option>
+                                <option value="2" disabled>여름방학</option>
+                                <option value="3">2학기</option>
+                                <option value="4">겨울방학</option>
                             </select>
                             <span>부터</span>
                             <select class="dormitory_year_end" name="dormitory_year_end">
@@ -135,9 +135,9 @@
                             <select class="dormitory_semester_end" name="dormitory_semester_end">
                                 <option value="">------</option>
                                 <option value="1">1학기</option>
-                                <option value="S">여름방학</option>
-                                <option value="2">2학기</option>
-                                <option value="W">겨울방학</option>
+                                <option value="2">여름방학</option>
+                                <option value="3">2학기</option>
+                                <option value="4">겨울방학</option>
                             </select>
                             <span>까지</span>
                         </div>
@@ -360,18 +360,19 @@
 {% block last %}
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-    $(".grade").val("{{ eSurvey.grade }}").prop("selected", true);
     //학년
+    $(".grade").val("{{ eSurvey.grade }}").prop("selected", true);
 
     //기숙사 or 자취
     $("input:radio[name='room_type']:radio[value='{{ eSurvey.room_type }}']").prop('checked', true);
 
 
+    //기숙사 동
     $(".dormitory_number_man").val("{{ eSurvey.dormitory_number_man }}").prop("selected", true);
     $(".dormitory_number_woman").val("{{ eSurvey.dormitory_number_woman }}").prop("selected", true);
     $(".dormitory_number").val("{{ eSurvey.dormitory_number }}").prop("selected", true);
-    //기숙사 동
 
+    //기간
     $(".dormitory_year_start").val("{{ eSurvey.dormitory_year_start }}").prop("selected", true);
     $(".dormitory_semester_start").val("{{ eSurvey.dormitory_semester_start }}").prop("selected", true);
     $(".dormitory_year_end").val("{{ eSurvey.dormitory_year_end }}").prop("selected", true);
@@ -387,13 +388,13 @@
     $(".cleaning").val("{{ eSurvey.cleaning }}").prop("selected", true);
 
     //잠버릇
-    if ("{{ eSurvey.sleeping_habits_snoring }}") {
+    if ("{{ eSurvey.sleeping_habits_snoring }}" == "True") {
         $("input:checkbox[name='sleeping_habits_snoring']").prop("checked", true);
     }
-    if ("{{ eSurvey.sleeping_habits_teeth }}") {
+    if ("{{ eSurvey.sleeping_habits_teeth }}" == "True") {
         $("input:checkbox[name='sleeping_habits_teeth']").prop("checked", true);
     }
-    if ("{{ eSurvey.sleeping_habits_nothing }}") {
+    if ("{{ eSurvey.sleeping_habits_nothing }}" == "True") {
         $("input:checkbox[name='sleeping_habits_nothing']").prop("checked", true);
     }
     //친구초대
@@ -409,13 +410,13 @@
     $("input:radio[name='eat']:radio[value='{{ eSurvey.eat }}']").prop('checked', true);
 
     //반려동물
-    if ("{{ eSurvey.animal_dog }}") {
+    if ("{{ eSurvey.animal_dog }}" == "True") {
         $("input:checkbox[name='animal_dog']").prop("checked", true);
     }
-    if ("{{ eSurvey.animal_cat }}") {
+    if ("{{ eSurvey.animal_cat }}" == "True"){
         $("input:checkbox[name='animal_cat']").prop("checked", true);
     }
-    if ("{{ eSurvey.animal_no }}") {
+    if ("{{ eSurvey.animal_no }}" == "True") {
         $("input:checkbox[name='animal_no']").prop("checked", true);
     }
 
@@ -430,10 +431,10 @@
     $(".ventilate").val("{{ oSurvey.ventilate }}").prop("selected", true);
 
     //온도
-    if ("{{ oSurvey.feel_cold }}") {
+    if ("{{ oSurvey.feel_cold }}" == "True") {
         $("input:checkbox[name='feel_cold']").prop("checked", true);
     }
-    if ("{{ oSurvey.feel_hot }}") {
+    if ("{{ oSurvey.feel_hot }}" == "True") {
         $("input:checkbox[name='feel_hot']").prop("checked", true);
     }
 
@@ -445,7 +446,7 @@
 
     //게임여부
     $("input:radio[name='game']:radio[value='{{ oSurvey.game }}']").prop('checked', true);
-    if ("{{ oSurvey.keyboard_noise }}") {
+    if ("{{ oSurvey.keyboard_noise }}" == "True") {
         $("input:checkbox[name='keyboard_checkbox']").prop("checked", true);
     }
 
