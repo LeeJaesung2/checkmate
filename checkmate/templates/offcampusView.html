@@ -62,10 +62,14 @@
     </div>
     <div>
         {% if user.is_authenticated %}
-        <form action="{% url 'commnet_action_off' post.id %}" method="POST">
+        <form action="{% url 'commnet_action' write_detail.id %}" method="POST">
             {% csrf_token %}
-            <h5>작성하기</h5><textarea cols="20" rows="2" name="comment"></textarea>
-            <input type="submit" value="등록">
+            <h5 style="font-family: 'S-CoreDream-6Bold';">댓글 작성하기</h5>
+            <div class="form-floating">
+                <textarea class="form-control mb-2" placeholder="Leave a comment here" id="floatingTextarea" cols="20" rows="2" name="comment"></textarea>
+                <label for="floatingTextarea">Comments</label>
+                <input class="btn btn-light col-2 offset-10" type="submit" value="등록">
+              </div>
         </form>
         {% endif %}
     </div>
