@@ -175,9 +175,9 @@ def filter(request, writes):
         yser_start = year(age_end)
         writes = writes.filter(user_id__user_birthyear__range=(yser_start,year_end))
 
-    grad = request.GET.get('grad')
-    if grad:
-        writes = writes.filter(survey_ess_id__grade=grad)
+    grade = request.GET.get('grade')
+    if grade:
+        writes = writes.filter(survey_ess_id__grade=grade)
 
     room_type = request.GET.get('room_type')
     if room_type:
