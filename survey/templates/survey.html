@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/survey.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>내 정보 입력 페이지</title>
 </head>
 
@@ -168,7 +169,7 @@
                     <input type="checkbox" id="animal-dog" name="animal" value='0'><label for="animal-dog">강아지</label>
                     <input type="checkbox" id="animal-cat" name="animal" value='1'><label for="animal-cat">고양이</label>
                     <label>기타</label><input type="text" id="animal-other" name="animal-other">
-                    <input type="checkbox" id="animal-no" name="animal" value='2' class=".nothing"><label for="animal-no">없음</label>
+                    <input type="checkbox" id="animal-no" name="animal" value='2' class="nothing"><label for="animal-no">없음</label>
                 </div>
             </div>
             <!-- 선택요소 -->
@@ -251,7 +252,6 @@
     </div>
 
     <!-- js -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="{% static 'js/survey.js' %}"></script>
 </body>
 </html>

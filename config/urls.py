@@ -30,7 +30,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('survey/', include('survey.urls')),
     path('roommate/', include('roommate.urls')),
-    path('chat/', include('chat.urls')),
     path('mypageScrap/',views.mypageScrap, name='mypageScrap'),
     path('mypageScrap_dom/',views.mypageScrap_dom, name='mypageScrap_dom'),
     path('mypageScrap_off/',views.mypageScrap_off, name='mypageScrap_off'),

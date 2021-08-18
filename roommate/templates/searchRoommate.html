@@ -383,7 +383,9 @@
         </table>
         <div>
             {% if user.is_authenticated %}
+            {% if survey_ess %}
             <a class="btn btn-light float-end new-content" href="{% url 'create' %}">글쓰기</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
@@ -404,8 +406,6 @@
     document.getElementById("filter-dropup").style.display = "none"
     
 
-
-
     function hidefilter(){
         document.getElementById("filter").style.display = "none";
         document.getElementById("filter-dropup").style.display = "none"
@@ -416,7 +416,7 @@
         document.getElementById("filter-dropdown").style.display = "none"
         document.getElementById("filter-dropup").style.display = "inline-block"
     }
-
+    hideFirstModal();
 
     if("{{ survey_ess }}"){
         document.getElementById("first_open_modal").style.display = "none";
@@ -429,11 +429,17 @@
             child.append(txt);
             tr[i+1].append(child);
     }
-    }
+}
     else{
         document.getElementById("first_open_modal").style.display = "block";
         document.getElementById("fitness").style.display = "none"
+        if("{{a}}"){
+
+            document.getElementById("first_open_modal").style.display = "none";
+        }
     }
+
+
 
     function hideFirstModal(){
         document.getElementById("first_open_modal").style.display = "none";

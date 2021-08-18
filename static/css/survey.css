@@ -61,6 +61,9 @@ h3{
     opacity: 0.5;
 }
 
+.previous, .next{
+    cursor: pointer;
+}
 /* 왼쪽 상단 타이틀 */
 .top.title{
     text-align: left;
@@ -214,6 +217,13 @@ select{
     border-radius: 4px;
     padding: 5px;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.25);
+}
+
+option{
+    color:#254074;
+}
+option:disabled{
+    color:gray;
 }
 
 /* input-time */
