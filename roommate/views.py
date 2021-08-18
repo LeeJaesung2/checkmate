@@ -95,11 +95,12 @@ def detail(request, write_id):
     pre = write_detail.id - 1
     next = write_detail.id + 1
     scrap = request.GET.get("Favorites")
-    user_id = CustomUser.objects.get(id=request.user.id)
     aleady = Scrap_roommate.objects.all()
     aleady = aleady.filter(write=write_detail)
-    aleady = aleady.filter(user_id=user_id)
-    comments = Comment.objects.filter(write=write_id)
+    if(request.user.id):
+        user_id = CustomUser.objects.get(id=request.user.id)
+        aleady = aleady.filter(user_id=user_id)
+    comments = Comment.objects.filter(write=write_detail)
     if(scrap):
         if aleady:
             messages.error(request, '이미 스크랩된 게시물 입니다')
@@ -118,14 +119,19 @@ def detail(request, write_id):
     return render(request, 'detail.html',{'write_detail':write_detail,'comments':comments,'survey_ess':survey_ess,'survey_opt':survey_opt, 'age':age, 'pre':pre, 'next':next, 'okscrap':okscrap})
 
 def commnet_action(request, write_id):
+    write = get_object_or_404(Write, pk=write_id)
     if(request.method == "POST"):
-        write = get_object_or_404(Write, pk=write_id)
         comment = Comment()
         comment.writer = CustomUser.objects.get(id=request.user.id).user_nickname
-        comment.comment = request.POST.get()
+        comment.comment = request.POST.get("comment")
         comment.create_date = timezone.now()
         comment.write = write
         comment.save()
+    return redirect('/roommate/detail/'+str(write_id))
+    
+def comment_del(request,write_id,comment_id):
+    comment = get_object_or_404(Comment,pk=comment_id)
+    comment.delete()
     return redirect('/roommate/detail/'+str(write_id))
 
 def create(request):
