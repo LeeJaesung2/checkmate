@@ -65,7 +65,7 @@
     </div>
     <div>
         {% if user.is_authenticated %}
-        <form action="{% url 'commnet_action' write_detail.id %}" method="POST">
+        <form action="{% url 'commnet_action_dom' post.id %}" method="POST">
             {% csrf_token %}
             <h5 style="font-family: 'S-CoreDream-6Bold';">댓글 작성하기</h5>
             <div class="form-floating">
