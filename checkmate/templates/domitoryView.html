@@ -73,10 +73,11 @@
         {% endif %}
     </div>
     {% for comment in comments %}
-    <div>
-        <div>{{ comment.writer }} : {{comment.comment}}</div>
+    <div class="row p-1 my-2" style="background-color: #F9FAFB; border-radius: 10px;">
+        <div class="col-2" style="font-family: 'S-CoreDream-5Medium'; font-size: 16px;">{{ comment.writer }} </div>
+        <div class="col-9" style="font-family: 'S-CoreDream-3Light';">{{comment.comment}}</div>
         {% if comment.writer == user.user_nickname %}
-        <a href="{% url 'comment_del_dom' post.id comment.id %}">삭제</a>
+        <a class="btn btn-outline-danger col-1" href="{% url 'comment_del_dom' post.id comment.id %}" style="border:0; padding: 0;">삭제</a>
         {% endif %}
     </div>
     {% endfor %}
