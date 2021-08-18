@@ -195,7 +195,8 @@ p{
    }
 
    .profile-title{
-      font-size: 13px;
+      font-size: 15px;
+      padding: 4px;
    }
    .view_box1 h3{
       font-size: 25px;
